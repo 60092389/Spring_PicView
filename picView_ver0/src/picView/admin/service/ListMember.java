@@ -1,4 +1,4 @@
-package picView.admin.action;
+package picView.admin.service;
 
 import java.util.List;
 
@@ -6,9 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import picView.admin.action.ActionForward;
-
 import picView.admin.model.Search;
+import picView.admin.service.ActionForward;
 import picView.blacklist.model.BlackSearch;
 
 import picView.member.model.Member;

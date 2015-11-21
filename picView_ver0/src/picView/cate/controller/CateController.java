@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import picView.cate.action.ListCategoryAction;
-import picView.cate.action.ListCategoryAction2;
-import picView.cate.action.ListCategoryAction3;
-import picView.cate.action.insertAction;
+import picView.cate.service.ListCategoryAction;
+import picView.cate.service.ListCategoryAction2;
+import picView.cate.service.ListCategoryAction3;
+import picView.cate.service.insertAction;
 import picView.member.service.Action;
 import picView.member.service.ActionForward;
 

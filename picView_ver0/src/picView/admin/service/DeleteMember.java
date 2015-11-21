@@ -1,9 +1,9 @@
-package picView.admin.action;
+package picView.admin.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import picView.admin.action.ActionForward;
+import picView.admin.service.ActionForward;
 import picView.member.model.MemberDao2;
 
 public class DeleteMember implements Action{

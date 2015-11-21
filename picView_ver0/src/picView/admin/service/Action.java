@@ -1,4 +1,4 @@
-package picView.picture.action;
+package picView.admin.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

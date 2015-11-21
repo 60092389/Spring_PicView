@@ -1,4 +1,4 @@
-package picView.admin.action;
+package picView.picture.service;
 
 public class ActionForward {
 	private boolean isReDirect;

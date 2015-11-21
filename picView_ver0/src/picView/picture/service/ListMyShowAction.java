@@ -1,4 +1,4 @@
-package picView.picture.action;
+package picView.picture.service;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import picView.picture.action.ActionForward;
 import picView.picture.model.PictureDao;
 import picView.picture.model.PictureShow;
+import picView.picture.service.ActionForward;
 
 public class ListMyShowAction implements Action {
 

@@ -1,4 +1,4 @@
-package picView.picture.action;
+package picView.picture.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,11 +25,11 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sun.prism.Image;
 
-import picView.picture.action.Action;
-import picView.picture.action.ActionForward;
 import picView.picture.model.ImageUtil;
 import picView.picture.model.Picture;
 import picView.picture.model.PictureDao;
+import picView.picture.service.Action;
+import picView.picture.service.ActionForward;
 
 public class InsertAction implements Action{
 

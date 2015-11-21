@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import picView.admin.action.DeleteMember;
-import picView.admin.action.ListMember;
-import picView.admin.action.ActionForward;
-import picView.admin.action.Action;
+import picView.admin.service.Action;
+import picView.admin.service.ActionForward;
+import picView.admin.service.DeleteMember;
+import picView.admin.service.ListMember;
 
 @WebServlet("*.ao")
 public class AdminController extends HttpServlet {

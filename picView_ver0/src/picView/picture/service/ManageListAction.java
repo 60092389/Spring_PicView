@@ -1,4 +1,4 @@
-package picView.picture.action;
+package picView.picture.service;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import picView.picture.model.Picture;
 import picView.picture.model.PictureDao;
-import picView.picture.action.Action;
-import picView.picture.action.ActionForward;
+import picView.picture.service.Action;
+import picView.picture.service.ActionForward;
 
 public class ManageListAction implements Action {
 
