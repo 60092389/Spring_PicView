@@ -13,10 +13,13 @@ public class MemberCommand implements Serializable{
 	private String month;
 	private String day;
 	private String gender;
+	private String category_no;
 	
 	public MemberCommand(){}
-	
-	public MemberCommand(String name, String id, String pass, String year, String month, String day, String gender) {
+		
+
+	public MemberCommand(String name, String id, String pass, String year, String month, String day, String gender,
+			String category_no) {
 		super();
 		this.name = name;
 		this.id = id;
@@ -25,7 +28,9 @@ public class MemberCommand implements Serializable{
 		this.month = month;
 		this.day = day;
 		this.gender = gender;
+		this.category_no = category_no;
 	}
+
 
 	public String getName() {
 		return name;
@@ -81,6 +86,16 @@ public class MemberCommand implements Serializable{
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+
+	public String getCategory_no() {
+		return category_no;
+	}
+
+
+	public void setCategory_no(String category_no) {
+		this.category_no = category_no;
 	}
 	
 		

@@ -1,0 +1,250 @@
+@CHARSET "utf-8";
+
+.header {
+	height: 10%;
+}
+
+.contents {
+	height: 80%;
+	margin-top: -15px;
+}
+
+.footer {
+	height: 480px;
+}
+
+p{
+	color: white;
+}
+
+.bucket01 {
+	background-position: 50% center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: block;
+	float: left;
+	height: 100%;
+	padding: 0 15px;
+	position: relative;
+	width: 33%;
+	background-image: url("/picView_ver0/images/main/background_05.jpg");
+}
+
+.footer .bucket01 .bucket01_stack {
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	bottom: 0;
+	height: 100%;
+	left: 15px;
+	margin: 0 auto;
+	max-width: 500px;
+	position: absolute;
+	right: 15px;
+	background-image: url("/picView_ver0/images/main/background_04_01.png");
+}
+
+.centered {
+	margin: 0 auto;
+	max-width: 400px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.centered02 {
+	margin: 0 auto;
+	max-width: 400px;
+	position: relative;
+	top: 60%;
+	transform: translateY(-50%);
+}
+
+.centered h3 {
+	font-size: 22px;
+	font-weight: 600;
+	color: #ffffff;
+	text-align: center;
+}
+
+.centered02 h3 {
+	font-size: 22px;
+	font-weight: 600;
+	color: #ffffff;
+	text-align: center;
+}
+
+.platforms {
+	height: 78px;
+	margin-top: 20px;
+	padding-bottom: 55px;
+}
+
+.platforms div {
+	margin: 0px 30px;
+	display: inline-block;
+}
+
+.platform-apple {
+	background: rgba(0, 0, 0, 0)
+		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		-214px;
+	height: 36px;
+	width: 30px;
+}
+
+.platform-android {
+	background: rgba(0, 0, 0, 0)
+		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		-250px;
+	height: 36px;
+	width: 30px;
+}
+
+.platform-mac {
+	background: rgba(0, 0, 0, 0)
+		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		-150px;
+	height: 28px;
+	width: 30px;
+	margin-bottom: 4px;
+}
+
+.platform-windows {
+	background: rgba(0, 0, 0, 0)
+		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		-178px;
+	height: 36px;
+	width: 30px;
+}
+
+.bucket02 {
+	background-position: 50% center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: block;
+	float: left;
+	height: 100%;
+	padding: 0 15px;
+	position: relative;
+	width: 34%;
+	background-image: url("/picView_ver0/images/main/background_04.jpg");
+}
+
+.bucket03 {
+	background-position: 50% center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: block;
+	float: left;
+	height: 100%;
+	padding: 0 15px;
+	position: relative;
+	width: 33%;
+	background-image: url("/picView_ver0/images/main/background_06.jpg");
+}
+
+.contents {
+	height: 50%;
+	margin-top: -15px;
+}
+
+.inspiration-bucket {
+	background-position: 50% center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-sizing: border-box;
+	height: 960px;
+	min-height: 410px;
+	padding: 0 15px;
+	position: relative;
+	background-image: url("/picView_ver0/images/main/background_07.jpg");
+	height: 367px;
+}
+
+.copy {
+	margin: 0 auto;
+	max-width: 400px;
+	padding-top: 175px;
+	text-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+}
+
+.copy h3 {
+	font-weight: 600;
+	font-size: 22px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.copy p {
+	text-align: center;
+}
+
+.bottom-bucket {
+	height: 660px;
+	padding: 0 15px;
+	position: relative;
+}
+
+.bottom-bucket .background {
+	background-position: 50% center;
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	height: 668px;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-image: url("/picView_ver0/images/main/background_08.jpg");
+	background-color: #212124;
+}
+
+.bottom-bucket .not-quite-centered {
+	padding-top: 190px;
+	position: relative;
+}
+
+.not-quite-centered {
+	padding-top: 190px;
+	position: relative;
+}
+
+.bottom-bucket h3 {
+	font-size: 30px;
+	font-weight: 600;
+	margin-bottom: 20px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.bottom-bucket p {
+	color: #ffffff;
+	text-align: center;
+}
+
+.butt.medium-ass {
+	font-size: 18px;
+	height: 50px;
+	line-height: 50px;
+	min-width: 200px;
+	text-align: center;
+}
+
+.butt {
+	box-sizing: border-box;
+	display: inline-block;
+	padding: 0px 20px;
+	vertical-align: top;
+	font-family: "Proxima Nova", "helvetica neue", helvetica, arial,
+		sans-serif;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+	transition: all 150ms ease-in-out 0s;
+	border-radius: 3px;
+	border: 0px none;
+	cursor: pointer;
+	font-weight: 600;
+	background-color: #128fdc;
+	color: #fff;
+}

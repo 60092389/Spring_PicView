@@ -3,3 +3,39 @@ picView notice
 2015/11/21 10:43 박준병
 회원가입완료 - 카테고리리스트는 못불러옴
 패키지 action들 service로 수정
+
+////////////////////////////////////////////////
+2015/11/21 15:10 박준병
+
+DB에 아래 카테고리 데이터들 다넣기
+insert into category values(category_no_seq.nextval, '예술 및 공연', '1art.jpg');
+insert into category values(category_no_seq.nextval, '여행 및 풍경', '2trip.jpg');
+insert into category values(category_no_seq.nextval, '패션', '3fashion.jpg');
+insert into category values(category_no_seq.nextval, '음악', '4music.jpg');
+insert into category values(category_no_seq.nextval, '도서', '5book.png');
+insert into category values(category_no_seq.nextval, '동물 및 식물', '6animal.jpg');
+insert into category values(category_no_seq.nextval, '인물', '7human.jpg');
+insert into category values(category_no_seq.nextval, '디자인', '8design.jpg');
+insert into category values(category_no_seq.nextval, '사회적 이슈', '9issue.jpg');
+insert into category values(category_no_seq.nextval, '음식', '10food.jpg');
+insert into category values(category_no_seq.nextval, '스포츠', '11sports.jpg');
+insert into category values(category_no_seq.nextval, '기타', '12etc.jpg');
+
+- 위에등록하고 register_index.html실행하면 회원가입시 카테고리 선택가능
+- 카테고리 선택하고 회원가입하면 group_category 디비에 회원이 선택한 카테고리번호랑 
+회원번호가 입력됨
+
+-수정된 페이지
+jsp->login->register.jsp 수정
+jsp->register_index.html 추가
+
+picView.member.model -> MemberCommand.java 수정
+picView.member.service -> MemberService.java 수정
+
+picView.cate.controller
+picView.cate.mapper
+picView.cate.model
+picView.cate.service 패키지 다수정
+
+mybatis-config.xml 수정
+////////////////////////////////////////////////////////

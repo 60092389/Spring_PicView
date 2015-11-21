@@ -1,4 +1,4 @@
-package picView.cate.controller;
+/*package picView.cate.controller;
 
 
 import java.io.IOException;
@@ -93,3 +93,4 @@ public class CateController extends HttpServlet {
         
 
 }
+*/

@@ -5,41 +5,14 @@
 
 <mapper namespace="picView.cate.mapper.CateMapper">
 	<cache />
+
+	<select id="categoryList" resultType="Category">
+		select * from category order by category_no
+	</select>
 	
-	<insert id="insertCategory" parameterType="Category">
-		insert into category(
-			 category_no, category_name, category_img_add, category_date, category_seq
-		)
-		values(
-			category_seq.nextval, #{category_name}, #{category_img_add}, SYSDATE, #{category_seq}
-		)
+	<insert id="insertGroupCate" parameterType="GroupCategory">
+		insert into group_category values(group_cate_no_seq.nextval, #{mem_no}, #{category_no})
 	</insert>
-	
-	<select id="ListCategory2" resultType="Category">
-		select * from category order by category_seq
-	</select>
-
-	<select id="ListCategory" resultType="Category" parameterType="Search">
-		select * from category
-		<if test="area !=null ">
-			<where>
-				<foreach close=")" open="(" separator="or" item="are" collection="area">
-					${are} LIKE #{searchKey}
-				</foreach>
-			</where>
-		</if>
-		 order by category_seq
-	</select>
-	
-	<select resultType="int" parameterType="Search" id="countCate">
-		select count(*) from category
-		<if test="area != null">
-			<where>
-				<foreach separator="and" item="are" collection="area"> ${ are } LIKE #{ searchKey } </foreach>
-
-			</where>
-		</if>
-	</select>
 	
 </mapper>
 
