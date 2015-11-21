@@ -30,7 +30,7 @@ public class MemberController {
 		this.categoryService = categoryService;
 	}
 
-	@RequestMapping("/jsp/login/insertForm")
+	@RequestMapping("/jsp/**/insertForm")
 	public String insertForm(Model model){
 		System.out.println("insertForm 오케이");
 		

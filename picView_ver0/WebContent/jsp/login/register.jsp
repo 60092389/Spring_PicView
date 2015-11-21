@@ -1,5 +1,6 @@
 <%@page import="picView.cate.model.Category"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,20 +8,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <link href="./bootstrap.min.css" rel="stylesheet"> -->
-<link href="/picView_ver0/jsp/login/css/custom2.css" rel="stylesheet">
+<link href="/picView_test/jsp/login/css/custom2.css" rel="stylesheet">
 <!-- <link href="../../css/bootstrap.min.css" rel="stylesheet"> -->
-<link href="/picView_ver0/jsp/login/css/register7.css" rel="stylesheet">
+<link href="/picView_test/jsp/login/css/register7.css" rel="stylesheet">
 <!-- <link href="../../css/picView_custom.css" rel="stylesheet"> -->
-<!-- <script type="text/javascript" src="../../js/jquery.min.js"></script> -->
+<script type="text/javascript" src="/picView_test/js/jquery.min.js"></script>
 <script src="jquery.validate.js"></script>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script type="text/javascript">
 	$(function() {
 		var cnt = 0;
 		$('.FollowButton')
-				.on(
-						'click',
-						function() {
+				.on('click',function() {
 							var index2 = $('.FollowButton').index(this);
 
 							if ($('.wholeInterestMask').eq(index2).attr('class') == 'wholeInterestMask hidden') {
@@ -164,8 +163,8 @@
 
 				<!-- 카테고리 -->
 
-				<%-- <div id="category_area" class="row center_right col-xs-4 col-lg-4">
-					<c:forEach var="category" items="${cate_list}">
+				<div id="category_area" class="row center_right col-xs-4 col-lg-4">
+					<c:forEach var="category" items="${cateList}">
 
 						<div class="col-sm-4 col-md-4">
 							<div class="Interest Module FollowButton">
@@ -175,7 +174,7 @@
 								</div>
 								<div class="interestWrapper" style="background-color: #403F14">
 									<div class="interestImage"
-										style="background-image: url('../../images/category/${category.category_img_add}')"></div>
+										style="background-image: url('/picView_test/images/category/${category.category_img_add}')"></div>
 
 									<div class="interestLabel">
 										<h4>${category.category_name }
@@ -188,7 +187,7 @@
 						</div>
 					</c:forEach>
 
-				</div> --%>
+				</div>
 
 
 				<!-- 로그인 버튼 -->
