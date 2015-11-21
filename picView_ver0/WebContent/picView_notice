@@ -1,1 +1,5 @@
-Spring변환 후 공지
+picView notice
+
+2015/11/21 10:43 박준병
+회원가입완료 - 카테고리리스트는 못불러옴
+패키지 action들 service로 수정
