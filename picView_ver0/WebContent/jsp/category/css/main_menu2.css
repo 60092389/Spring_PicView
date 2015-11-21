@@ -1,0 +1,228 @@
+@CHARSET "EUC-KR";
+
+#scrollUp {
+	bottom: 20px;
+	right: 20px;
+	padding: 10px 20px;
+	color: #ff0080;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+body {
+	margin: 0px auto;
+}
+
+nav {
+	float: left;
+	width: 420px;
+	height: 620px;
+	position: fixed;
+	background-color: black;
+	color: white;
+	text-align: center;
+	z-index: 1000;
+	left: -200px;
+	top: 30px;
+}
+
+#picture_menu {
+	width: 500px;
+}
+
+#picture {
+	width: 140px;
+}
+
+nav ul {
+	padding: 0;
+	margin: 0 auto;
+}
+
+nav li {
+	padding-top: 30px;
+	font-weight: bold;
+}
+
+nav li a {
+	font-size: 15px;
+	color: white;
+}
+
+nav li a:hover {
+	color: yellow;
+}
+
+#notipopup {
+	position: absolute;
+	z-index: 10000;
+	background-color: #353535;
+}
+
+#notipopup .todayclose, #notipopup .close {
+	display: inline;
+	font-size: 13px;
+	margin-left: 30px;
+	color: white;
+}
+
+.left-menu2 {
+	margin-top: 100px;
+}
+
+#menubutton {
+	position: absolute;
+	display: inline;
+	top: 0;
+	right: -30px;
+	width: 21px;
+	height: 79px;
+	padding: 6px 10px 0 0;
+	z-index: 100;
+}
+
+#menubutton img{
+	margin-top: 270px;
+}
+
+#main_header {
+	height: 200px;
+	padding: 10px;
+}
+
+.logo {
+	display: inline;
+	float: left;
+	margin-top: 30px;
+	margin-left: 240px;
+}
+
+#header1 {
+	height: 50px;
+	width: 1300px;
+}
+
+#header1 ul {
+	float: right;
+	padding-right: 13px;
+}
+
+#header1 li {
+	display: inline;
+	font-size: 11px;
+}
+
+li.last {
+	border-right: none;
+}
+
+#header2 {
+	position: absolute;
+	width: 850px;
+	height: 50px;
+	margin-left: 500px;
+	margin-top: 50px;
+}
+
+.left-header li {
+	border-right: solid 2px;
+	padding-right: 3px;
+	font-weight: bold;
+}
+
+ul.right-menu {
+	display: inline;
+	width: 500px;
+	height: 50px;
+}
+
+.right-header li {
+	border-right: solid 2px;
+	padding-right: 3px;
+	font-weight: bold;
+	color: #930000;
+}
+
+.right-menu>li {
+	display: inline;
+	padding: 0px 30px 0px 30px;
+	border-right: solid 1px #858585;
+}
+
+li.last {
+	border-right: none;
+}
+
+.right-menu>li>a {
+	text-decoration: none;
+	color: #858585;
+	font-weight: bold;
+	font-family: 'corbel';
+	font-size: 18px;
+}
+
+.right-menu>li>a:hover {
+	color: #454545;
+}
+
+.side_menu {
+	margin-top: 10px;
+	width: 900px;
+	height: 50px;
+	position: relative;
+}
+
+.side_menu ul {
+	position: absolute;
+	margin: 0px;
+	padding-left: 30px;
+}
+
+.side_menu li {
+	display: inline;
+	padding-left: 30px;
+}
+
+.side_menu li a {
+	font-size: 13px;
+	color: #858585;
+	font-weight: bold;
+	padding-left: 15px;
+	padding-right: 10px;
+	background: url("../imgs/t02.gif") no-repeat -6px 0px;
+}
+
+#BrandStory {
+	margin-left: -110px;
+}
+
+#StoreInfo {
+	margin-left: 40px;
+}
+
+#NewsNote {
+	margin-left: 170px;
+}
+
+#EyewearStyling {
+	margin-left: 370px;
+}
+
+.sub_display {
+	display: none;
+}
+
+#content {
+	margin-left: 230px;
+}
+
+#main_footer {
+	margin-top: 300px;
+	margin-left: 220px;
+}

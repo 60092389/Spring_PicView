@@ -1,0 +1,89 @@
+@CHARSET "EUC-KR";
+
+body {
+	font-family: "¸¼Àº °íµñ", "Malgun Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic",
+		sans-serif;
+}
+
+#upload_title {
+	color: white;
+	margin-left: 200px;
+	margin-bottom: 50px;
+}
+
+.contents {
+	background-color: black;
+	padding-top: 50px;
+	margin-bottom: -10px;
+	height: auto;
+	width: auto;
+	display: block;
+}
+
+#upload_select {
+	margin: 0 auto;
+	width: 480px;
+	height: auto;
+}
+
+p, label {
+	color: white;
+}
+
+#upload_area{
+	width: 450px;
+	height: auto;
+	margin: 0 auto;
+	padding-bottom: 50px;
+}
+
+#upload_pic {
+	width: auto;
+	height: auto;
+	margin: 0 auto;
+	padding: 20px;
+	float: left;
+	display: inline-block;
+}
+
+.preview canvas{
+	width: 100px;
+	height: 100px;
+}
+
+.dz-hidden-input {
+	visibility: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 0px;
+	width: 0px;
+}
+
+/* #upload_area table {
+	width: 800px;
+	margin-left: 300px;
+	border: thin solid;
+	background: white;
+} */
+#menu {
+	width: 300px;
+	height: auto;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+#menu input {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#upload_btn {
+	width: 140px;
+	margin: 0 auto;
+	padding: 20px 0px 50px 10px;
+}

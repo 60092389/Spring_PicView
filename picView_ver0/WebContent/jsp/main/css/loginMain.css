@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+#main{
+	width : 1300px;
+	margin-bottom : 90px;
+	margin-left: auto;
+  margin-right: auto;
+	min-width: 500px;
+	text-align: left;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+}
+
+
+.clearfix::after{
+	clear : both;
+	content : ".";
+	display : block;
+	height : 0;
+	visibility: hidden;
+}
+
+#sidebar{
+	float : right;
+	right : 0;
+	width : 300px;
+	height : 700px;
+	background-color: blue;
+}
+
+#activityFeed{
+	margin-right: 340px;
+	background-color: yellow;	
+}
+
+#friendList{
+	background-color: gold;
+	height : 300px;
+	margin-bottom: 40px;
+}
+
+#bestUserList{
+	background-color: green;
+	height : 300px;
+}
+

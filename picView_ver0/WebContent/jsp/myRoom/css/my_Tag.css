@@ -1,0 +1,51 @@
+@CHARSET "EUC-KR";
+
+@CHARSET "EUC-KR";
+
+body {
+	font-family: "¸¼Àº °íµñ", "Malgun Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic",
+		sans-serif;
+}
+
+
+
+#other {
+	margin-left: 530px;
+}
+
+#tag{
+	margin-left: 170px;
+}
+
+#tag h3{
+	font-weight: bold;
+}
+
+#tag_table{
+	margin-top: 50px;
+	margin-left: 200px;
+	margin-bottom: 50px;
+	width: 900px;
+}
+
+#tag_name{
+	width: 600px;
+}
+
+#tag_num{
+	width: 200px;
+}
+
+#up_del{
+	width: 100px;
+}
+
+#no_tag {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}

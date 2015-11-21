@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="picView.member.mapper.MemberMapper">
+	<cache />
+	
+	
+
+	<insert id="insertMember" parameterType="Member">
+	
+		insert into member(
+			 mem_no, mem_name, mem_id, mem_pwd, mem_birth, mem_sex, pic_count, mem_pic, mem_last_date, mem_date
+		)
+		values(
+			mem_no_seq.nextval, #{mem_name}, #{mem_id}, #{mem_pwd}, #{mem_birth}, #{mem_sex} , 0, 'null', SYSDATE, SYSDATE
+		)
+	</insert>
+	
+	<select id="selectById" resultType="Member" parameterType="String">
+		select * from member where mem_id = #{mem_id}
+	
+	</select>
+	
+	<!--<select id="loginMember" parameterType="Member" resultType="Member">
+		select * from member where mem_id = #{mem_id} and mem_pwd = #{mem_pwd}
+	</select>
+	
+	<delete id="deleteMember" parameterType="int">
+	    delete from member
+	    where mem_no = #{mem_no}
+	</delete> -->
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

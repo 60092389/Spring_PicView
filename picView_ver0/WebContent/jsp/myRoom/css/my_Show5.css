@@ -1,0 +1,84 @@
+@CHARSET "EUC-KR";
+
+body {
+	font-family: "¸¼Àº °íµñ", "Malgun Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic",
+		sans-serif;
+}
+
+#myMenu_navi {
+	height: 40px;
+	margin-top: -48px;
+	margin-left: 150px;
+}
+
+#other {
+	margin-left: 530px;
+}
+
+.contents {
+	background-color: #F3F5F6;
+	overflow: hidden;
+	height: auto;
+	width: auto;
+	padding-bottom: 20px;
+}
+
+#picture_area {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 120px;
+}
+
+.picture_list {
+	float: left;
+	margin: 2px;
+	width: 357px;
+	height: 268px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 357px;
+}
+
+.open_pic {
+	margin-top: 30px;
+}
+
+#show_btn {
+	margin-top: 30px;
+	margin-left: 120px;
+}
+
+.no_picture {
+	margin-top: 150px;
+	text-align: center;
+}
+
+.no_picture p {
+	color: black;
+}
+
+.button {
+	margin-left: 610px;
+	margin-top: 100px;
+}
+
+.info_bar {
+	margin-top: 225px;
+	margin-left: 10px;
+}
+
+.pic_title{
+	display: inline;
+}
+
+.pic_date{
+	display: block;
+}
+
+.info_bar a {
+	color: white;
+}

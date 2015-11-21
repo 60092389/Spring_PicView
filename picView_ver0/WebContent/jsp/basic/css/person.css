@@ -1,0 +1,26 @@
+@CHARSET "EUC-KR";
+
+body {
+	font-family: "¸¼Àº °íµñ", "Malgun Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic",
+		sans-serif;
+}
+
+#person_table{
+	width: 500px;
+}
+
+#title{
+	width: 200px;
+}
+
+#title label{
+	width: 150px;
+}
+
+#content{
+	width: 300px;
+}

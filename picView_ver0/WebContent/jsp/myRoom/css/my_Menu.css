@@ -1,0 +1,200 @@
+@CHARSET "UTF-8";
+
+#myMenu{
+	width : 100%;
+	height : 300px;
+}
+
+#myMenu_navi{
+	height : 40px;
+	margin-top: -48px;
+	margin-left: 150px;
+}
+
+
+#profileBack{
+	height : 250px;
+}
+
+.view{
+	opacity: 1 !important;
+  transition: opacity 0.25s ease 0s;
+}
+
+.coverPhoto{
+	background-image: url("../../../images/main/myPage_background.jpg");
+  background-attachment: scroll;
+  background-position: 50% 50%;
+  background-size: 100% auto;
+  height: 250px;
+  padding-top: 130px;
+  position: relative;
+  width: 100%;	
+	
+}
+
+.fluid-centered{
+	margin-left: auto;
+	margin-right: auto;
+	max-width: calc(100%-20%);
+	min-width: 800px;
+	padding-left: 130px;
+	padding-right: 130px;
+}
+
+.coverPhoto-content{
+	color : #fff;
+	height : 120px;
+	position : relative;
+	
+}
+
+.cover-photo-edit{
+	background: rgba(0,0,0,0) no-repeat scroll -104px -664px;
+	cursor: pointer;
+	height: 38px;
+	margin-left: 10px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 130px;
+	top: -105px;
+	transition: opacity 0.2s ease 0s, width 0.2s ease 0s;
+	width: 0;
+	font-size: 24px;
+}
+
+.coverPhoto:hover .cover-photo-edit{
+	background: rgba(0,0,0,0);
+	height: 38px;
+	opacity: 1;
+	width: 38px;
+	font-size: 24px;
+}
+
+.coverPhoto-content .avatar{
+	float: left;
+	margin: 0 15px 14px 0;
+}
+
+.large{
+	height: 100px;
+	width: 100px;
+}
+
+.person{
+	border-radius: 100%;
+}
+
+.avatar{
+	background-color: #ddd;
+	background-size: cover;
+	box-shadow: 0 0 20px rgba(0, 0, 0.08) inset;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: box-shadow 150ms ease-in-out 0s;
+	vertical-align: bottom;
+}
+
+
+.edit{
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 100%;
+	color: white;
+	font-size: 0.8em;
+	height: 100px;
+	opacity: 0;
+	padding-top: 35px;
+	position: absolute;
+	text-align: center;
+	text-decoration: none;
+	top: 0;
+	transition: opacity 200ms ease-out 0s;
+	width: 100px;
+	z-index: 82;
+	font-size: 20px;
+}
+
+.coverPhoto-content .avatar:hover .edit{
+	opacity: 1;
+}
+
+.coverphoto-content .avatar .edit .edit-icon{
+	background: rgba(0, 0, 0, 0);
+  height: 38px;
+  left: 50%;
+  margin-left: -19px;
+  position: absolute;
+  width: 38px;
+
+}
+
+
+.title-block-content{
+	display: inline-block;
+	width: calc(100% - 100px - 15px);
+}
+
+.coverPhoto-content .title-block-content .title{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+}
+
+.coverPhoto-content .title-block-content .title h1 {
+	display: inline-block;
+	line-height: 1em;
+	margin: 21px 20px 13px 0;
+}
+
+h1{
+	font-size: 36px;
+}
+
+.coverPhoto-content p{
+	float: left;
+	font-weight: 300;
+	line-height: 1em;
+	margin: 0 30px 30px 0;
+	max-width: 250px;
+}
+
+.truncate{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.coverPhoto-content .followers{
+	margin-right: 0;
+	max-width: 400px;
+}
+
+.coverPhoto-content p a{
+	color: #fff;
+}
+
+a{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+em{
+	font-weight: bold;
+}
+
+.coverPhoto-content .metadata-content {
+	/* display : none; */
+  display: inline-block;
+}
+
+.coverPhoto-content .metadata-content {
+ bottom: 0;
+ position: absolute;
+ right: 130px;
+}
+
+
+
+
