@@ -6,6 +6,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="picView.member.model.Member" alias = "Member"/>
+		<typeAlias type="picView.cate.model.Category" alias = "Category"/>
+		<typeAlias type="picView.cate.model.GroupCategory" alias = "GroupCategory"/>
+		
 	</typeAliases>
 	
 	<environments default="development">
@@ -24,6 +27,7 @@
 	
 	<mappers>
 		<mapper resource="picView/member/mapper/Member.xml"/>
+		<mapper resource="picView/cate/mapper/Category.xml"/>
 	</mappers>
 	
 </configuration>
