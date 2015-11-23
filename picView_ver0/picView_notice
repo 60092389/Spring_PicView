@@ -40,4 +40,7 @@ picView.cate.service 패키지 다수정
 mybatis-config.xml 수정
 ////////////////////////////////////////////////////////
 
-
+2015/11/23 11:47 황재준
+index -> index.jsp
+layout -> 전부
+js 콘솔창 오류나던거 정리

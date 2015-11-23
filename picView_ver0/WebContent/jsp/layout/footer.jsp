@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/kfonts2.css" rel="stylesheet">
 <link href="../../css/picView_custom.css" rel="stylesheet">
 
 <title>Insert title here</title>

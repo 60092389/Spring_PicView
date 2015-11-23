@@ -12,7 +12,6 @@
 <script src="../../js/bootstrap.min.js"></script>
 <!-- Bootstrap -->
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/kfonts2.css" rel="stylesheet">
 <link href="../../css/picView_custom.css" rel="stylesheet">
 
 </head>

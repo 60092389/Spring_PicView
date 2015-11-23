@@ -21,8 +21,6 @@ Bootstrap
 <script src="/picView_ver0/js/bootstrap.min.js"></script>
 <!-- Bootstrap -->
 <link href="/picView_ver0/css/bootstrap.min.css" rel="stylesheet">
-<link href="/picView_ver0/jsp/index/bootstrap-theme.min.css" rel="stylesheet">
-<link href="/picView_ver0/css/kfonts2.css" rel="stylesheet">
 <link href="/picView_ver0/css/picView_custom.css" rel="stylesheet">
 
 
