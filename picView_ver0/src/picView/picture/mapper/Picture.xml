@@ -4,7 +4,7 @@
 
 <mapper namespace="picView.picture.mapper.PictureMapper">
 <cache />
-	<insert id="insertPicture" parameterType="Picture">
+	<!-- <insert id="insertPicture" parameterType="Picture">
 		insert into picture(
 		  pic_no, pic_title,mem_no,category_no,tag_name
 		  ,pic_content,pic_count,good_count,pic_add,noti_count,pic_info_1,pic_info_2
@@ -15,19 +15,18 @@
 		  ,#{pic_info_3},SYSDATE,0
 		)
 		
-	</insert>
+	</insert> -->
 	
-	<select id="listMyShow" resultType="PictureShow" parameterType="int">
+	<!-- <select id="listMyShow" resultType="PictureShow" parameterType="int">
 		select pic_no, pic_title, pic_date, pic_add
 		from picture
 		where mem_no = #{mem_no}
 		order by pic_date desc
-	</select>
+	</select> -->
 	
-	<select id="ManageListPicture" parameterType="int" resultType="Picture">
+	<select id="PictureList" parameterType="int" resultType="Picture">
 		select pic_no, pic_title, mem_no, category_no, tag_name, pic_content, pic_count,
-			good_count, pic_add, noti_count, pic_info_1, pic_info_2, pic_info_3, 
-			to_date(pic_date, 'yy-mm-dd') pic_date, pic_open
+			good_count, pic_add, to_date(pic_date, 'yy-mm-dd') pic_date, pic_open, pic_location
 		 from picture where mem_no = #{mem_no} order by pic_date desc
 	</select>
 	
@@ -38,9 +37,9 @@
 			order by to_date(pic_date, 'yy-mm-dd') desc	
 	</select>
 	
-	<delete id="deletePicture" parameterType="int">
+	<!-- <delete id="deletePicture" parameterType="int">
 		delete from picture where pic_no = #{pic_no}
-	</delete>
+	</delete> -->
 	
 	
 

@@ -8,7 +8,7 @@
 		<typeAlias type="picView.member.model.Member" alias = "Member"/>
 		<typeAlias type="picView.cate.model.Category" alias = "Category"/>
 		<typeAlias type="picView.cate.model.GroupCategory" alias = "GroupCategory"/>
-		
+		<typeAlias type="picView.picture.model.Picture" alias = "Picture"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -28,6 +28,7 @@
 	<mappers>
 		<mapper resource="picView/member/mapper/Member.xml"/>
 		<mapper resource="picView/cate/mapper/Category.xml"/>
+		<mapper resource="picView/picture/mapper/Picture.xml"/>
 	</mappers>
 	
 </configuration>

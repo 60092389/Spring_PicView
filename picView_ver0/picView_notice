@@ -44,3 +44,31 @@ mybatis-config.xml 수정
 index -> index.jsp
 layout -> 전부
 js 콘솔창 오류나던거 정리
+
+
+/////////////////////////////////////////////////////////
+
+2015/11/24 18:05 박준병
+
+디비에서
+alter table picture add(pic_location varchar2(200))
+적을것
+
+myRoom->my_Manage.html 수정
+myRoom->my_Manage.jsp 수정
+myRoom->js에 jquery-1.11.3.js추가
+myRoom->js에 jquery-ui.js 추가
+myRoom->css에 jquery-ui.css 추가
+upload폴더에 
+test1.jpg
+test2.jpg
+test3.jpg
+test4.jpg
+test5.jpg
+test6.jpg
+추가됨
+
+picView.picture패키지들 다 삭제하고 커밋한거로 붙여놓아랏
+
+mybatis-config.xml 수정
+
