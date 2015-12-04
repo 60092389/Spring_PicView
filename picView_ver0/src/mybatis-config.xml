@@ -10,6 +10,11 @@
 		<typeAlias type="picView.cate.model.GroupCategory" alias = "GroupCategory"/>
 		<typeAlias type="picView.picture.model.Picture" alias = "Picture"/>
 		<typeAlias type="picView.follow.model.Follow" alias = "Follow"/>
+		<typeAlias type="picView.reply.model.Reply" alias="Reply"/>
+		<typeAlias type="picView.upload.model.Picture" alias="Upload"/>
+		<typeAlias type="picView.newsfeed.model.Newsfeed" alias="Newsfeed"/>
+		<typeAlias type="picView.newsfeed.model.FriendList" alias="FriendList"/>
+		<typeAlias type="picView.newsfeed.model.ActivityList" alias="ActivityList"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -31,6 +36,9 @@
 		<mapper resource="picView/cate/mapper/Category.xml"/>
 		<mapper resource="picView/picture/mapper/Picture.xml"/>
 		<mapper resource="picView/follow/mapper/Follow.xml"/>
+		<mapper resource="picView/reply/mapper/Reply.xml"/>
+		<mapper resource="picView/upload/mapper/Picture.xml"/>
+		<mapper resource="picView/newsfeed/mapper/Newsfeed.xml"/>
 	</mappers>
 	
 </configuration>

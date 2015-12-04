@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+
+.activity_ul{
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+._33c {
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+
+._33c:first-child ._33e {
+    border-top: 0 none;
+}
+._33e {
+    color: #333;
+    display: block;
+    outline: medium none;
+    padding: 7px 27px 7px 8px;
+    position: relative;
+}
+.anchorContainer a {
+    cursor: pointer;
+    text-decoration: none;
+}
+._33c:first-child ._33e {
+    border-top: 0 none;
+}
+._33e {
+    color: #333;
+    display: block;
+    outline: medium none;
+    padding: 7px 27px 7px 8px;
+    position: relative;
+}
+.clearfix::after {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+._ohe {
+    float: left;
+}
+._33h {
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    display: block;
+    height: 50px;
+    margin-right: 8px;
+    width: 50px;
+}
+._42ef {
+    overflow: hidden;
+}
+.fwb {
+    font-weight: bold;
+}
+._4xi1 li {
+    position: relative;
+}
+.uiToggleFlyout{
+	display: block;
+}
+.__tw {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    overflow: visible;
+    position: absolute;
+    top: 55px;
+    width: 430px;
+    z-index: -1;
+    padding-bottom: 1px;
+    right: 70px;
+}
+#activity_div{
+	overflow-y:scroll; 
+	height:300px; 
+	padding:4px; 
+}
+.uiHeader .uiHeaderTitle {
+    outline: medium none;
+    margin: 0;
+    padding: 0;
+}
+.jewelHeader {
+    background-clip: padding-box;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(100, 100, 100, 0.22);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 8px 8px 6px;
+    position: relative;
+    z-index: 100;
+}

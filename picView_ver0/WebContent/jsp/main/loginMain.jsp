@@ -1,57 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>로그인 메인</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/picView_custom.css" rel="stylesheet">
-<link href="css/loginMain.css" rel="stylesheet">
+<title>Insert title here</title>
 <script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
+<link href="./css/loginMain.css" rel="stylesheet">
+<link href="./css/pic_slider.css" rel="stylesheet">
+<link href="./css/tab.css" rel="stylesheet">
+<script type="text/javascript" src="./js/loginMain.js"></script>
+<style type="text/css">
+	body{
+		background-color: #f3f5f6;
+	}
+</style>
 </head>
-<body>
-	<div class="header">
+
+<body style="background-color:#f3f5f6 ">
+	<div id="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
-	<div id="main" class="clearfix contents" role="main" style="border: 1px solid red; ">
-		<div id="sidebar" style="border : 1px solid blue; position:relative; top: 0px; bottom: auto; left: auto;">
-			<div id="friendList">
-				<h2>친구목록</h2>
-				<h2>친구목록</h2>
-				<h2>친구목록</h2>
-				<h2>친구목록</h2>
+ 		
+ 	<!-- contents 시작 -->
+	<div id="contents">
+	    <input type="hidden" name="requestPage" id="requestPage">
+	    <input type="hidden" name="totalCount" id="totalCount" value="">
+	    <!-- main 시작 -->
+		<div id="main" class="clearfix" role="main">
+			<div id="sidebar" style="position: absolute; top: 0px; bottom: auto; left: auto;">
+				<!-- 친구목록시작 -->
+				<div id="sihp-friendfinder" class="sihp-sidebar-module">
+					<h2>
+						<a href="/import/people">친구목록</a>
+					</h2>
+					<ul class="peopleYouMayKnow clearfix">
+						
+					</ul>
+				</div>
+				<!-- 친구목록끝 -->	
 			</div>
-			<div id="bestUserList">
-				<h2>베스트유저목록</h2>
-				<h2>베스트유저목록</h2>
-				<h2>베스트유저목록</h2>
-				<h2>베스트유저목록</h2>
+			<div id="activityFeed"><!--뉴스피드 시작  -->
+				
+				 
+					 
 			</div>
 		</div>
-		<div id="activityFeed">
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1>
-			<h1>하하하하</h1><h1>하하하하</h1><h1>하하하하</h1>
-		</div>
+		<!-- main 끝 -->
 	</div>
-	
-	<div class="footer">
-		<jsp:include page="../layout/footer.jsp"></jsp:include>
-	</div>
+	<!-- contents 끝 -->
 </body>
 </html>

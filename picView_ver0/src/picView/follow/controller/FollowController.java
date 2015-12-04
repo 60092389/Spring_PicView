@@ -18,7 +18,7 @@ import picView.member.service.MemberService;
 @Controller
 public class FollowController {
 
-	int mem_no = 4;
+	int mem_no = 5;
 	
 	private FollowService followService;
 	private MemberService memberService;

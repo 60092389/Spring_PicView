@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="picView.newsfeed.mapper.NewsfeedMapper">
+	<cache />
+	
+	<select id="list_newsfeed" resultType="Newsfeed">
+		select * from(
+			select 'friend' as subject,a.pic_no,a.mem_no,a.pic_add,b.mem_name,b.mem_pic,a.pic_date
+			from picture a
+			left outer join member b on b.mem_no=a.mem_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			union
+			select 'follow' as subject,a.follow_no,a.follow_fri_no,'',b.mem_name,b.mem_pic,a.follow_date as pic_date
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=5 and a.follow_check=2
+			union
+			select 'good' as subject,c.pic_no,b.mem_no,c.pic_add,b.mem_name,b.mem_pic,a.good_date as pic_date
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			and c.pic_no=a.pic_no 
+			)
+		order by pic_date desc
+	</select>
+	<select id="count_newsfeed" resultType="int">
+		select count(*) from(
+			select 'friend' as subject,a.pic_no,a.mem_no,a.pic_add,b.mem_name,b.mem_pic,a.pic_date
+			from picture a
+			left outer join member b on b.mem_no=a.mem_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			union
+			select 'follow' as subject,a.follow_no,a.follow_fri_no,'',b.mem_name,b.mem_pic,a.follow_date as pic_date
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=5 and a.follow_check=2
+			union
+			select 'good' as subject,c.pic_no,b.mem_no,c.pic_add,b.mem_name,b.mem_pic,a.good_date as pic_date
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			and c.pic_no=a.pic_no 
+			)
+		order by pic_date desc,pic_no desc
+	
+	</select>
+	<select id="list_friend" resultType="FriendList" parameterType="Integer">
+		select a.follow_fri_no,b.mem_name,b.mem_pic
+		from follow a
+		left outer join member b on b.mem_no=a.follow_fri_no
+		where a.mem_no=5 and a.follow_check=3
+	
+	</select>
+	
+	<select id="list_activity" resultType="ActivityList">
+		select * from(
+			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name 
+			from reply a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where c.pic_no=a.pic_no
+			and c.mem_no = 5
+			union
+			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=5 and a.follow_check=2
+			union
+			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			and c.pic_no=a.pic_no
+			and c.mem_no = 5
+		)
+		order by rep_date desc
+	
+	</select>
+	<select id="count_activity" resultType="int">
+		select count(*) from(
+			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name 
+			from reply a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where c.pic_no=a.pic_no
+			and c.mem_no = 5
+			union
+			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=5 and a.follow_check=2
+			union
+			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			and c.pic_no=a.pic_no
+			and c.mem_no = 5
+		)
+		order by rep_date desc
+	
+	</select>
+	<select id="photo_good" parameterType="Picture" resultType="int">
+		select count(*) 
+		from good
+		where pic_no=#{pic_no} and mem_no=#{mem_no}
+	</select>
+	<delete id="photo_delete" parameterType="Picture" >
+		delete from good
+		where pic_no=#{pic_no} and mem_no=#{mem_no}
+	</delete>
+	<insert id="photo_insert" parameterType="Picture">
+		insert into good
+		values(
+			pic_no_seq.NEXTVAL,#{pic_no},#{mem_no},SYSDATE
+		)
+		
+	</insert>
+	<select id="photo_good_chk" parameterType="Picture" resultType="int">
+		select NVL(count(*),0) from
+		good
+		where mem_no=#{mem_no} and pic_no=#{pic_no}
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

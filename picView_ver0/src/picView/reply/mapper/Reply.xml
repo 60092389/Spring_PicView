@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="picView.reply.mapper.ReplyMapper">
+	<cache />
+	<insert id="insertReply" parameterType="Reply">
+		insert into reply
+		values(
+		reply_no_seq.NEXTVAL,#{pic_no},#{mem_no},#{rep_content},1,SYSDATE
+		)
+	</insert>
+	<select id="list_reply" resultType="Reply" parameterType="Integer">
+		SELECT * FROM(
+		select a.rep_no,a.pic_no,a.rep_content,b.mem_name,b.mem_pic,a.rep_date
+		from reply a
+		left outer join member b on b.mem_no=a.mem_no 
+		where a.pic_no=#{pic_no}
+		order by a.rep_date desc
+		) WHERE ROWNUM <![CDATA[<=]]> 4
+		
+	</select>
+	<select id="reply_count" parameterType="Integer" resultType="int">
+		select count(*)
+		from reply
+		where pic_no =#{pic_no}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

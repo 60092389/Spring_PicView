@@ -1,47 +1,866 @@
 @CHARSET "UTF-8";
 
-#main{
-	width : 1300px;
-	margin-bottom : 90px;
-	margin-left: auto;
-  margin-right: auto;
-	min-width: 500px;
-	text-align: left;
-	padding-left: 0;
-	padding-right: 0;
-	padding-top: 0;
+body {
+    font-size: 12px;
+    line-height: 18px;
+    background-color: #f3f5f6;
+}
+
+body #main, body #Main {
+    margin-bottom: 50px;
+    position : relative
+}
+html body #main {
+    margin-top: 40px;
+}
+body #main {
+    width: 1090px;
+}
+#main, #Main {
+    position: relative;
+    z-index: 1;
+}
+#main {
+    min-width: 800px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    text-align: left;
+}
+#sidebar {
+    float: right;
+    right: 0;
+    width: 300px;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    /* margin: 0; */
+    padding: 0;
+}
+html body #main #sihp-friendfinder {
+    background-color: #fff;
+    box-shadow: -1px 2px 1px #e9ebec;
+}
+.sihp-sidebar-module {
+    margin: 0 0 20px;
+}
+
+html body #main #sihp-friendfinder h2 {
+    color: #7f96a3;
+    font-weight: 400;
+    margin: 0;
+    padding: 12px 0 12px 12px;
+    text-align: left;
+}
+html body #main #sihp-friendfinder h2 a {
+    color: #7f96a3;
+}
+html body #main a, html body #main a:hover, html body #main a:active {
+    background-color: transparent;
+    text-decoration: none;
+}
+html body #main #sihp-friendfinder .peopleYouMayKnow {
+    display: block;
+    list-style: outside none none;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+html.styleguide body {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 150px;
+    position: relative;
+}
+body #main {
+			width: 1090px;
+		}
+
+.card .imgWrapper {
+	/*max-height: 338px;*/
 }
 
 
-.clearfix::after{
-	clear : both;
-	content : ".";
-	display : block;
-	height : 0;
-	visibility: hidden;
+
+.card-a .imgWrapper {
+	width: 750px;
 }
 
-#sidebar{
-	float : right;
-	right : 0;
-	width : 300px;
-	height : 700px;
-	background-color: blue;
+.card .imgWrapper .session-image-wrapper {
+	/*max-height: 338px;*/
 }
 
-#activityFeed{
-	margin-right: 340px;
-	background-color: yellow;	
+.card-b .imgWrapper,
+.card-c .imgWrapper {
+	width: 364px;
+}
+.clearfix::after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
 
-#friendList{
-	background-color: gold;
-	height : 300px;
-	margin-bottom: 40px;
+.sessionPhotos {
+    bottom: 0;
+    display: block;
+    left: 0;
+    list-style: outside none none;
+    margin: 0;
+    overflow: hidden;
+    padding: 7px 0 0 7px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
 }
 
-#bestUserList{
-	background-color: green;
-	height : 300px;
+.sessionPhotos li {
+    display: inline;
+    height: 64px;
+    list-style: outside none none;
+    margin: 0 6px 5px;
+    max-width: 82px;
+    overflow: hidden;
+    position: relative;
 }
 
+.sessionPhotos li div {
+    display: inline;
+}
+
+.sessionPhotos li div .session-figure.selected::before {
+    border: 3px solid white;
+    height: 48px;
+    width: 50px;
+}
+.sessionPhotos li div .session-figure::before {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    content: "";
+    height: 48px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 48px;
+}
+.sessionPhotos li div .session-figure.selected {
+    display: inline-block;
+}
+.sessionPhotos li div .session-figure {
+    height: 50px;
+    margin: 0;
+    position: relative;
+    width: 50px;
+}
+.micro-card .content-section-wrapper {
+	width: 650px;
+}
+body.new-header {
+    padding-top: 50px;
+}
+body #main {
+    width: 1090px;
+    margin-left:130px;
+}
+html body #main #sihp-friendfinder .peopleYouMayKnow li {
+    display: block;
+    margin: 0 0 18px;
+    width: 300px;
+}
+li {
+    list-style: outside none none;
+}
+
+html body #main #sihp-friendfinder .peopleYouMayKnow .buddyicon-link {
+    background-color: #fff;
+    display: inline-block;
+    height: 32px;
+    margin: 0 5px 0 12px;
+    vertical-align: middle;
+    width: 32px;
+}
+
+
+html body #main #sihp-friendfinder .peopleYouMayKnow .buddyicon-link img {
+    border-radius: 16px;
+    height: 32px;
+    width: 32px;
+}
+html body #main img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+
+html body #main #sihp-friendfinder .peopleYouMayKnow .username {
+    display: inline-block;
+    line-height: 32px;
+    vertical-align: middle;
+}
+
+html body #main #sihp-friendfinder .peopleYouMayKnow .username a {
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+}
+html body #main a, html body #main a:hover, html body #main a:active {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+html body #main #sihp-friendfinder .peopleYouMayKnow .friendfinder-btn-wrapper {
+    display: inline-block;
+    float: right;
+    position: relative;
+    vertical-align: middle;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+html body #main #sihp-friendfinder .peopleYouMayKnow .friendfinder-btn-wrapper button::before {
+    background-color: white;
+    content: "";
+    height: 2px;
+    left: 7px;
+    position: absolute;
+    top: 11px;
+    transform-origin: left center 0;
+    width: 10px;
+}
+html body #main #sihp-friendfinder .peopleYouMayKnow .friendfinder-btn-wrapper button::after {
+    background-color: white;
+    content: "";
+    height: 10px;
+    left: 11px;
+    position: absolute;
+    top: 7px;
+    width: 2px;
+}
+html body #main #sihp-friendfinder .peopleYouMayKnow .friendfinder-btn-wrapper button {
+    background-color: #128fdc;
+    border: 0 none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    height: 24px;
+    line-height: 24px;
+    margin: 3px 16px 0 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-indent: -9999px;
+    vertical-align: top;
+    width: 24px;
+}
+
+html body #main #activityFeed {
+    margin-right: 340px;
+}
+#activityFeed .card {
+    display: block;
+    margin-bottom: 20px;
+    padding-bottom: 64px;
+    position: relative;
+}
+
+.imgContainer {
+    float: left;
+    position: relative;
+}
+
+.card-a .imgWrapper {
+    width: 750px;
+}
+.card .imgWrapper {
+}
+.imgWrapper {
+    background-color: #000;
+    border: medium none;
+    box-shadow: 0 2px 2px #e9ebec;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+.imgWrapper .session-image-wrapper {
+    overflow: hidden;
+}
+html body #main a, html body #main a:hover, html body #main a:active {
+    background-color: transparent;
+    color: #006dac;
+    text-decoration: none;
+}
+html body #main img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+.imgWrapper img {
+    vertical-align: middle;
+}
+.imgWrapper .thin-facade {
+    background: rgba(0, 0, 0, 0) url("https://s.yimg.com/pw/images/spaceout.gif") repeat scroll 0 0;
+    bottom: 0;
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+html body #main #activityFeed .card .sub-photo-view {
+    background-color: white;
+    bottom: -64px;
+    box-shadow: 0 2px 2px #e9ebec;
+    height: 64px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+html body #main #activityFeed .card .sub-photo-view .buddyicon {
+    display: block;
+    float: left;
+    height: 32px;
+    margin: 16px 0 0 16px;
+    width: 32px;
+}
+html body #main a, html body #main a:hover, html body #main a:active {
+    background-color: transparent;
+    color: #006dac;
+    text-decoration: none;
+}
+
+html body #main #activityFeed .card .sub-photo-view .buddyicon img {
+    border-radius: 16px;
+    height: 32px;
+    width: 32px;
+}
+html body #main img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+
+html body #main #activityFeed {
+    margin-right: 340px;
+}
+html body #main #activityFeed .card .sub-photo-view .photo-details {
+    display: block;
+    float: left;
+    margin-left: 16px;
+    margin-top: 15px;
+    text-align: left;
+    width: 70%;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-details div {
+    color: #898989;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+html body #main .sub-photo-view2 .photo-details2 div {
+    color: #898989;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+html body #main .sub-photo-view2 .photo-details2 .name a {
+    color: #212124;
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    max-width: 71%;
+    overflow: hidden;
+    padding: 0 5px 0 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-details .name a {
+    color: #212124;
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    max-width: 71%;
+    overflow: hidden;
+    padding: 0 5px 0 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-details .activity-item-date {
+    color: #898989;
+}
+html body #main #activityFeed .card .sub-photo-view .photo-details span {
+    font-size: 14px;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-details div {
+    color: #898989;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement {
+    float: right;
+    overflow: hidden;
+    position: absolute;
+    right: 30px;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li {
+    color: #7f96a3;
+    display: block;
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 20px 16px 0 0;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li a {
+    color: #7f96a3;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li.favorites i {
+    background-image: url("https://s.yimg.com/pw/images/sprites/icons-sc208c84ef4.png");
+    background-position: 0 -2611px;
+    background-repeat: no-repeat;
+}
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li i {
+    display: block;
+    float: left;
+    font-size: 18px;
+    font-style: normal;
+    height: 18px;
+    line-height: 18px;
+    padding-right: 8px;
+    text-indent: -9999px;
+    width: 18px;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li.comments {
+    line-height: 19px;
+}
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li {
+    color: #7f96a3;
+    display: block;
+    float: left;
+    font-size: 14px;
+    margin: 20px 16px 0 0;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li a {
+    color: #7f96a3;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li.comments i {
+    background-image: url("https://s.yimg.com/pw/images/sprites/icons-sc208c84ef4.png");
+    background-position: 0 -2753px;
+    background-repeat: no-repeat;
+    margin-top: 1px;
+    width: 16px;
+}
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li i {
+    display: block;
+    float: left;
+    font-size: 18px;
+    font-style: normal;
+    height: 18px;
+    line-height: 18px;
+    padding-right: 8px;
+    text-indent: -9999px;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li:last-child {
+    margin-right: 8px;
+}
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li {
+    color: #7f96a3;
+    display: block;
+    float: left;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li a {
+    color: #7f96a3;
+}
+
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li.share i {
+    background-image: url("https://s.yimg.com/pw/images/sprites/icons-sc208c84ef4.png");
+    background-position: 0 -2717px;
+    background-repeat: no-repeat;
+}
+html body #main #activityFeed .card .sub-photo-view .photo-engagement li i {
+    display: block;
+    float: left;
+    font-size: 18px;
+    font-style: normal;
+    height: 18px;
+    line-height: 18px;
+    padding-right: 8px;
+    text-indent: -9999px;
+    width: 18px;
+}
+
+html body #main img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+
+html body #main #activityFeed .card.micro-card.card-contacted, html body #main #activityFeed .card.micro-card.card-friend-joined {
+    min-height: 92px;
+}
+html body #main #activityFeed .card.micro-card {
+    background-color: #fff;
+    box-shadow: 0 2px 2px #e9ebec;
+    min-height: 148px;
+    overflow: hidden;
+    padding-bottom: 0;
+}
+html body #main #activityFeed .card {
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+html body #main #activityFeed .card2 {
+    display: block;
+    margin-bottom: 0px;
+    position: relative;
+}
+html body #main #activityFeed .card.micro-card .content-section-wrapper {
+    float: left;
+    position: relative;
+    width: 100% !important;
+}
+.micro-card .content-section-wrapper {
+    width: 650px;
+}
+
+html body #main #activityFeed .card.micro-card .content-section {
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+.micro-card .content-section {
+    min-height: 50px;
+}
+
+html body #main #activityFeed .card.micro-card.card-follow .content-section .action-author {
+    margin-left: 12px;
+}
+html body #main #activityFeed .card.micro-card .content-section .action-author {
+    color: #212124;
+    display: block;
+    float: left;
+    font-size: 14px;
+    width: calc(100% - 165px);
+    margin: 40px 0 0 165px;
+}
+
+html body #main #activityFeed .card.micro-card .content-section .action-author a.buddyicon {
+    margin: -8px 10px 0 0;
+}
+html body #main #activityFeed .card.micro-card .content-section .action-author a {
+    color: #212124;
+    font-weight: bold;
+    line-height: 17px;
+}
+html body #main #activityFeed .card.micro-card .content-section .buddyicon {
+    display: block;
+    float: left;
+    height: 32px;
+    width: 32px;
+}
+html body #main a, html body #main a:hover, html body #main a:active {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+html body #main #activityFeed .card.micro-card .content-section .action-author a.usernameLink {
+    display: inline-block;
+    margin: 0 0 -4px;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html body #main #activityFeed .card.micro-card .content-section .action-author .action-date {
+    color: #898989;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+html body #main #activityFeed .card.micro-card .content-section .buddyicon img {
+    border-radius: 16px;
+    height: 32px;
+    width: 32px;
+}
+html body #main img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+html body #main .follow-button::before, html body #main .reco-groupinvite-button::before {
+    background-color: white;
+    content: "";
+    height: 2px;
+    left: 10px;
+    position: absolute;
+    top: 15px;
+    transform-origin: left center 0;
+    width: 12px;
+}
+html body #main .follow-button::after, html body #main .reco-groupinvite-button::after {
+    background-color: white;
+    content: "";
+    height: 12px;
+    left: 15px;
+    position: absolute;
+    top: 10px;
+    width: 2px;
+}
+html body #main #activityFeed .card.micro-card .content-section .follow-button {
+    margin-top: 2px;
+    position: absolute;
+    right: 39px;
+    top: 50%;
+}
+html body #main .follow-button, html body #main .reco-groupinvite-button {
+    background-color: #128fdc;
+    border: 0 none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    height: 32px;
+    line-height: 32px;
+    outline: medium none;
+    padding: 0 20px 0 32px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+    width: auto;
+}
+
+html body #main .follow-button .follow, html body #main .reco-groupinvite-button .follow {
+    display: inline;
+    pointer-events: none;
+}
+html body #main .follow-button, html body #main .reco-groupinvite-button {
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: center;
+}
+
+html body #main .follow-button .check, html body #main .reco-groupinvite-button .check {
+    display: none;
+    pointer-events: none;
+}
+
+html body #main .sub-photo-view2 {
+    background-color: white;
+    box-shadow: 0 0px 0px 1px #e9ebec;
+    height: 36px;
+    left: 0;
+    position: relative;
+    z-index: 1;
+}
+html body #main .sub-photo-view2 .photo-details2 {
+    display: block;
+    float: left;
+    margin-left: 16px;
+    margin-top: 12px;
+    text-align: left;
+    width: 70%;
+}
+#firstCard2{
+	/* margin-top:37px; */
+}
+
+.favorite_view{
+	margin-bottom: 20px;
+}
+.recommand{
+	box-shadow: 0 2px 2px #e9ebec;
+}
+.comments_up {
+    font-size: 120%;
+    transition-duration: 0.2s;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    width: 562px;
+}
+.comments-popover {
+    background: rgba(255, 255, 255, 0.93) none repeat scroll 0 0;
+    bottom: 45px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    right: 33px;
+    text-align: left;
+    z-index: 999;
+    font-size: 120%;
+    transition-duration: 0.2s;
+    transition-property: opacity;
+    transition-timing-function: ease-in;
+    width: 562px;
+}
+
+
+.comments-popover .comments-inner {
+    min-height: 36px;
+}
+.comments-inner {
+    padding: 25px 14px 9px;
+}
+
+html body #main .comments-inner .comment-wrapper .buddyicon {
+    display: block;
+    float: left;
+    height: 32px;
+    margin: 2px 12px 0 0;
+    width: 32px;
+}
+html body #main .comments-inner .comment-wrapper a {
+    color: #212124;
+    font-weight: bold;
+}
+html body #main a, html body #main a:hover, html body #main a:active {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+html body #main .comments-inner .comment-wrapper .buddyicon img {
+    border-radius: 16px;
+    height: 32px;
+    width: 32px;
+}
+html body #main img {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+}
+
+html body #main .comments-inner .comment-wrapper .usernameLink {
+    display: inline-block;
+    line-height: 27px;
+    margin-bottom: -9px;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+html body #main .comments-inner .comment-wrapper a {
+    color: #212124;
+    font-weight: bold;
+}
+
+html body #main .comments-inner .comment-wrapper .action-date {
+    color: #898989;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+html body #main .comments-inner .comment-wrapper .comment-display {
+    margin: 0 50px 22px 42px;
+}
+
+html body #main .comments-inner .comment-wrapper .comment-display p {
+    color: #898989;
+}
+
+html body #main .comments-inner #comment-form {
+    margin-left: 0;
+}
+
+html body #main #comment-form .buddyicon {
+    border-radius: 16px;
+    display: block;
+    float: left;
+    height: 32px;
+    margin: 9px 10px 0 0;
+    padding: 0;
+    width: 32px;
+}
+
+html body #main #comment-form .message {
+    border: medium none;
+    border-radius: 3px 0 0 3px;
+    box-shadow: 0 0 0 1px #898989 inset;
+    font-size: 14px;
+    height: 48px;
+    outline: medium none;
+    padding: 5px;
+    resize: none;
+    width: 368px;
+}
+.buddyicon textarea {
+    background-color: #fff;
+}
+
+html body #main .comments-inner #comment-form .submit-comment {
+    padding: 0 20px;
+}
+html body #main #comment-form .submit-comment {
+    background-color: #128fdc;
+    border: 0 none;
+    border-radius: 0 3px 3px 0;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    line-height: 32px;
+    margin-left: -1px;
+    min-width: 80px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+}
+html body #main #comment-form {
+    margin-bottom: 20px;
+}
+.close_button{
+	position: absolute;
+	top: 3px;
+	right: 25px
+}
+li .counter {
+    display: inline-block;
+    line-height: 20px;
+    max-width: 24px;
+    padding-right: 0;
+    text-align: left;
+    padding-left: 10px;
+}
+#main #activityFeed .card .sub-photo-view .photo-engagement li.favorites.is_fav i {
+    background-image: url("https://s.yimg.com/pw/images/sprites/icons-sc208c84ef4.png");
+    background-position: 0 -2789px;
+    background-repeat: no-repeat;
+}

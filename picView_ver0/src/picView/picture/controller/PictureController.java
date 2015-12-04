@@ -27,7 +27,7 @@ public class PictureController {
 	//my_Room->my_Manage.jsp에서 사용하는 사진목록볼러오기
 	@RequestMapping("/jsp/**/manageForm")
 	public String my_ManageForm(Model model){
-		int mem_no = 4;
+		int mem_no = 1002;
 		List<Picture> picDate = picService.dateListPicture(mem_no);
 		List<Picture> picList = picService.listPicture(mem_no);
 		List<String> years = picService.yearListPicture(mem_no);
