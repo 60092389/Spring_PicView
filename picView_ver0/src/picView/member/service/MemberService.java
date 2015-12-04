@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import picView.cate.model.Category;
 import picView.cate.model.CategoryDao;
 import picView.cate.model.GroupCategory;
-import picView.member.model.MailTest;
+import picView.member.mapper.MailTest;
 import picView.member.model.Member;
 import picView.member.model.MemberCommand;
 import picView.member.model.MemberDao;
