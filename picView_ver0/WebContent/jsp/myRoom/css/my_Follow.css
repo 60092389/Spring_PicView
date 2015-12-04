@@ -1,0 +1,265 @@
+@CHARSET "utf-8";
+
+
+.center_head{
+	height: 40px;
+	margin-bottom: 60px;
+}
+.center_head div{
+		float: left;
+	}
+	.friendlist{
+		clear : both;
+	}
+	
+	.friendlist img{
+		width: 50px;
+		height: 50px;
+	}
+	
+	.image{
+		float:left;
+	}
+	
+	.fol-btn{
+		margin-right : 10px;
+	}
+
+
+	.follow_contents{
+		margin-left: 100px;
+		margin-right: 100px;
+		padding-bottom: 100px;
+		padding-top: 10px;
+	}
+	
+	.center_table{
+		margin-top: -40px;
+	}
+	
+	.follow_contents .recommand_fri{
+		
+	}
+	
+	
+	.none{
+		display: none;
+	}
+	
+<!-- my_Follow.jsp -->
+
+
+
+ol{
+	margin-left: -40px;
+}
+
+.browse_people_thumb{
+	margin-bottom: -15px;
+	margin-left: -40px;
+}
+
+.browse{
+	overflow: hidden;
+}
+
+.browse_people_thumb li{
+	float: left;
+	margin-bottom: 15px;
+	margin-right: 20px;
+	width: 110px;
+}
+	
+.browse li{
+	position: relative;
+	text-align: center;
+}	
+
+li{
+	list-style: outside none none;
+}
+
+li a:HOVER{
+	text-decoration: none;
+	color: #36589C;
+	font-weight: bold;
+}
+
+.profile_pic{
+	margin-bottom: 5px;
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	display: block;
+	margin-left: 5px;
+}
+
+.browse li{
+	text-align: center;
+}
+
+.browse p{
+	margin-left: 0px;
+}
+
+/* my_FollowSearch */
+
+.alert{
+		/* background: #efd none repeat scroll 0 0; */
+		background: #E0FFDB none repeat scroll 0 0;
+    border-color: #cdb;
+    color: #6c756c;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.suggested_msg{
+	overflow: hidden;
+}
+
+.iconify{
+		background-image: url("../../../upload/profile.jpg");
+    border: 5px solid #fff;
+    color: #bca;
+    float: left;
+    font-size: 100px;
+    height: 115px;
+    line-height: 115px;
+    text-align: center;
+    width: 134px;
+}
+
+.msg{
+	margin-left: 20px;
+	float: left;
+}
+.msg h2{
+	margin-top: 5px;	
+}
+
+.result-card{
+	width: 380px;
+	background-color: #fff;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 90px;
+  margin: 0 14px 14px 0;
+  position: relative;
+}
+
+.result-card .sizer-cropper::BEFORE {
+	content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.result-card .sizer-cropper{
+	bottom: 0;
+  display: block;
+  left: 0;
+  overflow: hidden;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.result-card .avatar-content{
+	display: inline-block;
+  height: 60px;
+  margin-right: 10px;
+  position: relative;
+  vertical-align: top;
+  width: 60px;
+  z-index: 2;
+}
+
+.avatar{
+	background-color: #ddd;
+  background-size: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08) inset;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 30px 10px 0;
+  position: relative;
+  transition: box-shadow 150ms ease-in-out 0s;
+  vertical-align: bottom;
+}
+
+.medium{
+	height: 60px;
+	width: 60px;
+}
+
+.person{
+	border-radius: 100%;
+}
+
+
+.result-card .text-content{
+	background-color: #fff;
+  display: inline-block;
+  line-height: 110%;
+  margin: 0 -80px 0 auto;
+  max-width: 283px;
+  overflow: hidden;
+  pointer-events: none;
+  position: relative;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+  z-index: 2;
+}
+
+.result-card .text-content::AFTER {
+	background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0), #fff) repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px
+}
+
+.result-card .text-content .title{
+	font-size: 12pt;
+  font-weight: 600;
+  overflow: hidden;
+  position: relative;
+  font-family: monospace;
+}
+
+.result-card .text-content .subtitle{
+	line-height: 1.75;
+	color: #B4B4B4;
+	font-family: fantasy;
+}
+
+.result-card .text-content .links{
+	color: #B4B4B4;
+	font-family: fantasy;
+}
+
+
+.result-card a.click-anywhere {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.button-content{
+	background-color: #fff;
+    box-shadow: -4px 4px 4px 4px #fff, 5px 4px 0 7px #fff;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 2;
+}
+
+	
