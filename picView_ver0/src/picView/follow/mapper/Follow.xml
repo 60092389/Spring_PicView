@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="picView.follow.mapper.FollowMapper">
+	<cache />	
+
+	<insert id="addNewFollow" parameterType="Follow"> 	
+		insert into follow(
+			follow_no, mem_no, follow_fri_no, follow_check, follow_date
+		)
+		values(
+			follow_no_seq.nextval, #{mem_no}, #{follow_fri_no}, #{follow_check}, sysdate
+		)
+	</insert>
+	
+	<select id="listFollowCheck" parameterType="int" resultType="Follow">
+		select * from follow where follow_fri_no=#{mem_no}
+	</select>
+	
+	<update id="updateFollowCheck" parameterType="Follow">
+		update follow set follow_check = #{follow_check}
+					where mem_no=#{mem_no} and follow_fri_no=#{follow_fri_no}
+	</update>
+	
+	<select id="listFollow" parameterType="int" resultType="Follow">
+		select * from follow where mem_no=#{mem_no} 
+											or follow_fri_no=#{mem_no}
+	</select>
+	
+	<delete id="cancelFollow" parameterType="Follow">
+		delete from follow where mem_no=#{mem_no}
+												and follow_fri_no=#{follow_fri_no}
+												and follow_check=#{follow_check}
+	</delete>
+	
+	<select id="followCheck" parameterType="Follow" resultType="Follow">
+		select * from follow where mem_no in (#{mem_no}, #{follow_fri_no})
+						and follow_fri_no in (#{mem_no}, #{follow_fri_no})
+	</select>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
