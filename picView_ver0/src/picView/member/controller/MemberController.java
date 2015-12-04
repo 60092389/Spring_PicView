@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import picView.cate.model.Category;
 import picView.cate.service.CategoryService;
-import picView.member.model.MailTest;
+import picView.member.model.MailTest2;
 import picView.member.model.Member;
 import picView.member.model.MemberCommand;
 import picView.member.service.MemberService;
@@ -24,7 +24,7 @@ public class MemberController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
-	private MailTest mail;
+	private MailTest2 mail;
 
 
 	@Autowired
@@ -38,7 +38,7 @@ public class MemberController {
 	}
 	
 	@Autowired
-	public void setMail(MailTest mail) {
+	public void setMail(MailTest2 mail) {
 		this.mail = mail;
 	}
 

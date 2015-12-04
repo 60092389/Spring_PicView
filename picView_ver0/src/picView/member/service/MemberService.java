@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import picView.cate.model.Category;
 import picView.cate.model.CategoryDao;
 import picView.cate.model.GroupCategory;
-import picView.member.model.MailTest;
+import picView.member.model.MailTest2;
 import picView.member.model.Member;
 import picView.member.model.MemberCommand;
 import picView.member.model.MemberDao;
@@ -21,7 +21,7 @@ import picView.member.model.MemberDao;
 public class MemberService {
 	private MemberDao memberDao;
 	private CategoryDao cateDao;
-	private MailTest mailTest;
+	private MailTest2 mailTest;
 
 	@Autowired
 	public void setMemberDao(MemberDao memberDao) {
@@ -34,7 +34,7 @@ public class MemberService {
 	}
 	
 	@Autowired
-	public void setMailTest(MailTest mailTest) {
+	public void setMailTest(MailTest2 mailTest) {
 		this.mailTest = mailTest;
 	}
 
