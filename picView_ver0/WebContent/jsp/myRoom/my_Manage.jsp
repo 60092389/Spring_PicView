@@ -71,9 +71,6 @@
 		</ul>
 	</div>
 	
-
-
-	<script src="../../js/bootstrap.js"></script>
 	<div class="center contents" data-spy="scroll" data-target="#myScrollspy">
 	<div class="manage_form">
 		<!-- 사진이 없을때 -->
