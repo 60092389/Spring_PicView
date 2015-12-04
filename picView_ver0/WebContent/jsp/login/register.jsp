@@ -8,11 +8,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <link href="./bootstrap.min.css" rel="stylesheet"> -->
-<link href="/picView_test/jsp/login/css/custom2.css" rel="stylesheet">
+<link href="./css/custom2.css" rel="stylesheet">
 <!-- <link href="../../css/bootstrap.min.css" rel="stylesheet"> -->
-<link href="/picView_test/jsp/login/css/register7.css" rel="stylesheet">
+<link href="./css/register7.css" rel="stylesheet">
 <!-- <link href="../../css/picView_custom.css" rel="stylesheet"> -->
-<script type="text/javascript" src="/picView_test/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
 <script src="jquery.validate.js"></script>
 
 <script type="text/javascript">
