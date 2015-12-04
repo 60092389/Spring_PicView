@@ -10,4 +10,7 @@ import picView.cate.model.GroupCategory;
 public interface CateMapper {
 	public List<Category> categoryList();
 	public void insertGroupCate(GroupCategory gc);
+	public List<GroupCategory> member_cate(int mem_no);
+	public String selectCate(int category_no);
+	
 }

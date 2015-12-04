@@ -143,6 +143,14 @@ public class Picture implements Serializable {
 	public void setPic_open(String pic_open) {
 		this.pic_open = pic_open;
 	}
+
+	@Override
+	public String toString() {
+		return "Picture [pic_no=" + pic_no + ", pic_title=" + pic_title + ", mem_no=" + mem_no + ", category_no="
+				+ category_no + ", tag_name=" + tag_name + ", pic_content=" + pic_content + ", pic_count=" + pic_count
+				+ ", good_count=" + good_count + ", pic_add=" + pic_add + ", pic_color=" + pic_color + ", pic_location="
+				+ pic_location + ", pic_date=" + pic_date + ", pic_open=" + pic_open + "]";
+	}
 	
 	
 	

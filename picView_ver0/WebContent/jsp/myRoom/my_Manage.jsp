@@ -1,50 +1,20 @@
 <%@page import="picView.picture.model.Picture"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
-<%
-	System.out.println("¸®½ºÆ®°ª : "+request.getAttribute("list"));
 
-	List<Picture> list = (List)request.getAttribute("list");
-	
-	/* for(int i=0; i<list.size(); i++){
-		System.out.println(list.get(i).getPic_date());
-	} */
-	
-	
-/* 	for(int i=0; i<list.size(); i++){
-		if(list.get(i+1).getPic_title() == null){
-	break;
-		}
-		if(list.get(i).getPic_date() == list.get(i+1).getPic_date()){
-	System.out.println("°°Àº°ª");
-		}else if(list.get(i).getPic_date() != list.get(i+1).getPic_date()){
-	System.out.println(list.get(i).getPic_date());
-		}
-	} */
-	
-/* 	for(int i=0; i<list.size(); i++){
-		if(list.get(i+1).getPic_title() == null){
-	break;
-		}
-		for(int j=i+1; j<list.size(); j++){
-	if(list.get(i).getPic_title().equals(list.get(j).getPic_title())){
-		System.out.println(list.get(i).getPic_title());
-	}
-		}
-	} */
-%>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>ë‚´ì‚¬ì§„ê´€ë¦¬</title>
 
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
 <link href="css/my_Menu.css" rel="stylesheet">
@@ -52,9 +22,6 @@
 <link href="../../jsp/myRoom/css/my_Popular_Good.css" rel="stylesheet">
 <link href="../../jsp/myRoom/css/my_Manage.css" rel="stylesheet">
 <script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-
-
 
 
 
@@ -64,163 +31,94 @@
 	}
 </script>
 
-<style>
-.ui-selectee {
-	background-color: silver;
-	cursor: pointer;
-}
-
-.ui-selected {
-	background-color: pink;
-}
-</style>
 
 <title>My_Manage</title>
 </head>
-<body data-spy="scroll" data-target="#myScrollspy" class="body">
+<body class="body">
 	<div class="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
 	<div class="my_Menu">
 		<jsp:include page="../myRoom/my_Menu.jsp"></jsp:include>
 	</div>
-	<!-- <script src="selectables/jquery-1.4.js"></script>-->
-	<!-- <script src="selectables/jquery-ui-1.9.2.custom.js"></script> -->
-	<!-- <script src="selectables/jquery-ui-1.8.custom.min.js"></script>-->
-	<!-- <script src="selectables/jquery-1.4.js"></script>-->
-	<!-- <script src="jquery-ui.min.js"></script>-->
-	<!-- <link href="selectables/jquery-ui-1.8.custom.css" rel="stylesheet"> -->
+
 	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/selectize.css">
 	<script src="js/jquery-1.11.3.js"></script>
 	<script src="js/jquery-ui.js"></script>
-
-
-
-
-	<script type="text/javascript">
-		/* $(document).ready(function() {
-
-			$('.center_main').selectable({
-				distance:1,
-				filter : 'div.center_picture'
-			},{
-				stop: function(){
-					var result = $('#select_result').empty();
-					$(".ui-selected", this).each(function(){
-						var index = $('.pic_no').index(this);
-						result.append("#");
-					});
-				}				
-			});			
-		});  */
-
-		$(function() {
-
-			$('.center_main').selectable({
-				distance : 1,
-				filter : 'div.center_picture'
-			}, {
-				stop : function() {
-					var result = $('#select_result').empty();
-					$(".ui-selected", this).each(function() {
-						var index = $(this).attr('id');
-						result.append((index) + ',');
-					});
-				}
-			});
-		});
-		/* $(function() {
-			var result = $('#select_result').empty();
-			
-			$('.center_main').selectable({
-				distance:1,
-				filter : 'div.center_picture',
-				selected: function(){
-					var idlist = $(this).attr('id');
-					result.append((idlist)+',');
-				}
-			});			
-		}); */
-		/* $(function() {
-			var result = $('#select_result').empty();
-			var id;
-			$('.center_main').selectable({
-				distance : 1,
-				filter : 'div.center_picture',
-				selected : function(event, ui) {
-					$(".ui-selected", this).each(function(){
-						id = $(this).attr('id');
-						
-					});		
-					result.append((id) + ',');
-				}
-			});
-		}); */
-	</script>
+	<script src="js/selectize.js"></script>
 	<script src="js/my_Manage.js"></script>
-
-
+	<script type="text/javascript">
+		
+	</script>
 
 	<div id="myMenu_navi">
 		<ul class="nav nav-pills">
-			<li class="menu active"><a href="my_Manage.html">»çÁø °ü¸®</a></li>
-			<li class="menu"><a href="my_Show.html">º¸¿© ÁÖ±â</a></li>
-			<li class="menu"><a href="#">»çÁøÃ¸</a></li>
-			<li class="menu"><a href="#">°ü½É »çÁø</a></li>
-			<li class="menu"><a href="follow.jsp">Ä£±¸ ¸ñ·Ï</a></li>
+			<li class="menu active"><a href="my_Manage.html">ì‚¬ì§„ ê´€ë¦¬</a></li>
+			<li class="menu"><a href="my_Show.html">ë³´ì—¬ ì£¼ê¸°</a></li>
+			<li class="menu"><a href="#">ì‚¬ì§„ì²©</a></li>
+			<li class="menu"><a href="#">ê´€ì‹¬ ì‚¬ì§„</a></li>
+			<li class="menu"><a href="follow.jsp">ì¹œêµ¬ ëª©ë¡</a></li>
 			<li id="other" class="dropdown"><a href=""
-				data-toggle="dropdown"> ±× ¿Ü <span class="caret"></span>
+				data-toggle="dropdown"> ê·¸ ì™¸ <span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="my_Tag.jsp">ÅÂ±×º°</a>
-					<li><a href="my_Popular_Hit.jsp">ÀÎ±âº°</a>
-					<li><a href="#">´Ù¿î·Îµå ±â·Ï</a>
-					<li><a href="#">ÇÁ·ÎÇÊ</a>
+					<li><a href="my_Tag.jsp">íƒœê·¸ë³„</a>
+					<li><a href="my_Popular_Hit.jsp">ì¸ê¸°ë³„</a>
+					<li><a href="#">ë‹¤ìš´ë¡œë“œ ê¸°ë¡</a>
+					<li><a href="#">í”„ë¡œí•„</a>
 				</ul></li>
 		</ul>
 	</div>
+	
 
 
-	<div class="center contents">
-
-		<!-- »çÁøÀÌ ¾øÀ»¶§ -->
+	<script src="../../js/bootstrap.js"></script>
+	<div class="center contents" data-spy="scroll" data-target="#myScrollspy">
+	<div class="manage_form">
+		<!-- ì‚¬ì§„ì´ ì—†ì„ë•Œ -->
 		<c:if test="${empty list}">
 			<div class="temp">
 				<div class="no_picture">
 
-					<h3>¾÷·ÎµåµÈ »çÁøÀÌ ¾ø½À´Ï´Ù.</h3>
-					<p>»çÁøÀ» ¾÷·ÎµåÇÏ¿© ¿©·¯ºĞÀÇ »çÁøÀ» ´Ù¸¥ »ç¶÷µéÇÑÅ× ÀÚ¶ûÇÏ¼¼¿ä.</p>
+					<h3>ì—…ë¡œë“œëœ ì‚¬ì§„ì´ ì—†ìŠµë‹ˆë‹¤.</h3>
+					<p>ì‚¬ì§„ì„ ì—…ë¡œë“œí•˜ì—¬ ì—¬ëŸ¬ë¶„ì˜ ì‚¬ì§„ì„ ë‹¤ë¥¸ ì‚¬ëŒë“¤í•œí…Œ ìë‘í•˜ì„¸ìš”.</p>
 				</div>
+				<br><br>
 				<div class="button">
 					<input id="login" class="btn btn-primary" type="button"
-						value="¾÷·Îµå ÇÏ±â" onclick="upload()">
+						value="ì—…ë¡œë“œ í•˜ê¸°" onclick="upload()">
 				</div>
 			</div>
 		</c:if>
-
-		<div class="center_left" id="myScrollspy">
-			<!-- ³¯Â¥º° »çÁøº¸±â  foreach ½á¼­ ³¯Â¥ ³Ö±â-->
-			<ul class="nav nav-pills nav-stacked">
-				<c:forEach var="a" items="${date }">
-					<li><a
-						href="#<fmt:formatDate value="${a.pic_date }" pattern="yyyy-MM-dd"/>">
-							<fmt:formatDate value="${a.pic_date }" pattern="yyyy-MM-dd" />
-					</a></li>
-				</c:forEach>
-			</ul>
+		
+		
+		<div class="center_left" id="myScrollspy"  data-spy="affix" data-offset-top="140">			
+			<!-- ë‚ ì§œë³„ ì‚¬ì§„ë³´ê¸°  foreach ì¨ì„œ ë‚ ì§œ ë„£ê¸°-->			
+			<c:forEach var="year" items="${years }">
+			<ul class="year_left">				
+				<li class="center_left_year">${year }</li>
+				<ul class="center_left_month">
+					<c:forEach var="months" items="${months }">	
+					<c:set var="month_year" value="${fn:substring(months, 0, 4) }"></c:set>
+					<c:if test="${year == month_year }">
+						<li><a href="#${months }">${fn:substring(months, 5, 7)}ì›”</a></li>
+					</c:if>
+					</c:forEach>					
+				</ul>
+					
+			</ul>	
+			</c:forEach>		
 		</div>
-
+		
+				
+		
 		<div class="center_main">
-
-			<button class="btn btn-primary btn-lg" data-toggle="modal"
-				data-target="#myModal">¼±ÅÃµÈ »çÁø ±ÇÇÑ ¼³Á¤</button>
-			<!-- <p>
-				<textarea rows="5" cols="5" id="select_result">none</textarea>
-			</p> -->
-			<!-- foreach ½á¼­ ³¯Â¥ ¾Ù¹ü ³Ö±â -->
+			
+			<!-- foreach ì¨ì„œ ë‚ ì§œ ì•¨ë²” ë„£ê¸° -->
 			<c:forEach var="d" items="${date }">
 				<div class="center_wrap"
-					id="<fmt:formatDate value="${d.pic_date }" pattern="yyyy-MM-dd"/>">
+					id="<fmt:formatDate value="${d.pic_date }" pattern="yyyy-MM"/>">
 					<div class="center_date">
 						<p id="date_css">
 							<fmt:formatDate value="${d.pic_date }" pattern="yyyy-MM-dd" />
@@ -229,28 +127,26 @@
 
 					<c:forEach var="l" items="${list }">
 						<c:if test="${d.pic_date == l.pic_date }">
-							<div id="${l.pic_no }" class="center_picture"
-								style="background-image: url('../../upload/${l.pic_add }');">
+							<div id="${l.pic_no }" class="center_picture" 
+									style="background-image: url('../../upload/${l.pic_add }');">
 								<div class="pic_check"></div>
 								<div class="back_color"></div>
-								<%-- <img src="../../upload/${l.pic_add }" /> --%>
 								<input type="hidden" value="${l.pic_no }">
 								<div class="info_top info_hidden" id="${l.pic_add }">
-									<a class="pic_detail"
-										href="../../jsp/basic/picDetail.jsp?pic_no=${l.pic_no }"><span
-										class="glyphicon glyphicon-resize-full"></span></a>
+									<a class="pic_detail" href="../../jsp/basic/picDetail.jsp?pic_no=${l.pic_no }">
+										<span	class="glyphicon glyphicon-resize-full"></span></a>
 								</div>
 								<div class="info_bottom" id="${l.pic_add }">
 									<div class="dropdown" id="pic_open_scope">
-										<a data-toggle="dropdown" href="#"><span
-											class="glyphicon glyphicon-eye-open"></span></a>
+										<a data-toggle="dropdown" href="#">
+											<span class="glyphicon glyphicon-eye-open"></span></a>
 										<ul class="dropdown-menu" role="menu">
 											<li role="presentation"><a role="menuitem" tabindex="-1"
-												href="#">°ø°³</a></li>
+												href="#">ê³µê°œ</a></li>
 											<li role="presentation"><a role="menuitem" tabindex="-1"
-												href="#">Ä£±¸°ø°³</a></li>
+												href="#">ì¹œêµ¬ê³µê°œ</a></li>
 											<li role="presentation"><a role="menuitem" tabindex="-1"
-												href="#">ºñ°ø°³</a></li>
+												href="#">ë¹„ê³µê°œ</a></li>
 										</ul>
 									</div>
 									<span class="pic_count">${l.pic_count }</span>
@@ -259,48 +155,162 @@
 											class="glyphicon glyphicon-cog"></span></a>
 										<ul class="dropdown-menu" role="menu">
 											<li role="presentation"><a role="menuitem" tabindex="-1"
-												href="deletePicture.po?pic_no=${l.pic_no }">»çÁø»èÁ¦</a></li>
+												href="deletePicture.po?pic_no=${l.pic_no }">ì‚¬ì§„ì‚­ì œ</a></li>
 											<li role="presentation"><a role="menuitem" tabindex="-1"
-												href="#">»çÁø¼öÁ¤</a></li>
+												href="#">ì‚¬ì§„ìˆ˜ì •</a></li>
 										</ul>
 									</div>
 								</div>
-
 							</div>
 						</c:if>
 					</c:forEach>
 				</div>
 			</c:forEach>
 		</div>
+		
+		
+	
+		
+		
+		<div class="update_window none" 
+				style="left: 132px; right: 132px; margin-left: 0px; width:inherit; bottom: 0px;">
+			
+			<div class="update_pic_count">
+				<span class="count_pic"></span>ê°œ ì„ íƒë¨
+				<span class="select_cancel">ì„ íƒì·¨ì†Œ</span>
+			</div>
+			<div class="update_pic_img">
+				
+			</div>			
+			<div class="update_pic_show">
+				<span><a data-toggle="modal" data-target="#pic_open_update">
+					<span class="glyphicon glyphicon-lock" aria-hidden="true"/>ê¶Œí•œì„¤ì •</a></span>
+					
+				<span><a data-toggle="modal" data-target="#pic_info_update">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"/>í¸ì§‘</a></span>					
+					
+				<form id="delete_form" action="deletePicture" method="post" style="display: inline">
+					<textarea rows="5" cols="5" class="select_result" name="pic_no"
+						style="display: none"></textarea>
+					<input type="text" name="mem_no" value="${mem_no }" style="display:none"/>
+					<span><a href='javascript:form()'>
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"/>ì‚­ì œ</a></span>
+				</form>
+			</div>
+		
+		</div>
+		</div>		
 	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<!-- ê¶Œí•œì„¤ì • Modal -->
+	<div class="modal fade" id="pic_open_update" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">¸ğ´Ş Á¦¸ñ</h4>
-				</div>
-				<div class="modal-body">
-					<p>¿©±â´Â ³»¿ëÀÌ µé¾î °¡´Â °÷</p>
-					<p>
-						<textarea rows="5" cols="5" id="select_result">none</textarea>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">´İ±â</button>
-					<button type="button" class="btn btn-primary">º¯°æ »çÇ× ÀúÀå</button>
-				</div>
+				<form class="form-horizontal" action="updatePictureOpen"
+					method="post">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">ì‚¬ì§„ì˜ ê¶Œí•œì„ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+					</div>
+					<div class="modal-body">
+
+						<textarea rows="5" cols="5" class="select_result" name="pic_no"
+							style="display: none"></textarea>
+
+						<input type="hidden" name="mem_no" value="${mem_no}"> <select
+							name="pic_open" class="form-control col-sm-2 col-lg-2">
+							<option value="1">ê³µê°œ</option>
+							<option value="2">ì¹œêµ¬ê³µê°œ</option>
+							<option value="3">ë¹„ê³µê°œ</option>
+						</select>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
+						<button type="submit" class="btn btn-primary modal_update_submit">ë³€ê²½</button>
+					</div>
+				</form>
 			</div>
-			<!-- ¸ğ´Ş ÄÜÅÙÃ÷ -->
+			<!-- ëª¨ë‹¬ ì½˜í…ì¸  -->
 		</div>
-		<!-- ¸ğ´Ş ´ÙÀÌ¾ó·Î±× -->
+		<!-- ëª¨ë‹¬ ë‹¤ì´ì–¼ë¡œê·¸ -->
 	</div>
-	<!-- ¸ğ´Ş ÀüÃ¼ À©µµ¿ì -->
+	<!-- ëª¨ë‹¬ ì „ì²´ ìœˆë„ìš° -->
+
+
+	<!-- í¸ì§‘ Modal -->
+	<div class="modal fade" id="pic_info_update" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form class="form-horizontal" action="updatePictureInfo"
+					method="post">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">ì‚¬ì§„ì˜ ì •ë³´ë¥¼ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
+					</div>
+					<div class="modal-body form-group">
+
+						<textarea rows="5" cols="5" class="select_result" name="pic_no"
+							style="display: none"></textarea>
+
+						<input type="hidden" name="mem_no" value="${mem_no}"> <label
+							for="pic_title" class="control-label">ì‚¬ì§„ì œëª©</label>
+						<div id="pic_title_area">
+							<input type="text" class="form-control" name="pic_title">
+						</div>
+
+						<label for="pic_content" class="control-label">ì‚¬ì§„ë‚´ìš©</label>
+						<div id="pic_content_area">
+							<textarea class="form-control" rows="5" name="pic_content"></textarea>
+						</div>
+
+						<label for="pic_content" class="control-label">ì‚¬ì§„ê¶Œí•œì„¤ì •</label> <select
+							name="pic_open" class="form-control">
+							<option value="0">ì„ íƒ</option>
+							<option value="1">ê³µê°œ</option>
+							<option value="2">ì¹œêµ¬ê³µê°œ</option>
+							<option value="3">ë¹„ê³µê°œ</option>
+						</select>
+
+
+						<div id="pic_tag_area" class="control-group">
+							<label for="pic_tag" class="control-label">íƒœê·¸ì¶”ê°€</label>
+							<input type="text" id="input-tags" class="input-tags demo-default"
+								name="pic_tag">
+						</div>
+
+						<script>
+							$('#input-tags').selectize({
+								plugins : [ 'remove_button' ],
+								delimiter : ',',
+								persist : false,
+								create : function(input) {
+									return {
+										value : input,
+										text : input
+									}
+								}
+							});
+						</script>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
+						<button type="submit" class="btn btn-primary modal_update_submit">ë³€ê²½</button>
+					</div>
+				</form>
+			</div>
+			<!-- ëª¨ë‹¬ ì½˜í…ì¸  -->
+		</div>
+		<!-- ëª¨ë‹¬ ë‹¤ì´ì–¼ë¡œê·¸ -->
+	</div>
+	<!-- ëª¨ë‹¬ ì „ì²´ ìœˆë„ìš° -->
 
 
 </body>

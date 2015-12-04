@@ -1,5 +1,7 @@
 package picView.member.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,5 +29,12 @@ public class MemberDao {
 		myTemplate.getMapper(MemberMapper.class).insertMember(member);
 	}
 	
+	public List<Member> listSearchFri(){
+		return myTemplate.getMapper(MemberMapper.class).listSearchMem();
+	}
+	
+	public void minusPic_count(int mem_no){
+		myTemplate.getMapper(MemberMapper.class).minusPic_count(mem_no);
+	}
 
 }

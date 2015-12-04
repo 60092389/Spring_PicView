@@ -1,4 +1,4 @@
-package picView.admin.controller;
+/*package picView.admin.controller;
 
 import java.io.IOException;
 
@@ -75,4 +75,4 @@ public class AdminController extends HttpServlet {
 		doProcess(request, response);
 	}
 
-}
+}*/

@@ -14,6 +14,15 @@
 		insert into group_category values(group_cate_no_seq.nextval, #{mem_no}, #{category_no})
 	</insert>
 	
+	<select	id="member_cate" parameterType="int" resultType="GroupCategory">
+		select * from group_category where mem_no = #{mem_no}
+	</select>
+	
+	<select id="selectCate" parameterType="int" resultType="String">
+		select category_name from category where category_no = #{category_no}
+	</select>
+	
+	
 </mapper>
 
 

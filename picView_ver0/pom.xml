@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>picView_ver0</groupId>
-	<artifactId>picView_ver0</artifactId>
+	<groupId>picView_my151121</groupId>
+	<artifactId>picView_my151121</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -38,8 +38,8 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.0</version>
 		</dependency>
-		
-		
+
+
 		<!-- validation 관련 -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -82,9 +82,30 @@
 			<version>4.11</version>
 		</dependency>
 
+		<!-- 메일 발송 지원 기능 포함 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+		<!-- Java Mail API -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<!-- 메일폼 -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+
 
 	</dependencies>
-
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>

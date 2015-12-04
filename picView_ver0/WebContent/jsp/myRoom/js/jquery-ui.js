@@ -4279,6 +4279,7 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 	},
 
 	_mouseStart: function(event) {
+		
 		var that = this,
 			options = this.options;
 
@@ -4302,6 +4303,7 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 		});
 
 		if (options.autoRefresh) {
+
 			this.refresh();
 		}
 
@@ -4314,10 +4316,10 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 				selectee.selected = false;
 				selectee.$element.addClass("ui-unselecting");
 				selectee.unselecting = true;*/
-				// selectable UNSELECTING callback
-				that._trigger("unselecting", event, {
+				//selectable UNSELECTING callback
+				/*that._trigger("unselecting", event, {
 					unselecting: selectee.element
-				});
+				});*/
 			}
 		});
 
@@ -4325,15 +4327,30 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 			var doSelect,
 				selectee = $.data(this, "selectable-item");
 			if (selectee) {
-				doSelect = (!event.metaKey && !event.ctrlKey) || !selectee.$element.hasClass("ui-selected");
+				//클릭으로 등록된 사진번호 지우기
+				//doSelect = (!event.metaKey && !event.ctrlKey) || !selectee.$element.hasClass("ui-selected");//원본
+				doSelect = (event.metaKey && event.ctrlKey) || !selectee.$element.hasClass("ui-selected");
 				selectee.$element
 					.removeClass(doSelect ? "ui-unselecting" : "ui-selected")
 					.addClass(doSelect ? "ui-selecting" : "ui-unselecting");
 				selectee.unselecting = !doSelect;
 				selectee.selecting = doSelect;
 				selectee.selected = doSelect;
+				//체크표시유무
+				if($(this).find('.pic_check').css('display')=='block'){
+					$(this).find('.pic_check').css('display', 'none');
+					$(this).find('.back_color').css('opacity','0');
+
+					
+				}else{
+					$(this).find('.pic_check').css('display','block');
+					$(this).find('.back_color').css('opacity','0.5');
+					$(".update_pic").css("display","inline");
+				}
+				
+
 				// selectable (UN)SELECTING callback
-				if (doSelect) {
+				if (doSelect) {					
 					that._trigger("selecting", event, {
 						selecting: selectee.element
 					});
@@ -4387,7 +4404,7 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 				// SELECT
 				if (selectee.selected) {
 					selectee.$element.removeClass("ui-selected");
-					selectee.selected = false;
+					selectee.selected = false;					
 				}
 				if (selectee.unselecting) {
 					selectee.$element.removeClass("ui-unselecting");
@@ -4424,10 +4441,9 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 				}
 				
 				if (selectee.selected) {
-					if (!event.metaKey && !event.ctrlKey && !selectee.startselected) {
+					if (!event.metaKey && !event.ctrlKey && !selectee.startselected) {			
 						selectee.$element.removeClass("ui-selected");
 						selectee.selected = false;
-
 						selectee.$element.addClass("ui-unselecting");
 						selectee.unselecting = true;
 						// selectable UNSELECTING callback
@@ -4462,6 +4478,17 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
 			selectee.selecting = false;
 			selectee.selected = true;
 			selectee.startselected = true;
+			//드래그 선택시
+			if($(this).find('.ui-selected')){
+				$(this).find('.pic_check').css('display','block');
+				$(this).find('.back_color').css('opacity','0.5');	
+				$(".update_pic").css("display","inline");
+				
+			}else{
+				$(this).find('.pic_check').css('display', 'none');
+				$(this).find('.back_color').css('opacity','0');
+				
+			}
 			that._trigger("selected", event, {
 				selected: selectee.element
 			});

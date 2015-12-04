@@ -9,6 +9,7 @@
 		<typeAlias type="picView.cate.model.Category" alias = "Category"/>
 		<typeAlias type="picView.cate.model.GroupCategory" alias = "GroupCategory"/>
 		<typeAlias type="picView.picture.model.Picture" alias = "Picture"/>
+		<typeAlias type="picView.follow.model.Follow" alias = "Follow"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -29,6 +30,7 @@
 		<mapper resource="picView/member/mapper/Member.xml"/>
 		<mapper resource="picView/cate/mapper/Category.xml"/>
 		<mapper resource="picView/picture/mapper/Picture.xml"/>
+		<mapper resource="picView/follow/mapper/Follow.xml"/>
 	</mappers>
 	
 </configuration>

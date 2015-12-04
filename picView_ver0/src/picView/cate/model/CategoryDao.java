@@ -30,4 +30,13 @@ public class CategoryDao {
 		myTemplate.getMapper(CateMapper.class).insertGroupCate(gc);
 	}
 	
+	//해당회원이 갖고있는 카테고리
+	public List<GroupCategory> member_cate(int mem_no){
+		return myTemplate.getMapper(CateMapper.class).member_cate(mem_no);
+	}
+	
+	//해당카테고리 번호에따른 카테고리이름
+	public String selectCate(int category_no){
+		return myTemplate.getMapper(CateMapper.class).selectCate(category_no);
+	}
 }

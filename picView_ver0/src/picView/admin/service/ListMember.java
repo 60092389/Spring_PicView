@@ -1,4 +1,4 @@
-package picView.admin.service;
+/*package picView.admin.service;
 
 import java.util.List;
 
@@ -120,3 +120,4 @@ public class ListMember implements Action{
 	
 	}
 }
+*/

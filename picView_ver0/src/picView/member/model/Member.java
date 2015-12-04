@@ -10,7 +10,7 @@ public class Member implements Serializable{
 	private String mem_pwd;
 	private String mem_birth;
 	private String mem_sex;
-	private String pic_count;
+	private int pic_count;
 	private String mem_pic;
 	private Timestamp mem_last_date;
 	private Timestamp mem_date;
@@ -18,7 +18,7 @@ public class Member implements Serializable{
 	public Member(){}
 	
 	public Member(int mem_no, String mem_name, String mem_id, String mem_pwd, String mem_birth, String mem_sex,
-			String pic_count, String mem_pic, Timestamp mem_last_date, Timestamp mem_date) {
+			int pic_count, String mem_pic, Timestamp mem_last_date, Timestamp mem_date) {
 		super();
 		this.mem_no = mem_no;
 		this.mem_name = mem_name;
@@ -68,10 +68,10 @@ public class Member implements Serializable{
 	public void setMem_sex(String mem_sex) {
 		this.mem_sex = mem_sex;
 	}
-	public String getPic_count() {
+	public int getPic_count() {
 		return pic_count;
 	}
-	public void setPic_count(String pic_count) {
+	public void setPic_count(int pic_count) {
 		this.pic_count = pic_count;
 	}
 	public String getMem_pic() {

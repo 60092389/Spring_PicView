@@ -1,6 +1,8 @@
 package picView.member.controller;
 
+
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import picView.cate.model.Category;
 import picView.cate.service.CategoryService;
+import picView.member.model.MailTest;
+import picView.member.model.Member;
 import picView.member.model.MemberCommand;
 import picView.member.service.MemberService;
 
@@ -19,6 +23,9 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private MailTest mail;
+
 
 	@Autowired
 	public void setMemberService(MemberService memberService) {
@@ -28,6 +35,11 @@ public class MemberController {
 	@Autowired
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
+	}
+	
+	@Autowired
+	public void setMail(MailTest mail) {
+		this.mail = mail;
 	}
 
 	@RequestMapping("/jsp/**/insertForm")
@@ -47,10 +59,12 @@ public class MemberController {
 	public String insertMember(MemberCommand mc) {
 
 		System.out.println("controller 오케이");
-
+		System.out.println(mc.getCategory_no());
 		try {
 			memberService.insertMember(mc);
-
+			
+			memberService.sendMailSerivce(mc);			
+			
 			return "index/index";
 
 		} catch (Exception e) {
@@ -60,5 +74,7 @@ public class MemberController {
 
 		return "login/register";
 	}
-
+	
+	
+	
 }

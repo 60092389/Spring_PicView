@@ -4,9 +4,7 @@
 
 
 <mapper namespace="picView.member.mapper.MemberMapper">
-	<cache />
-	
-	
+	<cache />	
 
 	<insert id="insertMember" parameterType="Member">
 	
@@ -14,14 +12,21 @@
 			 mem_no, mem_name, mem_id, mem_pwd, mem_birth, mem_sex, pic_count, mem_pic, mem_last_date, mem_date
 		)
 		values(
-			mem_no_seq.nextval, #{mem_name}, #{mem_id}, #{mem_pwd}, #{mem_birth}, #{mem_sex} , 0, 'null', SYSDATE, SYSDATE
+			mem_no_seq.nextval, #{mem_name}, #{mem_id}, #{mem_pwd}, #{mem_birth}, #{mem_sex} , 0, 'profile.jpg', SYSDATE, SYSDATE
 		)
 	</insert>
 	
 	<select id="selectById" resultType="Member" parameterType="String">
-		select * from member where mem_id = #{mem_id}
-	
+		select * from member where mem_id = #{mem_id}	
 	</select>
+	
+	<select id="listSearchMem" resultType="Member">
+		select * from member
+	</select>
+	
+	<update id="minusPic_count" parameterType="int">
+		update member set pic_count = (pic_count-1) where mem_no = #{mem_no}
+	</update>
 	
 	<!--<select id="loginMember" parameterType="Member" resultType="Member">
 		select * from member where mem_id = #{mem_id} and mem_pwd = #{mem_pwd}

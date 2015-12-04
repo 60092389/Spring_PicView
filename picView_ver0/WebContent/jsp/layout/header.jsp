@@ -78,7 +78,7 @@ Bootstrap
 					<li><a href="#"><span id="upload"
 							class="glyphicon glyphicon-cloud-upload"></span></a></li>
 					<li><a href="../login/loginForm.jsp">로그인</a></li>
-					<li><a href="../login/index.html">가입</a></li>
+					<li><a href="../login/register_index.html">가입</a></li>
 				</ul>
 				
 			</div> 

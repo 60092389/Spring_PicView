@@ -25,5 +25,29 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSession"/>
 	</bean>
+	
+	<!-- 메일링 작업 -->
+	
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<property name="username" value="artroy1028@gmail.com"/>
+		<property name="password" value="wnsqud1990"></property>
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="javaMailProperties">
+			<props>
+			 	<prop key="mail.smtp.auth">true</prop>
+			 	<prop key="mail.smtp.starttls.enable">true</prop>
+			 	<prop key="mail.smtp.timeout">8500</prop>
+			</props>
+		</property>	
+	</bean>
+	
+	<!-- 메일폼 velocity -->
+	<bean id="velocityConfig" 
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="jsp/velocity"></property>	
+	</bean>
 
 </beans>

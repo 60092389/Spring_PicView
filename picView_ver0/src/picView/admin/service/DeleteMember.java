@@ -1,4 +1,4 @@
-package picView.admin.service;
+/*package picView.admin.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,3 +31,4 @@ public class DeleteMember implements Action{
 	}
 
 }
+*/
