@@ -1,0 +1,40 @@
+a {
+	display: inline-block;
+	border: blue;
+	white-space: nowrap;
+}
+
+.item {
+	display: inline-block;
+}
+
+#sub_ul li {
+	height: 250px;
+	width: 250px;
+}
+
+.pic_bottom {
+	height: 300px;
+}
+
+ol {
+	display: none;
+}
+
+.modal-header h3 {
+	border: 2px solid #f2f2f2;
+	font-size: 12px;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+}
+
+.modal-body p {
+	border: 2px solid #f2f2f2;
+	font-size: 12px;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+}
+
+#hiddenalb_no{
+	display: none;
+}

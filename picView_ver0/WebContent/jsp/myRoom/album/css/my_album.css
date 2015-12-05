@@ -1,0 +1,52 @@
+.center_pic_list {
+	clear: both;
+	margin-left: 0px;
+	margin-top: 55px;
+}
+
+.center_picture {
+	margin-left: 50px;
+	margin-top: 50px;
+	width: 250px;
+	height: 250px;
+}
+
+a {
+	font-size: 15px;
+	font-color: blue;
+	background-color: blue;
+}
+
+.back_color {
+	height: 250px;
+	width: 250px;
+}
+
+.pic_check {
+	height: 150px;
+	width: 160px;
+	color: white;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+}
+
+#picname {
+	text-align: center;
+	font-size: 13pt;
+}
+
+#picword {
+	text-align: center;
+	font-size: 11pt;
+}
+
+#hiddenval {
+	display: none;
+}
+
+#addbutton {
+	margin-left: 25%;
+}
+#add{
+	float: right;
+}

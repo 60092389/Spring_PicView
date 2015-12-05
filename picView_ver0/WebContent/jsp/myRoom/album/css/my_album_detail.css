@@ -1,0 +1,96 @@
+.alb_detail{
+			
+			width: 100%;
+			height: 100%;
+			
+		}
+		body,html{height: 100%;}
+		.content
+		{
+			width: 100%;
+			height: 100%;
+			margin: 10px auto;
+		}
+
+	
+
+		.mygallery{margin: 25px 0;}	
+
+		@media screen and (max-width: 400px) /* small logo */ 
+		{
+		  .chroma-gallery-logo
+		  {
+		  	width: 200px;
+		  	height: 83px;
+		  	background-size:200px 83px;
+		  }
+		}
+
+		@media screen and (min-width: 980px) /* Desktop */ 
+		{
+		  .content {width: 60%;}
+		}
+		
+.pictures {
+	margin: 0px auto;
+	width: 1110px;
+	padding: 0;
+}
+
+.contents {
+	text-align: center;
+}
+
+.alb_name {
+	height: 300px;
+	border: 2px solid #f2f2f2; //
+	font-size: 12px;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+	background-repeat: no-repeat;
+	background-size: 70% 70%;
+	background-position: 50% 50%;
+}
+
+.alb_name h3, .alb_name h2 {
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+	color: white;
+}
+
+.alb_content {
+	border: 2px solid #f2f2f2;
+	font-size: 12px;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+	height: 100px;
+}
+
+.btn {
+	font-size: 12px;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+}
+
+/* .alb_detail {
+	margin-left: 15%;
+	width: 300px;
+}
+ */
+.item {
+	margin: 5px;
+	width: 100px;
+	height: 100px;
+	backgrouynd-color: White;
+	border-radius: 10px;
+	float: left;
+}
+
+#my_album_update {
+	display: inline-block;
+}
+
+#hiddeninfor {
+	display: none;
+}		
+			

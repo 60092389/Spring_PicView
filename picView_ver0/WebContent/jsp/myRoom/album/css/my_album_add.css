@@ -1,0 +1,97 @@
+.left, .center, .right {
+	height: 250px;
+}
+
+img {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 20px;
+}
+
+a {
+	display: inline-block;
+	border: blue;
+	white-space: nowrap;
+}
+
+.item {
+	display: inline-block;
+}
+
+#sub_ul li {
+	height: 250px;
+	width: 250px;
+}
+
+
+
+ol {
+	display: none;
+}
+
+.modal-header h3 {
+	border: 2px solid #f2f2f2;
+	font-size: 12px;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+}
+
+.modal-body p {
+	border: 2px solid #f2f2f2;
+	font-size: 12px;
+	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console",
+		Terminal, monospace;
+}
+#mem_no, #getalb_word{
+	display: none;
+}
+
+
+.pic_bottom {
+	clear: both;
+	height: 200px;
+	border: 1px solid green;
+	overflow: hidden;
+	
+}
+
+#pic_rec {
+	height: 140px;
+}
+
+#alb_content {
+	height: 150px;
+}
+
+#pic_plus {
+	width: 400px;
+	height: 350px;
+	border: 1px solid green;
+	overflow: auto;
+}
+
+
+
+.content {
+	margin-top: 50px;
+	margin-left: 50px;
+	min-height: 450px !important;
+}
+
+#alb_content {
+	width: 415px;
+	height: 286px
+}
+
+#pic_rec {
+	width: 399px;
+	height: 210px
+}
+#alb_word{
+	width: 399px;
+}
+#alb_add{
+	width: 399px;
+}

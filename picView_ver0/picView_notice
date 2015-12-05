@@ -83,4 +83,20 @@ mybatis-config.xml 수정
 
 testtest
 
+----------------------------------------------------------
+
+12/05/11:52 최연식
+
+picView.album 패키지들 싹다 추가및 수정
+picView.cate 패키지들 싹다 추가및 수정
+
+jsp/myRoom/album 폴더 생성
+
+album 관련된 html, jsp 추가
+
+mybatis-config.xml 수정
+
+(혹시모르니 싹다 풀하세요)
+=> 풀받으시고 프로젝트 만드셔서 다 실행해보시고 에러 확인하세용
+
 
