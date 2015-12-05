@@ -8,7 +8,7 @@ import picView.newsfeed.model.ActivityList;
 import picView.newsfeed.model.FriendList;
 import picView.newsfeed.model.Good;
 import picView.newsfeed.model.Newsfeed;
-import picView.upload.model.Picture;
+import picView.picture.model.Picture;
 
 
 public interface NewsfeedMapper {

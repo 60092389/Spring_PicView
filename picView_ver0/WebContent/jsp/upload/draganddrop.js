@@ -217,7 +217,6 @@ $(document).ready(function(){
                 processData: false,
                 contentType: false,
                 success: function(data, textStatus, jqXHR) {
-                	alert('1234');
                   	page_location2();
                 }, error: function(jqXHR, textStatus, errorThrown) {}
             });

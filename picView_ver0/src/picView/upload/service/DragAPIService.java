@@ -29,7 +29,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import picView.upload.model.NaverSearch;
-import picView.upload.model.Picture;
+import picView.picture.model.Picture;
 import picView.upload.model.UploadDao;
 
 @Service
@@ -60,11 +60,10 @@ public class DragAPIService {
 	            String uploadPath = request.getRealPath("upload");
 	            mpf.transferTo(new File(uploadPath,newFileName));
 	              picture.setPic_add(newFileName);
-	        	  picture.setMem_no(1002);
+	        	  picture.setMem_no(1);
 	        	  picture.setGood_count(0);
 	        	  picture.setPic_count(0);
 	        	  System.out.println(picture.toString());
-	        	  picture.setPic_album_no("1");
 	        	  picture.setPic_color("red");
 	        	  dao.insertPicture(picture);
 	        }

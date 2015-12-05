@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import picView.newsfeed.mapper.NewsfeedMapper;
-import picView.upload.model.Picture;
+import picView.picture.model.Picture;
 
 @Component
 public class NewsfeedDao {

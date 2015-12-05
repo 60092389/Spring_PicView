@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import picView.picture.model.Picture;
 import picView.upload.mapper.PictureMapper;
 
 @Component

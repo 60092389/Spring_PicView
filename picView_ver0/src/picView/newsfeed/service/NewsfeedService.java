@@ -13,7 +13,7 @@ import picView.newsfeed.model.Good;
 import picView.newsfeed.model.ListNewsfeedModel;
 import picView.newsfeed.model.Newsfeed;
 import picView.newsfeed.model.NewsfeedDao;
-import picView.upload.model.Picture;
+import picView.picture.model.Picture;
 
 @Service
 public class NewsfeedService {

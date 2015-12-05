@@ -1,6 +1,6 @@
 package picView.upload.mapper;
 
-import picView.upload.model.Picture;
+import picView.picture.model.Picture;
 
 public interface PictureMapper {
 	

@@ -17,7 +17,7 @@ import picView.newsfeed.model.FriendList;
 import picView.newsfeed.model.Good;
 import picView.newsfeed.model.ListNewsfeedModel;
 import picView.newsfeed.service.NewsfeedService;
-import picView.upload.model.Picture;
+import picView.picture.model.Picture;
 
 
 @RequestMapping("/jsp/main/")

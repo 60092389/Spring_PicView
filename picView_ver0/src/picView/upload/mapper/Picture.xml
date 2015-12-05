@@ -7,13 +7,13 @@
 <mapper namespace="picView.upload.mapper.PictureMapper">
 	<cache />
 
-	<insert id="insertPicture" parameterType="Upload">
+	<insert id="insertPicture" parameterType="Picture">
 		insert into picture(pic_no, pic_title, mem_no, category_no,tag_name
-		, pic_content,pic_count,good_count ,pic_add, pic_album_no
+		, pic_content,pic_count,good_count ,pic_add
 		,pic_open, pic_color, pic_date ,pic_location)
 		values(
 		upload_seq_id.NEXTVAL, #{pic_title}, #{mem_no}, #{category_no}, #{tag_name}
-		, #{pic_content},0, 0, #{pic_add}, #{pic_album_no}
+		, #{pic_content},0, 0, #{pic_add}
 		, #{pic_open}, #{pic_color},SYSDATE, #{pic_location}
 		)
 	</insert>

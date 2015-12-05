@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
-import picView.upload.model.Picture;
+import picView.picture.model.Picture;
 import picView.upload.model.fileUploadForm;
 import picView.upload.service.DragAPIService;
 
