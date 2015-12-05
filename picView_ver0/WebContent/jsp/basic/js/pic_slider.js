@@ -1,10 +1,10 @@
 jQuery(document).ready(function ($) {
             
             var jssor_1_options = {
-              $AutoPlay: true,
-              $ArrowNavigatorOptions: {
+              $AutoPlay: false,
+              /*$ArrowNavigatorOptions: {
                 $Class: $JssorArrowNavigator$
-              },
+              },*/
               $ThumbnailNavigatorOptions: {
                 $Class: $JssorThumbnailNavigator$,
                 $Cols: 9,
@@ -25,7 +25,7 @@ jQuery(document).ready(function ($) {
                     jssor_1_slider.$ScaleWidth(refSize);
                 }
                 else {
-                    window.setTimeout(ScaleSlider, 30);
+                   window.setTimeout(ScaleSlider, 30);
                 }
             }
             ScaleSlider();

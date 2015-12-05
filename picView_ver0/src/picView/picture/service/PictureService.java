@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.objenesis.instantiator.perc.PercInstantiator;
 import org.springframework.stereotype.Service;
 
+import picView.member.model.Member;
 import picView.member.model.MemberDao;
 import picView.picture.model.Picture;
 import picView.picture.model.PictureDao;
@@ -204,5 +205,47 @@ public class PictureService {
 		public List<Picture> myShowPicture(Picture picture){
 				return picDao.myShowPicture(picture);
 		}
+		
+		
+		// 상세보기 시작
+		
+		// 상세보기 사진 정보
+		public Picture detailPicture(int pic_no) {
+			return picDao.detailPicture(pic_no);
+		}
+
+		// 상세보기 - 태그들
+		public String tag_list(int pic_no) {
+			return picDao.tag_list(pic_no);
+		}
+		
+		// 상세보기 - 회원정보(이름, 프로필 사진)
+		public Member memInfo(int pic_no){
+			return picDao.memInfo(pic_no);
+		}
+		
+		// 상세보기 - 댓글 갯수
+		public int rep_count(int pic_no){
+			return picDao.rep_count(pic_no);
+		}
+		
+		// 상세보기 - 사진 리스트
+		public List<Picture> pic_list(int pic_no){
+			return picDao.pic_list(pic_no);
+		}
+		
+		// 상세보기 - 선택한 사진번호
+		public int select_pic(String pic_add){
+			return picDao.select_pic(pic_add);
+		}
+		
+		// 상세보기 - 메인 사진
+		public String main_pic(int pic_no){
+			return picDao.main_pic(pic_no);
+		}
+		
+		// 상세보기 끝
+		
+		
 	
 }

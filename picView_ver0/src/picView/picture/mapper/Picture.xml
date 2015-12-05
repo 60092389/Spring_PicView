@@ -135,6 +135,56 @@
 	</select>
 	
 
+	<!-- 상세보기 -->
+	<select id="main_pic" parameterType="int" resultType="String">
+		select pic_add
+		from picture
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="select_pic" parameterType="String" resultType="int">
+		<!-- select pic_no
+		from picture
+		where pic_add = #{pic_add} -->
+	</select>
+	
+	<select id="pic_list" parameterType="int" resultType="Picture">
+		select pic_add, pic_no
+		from picture
+		where pic_no >= #{pic_no}
+		order by pic_no 
+	</select>
+	
+	<select id="memInfo" parameterType="int" resultType="Member">
+		select mem_name, mem_pic
+		from member
+		where mem_no = (select mem_no
+							from picture 
+							where pic_no = #{pic_no})
+		
+		</select>
+	
+	<select id="rep_count" parameterType="int" resultType="int">
+		select count(*) 
+		from reply 
+		where pic_no = #{pic_no}
+	</select>
+
+		
+	<select id="tag_list" parameterType="int" resultType="String">
+		select tag_name
+		from picture 
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="detailPicture" parameterType="int" resultType="Picture">
+		select pic_no, pic_title, mem_no, tag_name, pic_content, pic_count, good_count, 
+			pic_add, pic_location, to_date(pic_date, 'yy-mm-dd') pic_date
+		from picture 
+		where pic_no = #{pic_no}
+	</select>
+	<!-- 상세보기 끝 -->
+	
 	
 	<!-- <delete id="deletePicture" parameterType="int">
 		delete from picture where pic_no = #{pic_no}

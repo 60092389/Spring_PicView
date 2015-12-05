@@ -1,5 +1,10 @@
+<%@page import="com.sun.xml.internal.txw2.Document"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,12 +12,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Insert title here</title>
+<title>상세보기</title>
 
 <link href="../../css/picView_custom.css" rel="stylesheet">
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
 <link href="css/picDetail.css" rel="stylesheet">
 <link href="css/pic_slider.css" rel="stylesheet">
+
+<%
+	System.out.println("사진가져오니" + request.getAttribute("detail"));
+	System.out.println("사진가져오니" + request.getAttribute("pic_list"));
+	System.out.println("사진번호" + request.getAttribute("pic_no"));
+%>
 
 
 </head>
@@ -32,36 +43,33 @@
 		            <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
 		        </div>
 		        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 900px; height: 600px; overflow: hidden;">
+					
+					<c:forEach var="pic_list" items="${pic_list }" >
 		            <div style="display: none;">
-		                <img data-u="image" src="img/002.jpg" />
-		                <img data-u="thumb" src="img/thumb-002.jpg" />
+		            	<img data-u="image" src="../../upload/${pic_list.pic_add }" />
+		                <img data-u="thumb" src="../../upload/${pic_list.pic_add }" name="${pic_list.pic_no }" />
 		            </div>
-		            <div style="display: none;">
-		                <img data-u="image" src="img/003.jpg" />
-		                <img data-u="thumb" src="img/thumb-003.jpg" />
-		            </div>	
-		            <div style="display: none;">
-		                <img data-u="image" src="img/004.jpg" />
-		                <img data-u="thumb" src="img/thumb-004.jpg" />
-		            </div>
-		           
+		            </c:forEach>
+		         	           
 		        </div>
+		       
 		        
-		        Thumbnail Navigator
+		        <!-- Thumbnail Navigator -->
 		        <div u="thumbnavigator" class="jssort03" style="position:absolute;left:0px;bottom:0px;width:900px;height:60px;" data-autocenter="1">
 		            <div style="position: absolute; top: 0; left: 0; width: 100%; height:100%; background-color: #000; filter:alpha(opacity=30.0); opacity:0.3;"></div>
-		            Thumbnail Item Skin Begin
+		            <!-- Thumbnail Item Skin Begin -->
 		            <div u="slides" style="cursor: default;">
 		                <div u="prototype" class="p">
 		                    <div class="w">
 		                        <div u="thumbnailtemplate" class="t"></div>
 		                    </div>
-		                    <div class="c"></div>
+		                  <a href="#"><div class="c"></div></a>
 		                </div>
 		            </div>
-		            Thumbnail Item Skin End
+		            <!-- Thumbnail Item Skin End -->
 		        </div>
-		        Arrow Navigator
+		        
+		        <!-- Arrow Navigator -->
 		        <span data-u="arrowleft" class="jssora02l" style="top:123px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
 		        <span data-u="arrowright" class="jssora02r" style="top:123px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
 		        
@@ -72,15 +80,19 @@
 	     <div class="sub-photo-container centered-content">
 	       <div class="view sub-photo-left-view"><!-- 왼쪽 상세보기 시작  -->
 	         <div class="view attribution-view clear-float photo-attribution">
-				  <div class="avatar person medium" style="background-image: url(//c2.staticflickr.com/8/7329/buddyicons/51919822@N05_l.jpg?1383412877#51919822@N05);"></div>
+				  <div class="avatar person medium" style="background-image: url(../../upload/${memInfo.mem_pic});"></div>
+				  <!-- //c2.staticflickr.com/8/7329/buddyicons/51919822@N05_l.jpg?1383412877#51919822@N05 -->
 				  <div class="attribution-info">
 				  	<a class="owner-name truncate" title="Vincent Ting 님의 포토스트림으로 이동" href="/photos/formosating/" >
-Vincent Ting
+					${memInfo.mem_name }
 				  	</a>
 				  	<div class="view follow-view clear-float photo-attribution">
 				  		<span class="relationship">
-						<button class="unfluid follow ui-button ui-button-icon">
-						<span>팔로우</span>
+						<button id="follow_btn" class="btn btn-default btn-lg btn-primary">
+							<span class="glyphicon glyphicon-plus">팔로우</span>
+						</button>
+						<button id="good_btn" class="btn btn-default btn-lg btn-warning">
+							<span class="glyphicon glyphicon-thumbs-up">좋아요</span>							
 						</button>
 						</span>
 				  	</div>
@@ -88,10 +100,7 @@ Vincent Ting
 			  </div>
 			  <div class="view sub-photo-title-desc-view">
 			   <div class="title-desc-block showFull">
-			     <h1 class=" meta-field photo-title ">Dizzy Sky , Mountain Hehuan 合歡山</h1>
-			   		<h2 class=" meta-field photo-desc ">
-			   		  <p>Copyright © Vincent Ting Photography. All rights reserved. Please don't use without my permission</p>
-			   		</h2>
+			     <h1 class=" meta-field photo-title ">${detail.pic_title }</h1>
 			   </div>
 			  </div>
 			  <div class="view sub-photo-fave-view faves-present">
@@ -156,21 +165,21 @@ Vincent Ting
 				<div class="sub-photo-right-row1" >
 					<div class="view sub-photo-right-stats-view">
 						<div class="view-count">
-							<span class="view-count-label"> 13,564</span>
+							<span class="view-count-label">${detail.pic_count }</span>
 							<span class="stats-label">뷰</span>
 						</div>
 						<div class="fave-count">
-							<span class="fave-count-label"> 752 </span>
-							<span class="stats-label">좋음</span>
+							<span class="fave-count-label">${detail.good_count }</span>
+							<span class="stats-label">좋아요</span>
 						</div>
 						<div class="comment-count">
-							<span class="comment-count-label"> 63</span>
-							<span class="stats-label">덧글</span>
+							<span class="comment-count-label">${rep_count }</span>
+							<span class="stats-label">댓글</span>
 						</div>	
 					</div>
 					<div class="view sub-photo-date-view">
 						<div class="date-taken clear-float ">
-							<span class="date-taken-label" title="2015년 10월 14일에 업로드"> 2015년 9월 18일에 촬영 </span>
+							<span class="date-taken-label" title="업로드 날짜"> <fmt:formatDate value="${detail.pic_date }" pattern="yyyy"/>년 <fmt:formatDate value="${detail.pic_date }" pattern="M"/>월 <fmt:formatDate value="${detail.pic_date }" pattern="dd"/>일에 업로드 </span>
 						</div>
 					</div>
 					<div class="view photo-license-view">
@@ -184,6 +193,14 @@ Vincent Ting
 					</div>
 					
 				</div>
+				
+				<div class="view sub-photo-additional-info-view">
+					<div class="additional-info">
+						<h3><b>추가 정보</b></h3>
+						${detail.pic_content }
+					</div>
+				</div>
+				
 				<div class="view sub-photo-contexts-view">
 					<div class="view sub-photo-albums-view">
 						<div class="sub-photo-context sub-photo-context-albums">
@@ -209,13 +226,7 @@ Vincent Ting
 						</div>
 					</div>
 				</div>
-				<div class="view sub-photo-additional-info-view">
-					<div class="additional-info">
-						<h3>추가 정보</h3>
-						asdfasdf<br>
-						asdfasd
-					</div>
-				</div>
+				
 				<div class="view sub-photo-tags-view">
 					<div class="view sub-photo-tags-tag-view ">
 						<h3 class="tag-section-header">태그</h3>
@@ -223,19 +234,16 @@ Vincent Ting
 							<i class="autotags-helper-icon"></i>
 						</span>
 						<ul class="tags-list">
-							<li class="tag" >
-								<a class="remove-tag" href="#" >
-								<i class="delete-tag" title="삭제"></i>
-								</a>
-								<a title="sunset" href="/search/?tags=sunset" >sunset</a>
-							</li>
-							<li class="tag" >
-								<a class="remove-tag" href="#" >
-								<i class="delete-tag" title="삭제"></i>
-								</a>
-								<a title="sunset" href="/search/?tags=sunset" >sunset</a>
-							</li>
-							
+							<c:set var="tag_list" value="${tag_list }"/>							
+							<c:set var="tag" value="${fn:split(tag_list, ',') }"/>
+							<c:forEach var="tag" items="${tag }" >
+								<li class="tag" >
+									<a class="remove-tag" href="#" >
+										<i class="delete-tag" title="삭제"></i>
+									</a>
+									<a title="${tag }" href="/search/?tags=${tag }" >${tag }</a>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>	
@@ -244,11 +252,32 @@ Vincent Ting
 		 </div>
 	  </div><!-- 하단정보끝 --> 
 	</div>
-	<div class="footer" class="footer-full-view">
-     	<jsp:include page="../layout/footer.jsp"></jsp:include>     	
-  </div>
 
 	<script type="text/javascript" src="js/jssor.slider-20.mini.js"></script>
-	<script type="text/javascript" src="js/pic_slider.js"></script>    
+	<script type="text/javascript" src="js/pic_slider.js"></script>
+	
+	<script type="text/javascript">
+	$(function() {
+		var this_pic = ${pic_no};
+			
+		$('.jssora02l').click(function(){
+				location.href = "picDetail?pic_no=" + (this_pic - 1);
+		});
+		
+		$('.jssora02r').click(function(){
+			location.href = "picDetail?pic_no=" + (this_pic + 1);
+		});
+		
+		var select_pic;
+		$('.c').each(function(index, item){
+			select_pic = $('.c').parents().find('.w').find('img').eq(index).attr('name');
+			
+			$('.p').find('a').eq(index).attr('href', 'picDetail?pic_no='+select_pic);
+		});
+
+	});
+	
+	</script>
+	
 </body>
 </html>
