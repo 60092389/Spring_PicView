@@ -6,8 +6,8 @@
         this.defaults = {
             speed:1000,//设置轮播的高度
             delay:5000,//设置轮播的延迟时间
-            imgCount:8,//设置轮播的图片数
-            dots:true,//设置轮播的序号点
+            imgCount:10,//设置轮播的图片数
+            //dots:true,//设置轮播的序号点
             autoPlay:true//设置轮播是否自动播放
         }
         this.count = 0;//轮播计数器
