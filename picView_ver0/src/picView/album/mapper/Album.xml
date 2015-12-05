@@ -2,9 +2,82 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="">
-<cache />
+
+<mapper namespace="picView.album.mapper.AlbumMapper">
+	<cache />
+	
+	<select id="albumlist" parameterType="Member" resultType="Album">
+		select * from Album where mem_no = #{mem_no}
+	</select>
+	
+	<select id="grouplist" parameterType="int" resultType="Group_pic">
+		select * from group_pic where alb_no = #{alb_no}
+	</select>
+	
+	<select id="albumpiclist" parameterType="int" resultType="Picture">
+		select * from picture where pic_no = #{pic_no}
+	</select>
+	
+	
+	<select id="piclist" parameterType="Member" resultType="Picture">
+		select * from picture where mem_no = #{mem_no}
+	</select>
+	
+ 	<insert id="insertAlbum" parameterType="Album">
+	   insert into album(
+			 alb_no, mem_no, alb_name, alb_content, alb_word, alb_open, alb_date
+		)
+		values(
+			album_no_seq.nextval, #{mem_no}, #{alb_name}, #{alb_content}, #{alb_word}, 2 ,
+			SYSDATE
+		)	
+		</insert>
+
+	<select id="selectAlbum_no" parameterType="String" resultType="Album">
+		select * from album where alb_word = #{alb_word}
+	</select>
+
+	<insert id="insertGroup" parameterType="Group_Pic">
+		insert into group_pic(
+			group_no, alb_no, pic_no
+		)
+		values(
+			group_pic_no_seq.nextval, #{alb_no}, #{pic_no}
+		)
+		
+	</insert> 
+	
+	<select id="detailAlbum" parameterType="int" resultType="Album">
+		select * from album where alb_no = #{alb_no}	
+	</select>
+	
+	<select id="selectPicture" parameterType="int" resultType="Picture">
+		select * from picture where pic_no = #{pic_no}
+	</select>
+	
+	<delete id="deleteGroup" parameterType="int">
+		delete from group_pic where alb_no = #{alb_no}
+	</delete>
+	
+	<delete id="deleteAlbum" parameterType="int">
+		delete from album where alb_no = #{alb_no}
+	</delete>
+
 
 	
-
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
