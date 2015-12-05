@@ -250,7 +250,7 @@ Bootstrap
 					
 					</div>
 					 <button id="searchButton" class="btn btn-default" onclick="searchButton()">검색</button>
-					</li>
+					</li> 
 					<li><a href="#"><span id="upload"
 							class="glyphicon glyphicon-cloud-upload"></span></a></li>
 					<li><a href="../login/loginForm.jsp">로그인</a></li>

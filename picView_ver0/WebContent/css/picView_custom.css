@@ -17,8 +17,22 @@ body {
 
 .collapse .nav li {
 	border: 0px solid red;
+	display: inline-flex;
 }
 
+.searchForm{
+	padding-right:15px;
+	margin-top: 13px;
+}
+
+
+#searchList{
+	margin-top: 12px;
+}
+
+#searchButton{
+	margin-left: 10px;
+}
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2,
 	.col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
 	.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5,
@@ -62,6 +76,7 @@ li p{
 	font-weight: bold;
 	margin-left: 20px
 }
+
 
 
 /**************************************************************/
