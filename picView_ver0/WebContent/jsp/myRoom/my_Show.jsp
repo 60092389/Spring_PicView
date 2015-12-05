@@ -1,28 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@page import="java.net.URLEncoder" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ë³´ì—¬ì£¼ê¸°</title>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="js/my_Show.js"></script>
 
 <link href="css/my_Show5.css" rel="stylesheet">
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/picView_custom.css" rel="stylesheet">
+<link href="../../css/picView_custom.css" rel="stylesheet"> 
 <link href="../../jsp/myRoom/css/my_Menu.css" rel="stylesheet">
 <link href="../../jsp/myRoom/css/my_Popular_Good.css" rel="stylesheet">
+
+<style>
+	.photo-grid-container { margin:50px auto 30px auto; max-width:1100px;}
+</style>
+
+<title>º¸¿©ÁÖ±â</title>
 </head>
-
 <body>
-
-	<div class="header">
+<div class="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
 
@@ -32,81 +32,168 @@
 
 	<div id="myMenu_navi">
 		<ul class="nav nav-pills">
-			<li class="menu"><a href="my_Manage.html">ì‚¬ì§„ ê´€ë¦¬</a></li>
-			<li class="menu active"><a href="my_Show.html">ë³´ì—¬ ì£¼ê¸°</a></li>
-			<li class="menu"><a href="#">ì‚¬ì§„ì²©</a></li>
-			<li class="menu"><a href="#">ê´€ì‹¬ ì‚¬ì§„</a></li>
-			<li class="menu"><a href="follow.jsp">ì¹œêµ¬ ëª©ë¡</a></li>
+			<li class="menu"><a href="my_Manage.html">»çÁø °ü¸®</a></li>
+			<li class="menu active"><a href="my_Show.html">º¸¿© ÁÖ±â</a></li>
+			<li class="menu"><a href="#">»çÁøÃ¸</a></li>
+			<li class="menu"><a href="#">°ü½É »çÁø</a></li>
+			<li class="menu"><a href="follow.jsp">Ä£±¸ ¸ñ·Ï</a></li>
 			<li id="other" class="dropdown"><a href=""
-				data-toggle="dropdown"> ê·¸ ì™¸ <span class="caret"></span>
+				data-toggle="dropdown"> ±× ¿Ü <span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="my_Tag.jsp">íƒœê·¸ë³„</a>
-					<li><a href="my_Popular_Hit.jsp">ì¸ê¸°ë³„</a>
-					<li><a href="#">ë‹¤ìš´ë¡œë“œ ê¸°ë¡</a>
-					<li><a href="#">í”„ë¡œí•„</a>
+					<li><a href="my_Tag.jsp">ÅÂ±×º°</a>
+					<li><a href="my_Popular_Hit.jsp">ÀÎ±âº°</a>
+					<li><a href="#">´Ù¿î·Îµå ±â·Ï</a>
+					<li><a href="#">ÇÁ·ÎÇÊ</a>
 				</ul></li>
 		</ul>
 	</div>
 
 
 	<div class="contents">
-		<div id="show_btn" class="btn-group">
-			<button type="button" class="btn btn-default dropdown-toggle"
-				data-toggle="dropdown">
-				ê³µê°œë³´ê¸° <span class="caret"> </span>
-			</button>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">ë¹„ê³µê°œ ë³´ê¸°</a></li>
-				<li><a href="#">ì¹œêµ¬ ë³´ê¸°</a></li>
-			</ul>
-		</div>
-
-		<!-- ê³µê°œ ë³´ê¸° -->
-		<div class="open_pic">
-		<div id="picture_area">
-				<c:forEach var="s" items="${listShow}">
-					<div class="picture_list" style="background-image: url('../../upload/${s.pic_add}');" id="${s.pic_add}">
-						<input type="hidden" value="${s.pic_no}">
-						<div class="info_bar" id="${s.pic_add}">
-							<a class="pic_title" href="#">${s.pic_title}</a>
-							<a class="pic_date" href="#"><fmt:formatDate value="${s.pic_date}" pattern="yyyy-MM-dd"/></a>
-						</div>
-					</div>
+		<div class="fluid-magic-tools-view">
+		<div class="secondary-tools">
+				<div class="view fluid-magic-slideshow-view">
+					<a class="slideshow-toggle" title="½½¶óÀÌµå¼î ÀüÈ¯">
+						<span class="slide"></span></a>
+				</div>
+				<div class="view fluid-magic-search-view">
+					<a class="search-toggle" href="#"></a>
 					
-				</c:forEach>
+					<input class="magic-search" type="text" value="" placeholder="»çÁø ½ºÆ®¸² °Ë»ö">
+				</div>
+				<a class="overlay"><span class="search"></span></a>
 			</div>
-
+			<div id="show_btn" class="btn-group">
+				<button type="button" class="btn btn-default dropdown-toggle"
+					data-toggle="dropdown">
+					¸ğµÎ º¸±â <span class="caret"> </span>
+				</button>
+				<input class="sendShow" type="hidden" name="show" value="all">
+				<ul class="dropdown-menu" role="menu">
+					<li><a class="show" name="open" title="°ø°³ º¸±â">°ø°³ º¸±â</a></li>
+					<li><a class="show" name="friend" title="Ä£±¸ º¸±â">Ä£±¸ º¸±â</a></li>
+					<li><a class="show" name="closed" title="ºñ°ø°³ º¸±â">ºñ°ø°³ º¸±â</a></li>
+					<li><a class="show" name="all" title="¸ğµÎ º¸±â">¸ğµÎ º¸±â</a></li>
+				</ul>
+			</div>
+			
 		</div>
+		 
 
-
-		<!-- ë¹„ê³µê°œ ë³´ê¸° -->
-
-		<div class="close_pic"></div>
-
-		<!-- ì¹œêµ¬ ë³´ê¸° -->
-		<div class="friend_pic"></div>
-
-		<!-- ê³µê°œ ì‚¬ì§„ì´ ì—†ì„ë•Œ 
-	<div class="no_picture">
-
-		<h3>ê³µê°œ ì‚¬ì§„ì´ ì—†ìŠµë‹ˆë‹¤.</h3>
+			 <div class="photo-grid-container">
+					<c:forEach var="s" items="${myShowList}">
+						
+				 		 <div class="photo-grid-item">
+				 		 	<a class="overlay" href="../../jsp/basic/picDetail.jsp?pic_id">
+								<img src="../../upload/${s.pic_add}">
+							</a>
+							
+							<div class="view photo-list-view">
+								<div class="interaction-bar" style="display: none;">
+									<div class="text">
+										<a class="title" href="#">${pic.pic_title}</a>
+										<a class="attribution" href="#">È¸¿ø´Ô¿¡ ÀÇÇØ!</a>
+									</div>
+									<div class="tool">
+										<a class="fave-area" href="#"></a>
+										<span class="glyphicon glyphicon-star-empty">${pic.good_count}</span>
+									<i class="fave-star fave can-not-fave"></i>
+									</div>
+									<div class="tool">
+										<a class="comment-area" href="#"></a>
+										<span class="glyphicon glyphicon-comment">${pic.pic_count}<</span>
+										<i class="fave-star fave can-not-fave"></i>
+									</div>
+								</div>
+							</div>
+				  			
+				  		<%-- 	<div class="interaction-bar">
+					  	  <div class="text">
+					  	    <a class="title" href='#'>${pic.pic_title}</a>
+					  	    <a class="attribution" href='#'>È¸¿ø´Ô¿¡ ÀÇÇØ!</a>
+					  	  </div>
+					  	  
+					  	   <div class='tool'>
+ 							<a class='fave-area' href='#'></a>
+ 							<span class='glyphicon glyphicon-star-empty'>${pic.good_count}</span>
+ 							<i class='fave-star fave can-not-fave'></i>
+ 						  </div>
+					  	  
+					  	  <div class='tool'>
+							<a class='comment-area' href='#'></a>
+ 							<span class='glyphicon glyphicon-comment'>${pic.pic_count}</span>
+							<i class='fave-star fave can-not-fave'></i>
+						 </div>	
+					  	</div> --%>
+				  		</div>
+				  	</c:forEach>
+				</div> 
+		
+			
+	<c:if test="${empty myShowList}">
+		<div class="no_picture">
+			<h3>°ø°³ »çÁøÀÌ ¾ø½À´Ï´Ù.</h3>
 		<p>
-			ì—¬ëŸ¬ë¶„ì˜ í¬í† ìŠ¤íŠ¸ë¦¼ì€ ê³µê°œ í¬íŠ¸í´ë¦¬ì˜¤ì…ë‹ˆë‹¤.<br>í¬í† ìŠ¤íŠ¸ë¦¼ì„ ì±„ìš°ë ¤ë©´ ì¹´ë©”ë¼ ë¡¤ì„ ì‚¬ìš©í•˜ì—¬ ì‚¬ì§„ì„ ê³µê°œë¡œ
-			ì„¤ì •í•˜ì„¸ìš”.
+			¿©·¯ºĞÀÇ Æ÷Åä½ºÆ®¸²Àº °ø°³ Æ÷Æ®Æú¸®¿ÀÀÔ´Ï´Ù.<br>Æ÷Åä½ºÆ®¸²À» Ã¤¿ì·Á¸é Ä«¸Ş¶ó ·ÑÀ» »ç¿ëÇÏ¿© »çÁøÀ» °ø°³·Î
+			¼³Á¤ÇÏ¼¼¿ä.
 		</p>
-	</div>
-	<div class="button">
-			<input id="login" class="btn btn-primary" type="button"
-				value="ì‚¬ì§„ ê´€ë¦¬ë¡œ ì´ë™">
 		</div>
-	-->
+			<div class="button">
+			<input id="login" class="btn btn-primary" type="button" value="»çÁø °ü¸®·Î ÀÌµ¿">
+		</div>
+	</c:if>
+</div>	
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="./js/jquery-sortable-photos.js"></script> 
+
+<script src="../../js/bootstrap.min.js"></script>
+<script src="./js/my_Show.js"></script> 
 
 
-	</div>
+<script>
+$('.photo-grid-container').sortablePhotos({
+      selector: '> .photo-grid-item',
+	  padding: 5
+});
 
-	<div class="footer">
-		<jsp:include page="../layout/footer.jsp"></jsp:include>
-	</div>
+$(function() {
+	$(function() {
+		$('#show_btn').click(function() {
+			//$(this).attr('class', 'btn-group open');
+			$(this).find('.btn-group').addClass('open');
+
+		});
+		
+		$('.search').click(function() {
+			var search = encodeURI($('.magic-search').val());
+			console.log(search);
+			
+			location.href="../../jsp/myRoom/myShowForm?search="+search;
+		})
+	
+		var pic_open = '';
+		
+		$('.show').click(function() {
+			pic_open = $(this).attr('name');
+			title = $(this).attr('title');
+			$('.dropdown-toggle').empty();
+			$('.dropdown-toggle').append(title);
+			
+			$('.sendShow').attr('value',pic_open);
+			location.href="../../jsp/myRoom/myShowForm?pic_open="+pic_open;
+
+		});
+
+		
+		$('.slideshow-toggle').click(function() {
+			location.href="../../jsp/myRoom/myShowSlide?pic_open="+pic_open;
+		});
+	}) 
+})
+</script>
+
 </body>
 </html>

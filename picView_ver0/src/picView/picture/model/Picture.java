@@ -18,12 +18,13 @@ public class Picture implements Serializable {
 	private String pic_location; //사진위치주소
 	private Timestamp pic_date; //사진업로드날짜
 	private String pic_open; //사진공개범위
+	private String search;//사진 검색단어
 	
 	public Picture(){}
-
+	
 	public Picture(int pic_no, String pic_title, int mem_no, int category_no, String tag_name, String pic_content,
 			int pic_count, int good_count, String pic_add, String pic_color, String pic_location, Timestamp pic_date,
-			String pic_open) {
+			String pic_open, String search) {
 		super();
 		this.pic_no = pic_no;
 		this.pic_title = pic_title;
@@ -38,6 +39,7 @@ public class Picture implements Serializable {
 		this.pic_location = pic_location;
 		this.pic_date = pic_date;
 		this.pic_open = pic_open;
+		this.search = search;
 	}
 
 	public int getPic_no() {
@@ -142,6 +144,16 @@ public class Picture implements Serializable {
 
 	public void setPic_open(String pic_open) {
 		this.pic_open = pic_open;
+	}
+	
+	
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 	@Override

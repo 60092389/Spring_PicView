@@ -1,0 +1,615 @@
+#content{
+	 height:auto;
+}
+
+#content .contents {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    /* min-width: 800px; */
+    height:auto;
+    background-color: #f3f5f6;
+}
+
+.fluid-centered {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100% - 20%);
+    min-width: 800px;
+    padding-left: 130px;
+    padding-right: 130px;
+    margin-top: -50px;
+    margin-bottom: 10px;
+    height:60px;
+}
+
+.empty{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.no-results-message {
+    margin: 0 auto;
+    max-width: 720px;
+    word-wrap: break-word;
+	padding-left: 120px; 
+	padding-top: 120px;
+}
+
+#message{
+	margin-left: 100px;
+}
+
+
+
+div.global-nav-view, .view > section.global-nav-view, .view > iframe.global-nav-view {
+    opacity: 1 !important;
+}
+
+
+.view > div,.view > section, .view > iframe {
+    opacity: 1 !important;
+    transition: opacity 0.25s ease 0s;
+}
+
+.using-slender-advanced-panel {
+    border: 0 none;
+    
+}
+
+#search-people{
+	top:20px;
+	margin-top: 50px;
+}
+
+#color-panel{
+	margin-top: 70px;
+}
+.search-subnav {
+    backface-visibility: hidden;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(137, 137, 137, 0.3);
+    box-shadow: 0 -2px transparent inset;
+    box-sizing: border-box;
+    height: 50px;
+    overflow: visible;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 82;
+    margin-top: -50px;
+}
+
+.search-subnav .search-subnav-sizing {
+    height: 100%;
+    margin: 0 7%;
+    position: relative;
+    width: auto;
+}
+
+
+.search-subnav-content {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 auto;
+    overflow: visible;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+}
+
+
+.search-subnav-content .tools {
+    display: inline;
+    list-style: outside none none;
+    margin: 12px 0;
+    position: absolute;
+    right: 0;
+}
+
+menu, ol, ul {
+    padding: 0 0 0 40px;
+}
+.search-subnav-content {
+    border-bottom: 1px solid rgba(137, 137, 137, 0.3);
+}
+
+.search-subnav-content {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0 auto;
+    overflow: visible;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+}
+
+
+.search-subnav-content .links {
+    display: inline-block;
+}
+.search-subnav-content .links {
+    -moz-user-select: none;
+    font-size: 16px;
+    font-weight: 400;
+    height: 47px;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+h5 a {
+    color: #006dac;
+}
+
+h1 a, h2 a, h3 a, h4 a, textarea a, input[type="text"] a {
+    color: inherit;
+    transition: color 150ms ease 0s;
+}
+
+.search-photos-unified-page-view .search-subnav.using-slender-advanced-panel .search-subnav-content {
+    border-bottom: 1px solid rgba(137, 137, 137, 0.3);
+}
+
+.search-subnav-content .links > .tool.selected, .search-subnav-content .links > .tool:hover, .search-subnav .search-subnav-sizing .search-subnav-content .links > .link.selected, .search-subnav .search-subnav-sizing .search-subnav-content .links > .link:hover {
+    border-bottom: 3px solid #0091dc;
+    opacity: 1;
+}
+
+.search-subnav-content .links > .tool a, .search-subnav-content .links > .tool a:visited,
+.search-subnav-content .links > .tool a:hover, .search-subnav-content .links > .link a,  .search-subnav-content .links > .link a:visited, 
+.search-subnav-content .links > .link a:hover {
+    display: inline-block;
+    height: 100%;
+    text-decoration: none;
+    width: 100%;
+}
+
+.search-subnav .search-subnav-sizing .search-subnav-content .links > .link {
+    margin: 0 10px 0 0;
+    padding: 0 20px;
+}
+.search-subnav-content .links > .tool, .search-subnav-content .links > .link {
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    float: left;
+    height: 100%;
+    opacity: 0.75;
+    outline: 0 none;
+    padding: 0 5px;
+    transition: border-bottom 100ms linear 0s;
+}
+
+.search-subnav-content .links > .tool a .title, 
+.search-subnav-content .links > .tool a:visited .title,
+.search-subnav-content .links > .tool a:hover .title, 
+.search-subnav-content .links > .link a .title,
+.search-subnav-content .links > .link a:visited .title, 
+.search-subnav-content .links > .link a:hover .title {
+    color: #000;
+    font-size: 12pt;
+    font-weight: 400;
+    line-height: 170%;
+    padding-top: 12px;
+}
+.search-subnav .search-subnav-sizing .search-subnav-content .links {
+    display: inline-block;
+    -moz-user-select: none;
+    font-size: 16px;
+    font-weight: 400;
+    height: 47px;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.search-slender-advanced-panel-view {
+    font-size: 14px;
+}
+
+.advanced-icon.collapsed {
+    background: rgba(0, 0, 0, 0) url("icons_collection.png") 
+    no-repeat scroll -124px -190px;
+    height: 16px;
+    width: 20px;
+}
+.quick-filter {
+    -moz-box-pack: center;
+    align-items: center;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    position: relative;
+    padding-top:15px;
+}
+
+.color-list {
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    margin-top: 12px;
+    padding-left:50px;
+}
+
+.color-swatch.outline {
+    border: 1px solid #898989;
+    height: 18px;
+    width: 18px;
+}
+
+/*태그, 모두 검색*/
+.search-search-in-picker-view {
+    -moz-box-flex: 0;
+    flex: 0 1 120px;
+    margin-left: 100px;
+    padding-top:10px;
+}
+.advanced-panel .advanced-options > * {
+    margin-top: 15px;
+}
+
+.option-header {
+    color: #898989;
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+p, textarea, input[type="text"] {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+
+.search-in-list {
+	width:200px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.search-in-button.selected {
+    border: 2px solid #008ddf;
+    color: #008ddf;
+    line-height: 26px;
+}
+.search-in-list .search-in-button.first {
+	
+    border-radius: 3px 0 0 3px;
+    margin: 0;
+}
+
+
+.search-in-button.last, .search-in-button.third {
+    border-radius: 0 3px 3px 0;
+    border-right-color: rgba(137, 137, 137, 0.4);
+}
+
+.search-in-button {
+    border-color: rgba(137, 137, 137, 0.4) rgba(137, 137, 137, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    height: 30px;
+    line-height: 28px;
+    margin: 0 0 0 -1px;
+    text-align: center;
+    width: 60px;
+}
+
+.search-slender-advanced-panel-view {
+    backface-visibility: hidden;
+    background-color: #f3f5f6;
+    font-size: 14px;
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    z-index: 70;
+}
+
+
+.search-slender-advanced-panel-view .advanced-panel {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(137, 137, 137, 0.3);
+    left: 0;
+    position: relative;
+    right: 0;
+    top: 0;
+}
+
+.search-slender-advanced-panel-view .advanced-panel .quick-filter .advanced-toggle a {
+    outline: 0 none;
+}
+
+.tertiary{
+	margin-left: 150px;
+}
+
+/* 메인 사진보기 */
+.using-slender-advanced-panel {
+    margin-top: 70px; 
+}
+
+
+.search-photos-everyone-view, .search-photos-contacts-view, 
+.search-photos-albums-view, .search-photos-yours-view {
+    margin-top: 30px;
+    padding-top:20px;
+    overflow: hidden;
+}
+
+
+/* 회원님의 사진*/ 
+.search-photos-everyone-view h5.search-results-header,
+.search-photos-contacts-view h5.search-results-header, 
+.search-photos-albums-view h5.search-results-header,
+.search-photos-yours-view h5.search-results-header {
+    margin-top: 0;
+}
+h5 .h5{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.photo-list-photo-view img{
+	
+	height: 210px;
+	width : 220px;
+}
+
+#explan{
+	font-size:20px;
+	width : 1120px;
+}
+
+#explan2, #explan3{
+	font-size:18px;
+}
+
+body {
+   font-family: "맑은 고딕", "Malgun Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+   font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic",
+      sans-serif;
+}
+
+ h4 a.view-more-link,  h5 a.view-more-link, span.secondary, span.secondary, .view-result{
+    display: inline-block;
+    float: right;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 2px;
+}
+
+ h1, h2, h3,  h4,  h5, textarea, input[type="text"] {
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+/* 사진 */
+#total_picture{
+	width:1150px;
+	margin-left: -150px;
+}
+
+.photo-list-photo-view.awake {
+    display: inline-block;
+}
+.photo-list-view{
+	/* 여기서 200 으로 잡아두면 회원, 팔로우 사진이 한줄씩만 나오게 됨 (모든 사진은 무한 스크롤) */
+	height: 202px;
+	display: inline; 
+	float: left;
+	
+}
+
+
+.photo-list-photo-view {
+    display: inline-block;
+    position: relative;
+	transform: translate(0px, 0px); 
+    -webkit-transform: translate(0px, 0px); 
+	-ms-transform: translate(0px, 0px); 
+	width: 220px; 
+	height: 210px; 
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 2px;
+	
+
+}
+
+
+.photo-list-photo-view .interaction-view {
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 200ms linear 0s;
+    width: 100%;
+}
+
+.photo-list-photo-interaction {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a.overlay {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+a:hover {
+    color: #006dac;
+    text-decoration: underline;
+}
+a {
+	color: #428bca;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.interaction-bar {
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    padding: 0 8px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    margin-top:4px;
+}
+.interaction-bar .text {
+    flex: 1 1 0;
+    min-height: 0;
+    min-width: 0;
+    boder: 1px solid yellow;
+}
+
+.interaction-bar .text .title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 17px;
+}
+.interaction-bar .text .title, .interaction-bar .text .attribution {
+    display: block;
+    margin: 2px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 2px #000;
+    white-space: nowrap;
+    width: 100%;
+    z-index: 2;
+}
+
+.interaction-bar .text .attribution {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    transition: color 150ms linear 0s;
+}
+
+.interaction-bar a, .photo-list-photo-interaction .interaction-bar a:hover {
+    text-decoration: none;
+}
+
+.search-photos-unified-page-view main#search-unified-content.main.fluid-centered {
+    margin-top: 50px;
+    overflow: hidden;
+}
+
+.photo-list-photo-interaction .interaction-bar .tool {
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+    -moz-box-pack: center;
+    align-items: center;
+    color: #fff;
+    display: inline;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: center;
+    margin-left: 8px;
+    padding-top: 9px;
+    text-align: center;
+    vertical-align: middle;
+    float: right;
+}
+.photo-list-photo-interaction .interaction-bar .tool .fave-area {
+    color: #fff;
+}
+.interaction-bar a,.interaction-bar a:hover {
+    text-decoration: none;
+}
+
+
+.fave-area i.fave-star.can-not-fave {
+    cursor: default;
+    opacity: 0.6;
+}
+.fave-area i.fave-star.fave {
+    cursor: pointer;
+    height: 17px;
+    width: 18px;
+}
+
+.interaction-bar .tool .fave-area i.fave-star {
+    cursor: pointer;
+    display: inline;
+    vertical-align: middle;
+}
+
+.photo-list-photo-interaction {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+}
+
+.photo-list-photo-interaction .interaction-bar .tool .comment-area {
+    color: #fff;
+}
+.interaction-bar a, .interaction-bar a:hover {
+    text-decoration: none;
+}
+
+
+.interaction-bar .tool .comment-area i.comments {
+    display: inline;
+    height: 16px;
+    vertical-align: middle;
+    width: 16px;
+}
+
+/*컬러 체크*/
+
+.color-swatch .checked{
+
+ 	background: rgba(0, 0, 0, 0) url("https://s.yimg.com/uy/build/images/../images/icons-1x-s2fb29ad15b.png")
+     no-repeat scroll -7px -47px;
+    content: "";
+    left: 5px;
+    position: absolute;
+    top: 5px;
+    
+}
+
+.color-swatch .checkedBlue{
+
+ 	background: rgba(0, 0, 0, 0) url("https://s.yimg.com/uy/build/images/../images/icons-1x-s2fb29ad15b.png")
+     no-repeat scroll -17px -47px;
+    content: "";
+    left: 5px;
+    position: absolute;
+    top: 5px;
+    
+}
+
+
+.color-list .color-swatch {
+
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    position: relative;
+    width: 20px;
+}
+ 

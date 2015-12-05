@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="picView.search.mapper.SearchMapper">
+	<cache />
+	<!-- 회원 댓글 카운트 -->
+	<select id="replyCount" resultType="int" parameterType="int">
+		select count(*)
+		from reply
+		where pic_no = #{pic_no}
+	
+	</select>
+
+	<!-- 회원 사진 가져오기 -->
+	<select id="searchList" resultType="Picture" parameterType="Search">
+		select *
+		from picture 
+		<if test='tags=="text"'>
+			where (pic_title LIKE '%'||#{searchKey}||'%'
+			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%')
+			and mem_no = #{mem_no} 
+		</if>
+		<if test='tags=="tags"'>
+			where tag_name LIKE '%'||#{searchKey}||'%' and mem_no = #{mem_no} 
+		</if>
+	</select>
+	
+	<!-- 팔로우 사진 보기 -->
+	<select id="searchFollow" resultType="Picture" parameterType="Search">
+		select *
+		from picture 
+		<if test='tags=="text"'>
+			where (pic_title LIKE '%'||#{searchKey}||'%'
+			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%')
+			and mem_no IN
+			(select follow_fri_no
+			from follow
+			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3))
+		</if>
+		<if test='tags=="tags"'>
+			where (tag_name LIKE '%'||#{searchKey}||'%') 
+			and mem_no IN
+			(select follow_fri_no
+			from follow
+			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3))
+			
+		</if>
+	
+	</select>
+	
+	<!-- 모든 사진 보기 -->
+	<select id="searchTotal" resultType="Picture" parameterType="Search">
+		select *
+		from picture 
+		<if test='tags=="text"'>
+			where pic_title LIKE '%'||#{searchKey}||'%'
+			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%'
+
+		</if>
+		<if test='tags=="tags"'>
+			where tag_name LIKE '%'||#{searchKey}||'%'
+		</if>
+		
+	</select>
+	
+	
+	<!-- 회원 컬러 검색 -->
+	<select id="memColor" resultType="Picture" parameterType="Search">
+	
+		select * 
+		from picture 
+		<if test='tags=="text"'>
+			<where> (pic_title LIKE '%'||#{searchKey}||'%'
+			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%')
+			and mem_no = #{mem_no} and
+				<foreach collection="color" item="col" separator="and">
+					pic_color LIKE '%'||#{col}||'%'
+				</foreach>
+			 
+			</where>
+		</if>
+		
+		<if test='tags=="tags"'>
+			<where>tag_name LIKE '%'||#{searchKey}||'%' and mem_no = #{mem_no} and
+				<foreach collection="color" item="col" open="(" close=")" separator="and">
+					pic_color LIKE '%'||#{col}||'%'
+				</foreach>
+			 
+			</where>
+		</if>
+
+	</select>
+	
+	<!-- 팔로우 컬러 검색 -->
+	<select id="followColor" resultType="Picture" parameterType="Search">
+	
+		select * 
+		from picture 
+		<if test='tags=="text"'>
+			<where> (pic_title LIKE '%'||#{searchKey}||'%'
+			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%') 
+			and mem_no IN
+			(select follow_fri_no
+			from follow
+			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3)) and
+				<foreach collection="color" item="col" separator="and">
+					pic_color LIKE '%'||#{col}||'%'
+				</foreach>
+			</where>
+		</if>
+		
+		<if test='tags=="tags"'>
+			<where>tag_name LIKE '%'||#{searchKey}||'%' 
+			and mem_no IN
+			(select follow_fri_no
+			from follow
+			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3)) and
+				<foreach collection="color" item="col" open="(" close=")" separator="and">
+					pic_color LIKE '%'||#{col}||'%'
+				</foreach>
+			</where>
+		</if>
+	</select>
+	
+	<!-- 모든 사진 컬러 검색 -->
+	<select id="allColor" resultType="Picture" parameterType="Search">
+	
+		select * 
+		from picture 
+		<if test='tags=="text"'>
+			<where> (pic_title LIKE '%'||#{searchKey}||'%'
+			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%') and
+				<foreach collection="color" item="col" separator="and">
+					pic_color LIKE '%'||#{col}||'%'
+				</foreach>
+			</where>
+		</if>
+		
+		<if test='tags=="tags"'>
+			<where>tag_name LIKE '%'||#{searchKey}||'%' and
+				<foreach collection="color" item="col" open="(" close=")" separator="and">
+					pic_color LIKE '%'||#{col}||'%'
+				</foreach>
+			</where>
+		</if>
+
+	</select>
+	
+	<!-- 회원 이름 검색 -->
+	
+	<select id="searchPeople" resultType="Member" parameterType="Search">
+		select mem_name, mem_id, to_date(mem_date, 'yy-mm-dd')mem_date, pic_count
+		from member
+		where mem_name LIKE '%'||#{searchKey}||'%'
+	</select>
+	
+	
+</mapper>

@@ -59,5 +59,10 @@ public class PictureDao {
 		myTemplate.getMapper(PictureMapper.class).DeletePicture(pic_no);
 	}
 	
+	//채영
+	//보여주기 사진목록
+	public List<Picture> myShowPicture(Picture picture){
+		return myTemplate.getMapper(PictureMapper.class).myShowPicture(picture);
+	}
 	
 }

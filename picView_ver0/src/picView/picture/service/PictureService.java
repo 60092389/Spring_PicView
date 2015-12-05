@@ -198,5 +198,11 @@ public class PictureService {
 				memDao.minusPic_count(mem_no);
 			}				
 		}
+		
+		//채영
+		//보여주기 사진 목록 서비스
+		public List<Picture> myShowPicture(Picture picture){
+				return picDao.myShowPicture(picture);
+		}
 	
 }

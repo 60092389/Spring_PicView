@@ -71,6 +71,69 @@
 		delete picture where pic_no=#{pic_no}
 	</delete>
 	
+	<!-- 보여주기 -->
+
+	<select resultType="Picture" parameterType="Picture" id="myShowPicture">
+		select *
+		from picture 
+		<if test='pic_open==null'>
+			<if test='search!=null'>
+			where mem_no = #{mem_no} and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			<if test='search==null'>
+			  where mem_no = #{mem_no} 
+			</if>
+		</if> 
+		
+		<if test='pic_open=="open"'>
+			<if test='search!=null'>
+			where mem_no = #{mem_no} and pic_open = '1' and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no} and pic_open = '1'
+			</if>
+		</if>
+		
+		<if test='pic_open=="friend"'>
+		   <if test='search!=null'>
+			where mem_no = #{mem_no} and pic_open = '2'  and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no} and pic_open = '2'
+			</if>
+		</if>
+		
+		<if test='pic_open=="closed"'>
+		   <if test='search!=null'>
+			where mem_no = #{mem_no} and pic_open = '3'  and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no} and pic_open = '3'
+			</if>
+		</if>
+		
+		<if test='pic_open=="all"'>
+		  <if test='search!=null'>
+			where mem_no = #{mem_no}  and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no}
+			</if>
+		</if>
+		
+		
+		order by pic_date desc
+	</select>
+	
 
 	
 	<!-- <delete id="deletePicture" parameterType="int">

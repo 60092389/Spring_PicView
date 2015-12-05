@@ -14,6 +14,9 @@ public interface PictureMapper {
 	public Picture selectByPicno(int pic_no);
 	public void UpdatePictureInfo(Picture picture);
 	public void DeletePicture(int pic_no);
+	
+	//myShow(보여주기)
+	public List<Picture> myShowPicture(Picture picture);
 
 
 }
