@@ -1,0 +1,167 @@
+@CHARSET "utf-8";
+
+#content .contents {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: auto;
+    min-width: 800px;
+    border: 0px solid red;
+    background-color: white;
+}
+.fluid-centered {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100% - 20%);
+    min-width: 800px;
+}
+.title-row{
+    position: relative;
+    padding-top: 1px;
+    border:0px solid red;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+ .photo-list-view{
+	height:auto;
+	display: inline;
+}
+.photo-list-photo-view {
+    display: inline-block;
+    position: relative;
+}
+
+.photo-list-photo-view .interaction-view {
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 200ms linear 0s;
+    width: 100%;
+    
+}
+
+.photo-list-photo-interaction {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.photo-list-photo-interaction .interaction-bar .text {
+    flex: 1 1 0;
+    min-height: 0;
+    min-width: 0;
+}
+
+.photo-list-photo-interaction .interaction-bar .tool {
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+    -moz-box-pack: center;
+    align-items: center;
+    color: #fff;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: center;
+    margin-left: 8px;
+    padding-top: 9px;
+    text-align: center;
+    vertical-align: middle;
+}
+.photo-list-photo-interaction .interaction-bar {
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    padding: 0 8px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    border:0px solid red;
+    background-color: #000000;
+   
+}
+
+
+.test{
+	bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    padding: 0 8px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    border:2px solid red;
+}
+.photo-list-photo-interaction .interaction-bar .text .title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 17px;
+}
+.photo-list-photo-interaction .interaction-bar .text .title, .photo-list-photo-interaction .interaction-bar .text {
+    display: inline;
+    margin: 2px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 2px #000;
+    white-space: nowrap;
+    width: 100%;
+    z-index: 2;
+    text-decoration: none;
+}
+.photo-list-photo-interaction .interaction-bar .text .title, .photo-list-photo-interaction .interaction-bar .text .attribution {
+    display: block;
+    margin: 2px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 2px #000;
+    white-space: nowrap;
+    width: 100%;
+    z-index: 2;
+    text-decoration: none;
+}
+
+a,span{
+	color:#ffffff;
+}
+
+
+.photo-list-photo-interaction .interaction-bar .tool .fave-area i.fave-star{
+    background: rgba(0, 0, 0, 0) url("../../../images/main/icons_collection.png") no-repeat scroll -18px -324px;
+    cursor: pointer;
+    height: 17px;
+    width: 18px;
+}
+
+.photo-list-photo-interaction .interaction-bar .tool .fave-area i.fave-star {
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 1px;
+    vertical-align: middle;
+}
+
+
+.photo-list-photo-interaction .interaction-bar .tool .comment-area i.comments {
+    background: rgba(0, 0, 0, 0) url("../../../images/main/icons_collection.png") no-repeat scroll -56px -238px;
+    display: inline-block;
+    height: 16px;
+    margin: 2px 1px 0 0;
+    vertical-align: middle;
+    width: 16px;
+}
+.tool .icon-count {
+	text-decoration: none;;
+}
+
+.photo-list-photo-interaction .interaction-bar a, .photo-list-photo-interaction .interaction-bar a:hover {
+    text-decoration: none;
+}
