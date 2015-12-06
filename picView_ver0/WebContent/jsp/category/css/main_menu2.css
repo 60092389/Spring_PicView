@@ -7,6 +7,7 @@
 	color: #ff0080;
 }
 
+
 a {
 	text-decoration: none;
 }
@@ -15,11 +16,9 @@ ul {
 	list-style: none;
 }
 
-body {
-	margin: 0px auto;
-}
 
-nav {
+
+#aside_menu {
 	float: left;
 	width: 420px;
 	height: 620px;
@@ -29,33 +28,35 @@ nav {
 	text-align: center;
 	z-index: 1000;
 	left: -200px;
-	top: 30px;
+	top: 100px;
 }
 
-#picture_menu {
-	width: 500px;
+#picture_menu{
+	
+	width:520px;
 }
+
 
 #picture {
 	width: 140px;
 }
 
-nav ul {
+#aside_menu ul {
 	padding: 0;
 	margin: 0 auto;
 }
 
-nav li {
+#aside_menu li {
 	padding-top: 30px;
 	font-weight: bold;
 }
 
-nav li a {
+#aside_menu li a {
 	font-size: 15px;
 	color: white;
 }
 
-nav li a:hover {
+#aside_menu li a:hover {
 	color: yellow;
 }
 

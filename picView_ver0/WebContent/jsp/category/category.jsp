@@ -1,90 +1,114 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/recent_Pic.css" rel="stylesheet">
+<link href="../../css/picView_custom.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../category/css/main_menu2.css" />
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../jsp/login/css/register7.css" rel="stylesheet">
+
+<title>Insert title here</title>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<script src="../category/js/main_menu2.js"></script>
 <script src="../category/js/notipopup.js"></script>
 <script src="../category/js/siteSecurity.js"></script>
 <script src="../category/js/jquery.scrollUp.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../category/css/main_menu2.css" />
-<link href="../category/css/custom2.css" rel="stylesheet">
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../jsp/login/css/register7.css" rel="stylesheet">
-<link href="../../css/picView_custom.css" rel="stylesheet">
-<title>Insert title here</title>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
-	$(function() {
-		var cnt = 0;
-		$('.FollowButton')
-				.on(
-						'click',
-						function() {
-							var index2 = $('.FollowButton').index(this);
+<script src="js/recent_Pic.js"></script>
+<script src="js/category.js"></script>
 
-							if ($('.wholeInterestMask').eq(index2)
-									.attr('class') == 'wholeInterestMask hidden') {
-								$('.wholeInterestMask').eq(index2).attr(
-										'class', 'wholeInterestMask');
-								$('.wholeInterestMask').eq(index2).css(
-										'display', 'block');
-								$("input:checkbox[name='category_no']").eq(
-										index2).prop('checked', "checked");
-
-							
-								}
-							} else {
-								$('.wholeInterestMask').eq(index2).attr(
-										'class', 'wholeInterestMask hidden');
-								$('.wholeInterestMask').eq(index2).css(
-										'display', 'none');
-								$("input[name=category_no]:checkbox")
-										.eq(index2).removeAttr("checked");
-
-						
-							}
-
-						});
-	});
-</script>
 </head>
 <body>
-	<nav id="aside_menu">
-	<div id="picture_menu" class="row center_right col-xs-4 col-lg-4">
-		<c:forEach var="category" items="${cate_list}">
 
-			<div id="picture" class="col-sm-4 col-md-4">
-				<div class="Interest Module FollowButton">
-					<div class="wholeInterestMask hidden">
-						<div class="check"></div>
-						<div class="mask"></div>
-					</div>
-					<div class="interestWrapper" style="background-color: #403F14">
-						<div class="interestImage"
-							style="background-image: url('../../upload/${category.category_img_add}')"></div>
+	<div id="content">
 
-						<div class="interestLabel">
-							<h4>${category.category_name }
-								<input type="checkbox" name="category_no" id="category_no"
-									value="${category.category_no }" />
-							</h4>
-						</div>
-					</div>
+		<div class="header">
+			<jsp:include page="../layout/header.jsp"></jsp:include>
+		</div>
+		<div class="contents">
+			<div class="fluid-centered">
+				<div class="title-row">
+					<h3>카테고리별사진</h3>
 				</div>
+				<div class="view photo-list-view">
+					<!--사진보기  -->
+					<c:forEach items="${piclist }" var="piclist">
+						<div class="photo-list-photo-view"
+							style="width: 514px; height: 315px; background-image: url('../../upload/${piclist.pic_add }'); transform: translate(0px, 4px);">
+							<div class="photo-list-photo-interaction">
+								<div class="interaction-bar"
+									title="A ride with Charon 출처: Pietro Faccioli">
+									<!--댓글,제목창  -->
+
+									<div class="text">
+										<a class="title" href="#" data-rapid_p="64"></a> 
+										<a class="attribution" href="#" data-rapid_p="65"></a>
+									</div>
+									<div class="tool">
+										<a class="fave-area" href="#" data-rapid_p="66"> <i
+											class="fave-star"></i> <span class="icon-count">${piclist.good_count }+</span>
+										</a>
+									</div>
+									<div class="tool">
+										<a class="comment-area" href="#" data-rapid_p="67"> <i
+											class="comments"></i> <span class="icon-count">${piclist.pic_count }</span>
+										</a>
+									</div>
+								</div>
+								<!--제목,댓글창 끝  -->
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+
+
 			</div>
-		</c:forEach>
-	</div>
-	<div id="search">
-		<input id="search_btn" class="btn btn-primary" type="submit"
-			value="�˻�">
+			<!--사진보기 끝  -->
+			<div id="aside_menu">
+			<form action="category_search" action="category_search">
+				<div id="picture_menu" class="row center_right col-xs-4 col-lg-4">
+					<c:forEach var="category" items="${cateList}">
+
+						<div id="picture" class="col-sm-4 col-md-4">
+							<div class="Interest Module FollowButton">
+								<div class="wholeInterestMask hidden">
+									<div class="check"></div>
+									<div class="mask"></div>
+								</div>
+								<div class="interestWrapper" style="background-color: #403F14">
+									<div class="interestImage"
+										style="background-image: url('/picView_test/images/category/${category.category_img_add}')"></div>
+
+									<div class="interestLabel">
+										<h4>${category.category_name }
+											<input type="checkbox" name="category_no" id="category_no"
+												value="${category.category_no }" />
+										</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+				<div id="search">
+					<input class="btn btn-primary" type="button" value="전체보기"
+						onclick="search_all()"> <input id="search_btn"
+						class="btn btn-primary" type="submit" value="검색" name="search_btn">
+				</div>
+			</form>
+
+			<a href="#" id="menubutton"><img src="./imgs/menu_button2.PNG"
+				alt=""></a>
+		</div>
+		</div>
+
+
 	</div>
 
 
-	<a href="#" id="menubutton"><img src="./imgs/menu_button2.PNG"
-		alt=""></a> </nav>
 </body>
 </html>

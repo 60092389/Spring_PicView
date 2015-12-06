@@ -26,9 +26,7 @@ $(function() {
 	$('#aside_menu').css({
 		left : '-420px'
 	}).addClass('open');
-	$('body').css({
-		marginLeft : '-200px'
-	});
+	
 	$('#menubutton').find('img').attr('src', './imgs/menu_button1.PNG');
 });
 
@@ -40,14 +38,14 @@ $(function() {
 
 });
 
-$(function() {
+/*$(function() {
 	$('body').siteSecurity({
 		f12 : 'n',
 		rightclick : 'y',
 		select : 'y',
 		drag : 'y'
 	});
-})
+})*/
 
 $(function() {
 	$('#content').load("main.html");
@@ -57,10 +55,6 @@ $(function() {
 		e.preventDefault();
 	});
 
-	$('#about_glass').on('click', function(e) {
-		$('#content').empty().load("glassbox_About.html");
-		e.preventDefault();
-	});
 
 	$('.side_menu ul').addClass('sub_display');
 
@@ -85,17 +79,13 @@ $(function() {
 			$('#aside_menu').animate({
 				left : '-420px'
 			}, 300);
-			$('body').animate({
-				marginLeft : '-200px'
-			}, 300);
+			
 			$(this).find('img').attr('src', './imgs/menu_button1.PNG');
 		} else {
 			$('#aside_menu').animate({
 				left : '0px'
 			}, 300);
-			$('body').animate({
-				marginLeft : '0px'
-			}, 300);
+			
 			$(this).find('img').attr('src', './imgs/menu_button2.PNG');
 		}
 		return false;
