@@ -25,6 +25,11 @@ public class MemberDao {
 		return m;
 	}
 	
+	
+	public Member selectByNo(int mem_no){
+		return myTemplate.getMapper(MemberMapper.class).selectByNo(mem_no);
+	}
+	
 	public void insert(Member member){
 		myTemplate.getMapper(MemberMapper.class).insertMember(member);
 	}
@@ -35,6 +40,10 @@ public class MemberDao {
 	
 	public void minusPic_count(int mem_no){
 		myTemplate.getMapper(MemberMapper.class).minusPic_count(mem_no);
+	}
+	
+	public Member login_check(Member member){
+		return myTemplate.getMapper(MemberMapper.class).login_check(member);
 	}
 
 }

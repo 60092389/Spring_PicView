@@ -224,6 +224,7 @@ $(document).ready(function(){
 		
 		function page_location2(){
         	location.href="../myRoom/manageForm";
+        	
         }
         
         

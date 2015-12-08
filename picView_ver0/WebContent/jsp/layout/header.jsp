@@ -27,10 +27,10 @@ Bootstrap
 
 
 <script type="text/javascript">
-	/* function logout(){
+	function logout(){
 		alert("로그 아웃 되었습니다.");
-		location.href="../login/logout.jsp";
-	} */
+		location.href="../login/logout";
+	}
 	var tag = 'text';
 	
 	/* 모두, 태그, 카테고리별 검색창 클릭 */
@@ -214,15 +214,9 @@ Bootstrap
 <body>
 	<div class="container">
 		<nav class="navbar navbar-default navbar-fixed-top navnav" role="navigation">
-			<div class="container">
-		<%-- <%
-			int re = -1;
-			
-			if(session.getAttribute("mem_no")!=null){
-				re=1;
-			}			
-			if(re<0){ //비회원일경우-추후수정
-	  %> --%>
+			<div class="container header-container">
+		<!-- 비회원일 경우 -->
+	  <c:if test="${authInfo.mem_no == null }">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-ex1-collapse">
@@ -231,7 +225,7 @@ Bootstrap
 						class="icon-bar"></span>
 				</button>
 				<div id="logo">
-					<a href="../index/index.jsp"><img id="logo" src="/picView_ver0/images/logo.jpg"></a>
+					<a href="../index/index.jsp"><img id="logo" src="../../images/logo.jpg"></a>
 				</div>
 			</div>
 
@@ -251,21 +245,19 @@ Bootstrap
 					</div>
 					 <button id="searchButton" class="btn btn-default" onclick="searchButton()">검색</button>
 					</li> 
-					<li><a href="#"><span id="upload"
+					<li><a href="#" class="upload-padding"><span id="upload"
 							class="glyphicon glyphicon-cloud-upload"></span></a></li>
 					<li><a href="../login/loginForm.jsp">로그인</a></li>
-					<li><a href="../login/index.html">가입</a></li>
+					<li><a href="../login/insertForm">가입</a></li>
 				</ul>
 				
 			</div> 
 			<!-- 비회원 끝 -->
-
-		<%-- <% 
-			}else if(re>0){//회원일경우
-		%> --%>
-		
-		
-<!-- 	      <div class="navbar-header">
+		</c:if>
+	
+		<!-- 로그인했을 경우 -->
+		<c:if test="${authInfo.mem_no != null }">
+		 <div class="navbar-header">
 	        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 	          <span class="sr-only">Toggle navigation</span>
 	          <span class="icon-bar"></span>
@@ -273,51 +265,44 @@ Bootstrap
 	          <span class="icon-bar"></span>
 	        </button>
 	        <div id="logo">
-					<a href="../myRoom/my_Manage.html"><img id="logo" src="../../images/logo.jpg"></a>
+					<a href="../main/loginMain.jsp"><img id="logo" src="../../images/logo.jpg"></a>
 				</div>
 	      </div> -->
 
 			<!-- 회원메뉴 시작 -->
-	<!--       <div class="collapse navbar-collapse navbar-ex1-collapse row">
+				 <div class="collapse navbar-collapse navbar-ex1-collapse row">
 	        <ul class="nav navbar-nav">
-	          <li><a class="dropdown active" href="#" data-toggle="dropdown">
+	          <li><a class="dropdown dropdown-toggle active" href="#" data-toggle="dropdown"
+	          aria-haspopup="true" aria-expanded="true">
 	          		내공간<span class="caret"></span></a>
 	          	<ul class="dropdown-menu" role="menu">
-	          		<li><a href="../myRoom/my_Manage.html">내사진 관리</a></li>
-	          		<li><a href="../myRoom/my_Show.html">보여주기</a></li>
-	          		<li><a href="#">앨범</a></li>
-	          		<li><a href="#">좋아하는 사진</a></li>
-	          		<li><a href="../myRoom/follow.jsp">친구목록</a></li>
-	          		<li>&nbsp;</li>
-	          		<li><p>그외</p></li>
-	          		<li><a href="../myRoom/my_Tag.jsp">&nbsp;태그</a></li>
-	          		<li><a href="../myRoom/my_Popular_Hit.jsp">&nbsp;인기</a></li>
-	          		<li><a href="#">&nbsp;다운로드 기록</a></li>
-	          		<li><a href="#">&nbsp;프로필</a></li>
+	          		<li><a href="../myRoom/manageForm">내사진 관리</a></li>
+	          		<li><a href="../myRoom/myShowForm${authInfo.mem_no }">보여주기</a></li>
+	          		<li><a href="../myRoom/my_album${authInfo.mem_no }">앨범</a></li>
+	          		<li><a href="../myRoom/my_Follow${authInfo.mem_no }">친구목록</a></li>
+	          		<li><a href="#">프로필</a></li>
 	          	</ul>
 	          </li>
 	          <li><a class="dropdown active" href="#" data-toggle="dropdown">
 	          		둘러보기<span class="caret"></span></a>
 	          	<ul class="dropdown-menu" role="menu">
 	          		<li><a href="../collection/recent_Pic.jsp">최근사진</a></li>
-	          		<li><a href="../category/index.html">카테고리별</a></li>
-	          		<li><a href="#">인기사진</a></li>
+	          		<li><a href="../category/category_list">카테고리별</a></li>
 	          	</ul>
 	          </li>
 	          <li><a href="#">도움말</a></li>
 	          <li style="width:350px">&nbsp;</li>
 	          
-	          <li>
-	          	<form class="navbar-form navbar-right" role="search">
-		          	<div class="form-group">
-		           	   <input type="text" class="form-control" placeholder="검색">
-		          	</div>
-	          	    <button type="submit" class="btn btn-default">Submit</button>
-	        	</form>
+	          <li class="searchList" id="searchList">
+	          	<div id="searchForm">	
+			   	    	<input role="search" id="search" name="search" type="text" class="form-control" placeholder="검색">
+					
+							</div>
+					 		<button id="searchButton" class="btn btn-default" onclick="searchButton()">검색</button>
 	          </li>
-	          <li><a href="../basic/upload_index.so"><span id="upload"
+	          <li><a href="../upload/fileUpload" class="upload-padding"><span id="upload"
 							class="glyphicon glyphicon-cloud-upload"></span></a></li>
-	          <li><a class="dropdown active" href="#" data-toggle="dropdown">
+	          <li><a class="dropdown active account-padding" href="#" data-toggle="dropdown">
 	          	계정<span class="caret"></span></a>
 	          	<ul class="dropdown-menu" role="menu">
 	          		<li><a href="../account/message.jsp">쪽지함</a></li>
@@ -330,9 +315,7 @@ Bootstrap
 	        
 	      </div> -->
 	      <!-- 회원메뉴 끝 -->
-	<%-- 	<% 
-			}
-		%> --%>
+			</c:if>
 		</div>
 
 		</nav>

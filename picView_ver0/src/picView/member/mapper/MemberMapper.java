@@ -9,4 +9,6 @@ public interface MemberMapper {
 	public Member selectById(String mem_id);
 	public List<Member> listSearchMem();
 	public void minusPic_count(int mem_no);
+	public Member login_check(Member member);
+	public Member selectByNo(int mem_no);
 }

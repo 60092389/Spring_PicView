@@ -13,7 +13,12 @@
 <link rel="stylesheet" href="album/css/jquery.jMosaic.css" />
 <link rel="stylesheet" href="album/css/chromagallery.css">
 <link rel="stylesheet" href="album/css/my_album_detail.css">
-
+<style type="text/css">
+#my_album_level {
+	float: right;
+	margin-left: 50px;
+}
+</style>
 
 </head>
 <body>
@@ -52,12 +57,26 @@
 	<div class="back">
 		&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
 			class="btn btn-default btn-sm" value="앨범 목록으로 돌아가기"
-			onclick="location.href='my_album'"> &nbsp;&nbsp;&nbsp;&nbsp;
+			onclick="location.href='my_album${mem_no}'"> &nbsp;&nbsp;&nbsp;&nbsp;
 		<form action="my_album_update" id="my_album_update">
 			<input type="text" name="mem_no" value="${mem_no }" id="hiddeninfor">
 			<input type="text" name="alb_no" value="${alb_no }" id="hiddeninfor">
-			<input type="submit" class="btn btn-default btn-sm" value="앨범 수정하기">
+			<c:if test="${level == '1'}">
+				<input type="submit" class="btn btn-default btn-sm" value="앨범 수정하기">
+			</c:if>
 		</form>
+		
+		<form action="my_album_level" id="my_album_level">
+			<input type="text" name="mem_no" value="${mem_no }" id="hiddeninfor">
+			<input type="text" name="alb_no" value="${alb_no }" id="hiddeninfor">
+			<c:if test="${level == '1'}">
+			<select class="form-control alb_open" name="alb_open">
+				<option  value="1">공개</option>
+				<option  value="2">친구 만보기</option>
+				<option  value="3">비공개</option>
+			</select>	<input type="submit" class="btn btn-default btn-sm" value="앨범 권한 변경">
+		</form>
+		</c:if>
 	</div>
 	<br>
 	<hr>
@@ -74,15 +93,20 @@
 		<div class="alb_content">
 			<h4>${detailAlbum.alb_content }</h4>
 		</div>
-		
+
 		<br> <br>
 		<div class="alb_detail">
-		
+
 			<div class="content">
 				<div class="chroma-gallery mygallery">
-					<c:forEach items="${detailAlbumPic }" var="detailAlbumPic">
-					<img src="../../upload/${detailAlbumPic }" alt="${detailAlbum.alb_name }" data-largesrc="/picView_test/upload/${detailAlbumPic }">
-					</c:forEach>				
+					<c:set var="i" value="0"></c:set>
+					<c:forEach items="${detailAlbumPic }" var="detailAlbumPic"   >
+						
+						<img src="../../upload/${detailAlbumPic }"
+							alt="${detailAlbumPicname[i] }"
+							data-largesrc="/picView_test/upload/${detailAlbumPic }" name="${detailAlbumPicno[i] }">
+						<c:set var="i" value="${i+1 }"></c:set>
+					</c:forEach>
 				</div>
 			</div>
 
@@ -94,9 +118,8 @@
 	<script src="album/js/masonry.min.js"></script>
 	<script src="album/js/chromagallery.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() 
-		{
-		    $(".mygallery").chromaGallery();
+		$(document).ready(function() {
+			$(".mygallery").chromaGallery();
 		});
 	</script>
 

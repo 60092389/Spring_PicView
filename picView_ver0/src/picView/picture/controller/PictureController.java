@@ -1,51 +1,74 @@
 package picView.picture.controller;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import picView.member.model.AuthInfo;
 import picView.member.model.Member;
+import picView.member.service.MemberService;
 import picView.picture.model.Picture;
+import picView.picture.model.PictureShow;
 import picView.picture.model.UpdatePictureCommand;
 import picView.picture.service.PictureService;
 
 @Controller
 public class PictureController {
+	//int mem_no = 4;
 
-	@Autowired
 	private PictureService picService;
+	private MemberService memService;
 
 	@Autowired
 	public void setPicService(PictureService picService) {
 		this.picService = picService;
 	}
+	
+	@Autowired
+	public void setMemService(MemberService memService) {
+		this.memService = memService;
+	}
+
 
 	// my_Room->my_Manage.jsp에서 사용하는 사진목록볼러오기
 	@RequestMapping("/jsp/**/manageForm")
-	public String my_ManageForm(Model model) {
-		int mem_no = 1;
-		List<Picture> picDate = picService.dateListPicture(mem_no);
+	public String my_ManageForm(Model model, HttpSession session) {
+		
+
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		
+		int mem_no = authInfo.getMem_no();
+		
+		
 		List<Picture> picList = picService.listPicture(mem_no);
+		List<Picture> picDate = picService.dateListPicture(mem_no);		
 		List<String> years = picService.yearListPicture(mem_no);
 		List<String> months = picService.monthListPicture(mem_no);
-
-		/*
-		 * for(int i=0; i<years.size(); i++){ System.out.println("year 리스트 : "
-		 * +years.get(i)); }
-		 */
+		Member member = memService.selectByNo(mem_no);
+		String level = "1";
 
 		model.addAttribute("date", picDate);
 		model.addAttribute("list", picList);
 		model.addAttribute("mem_no", mem_no);
 		model.addAttribute("years", years);
 		model.addAttribute("months", months);
+		model.addAttribute("member", member);
+		model.addAttribute("level", level);
+
 
 		return "myRoom/my_Manage";
 	}
+	
 
 	// 사진권한변경
 	@RequestMapping("jsp/**/updatePictureOpen")
@@ -72,44 +95,81 @@ public class PictureController {
 
 		return "redirect:/jsp/myRoom/manageForm";
 	}
+	
 
 	// 채영
-	@RequestMapping(value = "/jsp/**/myShowForm")
-	public String my_ShowForm(Model model, @RequestParam(value = "pic_open", required = false) String pic_open,
-			@RequestParam(value = "search", required = false) String search) {
+	@RequestMapping(value = "/jsp/**/myShowForm{fri_mem_no}")
+	public String my_ShowForm(@PathVariable String fri_mem_no,Model model, @RequestParam(value = "pic_open", required = false) String pic_open,
+			@RequestParam(value = "search", required = false) String search, HttpSession session) {
 		// test
+		
+		int fri_no = Integer.parseInt(fri_mem_no);
+	
+		//System.out.println("마이쇼의 친구페이지 mem_no : "+fri_no);
+		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		
+		int mem_no = authInfo.getMem_no();
+		
+		System.out.println("접속한사람 : "+mem_no);
+		System.out.println("누구의 페이지? : "+fri_no);
 
 		// search 값 안되면 나중에 Hashmap 으로 보내기
-		int mem_no = 1;
 		Picture picture = new Picture();
 		picture.setPic_open(pic_open);
-		picture.setMem_no(mem_no);
+		//picture.setMem_no(mem_no);
+		picture.setMem_no(fri_no);
 		picture.setSearch(search);
 		System.out.println("여기 myShow 컨트롤러");
 		System.out.println("넘어온 search 값 " + search);
 
-		List<Picture> myShowList = picService.myShowPicture(picture);
+		
+		PictureShow pic_show = picService.myShowPicture(picture, mem_no);
+		
+		List<Picture> myShowList = pic_show.getPic_list();
+		
+		/* relation = 1 -> 자기자신
+		 * relation = 2 -> 내가팔로우하는사람 페이지 들어갔을때
+		 * relation = 3 -> 날 팔로우하는 사람 페이지 들어갔을때
+		 * relation = 4 -> 서로 친구인 사람 페이지 들어갔을때
+		 * relation = 5 -> 아무관계 없는 사람 페이지 들어갔을때
+		 */
+		String relation = pic_show.getRelation()+"";
+		
+		
+		Member member = memService.selectByNo(fri_no);
 
+		
+		model.addAttribute("member", member);
 		model.addAttribute("myShowList", myShowList);
+		model.addAttribute("level", relation);
+
 
 		return "myRoom/my_Show";
 	}
 
-	@RequestMapping(value = "/jsp/**/myShowSlide")
-	public String my_ShowSlide(Model model, @RequestParam(value = "pic_open", required = false) String pic_open) {
+	//@RequestMapping(value = "/jsp/**/myShowSlide{fri_mem_no}")
+	/*public String my_ShowSlide(Model model, @RequestParam(value = "pic_open", required = false) String pic_open,
+				HttpSession session, @PathVariable String fri_mem_no) {
+		
+		int fri_no = Integer.parseInt(fri_mem_no);
+		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		
+		int mem_no = authInfo.getMem_no();
+		
 		// test
 		System.out.println("여기 slide 컨트롤러");
-		int mem_no = 3;
 		Picture picture = new Picture();
 		picture.setPic_open(pic_open);
-		picture.setMem_no(mem_no);
+		picture.setMem_no(fri_no);
 
 		List<Picture> myShowList = picService.myShowPicture(picture);
 
 		model.addAttribute("myShowList", myShowList);
 
 		return "myRoom/myShowSlide";
-	}
+	}*/
 
 	// basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
 	@RequestMapping("/jsp/**/picDetail") /// pic_no={pic_no}

@@ -20,6 +20,10 @@
 		select * from member where mem_id = #{mem_id}	
 	</select>
 	
+	<select id="selectByNo" resultType="Member" parameterType="int">
+		select * from member where mem_no = #{mem_no}	
+	</select>
+	
 	<select id="listSearchMem" resultType="Member">
 		select * from member
 	</select>
@@ -27,6 +31,10 @@
 	<update id="minusPic_count" parameterType="int">
 		update member set pic_count = (pic_count-1) where mem_no = #{mem_no}
 	</update>
+	
+	<select id="login_check" parameterType="Member" resultType="Member">
+		select * from member where mem_id = #{mem_id} and mem_pwd = #{mem_pwd}
+	</select>
 	
 	<!--<select id="loginMember" parameterType="Member" resultType="Member">
 		select * from member where mem_id = #{mem_id} and mem_pwd = #{mem_pwd}

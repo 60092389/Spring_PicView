@@ -40,7 +40,7 @@
 		<mapper resource="picView/picture/mapper/Picture.xml"/>
 		<mapper resource="picView/follow/mapper/Follow.xml"/>
 		<mapper resource="picView/reply/mapper/Reply.xml"/>
-		<mapper resource="picView/upload/mapper/Picture.xml"/>
+		<!-- <mapper resource="picView/upload/mapper/Picture.xml"/> -->
 		<mapper resource="picView/newsfeed/mapper/Newsfeed.xml"/>
 		<mapper resource="picView/album/mapper/Album.xml"/>
 		<mapper resource="picView/search/mapper/Search.xml"/>

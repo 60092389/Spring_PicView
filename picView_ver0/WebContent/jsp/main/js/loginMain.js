@@ -8,6 +8,11 @@ $(function(){
 		}
 	});
 	
+	var mem_no = $('#mem_no').val();
+	
+	
+	
+	
 	
 	
 	$.ajax({
@@ -62,10 +67,10 @@ $(function(){
 					var list = data.list;
 					
 					$.each(list, function(index,newsfeed){
-						
+						if(newsfeed.pic_add !=undefined){
 						var length = newsfeed.pic_add.length;
 						var pic_name = newsfeed.pic_add.substring(15,length);
-						
+						}
 						 var friend_html = "<div id='firstCard' class='card card-a card-bundle clearfix firstCard'>";
 						 	 friend_html += "<div class='imgContainer'>";
 						 	 friend_html += "<div class='imgWrapper'>";
@@ -78,7 +83,7 @@ $(function(){
 						 	 friend_html += "<a class='buddyicon; href='/photos/134675537@N03'>";
 						 	 friend_html += "<img class='defer src='../../upload/"+newsfeed.pic_add+"'>";
 						 	 friend_html += "</a><span class='photo-details'>";
-						 	 friend_html += "<div class='name'><a class='' href='/photos/134675537@N03'>"+newsfeed.mem_name+"</a>";
+						 	 friend_html += "<div class='name'><a class='' href='../../jsp/myRoom/myShowForm"+newsfeed.mem_no+"'>"+newsfeed.mem_name+"</a>";
 							 friend_html += "<span class='activity-item-date'>· 8일 전</span>";
 							 friend_html += "</div><div class='title'><a href='/photos/134675537@N03/23110624686/'>"+pic_name+"</a>";
 							 friend_html += "</div></span><ul class='photo-engagement'><li class='favorites' id='favorites"+index_chk+"'>";
@@ -93,7 +98,7 @@ $(function(){
 							 friend_html += "<button type='button' id='close"+index+"' class='close'>&times;</button>"; 
 							 friend_html += "</div>";
 							 friend_html += "<form id='comment-form' class='comment-form"+index_chk+"' method='post' >";
-							 friend_html += "<input type='hidden' name='mem_no' id='mem_no' value='1001'>";
+							 friend_html += "<input type='hidden' name='mem_no' id='mem_no' value='"+mem_no+"'>";
 							 friend_html += "<input type='hidden' name='pic_no' id='pic_no' value='"+newsfeed.pic_no+"' class='pic_no"+index_chk+"'>";
 							 friend_html += "<img class='buddyicon' src='https://s.yimg.com/pw/images/buddyicon05.png#136434429@N02'>";
 							 friend_html += "<textarea id='message' class='message' tabindex='2' name='rep_content' id='rep_content' cols='80' rows='2'></textarea>";
@@ -108,7 +113,7 @@ $(function(){
 					    	follow_html +="<span class='action-author'>";
 					    	follow_html +="<a class='buddyicon' href='/photos/118500465@N06'>";
 					    	follow_html +="<img class='defer' width='32' height='32' src='../../upload/"+newsfeed.mem_pic+"'>";
-					    	follow_html +="</a><a class='usernameLink' href='/photos/118500465@N06'>"+newsfeed.mem_name+"</a>님이 회원님을 팔로우하고 있습니다.";
+					    	follow_html +="</a><a class='usernameLink' href='../../jsp/myRoom/myShowForm"+newsfeed.mem_no+"'>"+newsfeed.mem_name+"</a>님이 회원님을 팔로우하고 있습니다.";
 					    	follow_html +="<span class='action-date'>2달 전</span>";
 					    	follow_html +="</span><button class='follow-button' href='/people/118500465@N06/relationship/'>";
 					    	follow_html +="<span class='follow'>팔로우</span><!-- <span class='check'>✓</span> -->";
@@ -120,7 +125,7 @@ $(function(){
 					    	good_html += "<div class='sub-photo-view2'>";
 					    	good_html += "<span class='photo-details2'>";
 					    	good_html += "<div class='name'>";
-					    	good_html += "<a class='' href='/photos/134675537@N03'>"+newsfeed.mem_name+"</a>님이 좋아했습니다.";
+					    	good_html += "<a class='' href='../../jsp/myRoom/myShowForm"+newsfeed.mem_no+"'>"+newsfeed.mem_name+"</a>님이 좋아했습니다.";
 					    	good_html += "</div></span></div>";
 					    	good_html += "<div id='firstCard2' class='card2 card-a card-bundle clearfix firstCard'>";
 					    	good_html += "<div class='imgContainer'>";

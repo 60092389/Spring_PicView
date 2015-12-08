@@ -7,44 +7,44 @@
 <mapper namespace="picView.newsfeed.mapper.NewsfeedMapper">
 	<cache />
 	
-	<select id="list_newsfeed" resultType="Newsfeed">
+	<select id="list_newsfeed" resultType="Newsfeed" parameterType="int">
 		select * from(
 			select 'friend' as subject,a.pic_no,a.mem_no,a.pic_add,b.mem_name,b.mem_pic,a.pic_date
 			from picture a
 			left outer join member b on b.mem_no=a.mem_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
 			union
 			select 'follow' as subject,a.follow_no,a.follow_fri_no,'',b.mem_name,b.mem_pic,a.follow_date as pic_date
 			from follow a
 			left outer join member b on b.mem_no=a.follow_fri_no
-			where a.mem_no=5 and a.follow_check=2
+			where a.mem_no=#{mem_no} and a.follow_check=2
 			union
 			select 'good' as subject,c.pic_no,b.mem_no,c.pic_add,b.mem_name,b.mem_pic,a.good_date as pic_date
 			from good a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
 			and c.pic_no=a.pic_no 
 			)
 		order by pic_date desc
 	</select>
-	<select id="count_newsfeed" resultType="int">
+	<select id="count_newsfeed" resultType="int" parameterType="int">
 		select count(*) from(
 			select 'friend' as subject,a.pic_no,a.mem_no,a.pic_add,b.mem_name,b.mem_pic,a.pic_date
 			from picture a
 			left outer join member b on b.mem_no=a.mem_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
 			union
 			select 'follow' as subject,a.follow_no,a.follow_fri_no,'',b.mem_name,b.mem_pic,a.follow_date as pic_date
 			from follow a
 			left outer join member b on b.mem_no=a.follow_fri_no
-			where a.mem_no=5 and a.follow_check=2
+			where a.mem_no=#{mem_no} and a.follow_check=2
 			union
 			select 'good' as subject,c.pic_no,b.mem_no,c.pic_add,b.mem_name,b.mem_pic,a.good_date as pic_date
 			from good a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
 			and c.pic_no=a.pic_no 
 			)
 		order by pic_date desc,pic_no desc
@@ -54,7 +54,7 @@
 		select a.follow_fri_no,b.mem_name,b.mem_pic
 		from follow a
 		left outer join member b on b.mem_no=a.follow_fri_no
-		where a.mem_no=5 and a.follow_check=3
+		where a.mem_no=#{mem_no} and a.follow_check=3
 	
 	</select>
 	
@@ -65,20 +65,20 @@
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
 			where c.pic_no=a.pic_no
-			and c.mem_no = 5
+			and c.mem_no = 4
 			union
 			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
 			from follow a
 			left outer join member b on b.mem_no=a.follow_fri_no
-			where a.mem_no=5 and a.follow_check=2
+			where a.mem_no=4 and a.follow_check=2
 			union
 			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
 			from good a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=4 and follow_check= 3)
 			and c.pic_no=a.pic_no
-			and c.mem_no = 5
+			and c.mem_no = 4
 		)
 		order by rep_date desc
 	
@@ -90,20 +90,20 @@
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
 			where c.pic_no=a.pic_no
-			and c.mem_no = 5
+			and c.mem_no = 4
 			union
 			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
 			from follow a
 			left outer join member b on b.mem_no=a.follow_fri_no
-			where a.mem_no=5 and a.follow_check=2
+			where a.mem_no=4 and a.follow_check=2
 			union
 			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
 			from good a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=5 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=4 and follow_check= 3)
 			and c.pic_no=a.pic_no
-			and c.mem_no = 5
+			and c.mem_no = 4
 		)
 		order by rep_date desc
 	

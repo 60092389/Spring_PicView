@@ -4,6 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.junit.experimental.results.ResultMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import picView.member.model.AuthInfo;
 import picView.member.model.Member;
 import picView.picture.model.Picture;
+import picView.search.model.MemberResult;
 import picView.search.model.Search;
 import picView.search.service.SearchService;
 
@@ -191,13 +196,24 @@ public class SearchController {
 		}
 		
 		@RequestMapping("/jsp/**/searchPeople")
-		public @ResponseBody List<Member> searchPeople(@RequestParam(value = "search") String search)
+		public @ResponseBody List<MemberResult> searchPeople(@RequestParam(value = "search") String search,
+					HttpSession session)
 				throws UnsupportedEncodingException {
 			search = URLDecoder.decode(search, "UTF-8");
+			
+			AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+			
+			int mem_no = authInfo.getMem_no();
 
 			Search searchVO = new Search();
 			searchVO.setSearchKey(search);
+			
+			List<MemberResult> memberResult =  searchService.searchPeople(searchVO, mem_no);
+			
+			for(int i=0; i<memberResult.size(); i++){
+				System.out.println(memberResult.get(i).getFol_check());
+			}
 
-			return searchService.searchPeople(searchVO);
+			return memberResult;
 		}
 }

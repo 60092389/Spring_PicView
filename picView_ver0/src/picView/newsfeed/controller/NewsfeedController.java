@@ -3,6 +3,7 @@ package picView.newsfeed.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import picView.member.model.AuthInfo;
 import picView.newsfeed.model.ActivityModel;
 import picView.newsfeed.model.FriendList;
 import picView.newsfeed.model.Good;
@@ -32,22 +34,32 @@ public class NewsfeedController {
 	}
 	
 	@RequestMapping(value="newsfeed/{requestPage}",method=RequestMethod.GET)
-	public @ResponseBody ListNewsfeedModel list_newsfeed(@PathVariable String requestPage,HttpServletRequest request){
+	public @ResponseBody ListNewsfeedModel list_newsfeed(@PathVariable String requestPage,HttpServletRequest request,
+				HttpSession session){
 		System.out.println("-----------CONTROLLER---------------");
 		System.out.println("requestPage = " + requestPage);
 		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
 		
-		return service.list_newsfeed(Integer.parseInt(requestPage));
+		return service.list_newsfeed(Integer.parseInt(requestPage),mem_no);
 	}
 	
 	@RequestMapping(value="count_newsfeed",method=RequestMethod.GET)
-	public @ResponseBody int count_newsfeed(){
+	public @ResponseBody int count_newsfeed(HttpSession session){
 		
-		return service.count_newsfeed();
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
+		
+		return service.count_newsfeed(mem_no);
 	}
 	@RequestMapping(value="friend_list",method=RequestMethod.GET)
-	public @ResponseBody List<FriendList> friend_list(){
-		return service.list_friend();
+	public @ResponseBody List<FriendList> friend_list(HttpSession session){
+		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
+		
+		return service.list_friend(mem_no);
 	}
 	@RequestMapping(value="count_activity",method=RequestMethod.GET)
 	public @ResponseBody int count_activity(){

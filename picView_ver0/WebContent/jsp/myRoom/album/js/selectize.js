@@ -3540,7 +3540,7 @@
 	
 			if (typeof width === 'undefined') {
 				div = doc.createElement('div');
-				div.innerHTML = '<div style="width:50px;height:50px;position:absolute;left:-50px;top:-50px;overflow:auto;"><div style="width:1px;height:100px;"></div></div>';
+				div.innerHTML = '<div style="width:50px;height:50px;position:absolute;left:-50px;top:-50px;overflow:auto;"><div style="width:100px;height:100px;"></div></div>';
 				div = div.firstChild;
 				doc.body.appendChild(div);
 				width = getScrollbarWidth.width = div.offsetWidth - div.clientWidth;

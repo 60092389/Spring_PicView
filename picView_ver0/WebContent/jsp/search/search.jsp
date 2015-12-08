@@ -225,7 +225,7 @@
 				html2 += "<div class='interaction-bar'>";
 				html2 += "<div class='text'>";
 				html2 += "<a class='title' href='#'>"+ pic.pic_title+"</a>";
-				html2 += "<a class='attribution' href='#'>출처 : "+pic.mem_name+"</a></div>";
+				html2 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
 				html2 += "<div class='tool'>";
 				html2 += "<a class='fave-area' href='#'></a>";
@@ -404,7 +404,7 @@
 							html2 += "<div class='interaction-bar'>";
 							html2 += "<div class='text'>";
 							html2 += "<a class='title' href='#'>"+ pic.pic_title+"</a>";
-							html2 += "<a class='attribution' href='#'>출처 : "+pic.mem_name+"</a></div>";
+							html2 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
 							html2 += "<div class='tool'>";
 							html2 += "<a class='fave-area' href='#'></a>";

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,13 +41,15 @@ public class dragController {
          
     }
 	 
-	 @RequestMapping(value = "/jsp/upload/fileUpload_submit",method=RequestMethod.POST) 
-	    public String post_upload(MultipartHttpServletRequest multipartRequest,Picture picture,HttpServletRequest request) throws IllegalStateException, IOException{ 
-		 service.post_upload(multipartRequest,picture,request);
+	@RequestMapping(value = "/jsp/upload/fileUpload_submit",method=RequestMethod.POST) 
+	    public String post_upload(MultipartHttpServletRequest multipartRequest,Picture picture,
+	    		HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{ 
+		 service.post_upload(multipartRequest,picture,request,session);
 	
-		  return "redirect:/jsp/myRoom/manageForm";
+		 System.out.println("드래그컨트롤러");
+		 
+		  return "upload/success2";
 	 }
-	 
 	 
 	
 	 

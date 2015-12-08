@@ -13,9 +13,9 @@ import picView.picture.model.Picture;
 
 public interface NewsfeedMapper {
 
-	public List<Newsfeed> list_newsfeed(RowBounds row); //뉴스피드 리스트
-	public int count_newsfeed();//뉴스피드 갯수
-	public List<FriendList> list_friend();//친구목록
+	public List<Newsfeed> list_newsfeed(RowBounds row, int mem_no); //뉴스피드 리스트
+	public int count_newsfeed(int mem_no);//뉴스피드 갯수
+	public List<FriendList> list_friend(int mem_no);//친구목록
 	
 	public List<ActivityList> list_activity(RowBounds row);//액티비티 리스트
 	public int count_activity();//액티비티 갯수

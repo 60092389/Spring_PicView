@@ -352,6 +352,7 @@
             var self = this;
             if(this.settings.items)
             {
+            	var pic_no = this.$el.find("img").attr("name");
                 var columnWidth = this._getColumnWidth(this.settings.items.length);
                 this.$el.html("<div class='chrg-grid'></div>");
                 this.grid = this.$el.find(".chrg-grid");
@@ -363,19 +364,21 @@
                     {
                         this.grid.append("<div class='chrg-item chrg-no-select' style='width:"+columnWidth+"%; margin-bottom:"+this.settings.gridMargin+"px;'>"+
                             "<img src='"+this.settings.items[i].src+"' alt='"+this.settings.items[i].alt+"' data-largesrc='"+this.settings.items[i].largesrc+"'/>"+
-                            "<div class='chrg-description'><p></p></div></div>");
+                            "<div class='chrg-description'><a href='../../jsp/basic/picDetail.jsp?pic_no="+pic_no+"'><p></p></a></div></div>");
                     }
                 }
             }
 
             else
             {
+            	
+            	var pic_no = this.$el.find("img").attr("name");
                 var columnWidth = this._getColumnWidth(this.$el.find("img").length);
                 this.$el.append("<div class='chrg-grid'></div>");
                 this.grid = this.$el.find(".chrg-grid");
                 this.$el.find("img")
                     .wrap("<div class='chrg-item chrg-no-select' style='width:"+columnWidth+"%; margin-bottom:"+this.settings.gridMargin+"px;'></div>")
-                    .parent().append("<div class='chrg-description'><p></p></div>");
+                    .parent().append("<div class='chrg-description'><a href='../../jsp/basic/picDetail.jsp?pic_no="+pic_no+"'><p></p></a></div>");
                 this.grid.append(this.$el.find(".chrg-item"));
 
             }

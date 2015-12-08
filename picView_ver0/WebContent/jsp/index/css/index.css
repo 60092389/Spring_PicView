@@ -27,7 +27,7 @@ p{
 	padding: 0 15px;
 	position: relative;
 	width: 33%;
-	background-image: url("/picView_ver0/images/main/background_05.jpg");
+	background-image: url("../../../images/main/background_05.jpg");
 }
 
 .footer .bucket01 .bucket01_stack {
@@ -41,7 +41,7 @@ p{
 	max-width: 500px;
 	position: absolute;
 	right: 15px;
-	background-image: url("/picView_ver0/images/main/background_04_01.png");
+	background-image: url("../../../images/main/background_04_01.png");
 }
 
 .centered {
@@ -87,7 +87,7 @@ p{
 
 .platform-apple {
 	background: rgba(0, 0, 0, 0)
-		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		url("../../../images/main/background_platform.png") no-repeat scroll 0
 		-214px;
 	height: 36px;
 	width: 30px;
@@ -95,7 +95,7 @@ p{
 
 .platform-android {
 	background: rgba(0, 0, 0, 0)
-		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		url("../../../images/main/background_platform.png") no-repeat scroll 0
 		-250px;
 	height: 36px;
 	width: 30px;
@@ -103,7 +103,7 @@ p{
 
 .platform-mac {
 	background: rgba(0, 0, 0, 0)
-		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		url("../../../images/main/background_platform.png") no-repeat scroll 0
 		-150px;
 	height: 28px;
 	width: 30px;
@@ -112,7 +112,7 @@ p{
 
 .platform-windows {
 	background: rgba(0, 0, 0, 0)
-		url("/picView_ver0/images/main/background_platform.png") no-repeat scroll 0
+		url("../../../images/main/background_platform.png") no-repeat scroll 0
 		-178px;
 	height: 36px;
 	width: 30px;
@@ -128,7 +128,7 @@ p{
 	padding: 0 15px;
 	position: relative;
 	width: 34%;
-	background-image: url("/picView_ver0/images/main/background_04.jpg");
+	background-image: url("../../../images/main/background_04.jpg");
 }
 
 .bucket03 {
@@ -141,7 +141,7 @@ p{
 	padding: 0 15px;
 	position: relative;
 	width: 33%;
-	background-image: url("/picView_ver0/images/main/background_06.jpg");
+	background-image: url("../../../images/main/background_06.jpg");
 }
 
 .contents {
@@ -158,7 +158,7 @@ p{
 	min-height: 410px;
 	padding: 0 15px;
 	position: relative;
-	background-image: url("/picView_ver0/images/main/background_07.jpg");
+	background-image: url("../../../images/main/background_07.jpg");
 	height: 367px;
 }
 
@@ -195,7 +195,7 @@ p{
 	position: absolute;
 	right: 0;
 	top: 0;
-	background-image: url("/picView_ver0/images/main/background_08.jpg");
+	background-image: url("../../../images/main/background_08.jpg");
 	background-color: #212124;
 }
 

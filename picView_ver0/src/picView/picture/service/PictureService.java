@@ -13,17 +13,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.objenesis.instantiator.perc.PercInstantiator;
 import org.springframework.stereotype.Service;
 
+import picView.album.model.AlbumDao;
+import picView.album.model.Group_Pic;
+import picView.follow.model.Follow;
+import picView.follow.model.FollowDao;
 import picView.member.model.Member;
 import picView.member.model.MemberDao;
 import picView.picture.model.Picture;
 import picView.picture.model.PictureDao;
+import picView.picture.model.PictureShow;
 import picView.picture.model.UpdatePictureCommand;
 
 @Service
 public class PictureService {
 		private PictureDao picDao;
 		private MemberDao memDao;
+		private FollowDao followDao;
+		private AlbumDao albumDao;
 
+		
 		@Autowired
 		public void setPicDao(PictureDao picDao) {
 			this.picDao = picDao;
@@ -32,6 +40,16 @@ public class PictureService {
 		@Autowired
 		public void setMemDao(MemberDao memDao) {
 			this.memDao = memDao;
+		}
+		
+		@Autowired
+		public void setFollowDao(FollowDao followDao) {
+			this.followDao = followDao;
+		}
+		
+		@Autowired
+		public void setAlbumDao(AlbumDao albumDao) {
+			this.albumDao = albumDao;
 		}
 
 
@@ -49,7 +67,7 @@ public class PictureService {
 				String date = test.format(b);
 				
 				
-				System.out.println("날짜 = "+date);	
+				/*System.out.println("날짜 = "+date);	*/
 				
 				
 				//System.out.println(year+"년 "+month+"월 "+day+"일");
@@ -65,7 +83,7 @@ public class PictureService {
 			List<String> list = picDao.PictureYear(mem_no);
 
 			for(int i=0; i<list.size(); i++){
-				System.out.println("년도 : "+list.get(i));
+				/*System.out.println("년도 : "+list.get(i));*/
 			}
 			
 			return list;
@@ -77,7 +95,7 @@ public class PictureService {
 			List<String> list = picDao.PictureMonth(mem_no);
 
 			for(int i=0; i<list.size(); i++){
-				System.out.println("월수 : "+list.get(i));
+				/*System.out.println("월수 : "+list.get(i));*/
 			}
 
 			return list;
@@ -86,6 +104,9 @@ public class PictureService {
 		
 		//사진목록 가져오는 서비스
 		public List<Picture> listPicture(int mem_no){
+			
+			System.out.println("-----------listPicture 서비스--------------");
+			
 			return picDao.PictureList(mem_no);
 		}
 		
@@ -195,15 +216,122 @@ public class PictureService {
 			
 			for(int i=0; i<pic_no_array.length; i++){
 				int pic_num = Integer.parseInt(pic_no_array[i]);
-				picDao.DeletePicture(pic_num);
-				memDao.minusPic_count(mem_no);
+				
+				List<Integer> alb_no_list = albumDao.GroupPicList_By_Pic_no(pic_num);
+				for(int j=0; j<alb_no_list.size(); j++){
+					int alb_no = alb_no_list.get(j);
+					Group_Pic group_pic = new Group_Pic();
+					
+					if(albumDao.GroupPic_AlbNo_count_By_Alb_no(alb_no) == 1){
+						System.out.println("사진이 소속되있는 앨범에 사진이 하나");
+						group_pic.setPic_no(pic_num);
+						group_pic.setAlb_no(alb_no);
+						
+						albumDao.DeletePicture_In_Album(group_pic);//pic_num에 해당하는 Group_pic테이블 값 삭제
+						albumDao.deleteAlbum(alb_no);//지우려는 사진이 그앨범의 유일한 사진이면 앨범도 삭제
+											
+					}
+					else if(albumDao.GroupPic_AlbNo_count_By_Alb_no(alb_no) != 1){
+						group_pic.setPic_no(pic_num);
+						group_pic.setAlb_no(alb_no);
+						albumDao.DeletePicture_In_Album(group_pic);
+					}
+					
+				}
+				picDao.DeletePicture(pic_num);				
+				memDao.minusPic_count(mem_no);	
+				
+				
 			}				
 		}
 		
 		//채영
 		//보여주기 사진 목록 서비스
-		public List<Picture> myShowPicture(Picture picture){
-				return picDao.myShowPicture(picture);
+		public PictureShow myShowPicture(Picture picture,int mem_no){
+				PictureShow pic_show = new PictureShow();
+				int relation = -1;
+				List<Picture> pic_list = new ArrayList<Picture>();
+				
+				int fri_no = picture.getMem_no();
+				
+				Follow follow = new Follow();
+				follow.setFollow_fri_no(fri_no);
+				follow.setMem_no(mem_no);
+				List<Follow> fol_list = followDao.followCheck(follow);
+				
+				System.out.println("서비스 접속한 사람 : "+mem_no);
+				System.out.println("서비스 접속한페이지의 주인 : "+fri_no);
+				
+				//내가 나의페이지를 들어왔을때
+				if(fri_no == mem_no){
+					pic_list = picDao.myShowPicture(picture);
+					relation = 1;//나자신일때
+					pic_show.setPic_list(pic_list);
+					pic_show.setRelation(relation);
+				}else{
+					System.out.println("주인과 접속자가 다를 때 else문");
+					
+					if(fol_list.size() == 0){
+						picture.setPic_open("open");
+						relation = 5; //아무관계아닐때
+						
+						System.out.println("아무관계 아닐때");
+					
+						pic_list = picDao.myShowPicture(picture);
+						pic_show.setPic_list(pic_list);
+						pic_show.setRelation(relation);
+					}
+					
+					for(int i=0; i<fol_list.size(); i++){
+						System.out.println("fol_list 불러오기 "+i);
+						if(fol_list.get(i).getMem_no() == mem_no &&
+									fol_list.get(i).getFollow_check().equals("1")){
+							picture.setPic_open("open");
+							relation = 2; //나만 상대방 팔로우
+							
+							System.out.println("나만 상대방 팔로우");
+							
+							pic_list = picDao.myShowPicture(picture);
+							pic_show.setPic_list(pic_list);
+							pic_show.setRelation(relation);
+						}
+						if(fol_list.get(i).getMem_no() == mem_no &&
+								fol_list.get(i).getFollow_check().equals("2")){
+							picture.setPic_open("open");
+							relation = 3; //상대방만 나 팔로우
+							
+							System.out.println("상대방만 나 팔로우");
+						
+							pic_list = picDao.myShowPicture(picture);
+							pic_show.setPic_list(pic_list);
+							pic_show.setRelation(relation);
+						}
+						if(fol_list.get(i).getMem_no() == mem_no &&
+								fol_list.get(i).getFollow_check().equals("3")){
+							picture.setPic_open("friend");
+							relation = 4; //맞팔상태(친구)
+							
+							System.out.println("맞팔 상태");
+						
+							pic_list = picDao.myShowPicture(picture);
+							pic_show.setPic_list(pic_list);
+							pic_show.setRelation(relation);
+							
+						}
+						
+					}
+				}
+				
+				
+				System.out.println("가져온 픽리스트의 제목들!");
+				for(int i=0; i<pic_list.size(); i++){
+					System.out.println(pic_list.get(i).getPic_title());
+				}
+				
+			
+			
+			
+				return pic_show;
 		}
 		
 		

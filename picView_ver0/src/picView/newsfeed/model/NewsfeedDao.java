@@ -20,16 +20,16 @@ public class NewsfeedDao {
 		this.myTemplate = myTemplate;
 	}
 	
-	public List<Newsfeed> list_newsfeed(int startRow){
+	public List<Newsfeed> list_newsfeed(int startRow, int mem_no){
 		
-		return myTemplate.getMapper(NewsfeedMapper.class).list_newsfeed(new RowBounds(startRow, 5));
+		return myTemplate.getMapper(NewsfeedMapper.class).list_newsfeed(new RowBounds(startRow, 5),mem_no);
 	}
 	
-	public int count_newsfeed(){
-		return myTemplate.getMapper(NewsfeedMapper.class).count_newsfeed();
+	public int count_newsfeed(int mem_no){
+		return myTemplate.getMapper(NewsfeedMapper.class).count_newsfeed(mem_no);
 	}
-	public List<FriendList> list_friend(){
-		return myTemplate.getMapper(NewsfeedMapper.class).list_friend();
+	public List<FriendList> list_friend(int mem_no){
+		return myTemplate.getMapper(NewsfeedMapper.class).list_friend(mem_no);
 	}
 	public List<ActivityList> list_activity(int startRow){
 		

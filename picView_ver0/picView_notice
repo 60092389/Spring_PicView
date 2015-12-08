@@ -81,8 +81,6 @@ mybatis-config.xml 수정
 사용한 패키지 : member, follow, cate, picture
 내사진관리기능, 팔로우,팔로어,맞팔 기능, 회원가입시 메일전송 기능까지 해놓은것
 
-testtest
-
 ----------------------------------------------------------
 
 12/05/11:52 최연식
@@ -122,9 +120,31 @@ jsp->layout->header.jsp 수정
 
 (오늘 커밋 끝..! 이제 다 될때까지 안해요)
 
------------------
 
-12/06 15:16
-jsp -> category 폴더 (카테고리별보기)
-추가
+-----------------------------------------------
+
+2015/12/08 14:04 박준병
+
+1. picView.upload.service : DragAPIService.java
+2. picView.member패키지 다
+3. PictureController 
+4. bootstrap.min.css
+5. header.jsp
+6. picView_custom.css
+7. myRoom->album->css-> style.css 수정
+8. myRoom -> my_Show.jsp 수정
+9. myRoom -> css ->my_Show5.css 수정
+    myRoom내 jsp 다, menu_nav.jsp 추가했음
+10. picView.search.mapper -> Search.xml 수정
+11. picView.search.controller,service 수정  
+12. picView.search.model에 MemberResult 추가 
+13. jsp -> search -> css폴더 다
+14. jsp -> search -> searchPeople.jsp  
+15. picView.upload.controller, service 수정, mapper는 삭제
+16. jsp->main->loginMain.jsp
+17. jsp->main->js->loginMain.js
+18. picView.album패키지 다
+19. picView.picutre 패키지 다
+
+
 

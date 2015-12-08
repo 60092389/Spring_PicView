@@ -6,8 +6,17 @@
 <mapper namespace="picView.album.mapper.AlbumMapper">
 	<cache />
 	
-	<select id="albumlist" parameterType="Member" resultType="Album">
-		select * from Album where mem_no = #{mem_no}
+	<select id="albumlist" parameterType="Album" resultType="Album">
+		select * from Album
+		<if test='alb_open==null'>
+			where mem_no = #{mem_no}
+		</if>
+		<if test='alb_open == "1"'>
+			where mem_no = #{mem_no} and alb_open = '1'
+		</if>
+		<if test='alb_open == "2"'>
+			where mem_no = #{mem_no} and alb_open in ('1','2')
+		</if>
 	</select>
 	
 	<select id="grouplist" parameterType="int" resultType="Group_pic">
@@ -28,7 +37,7 @@
 			 alb_no, mem_no, alb_name, alb_content, alb_word, alb_open, alb_date
 		)
 		values(
-			album_no_seq.nextval, #{mem_no}, #{alb_name}, #{alb_content}, #{alb_word}, 2 ,
+			album_no_seq.nextval, #{mem_no}, #{alb_name}, #{alb_content}, #{alb_word}, 1 ,
 			SYSDATE
 		)	
 		</insert>
@@ -62,6 +71,32 @@
 	<delete id="deleteAlbum" parameterType="int">
 		delete from album where alb_no = #{alb_no}
 	</delete>
+	
+	<update id="albumlevel" parameterType="Album">
+		update album set alb_open = #{alb_open} where mem_no = #{mem_no} and alb_no = #{alb_no} 
+	</update>
+	
+	<select id="pic_search" parameterType="String" resultType="Picture">
+		select * from picture where pic_title = #{pic_search} or tag_name = #{pic_search}
+	</select>
+	
+	<select id="categorylist" parameterType="int" resultType="Category">
+		select * from category where category_no = #{category_no}
+	</select>
+	
+	
+	<!-- 앨범에속한 사진들 삭제할때 일어나는 이벤트들 -->
+	<delete id="DeletePicture_In_Album" parameterType="Group_Pic">
+		delete group_pic where pic_no=#{pic_no} and alb_no=#{alb_no}
+	</delete>
+	
+	<select id="GroupPicList_By_Pic_no" resultType="int" parameterType="int">
+		select alb_no from group_pic where pic_no = #{pic_no}
+	</select>
+	
+	<select id="GroupPic_AlbNo_count_By_Alb_no" parameterType="int" resultType="int">
+		select count(*) from group_pic where alb_no = #{alb_no}
+	</select>
 
 
 	

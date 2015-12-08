@@ -27,10 +27,10 @@ public class NewsfeedService {
 	}
 
 
-	public ListNewsfeedModel list_newsfeed(int requestPage){
+	public ListNewsfeedModel list_newsfeed(int requestPage,int mem_no){
 		
 		System.out.println("------SERVICE---------");
-		int totalCount = dao.count_newsfeed();
+		int totalCount = dao.count_newsfeed(mem_no);
 		System.out.println("totalCount= " + totalCount);
 		int totalPageCount = totalCount/PAGE_SIZE;
 		System.out.println("totalPageCount = "+ totalPageCount);
@@ -47,17 +47,17 @@ public class NewsfeedService {
 									  //보여줄게 없으므로 totalPageCount와 같게 만들어줘야함
 		}
 		System.out.println("requestPage= " + requestPage);
-		List<Newsfeed> list = dao.list_newsfeed((requestPage-1)*PAGE_SIZE);
+		List<Newsfeed> list = dao.list_newsfeed((requestPage-1)*PAGE_SIZE, mem_no);
 		
 		return new ListNewsfeedModel(list, requestPage, totalPageCount, startPage, endPage);
 	}
 	
-	public int count_newsfeed(){
-		return dao.count_newsfeed();
+	public int count_newsfeed(int mem_no){
+		return dao.count_newsfeed(mem_no);
 	}
 	
-	public List<FriendList> list_friend(){//친구 목록
-		return dao.list_friend();
+	public List<FriendList> list_friend(int mem_no){//친구 목록
+		return dao.list_friend(mem_no);
 	}
 	public int count_activity(){
 		return dao.count_activity();

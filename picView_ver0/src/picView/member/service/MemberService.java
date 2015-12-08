@@ -2,9 +2,14 @@ package picView.member.service;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +17,7 @@ import org.springframework.stereotype.Service;
 import picView.cate.model.Category;
 import picView.cate.model.CategoryDao;
 import picView.cate.model.GroupCategory;
+import picView.member.model.AuthInfo;
 import picView.member.model.MailTest;
 import picView.member.model.Member;
 import picView.member.model.MemberCommand;
@@ -82,6 +88,27 @@ public class MemberService {
 	//회원가입시 회원이 선택한 소속카테고리 등록 끝
 	}
 	
+	public AuthInfo loginMember(String mem_id, String mem_pwd){
+		
+		Member member = new Member();
+		
+		member.setMem_id(mem_id);
+		member.setMem_pwd(mem_pwd);
+		
+		AuthInfo authInfo = new AuthInfo();
+		
+		Member mem_check = memberDao.login_check(member);
+		
+		if(mem_check != null){
+		
+			authInfo = new AuthInfo(mem_check.getMem_no(), mem_check.getMem_id(),
+						mem_check.getMem_name(), mem_check.getMem_pic());
+			
+		}	
+		
+		return authInfo;
+	}
+	
 
 
 	public void sendMailSerivce(MemberCommand mc){
@@ -106,10 +133,13 @@ public class MemberService {
 		
 	}
 	
-	public List<Member> listSearchFri(){
-		
+	public List<Member> listSearchFri(){		
 		
 		return memberDao.listSearchFri();
+	}
+	
+	public Member selectByNo(int mem_no){
+		return memberDao.selectByNo(mem_no);
 	}
 
 }

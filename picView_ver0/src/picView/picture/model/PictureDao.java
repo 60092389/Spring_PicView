@@ -44,6 +44,9 @@ public class PictureDao {
 
 	// 해당 회원의 사진목록 뽑기
 	public List<Picture> PictureList(int mem_no) {
+		
+		System.out.println("PictureList DAO ");
+		
 		return myTemplate.getMapper(PictureMapper.class).PictureList(mem_no);
 	}
 
@@ -59,6 +62,8 @@ public class PictureDao {
 	public void DeletePicture(int pic_no) {
 		myTemplate.getMapper(PictureMapper.class).DeletePicture(pic_no);
 	}
+	
+	
 
 	// 채영
 	// 보여주기 사진목록
@@ -103,4 +108,9 @@ public class PictureDao {
 	}
 	// 상세보기 끝
 
+	public int insertPicture(Picture picture){
+		return myTemplate.getMapper(PictureMapper.class).insertPicture(picture);
+	}	
+	
+	
 }

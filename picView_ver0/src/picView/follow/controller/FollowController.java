@@ -2,6 +2,8 @@ package picView.follow.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +14,12 @@ import picView.follow.model.FollowCommand;
 import picView.follow.model.FollowRecommand;
 import picView.follow.model.Search;
 import picView.follow.service.FollowService;
+import picView.member.model.AuthInfo;
 import picView.member.model.Member;
 import picView.member.service.MemberService;
 
 @Controller
 public class FollowController {
-
-	int mem_no = 5;
 	
 	private FollowService followService;
 	private MemberService memberService;
@@ -34,9 +35,10 @@ public class FollowController {
 	}
 	
 	@RequestMapping("/jsp/myRoom/listFri")
-	public String listSearchFri(Model model){
+	public String listSearchFri(Model model, HttpSession session){
 		
-		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
 		
 		List<Member> members = memberService.listSearchFri();
 		List<Follow> follows = followService.listFollow(mem_no);
@@ -70,8 +72,9 @@ public class FollowController {
 	}
 	
 	@RequestMapping("/jsp/myRoom/my_Follow")
-	public String listFollow(Model model){
-				
+	public String listFollow(Model model, HttpSession session){
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
 		
 		List<Member> members = memberService.listSearchFri();
 		List<Follow> follows = followService.listFollow(mem_no);
@@ -93,8 +96,10 @@ public class FollowController {
 	}
 	
 	@RequestMapping("/jsp/myRoom/my_Follower")
-	public String listFollower(Model model){
+	public String listFollower(Model model, HttpSession session){
 				
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
 		
 		List<Member> members = memberService.listSearchFri();
 		List<Follow> follows = followService.listFollow(mem_no);

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@page import="java.net.URLDecoder" %>
-<
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,31 +44,65 @@
 				 html="";
 				  $.each(data,function(index,pic){
 					 var year = new Date(pic.mem_date).getFullYear();
-			         var month = new Date(pic.mem_date).getMonth() + 1;
-			         var day = new Date(pic.mem_date).getDate();
-			         var date = year + "-" + month;
+			     var month = new Date(pic.mem_date).getMonth() + 1;
+			     var day = new Date(pic.mem_date).getDate();
+			     var date = year + "-" + month;
 			       
-			         var id = pic.mem_id.split("@");
+			     var id = pic.mem_id.split("@");
+			     
 			         
-			         html += "<div class='result-card linked reboot-restyle'>";
+			     html += "<div class='result-card linked reboot-restyle'>";
 					 html += "<div class='sizer-cropper'>";
 					 html += "<div class='avatar-content'>";
 					 html +="<div class='avatar person medium'"+
-					 "style='background-image: url(https://www.flickr.com/images/buddyicon05.png);'></div></div>";
+					 "style='background-image: url(../../upload/"+pic.mem_pic+");'></div></div>";
 					 
 					 html += "<div class='text-content'>";
 					 html += "<div class='name'>"+pic.mem_name+"</div>";
 					 html += "<div class='subtitle'><span>"+id[0]+"</span></div>";
 					 html += "<div class='links'><span><a href='#'>";
 					 html += "<span class='glyphicon glyphicon-picture'>"+pic.pic_count+"</span></a></span>";
-					 html += "<span><a href='#'><span class='glyphicon glyphicon-user'>5</span></a></span>";
 					 html += "<span class='links-metadata'>"+date+" 가입</span></div></div>";
-					 html += "<a class='click-anywhere' href='#'></a>";
+					 html += "<a class='click-anywhere' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'></a>";
 					 html += "</div>";
 					 html += "<div class='button-content'>";
-					 html += "<div class='view follow-view'>";
-					 html += "<button class='btn btn-primary follow not-following' type='button'>+팔로우</button>";
-					 html += "</div></div></div></div>";
+					 
+					 
+					 if(pic.fol_check ==0){
+						/*  html += "<button class='btn btn-primary follow not-following' type='button'>+팔로우</button>"; */
+						 html += "<div class='view follow-view deafult_follow'>";
+						 html +="<form action='addNewFollow' method='post'>";
+						 html +="<textarea rows='5' cols='5' name='mem_nos' style='display:none;'>"+${authInfo.mem_no}+","+pic.mem_no+"</textarea>";
+						 html +="<input class='btn btn-primary in_black' type='submit' value='+팔로우' />";
+						 html +="</form>";
+						 html +="</div>";
+					 }
+					 if(pic.fol_check == 1){
+						 html += "<div class='view follow-view only_follow only_follow2'>";
+						 html +="<form action='cancelFollow' method='post'>";
+						 html +="<textarea rows='5' cols='5' name='mem_nos' style='display:none;'>"+${authInfo.mem_no}+","+pic.mem_no+"</textarea>";
+						 html +="<input class='btn btn-danger in_black' type='submit' value='팔로우 취소' />";
+						 html +="</form>";
+						 html +="</div>";
+					 }
+					 if(pic.fol_check == 2){
+						 html += "<div class='view follow-view only_follower only_follower2'>";
+						 html +="<form action='addFollow' method='post'>";
+						 html +="<textarea rows='5' cols='5' name='mem_nos' style='display:none;'>"+${authInfo.mem_no}+","+pic.mem_no+"</textarea>";
+						 html +="<input class='btn btn-success in_black' type='submit' value='+맞팔로우' />";
+						 html +="</form>";
+						 html +="</div>";
+					 }
+					 if(pic.fol_check == 3){
+						 html += "<div class='view follow-view each_follow each_follow2'>";
+						 html +="<form action='cancelEachFollow' method='post'>";
+						 html +="<textarea rows='5' cols='5' name='mem_nos' style='display:none;'>"+${authInfo.mem_no}+","+pic.mem_no+"</textarea>";
+						 html +="<input class='btn btn-warning in_black' type='submit' value='맞팔 취소' />";
+						 html +="</form>";
+						 html +="</div>";
+					 }			 
+					 
+					 html += "</div></div></div>";
 				
 				  }); 
 				  

@@ -16,6 +16,7 @@
 <script src="album/js/my_Manage3.js"></script>
 
 
+
 </head>
 <body>
 	<div class="header">
@@ -23,31 +24,21 @@
 	</div>
 
 	<div class="my_Menu">
-		<jsp:include page="../myRoom/my_Menu.jsp"></jsp:include>
+		<jsp:include page="../myRoom/my_Menu.jsp">
+			<jsp:param value="${member}" name="member"/>
+		</jsp:include>
 	</div>
 
 	<div id="myMenu_navi">
-		<ul class="nav nav-pills">
-			<li class="menu"><a href="my_Manage.html">사진 관리</a></li>
-			<li class="menu active"><a href="my_Show.html">보여 주기</a></li>
-			<li class="menu"><a href="#">사진첩</a></li>
-			<li class="menu"><a href="#">관심 사진</a></li>
-			<li class="menu"><a href="follow.jsp">친구 목록</a></li>
-			<li id="other" class="dropdown"><a href=""
-				data-toggle="dropdown"> 그 외 <span class="caret"></span>
-			</a>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="my_Tag.jsp">태그별</a>
-					<li><a href="my_Popular_Hit.jsp">인기별</a>
-					<li><a href="#">다운로드 기록</a>
-					<li><a href="#">프로필</a>
-				</ul></li>
-		</ul>
+		<jsp:include page="../myRoom/menu_nav.jsp">
+			<jsp:param value="${member}" name="member"/>
+			<jsp:param value="${level }" name="level"/>
+		</jsp:include>
 	</div>
 
 
 
-	<div class="contentsd">
+	<div class="album_contents">
 
 		<br> <br>
 		<div id="page">
@@ -55,7 +46,7 @@
 
 				<img id="movingboxes"src="album/img/movingboxes.png" alt="moving boxes" />
 				<form id="add" action="album_add">
-					<input id="hiddenval" type="text" value="1" name="mem_no">
+					<input id="hiddenval" type="text" value="${authInfo.mem_no }" name="mem_no">
 					<input id="hiddenval" type="text" value="" name="getalb_word">
 					<input id="addbutton" class="btn btn-default btn-lg" type="submit"
 						value="앨범 추가하기">
@@ -64,23 +55,39 @@
 
 					<img class="scrollButtons left" src="album/img/leftarrow.png">
 
+
 					<div style="overflow: hidden;" class="scroll">
 						<div class="scrollContainer">
 							<c:forEach var="albumpiclist" items="${albumpiclist }"
 								varStatus="apl">
 								<div class="panel" id="panel_${mem_no }">
-									<div class="inside">
+									<div class="inside" id="${mem_no }">
 										<img src="../../upload/${albumpiclist}"
 											alt="picture_${albumpiclist}" />
 										<c:forEach var="albumlist" items="${albumlist }"
 											varStatus="alb">
 											<c:choose>
 												<c:when test="${apl.index == alb.index }">
-													<h2>제목 : ${albumlist.alb_name }</h2>
+													<h2>제목 : ${albumlist.alb_name }    </h2>
+													<c:if test="${albumlist.alb_open==1 }">
+													<c:set var="i" value="전체 공개"></c:set>
+													</c:if>
+													<c:if test="${albumlist.alb_open==2 }">
+													<c:set var="i" value="친구만 보기"></c:set>
+													</c:if>
+													<c:if test="${albumlist.alb_open==3 }">
+													<c:set var="i" value="비공개"></c:set>
+													
+													</c:if>
+													
+													<p class="level" id="${albumlist.alb_open }">키워드 : ${albumlist.alb_word }&nbsp;&nbsp;권한 : ${i}</p>
 													<p>
-														키워드 : ${albumlist.alb_word } <a
-															href="my_album_detail?alb_no=${albumlist.alb_no }&mem_no=${albumlist.mem_no}">
+														 <a
+															href="my_album_detail?alb_no=${albumlist.alb_no }&fri_no=${albumlist.mem_no}">
 															앨범보기 </a>
+															<c:if test="${level == '1'}">
+																<a href="my_album_delete?alb_no=${albumlist.alb_no }">앨범삭제</a>
+															</c:if>
 													</p>
 												</c:when>
 											</c:choose>

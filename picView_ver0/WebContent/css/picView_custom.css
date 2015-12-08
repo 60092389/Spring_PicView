@@ -25,9 +25,12 @@ body {
 	margin-top: 13px;
 }
 
+.header-container{
+	height: 57px !important;
+}
 
 #searchList{
-	margin-top: 12px;
+	margin-top: 7px;
 }
 
 #searchButton{
@@ -78,6 +81,13 @@ li p{
 }
 
 
+.upload-padding{
+	padding-top: 9px !important;
+}
+
+.account-padding{
+	padding-top: 12px !important;
+}
 
 /**************************************************************/
 											/* body css */

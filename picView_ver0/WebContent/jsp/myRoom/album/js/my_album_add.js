@@ -19,7 +19,7 @@
 			$('.flexslider').flexslider({
 				animation : "slide",
 				animationLoop : false,
-				itemWidth : 250,
+				itemWidth : 200,
 				itemMargin : 5,
 				minItems : getGridSize(), // use function to pull in initial value
 				maxItems : getGridSize(), // use function to pull in initial value
@@ -40,26 +40,53 @@
 		pic.dataTransfer.setData('Text', target.id);
 		pic.dataTransfer.setData('Data', target.getAttribute('name'));
 	};
-
+	
 	function drop(target, pic) { //드롭시 호출 할 함수
 
 		var id = pic.dataTransfer.getData('Text');
 		var tagname = pic.dataTransfer.getData('Data');
+		if(tagname == null){
+			id = tagname;
+		}
+
+		
 
 		target.appendChild(document.getElementById(id));
 		pic.preventDefault();
 		$('.selectize-input').addClass('has-options').addClass('has-items');
-		$('.selectize-input').append(
+		var tag_check = tagname;				
+		var tag_check_arr = tag_check.split(",");
+		
+		
+		$(tag_check_arr).each(function(index, item){
+			$('.selectize-input').append('<div class="item" data-value='+item+' id="'+id+'">'+ item+'</div>');	
+			
+		});
+		/*$('.selectize-input').append(
 				'<div class="item" data-value='+tagname+' id="'+id+'">'
-						+ tagname + '</div>');
+						+ tagname + '</div>');*/
 
 		var temp = "";
 		var tagplus = "";
-		$('.selectize-input div').each(function(index, item) {
-
-			var plust = $(this).attr('id');
-			tagplus = temp + ',' + plust;
-			temp = tagplus;
+		var tempd= "";
+		$('#pic_plus li').each(function(index, item) {
+			
+			var plust = $(item).attr('id');
+			/*if(plust[index-1] == plust[index]){
+				tagplust = temp;
+			}*/
+			//alert("tempd" +tempd);
+			/*if(tempd == plust){
+				plust = "";
+			}*/	
+			//else {
+				
+				tagplus = temp + ',' + plust;
+				temp = tagplus;
+		//	}
+				
+				//tempd = plust;
+	
 		});
 		$('input[name=pic_no]').attr('value', tagplus);
 
@@ -73,15 +100,26 @@
 		$('.sub_ul li').hasClass(
 				target.appendChild(document.getElementById(id)),
 				pic.preventDefault());
-		$('.selectize-input div[data-value=' + tagname + ']').remove();
+		var tag_check = tagname;				
+		var tag_check_arr = tag_check.split(",");
+		$(tag_check_arr).each(function(index, item){
+			$('.selectize-input div[data-value=' + item + ']').remove();
+			
+		});
+		//$('.selectize-input div[data-value=' + tag_check_arr + ']').remove();
 		var droptag = "";
 		var tmp = "";
-		$('.selectize-input div').each(function(index, item) {
-
-			var dropt = $(this).attr('id');
+		$('#pic_plust li').each(function(index, item){
+			var dropt = $(item).attr('id');
 			droptag = tmp + ',' + dropt;
 			tmp = dropt;
 		});
+	/*	$('.selectize-input div').each(function(index, item) {
+			
+			var dropt = $(this).attr('id');
+			droptag = tmp + ',' + dropt;
+			tmp = dropt;
+		});*/
 
 		$('input[name=pic_no]').attr('value', droptag);
 

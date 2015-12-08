@@ -3,14 +3,17 @@ package picView.member.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import picView.cate.model.Category;
 import picView.cate.service.CategoryService;
+import picView.member.model.AuthInfo;
 import picView.member.model.MailTest;
 import picView.member.model.Member;
 import picView.member.model.MemberCommand;
@@ -26,7 +29,6 @@ public class MemberController {
 	@Autowired
 	private MailTest mail;
 
-
 	@Autowired
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
@@ -41,6 +43,7 @@ public class MemberController {
 	public void setMail(MailTest mail) {
 		this.mail = mail;
 	}
+	
 
 	@RequestMapping("/jsp/**/insertForm")
 	public String insertForm(Model model){
@@ -75,6 +78,38 @@ public class MemberController {
 		return "login/register";
 	}
 	
+	@RequestMapping("/jsp/login/loginForm")
+	public String loginMember(@RequestParam(value="id")String mem_id,
+				@RequestParam(value="pass")String mem_pwd, HttpSession session, Model model){
+		int login_check = -1;
+		String url = "";
+		
+		System.out.println("loginMember컨트롤러 id : "+mem_id);
+		System.out.println("loginMember컨트롤러 mem_pwd : "+mem_pwd);
+		
+		AuthInfo authInfo = memberService.loginMember(mem_id, mem_pwd);
+		
+		if(authInfo.getMem_id() != null){
+			login_check = 1;
+			System.out.println("로그인 성공하면1, 실패하면 -1 : "+login_check);
+			session.setAttribute("authInfo", authInfo);
+			url = "redirect:/jsp/main/loginMain.jsp";
+		}else if(authInfo.getMem_id().equals(null)){
+			login_check = -1;
+			System.out.println("로그인 성공하면1, 실패하면 -1 : "+login_check);
+			model.addAttribute("login_check", login_check);
+			url = "login/loginForm";
+		}		
+		
+		return url;
+	}
+	
+	@RequestMapping("/jsp/login/logout")
+	public String logoutMember(HttpSession session){
+		session.invalidate();
+		
+		return "index/index";
+	}
 	
 	
 }

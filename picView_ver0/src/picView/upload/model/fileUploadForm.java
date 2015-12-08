@@ -19,12 +19,5 @@ public class fileUploadForm implements Serializable{
 	}
 
 	
-
-
-	
-
-	
-	
-	
 	
 }

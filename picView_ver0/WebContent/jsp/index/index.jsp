@@ -9,12 +9,12 @@
 <title>Insert title here</title>
 
 
-<!-- <script src="../../js/jquery.min.js"></script>
+<script src="../../js/jquery.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<link href="css/index.css" rel="stylesheet"> -->
+<link href="css/index.css" rel="stylesheet">
 <!-- Bootstrap -->
-<!-- <link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../css/picView_custom.css" rel="stylesheet"> -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/picView_custom.css" rel="stylesheet">
 <link href="/picView_ver0/jsp/index/css/index.css" rel="stylesheet">
 
 
@@ -41,7 +41,7 @@
 				<div class="carousel-inner">
 					<!--슬라이드1-->
 					<div class="item active">
-						<img src="/picView_ver0/images/main/main_1.JPG"
+						<img src="../../images/main/main_1.JPG"
 							style="width: 100%; height: 560px" alt="First slide">
 
 						<div class="container">
@@ -55,7 +55,7 @@
 
 					<!--슬라이드2-->
 					<div class="item">
-						<img src="/picView_ver0/images/main/background_01.jpg"
+						<img src="../../images/main/background_01.jpg"
 							style="width: 100%; height: 560px" data-src="" alt="Second slide">
 						<div class="container">
 							<div class="carousel-caption">
@@ -68,7 +68,7 @@
 
 					<!--슬라이드3-->
 					<div class="item">
-						<img src="/picView_ver0/images/main/background_02.jpg"
+						<img src="../../images/main/background_02.jpg"
 							style="width: 100%; height: 560px" data-src="" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
@@ -80,7 +80,7 @@
 					<!--슬라이드3-->
 					<!--슬라이드3-->
 					<div class="item">
-						<img src="/picView_ver0/images/main/main_4.jpg"
+						<img src="../../images/main/main_4.jpg"
 							style="width: 100%; height: 560px" data-src="" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
@@ -92,7 +92,7 @@
 					<!--슬라이드3-->
 					<!--슬라이드3-->
 					<div class="item">
-						<img src="/picView_ver0/images/main/background_03.jpg"
+						<img src="../../images/main/background_03.jpg"
 							style="width: 100%; height: 560px" data-src="" alt="Third slide">
 						<div class="container">
 							<div class="carousel-caption">
@@ -164,9 +164,9 @@
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="/picView_ver0/js/jquery.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="/picView_ver0/js/bootstrap.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
 	<script>
 		$('.carousel').carousel()
 	</script>

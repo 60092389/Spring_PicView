@@ -16,6 +16,7 @@ public interface PictureMapper {
 	public void UpdatePictureInfo(Picture picture);
 	public void DeletePicture(int pic_no);
 	
+	
 	//myShow(보여주기)
 	public List<Picture> myShowPicture(Picture picture);
 	
@@ -36,5 +37,6 @@ public interface PictureMapper {
 	
 	//상세보기 끝
 
+	public int insertPicture(Picture picture);
 
 }

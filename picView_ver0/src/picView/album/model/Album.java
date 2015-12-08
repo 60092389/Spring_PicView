@@ -3,6 +3,9 @@ package picView.album.model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import org.springframework.stereotype.Repository;
+
+
 public class Album implements Serializable{
 	
 	private int alb_no;

@@ -150,9 +150,10 @@
 	<!-- 회원 이름 검색 -->
 	
 	<select id="searchPeople" resultType="Member" parameterType="Search">
-		select mem_name, mem_id, to_date(mem_date, 'yy-mm-dd')mem_date, pic_count
+		select mem_no, mem_name, mem_id, to_date(mem_date, 'yy-mm-dd')mem_date, pic_count, mem_pic
 		from member
 		where mem_name LIKE '%'||#{searchKey}||'%'
+		or mem_id LIKE '%'||#{searchKey}||'%'
 	</select>
 	
 	

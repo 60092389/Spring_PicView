@@ -42,5 +42,15 @@
 				$(this).find('.back_color').css('opacity','0.5');
 			}
 		});
+		$('.level').each(function(index, item){
+			
+				var level = $(this).attr('id');
+				//alert("level" + level);
+				if(level == 3){
+					$(this).parent().parent().css('opacity', '0.5');
+				}
+			
+		});
+		
 	});
 	

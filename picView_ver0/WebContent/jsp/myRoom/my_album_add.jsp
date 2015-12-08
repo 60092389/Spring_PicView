@@ -10,19 +10,35 @@
 
 
 <link href="css/kfonts2.css" rel="stylesheet">
-<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="./album/css/flexslider.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="./album/css/my_album_add.css" type="text/css" />
-<link rel="stylesheet" href="./album/css/selectize.default.css" type="text/css" />
+<link rel="stylesheet" href="../../css/bootstrap.min.css"
+	type="text/css" />
+<link rel="stylesheet" href="./album/css/flexslider.css" type="text/css"
+	media="screen" />
+<link rel="stylesheet" href="./album/css/my_album_add.css"
+	type="text/css" />
+<link rel="stylesheet" href="./album/css/selectize.default.css"
+	type="text/css" />
 <link rel="stylesheet" href="./album/css/normalize.css" type="text/css" />
-<link rel="stylesheet" href="./album/css/stylesheet.css" type="text/css /">
+<link rel="stylesheet" href="./album/css/stylesheet.css"
+	type="text/css /">
 <link rel="styleshhet" href="./album/css/selectize.css" type="text/css" />
+<style type="text/css">
+.listpicc {
+	width: 200px !important;
+}
 
+#pic_plus li {
+	float: left;
+	display : inline !important;
+	width: 100px !important;
+}
+</style>
 
 <script src="./album/js/jquery.min.js"></script>
 <script src="./album/js/modernizr.js"></script>
 <script defer src="./album/js/jquery.flexslider.js"></script>
 <script src="album/js/my_album_add.js"></script>
+
 
 </head>
 <body onload="search()">
@@ -32,10 +48,9 @@
 	</div>
 
 	<script src="./album/js/jquery.js"></script>
-	<script src="./album/js/jquery-ui.js"></script>
+	<!-- <script src="./album/js/jquery-ui.js"></script> -->
 	<script src="./album/js/selectize.js"></script>
 	<script src="./album/js/index.js"></script>
-	<br>
 	<div class="back">
 		<h5>
 			<a href="my_album">앨범 목록으로 돌아가기</a>
@@ -45,8 +60,8 @@
 	<div class="content">
 		<form action="album_add_re" class="form-horizontal">
 
-			<input type="text" value="${mem_no}" name="mem_no" id="mem_no"> <input
-				type="text" value="${getalb_word }" name="getalb_word"
+			<input type="text" value="${mem_no}" name="mem_no" id="mem_no">
+			<input type="text" value="${getalb_word }" name="getalb_word"
 				id="getalb_word">
 
 			<div class="left col-md-4">
@@ -65,8 +80,8 @@
 				</div>
 			</div>
 			<div class="center col-md-4">
-				<div class="form-group ">
-					<ul class="pic_plus col-xs-7 col-lg-7 col-sm-7 " id="pic_plus"
+				<div class="form-group" id="picaddlist">
+					<ul class="pic_plus col-xs-7 col-lg-7 col-sm-7 form-group list-inline" id="pic_plus"
 						name=id ondrop="drop(this, event);" ondragenter="return false;"
 						ondragover="return false;">
 						<p class="bg-info">앨범을 만들고 싶은 사진을 끌어 당기세요</p>
@@ -77,8 +92,7 @@
 			<div class="right col-md-4">
 				<div class="form-group">
 					<div class="col-xs-3 col-lg-5 col-sm-5">
-						<div id="pic_rec" class="form-control" name="pic_rec"
-							placeholder="추천 앨범 키워드">
+						<div id="pic_rec">
 							<p class="bg-info">사진의 주요 키워드가 나타납니다.</p>
 							<div class="pic_rec_ul" id="pic_rec_ul">
 								<div class="control-group">
@@ -112,8 +126,6 @@
 					</div>
 				</div>
 			</div>
-
-
 		</form>
 	</div>
 
@@ -128,8 +140,10 @@
 						name="pic_search">
 				</div>
 				<div class="col-xs-3 col-lg-3 col-sm-3">
-					<input class="form-control pic_search_btn"
-						 type="submit" value="검색">
+					<input type="text" value="${mem_no}" name="mem_no" id="mem_no">
+					<input type="text" value="${getalb_word }" name="getalb_word"
+						id="getalb_word"> <input
+						class="form-control pic_search_btn" type="submit" value="검색">
 				</div>
 			</form>
 		</div>
@@ -142,13 +156,14 @@
 					ondragover="return false;">
 
 					<c:forEach items="${listpic }" var="listpic">
-						<li id="${listpic.pic_no }" ondragstart="drag(this, event)"
-							draggable="true" name="${listpic.tag_name }"><img
-							id="${listpic.tag_name }"
+						<li class="listpicc" id="${listpic.pic_no }"
+							ondragstart="drag(this, event)" draggable="true"
+							name="${listpic.tag_name }"><img class="img-rounded"id="${listpic.tag_name }"
 							src="../../upload/${listpic.pic_add }"></li>
 					</c:forEach>
 				</ul>
 			</div>
+
 		</div>
 	</div>
 	<!-- Modal -->

@@ -1,20 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.net.URLEncoder" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="css/my_Show5.css" rel="stylesheet">
+<link href="./css/my_Show5.css" rel="stylesheet">
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
 <link href="../../css/picView_custom.css" rel="stylesheet"> 
-<link href="../../jsp/myRoom/css/my_Menu.css" rel="stylesheet">
-<link href="../../jsp/myRoom/css/my_Popular_Good.css" rel="stylesheet">
-
+<link href="./css/my_Menu.css" rel="stylesheet">
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
 <style>
 	.photo-grid-container { margin:50px auto 30px auto; max-width:1100px;}
 </style>
@@ -22,32 +21,24 @@
 <title>보여주기</title>
 </head>
 <body>
-<div class="header">
+
+	<div class="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
 
 	<div class="my_Menu">
-		<jsp:include page="../myRoom/my_Menu.jsp"></jsp:include>
+		<jsp:include page="../myRoom/my_Menu.jsp">
+			<jsp:param value="${member}" name="member"/>
+		</jsp:include>
 	</div>
 
 	<div id="myMenu_navi">
-		<ul class="nav nav-pills">
-			<li class="menu"><a href="my_Manage.html">사진 관리</a></li>
-			<li class="menu active"><a href="my_Show.html">보여 주기</a></li>
-			<li class="menu"><a href="#">사진첩</a></li>
-			<li class="menu"><a href="#">관심 사진</a></li>
-			<li class="menu"><a href="follow.jsp">친구 목록</a></li>
-			<li id="other" class="dropdown"><a href=""
-				data-toggle="dropdown"> 그 외 <span class="caret"></span>
-			</a>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="my_Tag.jsp">태그별</a>
-					<li><a href="my_Popular_Hit.jsp">인기별</a>
-					<li><a href="#">다운로드 기록</a>
-					<li><a href="#">프로필</a>
-				</ul></li>
-		</ul>
+		<jsp:include page="menu_nav.jsp">
+			<jsp:param value="${member}" name="member"/>
+			<jsp:param value="${level }" name="level"/>
+		</jsp:include>
 	</div>
+
 
 
 	<div class="contents">
@@ -61,8 +52,9 @@
 					<a class="search-toggle" href="#"></a>
 					
 					<input class="magic-search" type="text" value="" placeholder="사진 스트림 검색">
+					<a class="overlay"><span class="search"></span></a>
 				</div>
-				<a class="overlay"><span class="search"></span></a>
+				
 			</div>
 			<div id="show_btn" class="btn-group">
 				<button type="button" class="btn btn-default dropdown-toggle"

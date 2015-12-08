@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -29,20 +30,36 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import picView.upload.model.NaverSearch;
+import picView.member.model.AuthInfo;
 import picView.picture.model.Picture;
-import picView.upload.model.UploadDao;
+import picView.picture.model.PictureDao;
 
 @Service
 public class DragAPIService {
 	
-	private UploadDao dao;
+	//private UploadDao dao;
 	
-	@Autowired
+	private PictureDao dao;
+	
+	/*@Autowired
 	public void setDao(UploadDao dao) {
 		this.dao = dao;
+	}*/
+	
+	@Autowired
+	public void setDao(PictureDao dao) {
+		this.dao = dao;
 	}
+	
 
-	public void post_upload(MultipartHttpServletRequest multipartRequest, Picture picture, HttpServletRequest request) throws IllegalStateException, IOException {
+	public void post_upload(MultipartHttpServletRequest multipartRequest, Picture picture, 
+			HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
+		
+		
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		
+		int mem_no = authInfo.getMem_no();
+		
 		System.out.println("------------------------------------");
 		System.out.println("제목=" + picture.getPic_title());
 		 System.out.println("태그는????" + picture.getTag_name());
@@ -60,7 +77,7 @@ public class DragAPIService {
 	            String uploadPath = request.getRealPath("upload");
 	            mpf.transferTo(new File(uploadPath,newFileName));
 	              picture.setPic_add(newFileName);
-	        	  picture.setMem_no(1);
+	        	  picture.setMem_no(mem_no);
 	        	  picture.setGood_count(0);
 	        	  picture.setPic_count(0);
 	        	  System.out.println(picture.toString());
@@ -68,6 +85,7 @@ public class DragAPIService {
 	        	  dao.insertPicture(picture);
 	        }
 	}
+
 	public void search_api(Model model,HttpServletRequest request){
 		String urlString="";
 		NaverSearch naver = null;

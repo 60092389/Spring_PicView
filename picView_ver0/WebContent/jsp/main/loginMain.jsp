@@ -19,6 +19,7 @@
 </head>
 
 <body style="background-color:#f3f5f6 ">
+	<!-- <script src="../../js/bootstrap.min.js"></script> -->
 	<div id="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
@@ -42,7 +43,7 @@
 				<!-- 친구목록끝 -->	
 			</div>
 			<div id="activityFeed"><!--뉴스피드 시작  -->
-				
+				<input type="hidden" name="mem_no" id="mem_no" value="${authInfo.mem_no }">
 				 
 					 
 			</div>

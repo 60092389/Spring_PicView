@@ -83,7 +83,7 @@
 				  <div class="avatar person medium" style="background-image: url(../../upload/${memInfo.mem_pic});"></div>
 				  <!-- //c2.staticflickr.com/8/7329/buddyicons/51919822@N05_l.jpg?1383412877#51919822@N05 -->
 				  <div class="attribution-info">
-				  	<a class="owner-name truncate" title="Vincent Ting 님의 포토스트림으로 이동" href="/photos/formosating/" >
+				  	<a class="owner-name truncate" title="Vincent Ting 님의 포토스트림으로 이동" href="../../jsp/myRoom/myShowForm${memInfo.mem_no }" >
 					${memInfo.mem_name }
 				  	</a>
 				  	<div class="view follow-view clear-float photo-attribution">
