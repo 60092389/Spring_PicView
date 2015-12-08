@@ -365,6 +365,7 @@ public class AlbumService {
 	public List<Picture> grouplist(int alb_no){
 		List<Picture> listpic = new ArrayList<>();
 		List<Group_Pic> gp = dao.grouplist(alb_no);
+		Category catelist = new Category();
 		System.out.println("gp 몇개? : " +gp.size());
 		int pic_no[] = new int[100];
 		for(int cnt=0; cnt< gp.size(); cnt++){
@@ -375,9 +376,19 @@ public class AlbumService {
 		for(int i =0; i< gp.size(); i++){
 			if(gp.size() == 1){
 				Picture pic = dao.selectPicture(pic_no[0]);
+				if(pic.getTag_name() ==null){
+					catelist = dao.categorylist(pic.getCategory_no());
+					pic.setTag_name(catelist.getCategory_name());
+				}
+			
 				listpic.add(pic);
 			}else{
 			Picture pic = dao.selectPicture(pic_no[i]);
+			if(pic.getTag_name() ==null){
+				catelist = dao.categorylist(pic.getCategory_no());
+				pic.setTag_name(catelist.getCategory_name());
+			}
+			
 			listpic.add(pic);
 			System.out.println("listpic 출력과정 :" + pic_no[i]);
 			}
