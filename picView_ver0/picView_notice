@@ -146,8 +146,18 @@ jsp->layout->header.jsp 수정
 18. picView.album패키지 다
 19. picView.picutre 패키지 다
 
+---------------------
 2015/12/08 16:35 최연식
 
 picView.album.service : 수정했어용
+
+-------------
+
+2015/12/08 16:49 최연식
+
+jsp->myRoom-> my_album_add.jsp, my_album_add_update.jsp
+
+여기서 뒤로가기 <a href="my_album${mem_no}">앨범 목록으로 돌아가기</a>
+일케 수정했어용
 
 

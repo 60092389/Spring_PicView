@@ -48,7 +48,7 @@
 	<br>
 	<div class="back">
 		<h5>
-			<a href="my_album">앨범 목록으로 돌아가기</a>
+			<a href="my_album${mem_no}">앨범 목록으로 돌아가기</a>
 		</h5>
 	</div>
 	<hr>
