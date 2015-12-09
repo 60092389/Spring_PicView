@@ -138,8 +138,8 @@
 		order by pic_date desc
 	</select>
 	
-
 	<!-- 상세보기 -->
+	
 	<select id="main_pic" parameterType="int" resultType="String">
 		select pic_add
 		from picture
@@ -174,7 +174,6 @@
 		where pic_no = #{pic_no}
 	</select>
 
-		
 	<select id="tag_list" parameterType="int" resultType="String">
 		select tag_name
 		from picture 
@@ -187,6 +186,59 @@
 		from picture 
 		where pic_no = #{pic_no}
 	</select>
+	
+	<select id="findGood" parameterType="int" resultType="int">
+		select count(good_no)
+		from good
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="findCategory" parameterType="int" resultType="String">
+		select category_name
+		from category
+		where category_no = (select category_no
+								from picture
+								where pic_no = #{pic_no})
+		
+	</select>
+	
+	<select id="findAlbum_pic_add" parameterType="int" resultType="String">
+		select pic_add
+		from picture
+		where pic_no in (select min(pic_no)
+						from group_pic
+						where alb_no in (select alb_no
+										from group_pic
+										where pic_no = #{pic_no})
+						group by alb_no)
+		order by pic_no
+	</select>
+	
+	<select id="findAlbum_name" parameterType="int" resultType="String">
+		select alb_name
+		from album
+		where alb_no in (select alb_no 
+						from group_pic 
+						where pic_no = #{pic_no})
+		order by alb_no
+	</select>
+	
+	<select id="findAlbum_count" parameterType="int" resultType="int">
+		select count(group_no) 
+		from group_pic 
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="findAlbum_pic_count" parameterType="int" resultType="Integer">
+		select count(pic_no)
+		from group_pic
+		where alb_no in (select alb_no 
+						from group_pic 
+						where pic_no = #{pic_no})
+		group by alb_no
+		order by alb_no
+	</select>
+	
 	<!-- 상세보기 끝 -->
 	
 	

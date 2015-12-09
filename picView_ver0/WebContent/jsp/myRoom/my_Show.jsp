@@ -81,7 +81,7 @@
 					<c:forEach var="s" items="${myShowList}">
 						
 				 		 <div class="photo-grid-item">
-				 		 	<a class="overlay" href="../../jsp/basic/picDetail.jsp${s.pic_no}">
+				 		 	<a class="overlay" href="../../jsp/basic/picDetail?pic_no=${s.pic_no}">
 								<img src="../../upload/${s.pic_add}">
 							</a>
 							

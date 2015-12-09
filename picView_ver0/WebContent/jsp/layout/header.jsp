@@ -71,7 +71,7 @@ Bootstrap
 				html += "<div class='view photo-list-photo-view awake'>";
 				html += "<div class='interaction-view'>";
 				html += "<div class='photo-list-photo-interaction'>";
-				html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
+				html += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html += "<div class='view photo-list-view'>";
@@ -120,7 +120,7 @@ Bootstrap
 			    html3 += "<div class='view photo-list-photo-view awake'>";
 				html3 += "<div class='interaction-view'>";
 				html3 += "<div class='photo-list-photo-interaction'>";
-				html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
+				html3 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html3 += "<div class='view photo-list-view'>";
@@ -170,7 +170,7 @@ Bootstrap
 			    html2 += "<div class='view photo-list-photo-view awake'>";
 				html2 += "<div class='interaction-view'>";
 				html2 += "<div class='photo-list-photo-interaction'>";
-				html2 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
+				html2 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
 					"<img class='allPicture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html2 += "<div class='view photo-list-view'>";

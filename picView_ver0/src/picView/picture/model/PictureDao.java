@@ -44,9 +44,9 @@ public class PictureDao {
 
 	// 해당 회원의 사진목록 뽑기
 	public List<Picture> PictureList(int mem_no) {
-		
+
 		System.out.println("PictureList DAO ");
-		
+
 		return myTemplate.getMapper(PictureMapper.class).PictureList(mem_no);
 	}
 
@@ -62,8 +62,6 @@ public class PictureDao {
 	public void DeletePicture(int pic_no) {
 		myTemplate.getMapper(PictureMapper.class).DeletePicture(pic_no);
 	}
-	
-	
 
 	// 채영
 	// 보여주기 사진목록
@@ -106,11 +104,41 @@ public class PictureDao {
 	public String main_pic(int pic_no) {
 		return myTemplate.getMapper(PictureMapper.class).main_pic(pic_no);
 	}
+
+	// 상세보기 - 좋아요
+	public int findGood(int pic_no) {
+		return myTemplate.getMapper(PictureMapper.class).findGood(pic_no);
+	}
+
+	// 상세보기 - 카테고리
+	public String findCategory(int pic_no) {
+		return myTemplate.getMapper(PictureMapper.class).findCategory(pic_no);
+	}
+
+	// 상세보기 - 앨범 개수
+	public int findAlbum_count(int pic_no) {
+		return myTemplate.getMapper(PictureMapper.class).findAlbum_count(pic_no);
+	}
+
+	// 상세보기 - 앨범 이미지
+	public List<String> findAlbum_pic_add(int pic_no) {
+		return myTemplate.getMapper(PictureMapper.class).findAlbum_pic_add(pic_no);
+	}
+
+	// 상세보기 - 앨범 이름
+	public List<String> findAlbum_name(int pic_no) {
+		return myTemplate.getMapper(PictureMapper.class).findAlbum_name(pic_no);
+	}
+
+	// 상세보기 - 앨범에 속한 사진 개수
+	public List<Integer> findAlbum_pic_count(int pic_no) {
+		return myTemplate.getMapper(PictureMapper.class).findAlbum_pic_count(pic_no);
+	}
+
 	// 상세보기 끝
 
-	public int insertPicture(Picture picture){
+	public int insertPicture(Picture picture) {
 		return myTemplate.getMapper(PictureMapper.class).insertPicture(picture);
-	}	
-	
-	
+	}
+
 }
