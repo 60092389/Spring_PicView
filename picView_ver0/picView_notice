@@ -166,7 +166,7 @@ picture, search, member , reply 패키지
 
 jsp -> search 전체다
     -> login register.jsp 랑 css 
-    
+    -> myRoom -> myShow 수정했는데 css, js, jsp 다 수정해서 그냥 다 가져가세요
 마이바티스 
 (그냥 모두 가져가세요)
 
