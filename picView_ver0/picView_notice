@@ -170,4 +170,14 @@ jsp -> search 전체다
 마이바티스 
 (그냥 모두 가져가세요)
 
+-------------------------------------
+2015/12/09 14:36 황재준
+상세보기
+
+picture 패키지
+
+basic -> picDetail.jsp
+myRoom -> myShow.jsp
+layout -> header.jsp
+search -> search.jsp, detailSearch.jsp
 
