@@ -341,7 +341,7 @@ Bootstrap
 	          <li><a class="dropdown active account-padding" href="#" data-toggle="dropdown">
 	          	계정<span class="caret"></span></a>
 	          	<ul class="dropdown-menu" role="menu">
-	          		<li><a href="../account/message.jsp">쪽지함</a></li>
+	          		<li><a href="../message/message">쪽지함</a></li>
 	          		<li><a href="#">상세 도움말</a></li>
 	          		<li><a href="../account/accountSet.jsp">계정 설정</a></li>
 	          		<li><a onclick="logout()">로그아웃</a></li>

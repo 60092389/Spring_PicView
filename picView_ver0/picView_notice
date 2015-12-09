@@ -276,3 +276,5 @@ create sequence anl_no_seq;
 
 
 jsp -> myRoom, message 통째로
+
+jsp -> layout -> header
