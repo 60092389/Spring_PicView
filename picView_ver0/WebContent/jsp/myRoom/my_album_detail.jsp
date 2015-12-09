@@ -52,49 +52,53 @@
 		});
 	</script>
 
-	<br>
-	<br>
-	<div class="back">
-		&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
-			class="btn btn-default btn-sm" value="앨범 목록으로 돌아가기"
-			onclick="location.href='my_album${mem_no}'"> &nbsp;&nbsp;&nbsp;&nbsp;
-		<form action="my_album_update" id="my_album_update">
-			<input type="text" name="mem_no" value="${mem_no }" id="hiddeninfor">
-			<input type="text" name="alb_no" value="${alb_no }" id="hiddeninfor">
-			<c:if test="${level == '1'}">
-				<input type="submit" class="btn btn-default btn-sm" value="앨범 수정하기">
-			</c:if>
-		</form>
-		
-		<form action="my_album_level" id="my_album_level">
-			<input type="text" name="mem_no" value="${mem_no }" id="hiddeninfor">
-			<input type="text" name="alb_no" value="${alb_no }" id="hiddeninfor">
-			<c:if test="${level == '1'}">
-			<select class="form-control alb_open" name="alb_open">
-				<option  value="1">공개</option>
-				<option  value="2">친구 만보기</option>
-				<option  value="3">비공개</option>
-			</select>	<input type="submit" class="btn btn-default btn-sm" value="앨범 권한 변경">
-		</form>
-		</c:if>
-	</div>
-	<br>
-	<hr>
+	
 	<div class="contents">
-
+		
+	  <div class="album-container fluid-centered">
+	  	<div class="back" id="album-toolbar-content">
+	  		<div align="left">
+			  	<a class="back-to-albums" href="my_album${mem_no}">
+					<span class="back-to-albums-icon"></span>
+					<span class="back-to-albums-text"> 앨범 목록으로 돌아가기 </span>
+				</a>
+				<form action="my_album_update" id="my_album_update">
+				<input type="text" name="mem_no" value="${mem_no }" id="hiddeninfor">
+				<input type="text" name="alb_no" value="${alb_no }" id="hiddeninfor">
+				<c:if test="${level == '1'}">
+					
+					<input class="btn btn-primary" type="submit" value="앨범 수정하기">
+				</c:if>
+				</form>
+				
+				<form action="my_album_level" id="my_album_level" style="display: inline-flex;">
+					<input type="text" name="mem_no" value="${mem_no }" id="hiddeninfor">
+					<input type="text" name="alb_no" value="${alb_no }" id="hiddeninfor">
+					<c:if test="${level == '1'}">
+					<select class="form-control alb_open" name="alb_open">
+						<option  value="1">공개</option>
+						<option  value="2">친구 만보기</option>
+						<option  value="3">비공개</option>
+					</select>	<input type="submit" class="btn btn-default btn-sm" value="앨범 권한 변경">
+				</form>
+				</c:if>
+			</div>
+		
+		<%-- <input type="button" class="back-to-albums-text" value="앨범 목록으로 돌아가기"
+			onclick="location.href='my_album${mem_no}'"> &nbsp;&nbsp;&nbsp;&nbsp; --%>
+			
+		</div>
 		<div class="alb_name"
-			style="background-image: url('../../upload/${detailAlbumPic[0] }')">
+			style="background-image: url('../../upload/${detailAlbumPic[0] }');height: 300px;">
 			<br> <br>
 			<h2>제목 : ${detailAlbum.alb_name }</h2>
 			<br>
 			<h3>키워드 : ${detailAlbum.alb_word }</h3>
 		</div>
-		<br>
 		<div class="alb_content">
 			<h4>${detailAlbum.alb_content }</h4>
 		</div>
 
-		<br> <br>
 		<div class="alb_detail">
 
 			<div class="content">
@@ -111,6 +115,7 @@
 			</div>
 
 		</div>
+	  </div>
 	</div>
 
 

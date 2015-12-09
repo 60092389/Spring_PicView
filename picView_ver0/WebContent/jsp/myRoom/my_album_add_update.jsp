@@ -45,14 +45,17 @@
 	<script src="album/js/jquery-ui.js"></script>
 	<script src="album/js/selectize.js"></script>
 	<script src="album/js/index.js"></script>
-	<br>
-	<div class="back">
-		<h5>
-			<a href="my_album${mem_no}">앨범 목록으로 돌아가기</a>
-		</h5>
-	</div>
-	<hr>
+<div class="contents">
 	<div class="content">
+		<div class="back">
+			<h5>
+				<!-- <a href="my_album">앨범 목록으로 돌아가기</a> -->
+				<a class="back-to-albums" href="my_album${mem_no}">
+					<span class="back-to-albums-icon"></span>
+					<span class="back-to-albums-text" style="font-weight:600"> 앨범 목록으로 돌아가기 </span>
+				</a>
+			</h5>
+		</div>
 		<form action="album_add_updae_re" class="form-horizontal">
 				
 			<input type="text" id="mem_nohidden"value="${mem_no}" name="mem_no"> <input
@@ -75,11 +78,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="center col-md-4">
-				<div class="form-group ">
+			<div class="center col-md-4" style="padding: 0">
+				<div class="form-group " style="margin: 0">
 					<ul class="pic_plus col-xs-7 col-lg-7 col-sm-7 form-group list-inline" id="pic_plus"
 						name=id ondrop="drop(this, event);" ondragenter="return false;"
-						ondragover="return false;">
+						ondragover="return false;"  style="width: 430px;margin: 0px;padding: 0">
 						<p class="bg-info">앨범을 만들고 싶은 사진을 끌어 당기세요</p>
 						<c:forEach items="${detailAlbumPic_add}" var="detailAlbumPic_add">
 							<li id="${detailAlbumPic_add.pic_no }" ondragstart="drag(this, event)"
@@ -92,9 +95,9 @@
 					</ul>
 				</div>
 			</div>
-			<div class="right col-md-4">
+			<div class="right col-md-4" style="padding-top: 0">
 				<div class="form-group">
-					<div class="col-xs-3 col-lg-5 col-sm-5">
+					<div class="col-xs-3 col-lg-5 col-sm-5" style="padding-top: 0">
 						<div id="pic_rec" >
 							<p class="bg-info">사진의 주요 키워드가 나타납니다.</p>
 							<div class="pic_rec_ul" id="pic_rec_ul">
@@ -157,7 +160,7 @@
 
 	<div class="botto">
 
-		<div class="pic_search ">
+		<div class="pic_search " style="margin-left: 46px">
 			<form class="form-group" action="pic_search">
 				<div class="col-xs-3 col-lg-3 col-sm-3">
 					<input class="form-control" type="text"
@@ -168,7 +171,11 @@
 					<input type="text" value="${mem_no}" name="mem_no" id="mem_no">
 					<input type="text" value="${getalb_word }" name="getalb_word"
 						id="getalb_word"> <input
-						class="form-control pic_search_btn" type="submit" value="검색">
+						class="form-control pic_search_btn" type="submit" value="검색"
+						style="background: #0063dc none repeat scroll 0 0; border-radius: 4px;
+						color: #fff;cursor: pointer;font-weight: bold; 
+						padding: 4px 6px;text-decoration: none;text-overflow: ellipsis; 
+						white-space: nowrap;width: 55px; ">
 				</div>
 			</form>
 			
@@ -229,6 +236,7 @@
 		<!-- 모달 다이얼로그 -->
 	</div>
 	<!-- 모달 전체 윈도우 -->
+</div>
 	<script src="album/js/bootstrap.min.js"></script>
 	<script>
 		if ($('#getalb_word[name=getalb_word]').attr('value') != "") {

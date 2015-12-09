@@ -44,9 +44,27 @@ a {
 	display: none;
 }
 
-#addbutton {
+/* #addbutton {
 	margin-left: 25%;
-}
+} */
 #add{
 	float: right;
+}
+
+#add i {
+    background: rgba(0, 0, 0, 0) url("https://s.yimg.com/uy/build/images/../images/icons-1x-s2fb29ad15b.png") no-repeat scroll -115px -324px;
+    display: flex;
+    height: 18px;
+    margin-right: 7px;
+    pointer-events: none;
+    position: relative;
+    top: -1px;
+    width: 18px;
+}
+.album_contents{
+	background-color: #f3f5f6;
+}
+
+.panel_25{
+	background-color: #f3f5f6;
 }

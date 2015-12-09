@@ -62,9 +62,7 @@ ol {
 	height: 140px;
 }
 
-#alb_content {
-	height: 150px;
-}
+
 
 #pic_plus {
 	width: 460px;
@@ -83,8 +81,8 @@ ol {
 }
 
 #alb_content {
-	width: 415px;
-	height: 286px
+	width: 400px;
+	height: 272px
 }
 
 #pic_rec {
@@ -97,4 +95,19 @@ ol {
 }
 #alb_add{
 	width: 399px;
+}
+.back-to-albums {
+    color: #212124;
+    text-decoration: none;
+}
+.back-to-albums-icon {
+    background: rgba(0, 0, 0, 0) url("https://s.yimg.com/uy/build/images/../images/icons-1x-s2fb29ad15b.png") no-repeat scroll -52px 0;
+    bottom: -2px;
+    display: inline-block;
+    height: 14px;
+    position: relative;
+    width: 8px;
+}
+.back-to-albums-text {
+    margin-left: 5px;
 }

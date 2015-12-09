@@ -36,39 +36,40 @@
 		</jsp:include>
 	</div>
 
-
-
+ 
 	<div class="album_contents">
 
 		<br> <br>
 		<div id="page">
 			<div id="wrapper">
 
-				<img id="movingboxes"src="album/img/movingboxes.png" alt="moving boxes" />
-				<form id="add" action="album_add">
+				<div class="view album-list-toolbar-view" style="margin: 10px 0px;">
+				<form id="" action="album_add">
 					<input id="hiddenval" type="text" value="${authInfo.mem_no }" name="mem_no">
 					<input id="hiddenval" type="text" value="" name="getalb_word">
-					<input id="addbutton" class="btn btn-default btn-lg" type="submit"
+					<i></i>
+					<input id="addbutton" class="btn btn-primary" type="submit"
 						value="앨범 추가하기">
 				</form>
-				<div id="slider">
+				</div>
+				<div id="slider" style="height: 400px;">
 
-					<img class="scrollButtons left" src="album/img/leftarrow.png">
+					<!-- <img class="scrollButtons left" src="album/img/leftarrow.png"> -->
+					<span class="scrollButtons left glyphicon glyphicon-chevron-left" style="position: absolute;top:127px;font-size:45px"></span>
 
-
-					<div style="overflow: hidden;" class="scroll">
+					<div style="overflow: hidden;top: 30px;width:900px" class="scroll">
 						<div class="scrollContainer">
 							<c:forEach var="albumpiclist" items="${albumpiclist }"
 								varStatus="apl">
-								<div class="panel" id="panel_${mem_no }">
-									<div class="inside" id="${mem_no }">
+								<div class="panel" id="panel_${mem_no }" style="background-color:#f3f5f6">
+									<div class="inside" id="${mem_no }" style="height: 310px;border: 1px solid #cfd6d9">
 										<img src="../../upload/${albumpiclist}"
-											alt="picture_${albumpiclist}" />
+											alt="picture_${albumpiclist}" height="180px"/>
 										<c:forEach var="albumlist" items="${albumlist }"
 											varStatus="alb">
 											<c:choose>
 												<c:when test="${apl.index == alb.index }">
-													<h2>제목 : ${albumlist.alb_name }    </h2>
+													<h2><b>제목</b> : ${albumlist.alb_name }    </h2>
 													<c:if test="${albumlist.alb_open==1 }">
 													<c:set var="i" value="전체 공개"></c:set>
 													</c:if>
@@ -84,9 +85,9 @@
 													<p>
 														 <a
 															href="my_album_detail?alb_no=${albumlist.alb_no }&fri_no=${albumlist.mem_no}">
-															앨범보기 </a>
+															<button type="button" class="btn btn-primary btn-sm">앨범보기</button> </a>
 															<c:if test="${level == '1'}">
-																<a href="my_album_delete?alb_no=${albumlist.alb_no }">앨범삭제</a>
+																<a href="my_album_delete?alb_no=${albumlist.alb_no }"><button type="button" class="btn btn-danger btn-sm">앨범삭제</button></a>
 															</c:if>
 													</p>
 												</c:when>
@@ -101,8 +102,8 @@
 						<div id="right-shadow"></div>
 
 					</div>
-
-					<img class="scrollButtons right" src="album/img/rightarrow.png">
+					<span class="scrollButtons right glyphicon glyphicon-chevron-right" style="position: absolute;top:127px;font-size:45px"></span>
+					<!-- <img class="scrollButtons right" src="album/img/rightarrow.png"> -->
 
 				</div>
 
@@ -111,7 +112,6 @@
 		</div>
 
 	</div>
-
 
 
 
