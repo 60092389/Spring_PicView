@@ -1,18 +1,11 @@
 $(function(){
-	var requestPage =1;
 	var index_chk =0;
-	$('#requestPage').val(1);
 	$(window).scroll(function(){
 		if  ($(window).scrollTop() == $(document).height() - $(window).height()){
 		   receiveMessage();
 		}
 	});
-	
 	var mem_no = $('#mem_no').val();
-	
-	
-	
-	
 	
 	
 	$.ajax({
@@ -22,6 +15,7 @@ $(function(){
 		success:function(data){
 			//alert(data.requestPage);
 			$('#totalCount').val(data);
+			$('#requestPage').val(0);
 			receiveMessage();
 			friendList();
 			
@@ -48,6 +42,8 @@ $(function(){
 		
 		 if(!requestPage){
 			 requestPage = 1;
+		 }else{
+			 requestPage++;
 		 }
 		 
 		$.ajax({
@@ -61,15 +57,19 @@ $(function(){
 			success:function(data){
 				
 				var totalCount = $('#totalCount').val();
-					requestPage++;
+				var total = data.newsfeed_count;
+					if(total == 1){
+						requestPage = 0;
+					}
 					if(requestPage < totalCount){
-					$('#requestPage').val(requestPage);
-					var list = data.list;
+						$('#requestPage').val(requestPage);
+						
+						var list = data.list;
 					
 					$.each(list, function(index,newsfeed){
 						if(newsfeed.pic_add !=undefined){
-						var length = newsfeed.pic_add.length;
-						var pic_name = newsfeed.pic_add.substring(15,length);
+							var length = newsfeed.pic_add.length;
+							var pic_name = newsfeed.pic_add.substring(15,length);
 						}
 						 var friend_html = "<div id='firstCard' class='card card-a card-bundle clearfix firstCard'>";
 						 	 friend_html += "<div class='imgContainer'>";
@@ -83,7 +83,7 @@ $(function(){
 						 	 friend_html += "<a class='buddyicon; href='/photos/134675537@N03'>";
 						 	 friend_html += "<img class='defer src='../../upload/"+newsfeed.pic_add+"'>";
 						 	 friend_html += "</a><span class='photo-details'>";
-						 	 friend_html += "<div class='name'><a class='' href='../../jsp/myRoom/myShowForm"+newsfeed.mem_no+"'>"+newsfeed.mem_name+"</a>";
+						 	 friend_html += "<div class='name'><a class='' href='/photos/134675537@N03'>"+newsfeed.mem_name+"</a>";
 							 friend_html += "<span class='activity-item-date'>· 8일 전</span>";
 							 friend_html += "</div><div class='title'><a href='/photos/134675537@N03/23110624686/'>"+pic_name+"</a>";
 							 friend_html += "</div></span><ul class='photo-engagement'><li class='favorites' id='favorites"+index_chk+"'>";
@@ -113,7 +113,7 @@ $(function(){
 					    	follow_html +="<span class='action-author'>";
 					    	follow_html +="<a class='buddyicon' href='/photos/118500465@N06'>";
 					    	follow_html +="<img class='defer' width='32' height='32' src='../../upload/"+newsfeed.mem_pic+"'>";
-					    	follow_html +="</a><a class='usernameLink' href='../../jsp/myRoom/myShowForm"+newsfeed.mem_no+"'>"+newsfeed.mem_name+"</a>님이 회원님을 팔로우하고 있습니다.";
+					    	follow_html +="</a><a class='usernameLink' href='/photos/118500465@N06'>"+newsfeed.mem_name+"</a>님이 회원님을 팔로우하고 있습니다.";
 					    	follow_html +="<span class='action-date'>2달 전</span>";
 					    	follow_html +="</span><button class='follow-button' href='/people/118500465@N06/relationship/'>";
 					    	follow_html +="<span class='follow'>팔로우</span><!-- <span class='check'>✓</span> -->";
@@ -125,7 +125,7 @@ $(function(){
 					    	good_html += "<div class='sub-photo-view2'>";
 					    	good_html += "<span class='photo-details2'>";
 					    	good_html += "<div class='name'>";
-					    	good_html += "<a class='' href='../../jsp/myRoom/myShowForm"+newsfeed.mem_no+"'>"+newsfeed.mem_name+"</a>님이 좋아했습니다.";
+					    	good_html += "<a class='' href='/photos/134675537@N03'>"+newsfeed.mem_name+"</a>님이 좋아했습니다.";
 					    	good_html += "</div></span></div>";
 					    	good_html += "<div id='firstCard2' class='card2 card-a card-bundle clearfix firstCard'>";
 					    	good_html += "<div class='imgContainer'>";
@@ -209,8 +209,6 @@ $(function(){
 					});
 					
 					$('.submit-comment').click(function(){
-						
-						
 						var index = $('.submit-comment').index(this);
 						
 						var formData = $(".comment-form"+index).serialize();
