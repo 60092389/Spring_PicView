@@ -210,3 +210,69 @@ css-picView_custom.css추가 (밑에 세줄)
 upload폴더 모두 바꿈
 
 ---------------------------------------
+
+2015/12/09 18:30 황재준
+
+analysis 관련 패키지, message 관련 패키지 전부 가져가시고
+
+drop table analysis purge
+drop table message purge
+
+- 쪽지
+create table message(
+	msg_no number not null,
+	mem_no number not null,
+	msg_sender varchar2(100) not null,
+	msg_receiver varchar2(100) not null,
+	msg_content varchar2(1000) not null,
+	msg_check char(1) check(msg_check IN('Y','N')) not null,
+	msg_wri_date date not null,
+	msg_rec_date date,
+	msg_list_check number not null
+)
+
+ALTER TABLE message
+               ADD CONSTRAINT msg_msgno_pk PRIMARY KEY(msg_no);
+
+
+ALTER TABLE message
+               ADD CONSTRAINT msg_memno_fk FOREIGN KEY(mem_no)
+                                             REFERENCES member(mem_no);
+
+create sequence msg_no_seq
+
+
+- 유입분석
+
+create table analysis(
+	anl_no number, --분석번호
+	mem_no number, --회원번호
+	pic_no number, --사진번호
+	pic_count number, --사진조횟수
+	good_count number, -- 좋아요갯수
+	rep_count number, --댓글갯수
+	anl_word varchar2(70) not null, --검색단어
+	anl_date date not null, --검색날짜
+	anl_count number not null --검색횟수
+)
+
+
+
+ALTER TABLE analysis
+	       ADD CONSTRAINT anl_no_pk PRIMARY KEY (anl_no);
+
+
+ALTER TABLE analysis
+               ADD CONSTRAINT anl_memno_fk FOREIGN KEY(mem_no)
+                                             REFERENCES member(mem_no);
+
+ALTER TABLE analysis
+               ADD CONSTRAINT anl_picno_fk FOREIGN KEY(pic_no)
+                                             REFERENCES picture(pic_no);
+
+
+create sequence anl_no_seq;
+
+
+
+jsp -> myRoom, message 통째로

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="picView.analysis.mapper.AnalysisMapper">
+	<cache />
+	
+	<select id="listAnalysis" parameterType="int" resultType="Analysis">
+		select * from analysis
+		where mem_no = #{mem_no}
+		order by anl_no
+	</select>
+	
+	<select id="select_no" parameterType="Analysis_select" resultType="int">
+		select count(anl_no)
+		from analysis
+		where mem_no = #{mem_no} and pic_no = #{pic_no} and anl_word = #{anl_word} 
+	</select>
+	
+	<update id="updateAnl_count" parameterType="Analysis">
+		update analysis
+		set anl_count = anl_count+1, anl_date = sysdate
+		where anl_no = (select anl_no
+						from analysis
+						where mem_no = #{mem_no} and pic_no = #{pic_no} 
+						and anl_word = #{anl_word})
+	</update>
+	
+	<insert id="insertAnalysis" parameterType="Analysis">
+		insert into analysis 
+		values(anl_no_seq.nextval, #{mem_no}, #{pic_no}, (select pic_add from picture where mem_no = #{mem_no} and pic_no = #{pic_no}), 
+		(select pic_count from picture where pic_no = #{pic_no}), (select good_count from picture where pic_no = #{pic_no}), 
+		(select count(*) from reply where pic_no = #{pic_no}), #{anl_word}, sysdate, '1')
+		
+		<!-- insert into analysis 
+		values(anl_no_seq.nextval, 1, 1, (select pic_add from picture where mem_no = 1 and pic_no = 1), 
+		(select pic_count from picture where pic_no = 1), (select good_count from picture where pic_no = 1), 
+		(select count(*) from reply where pic_no = 1), '테스트', sysdate, '1') -->
+	</insert>
+	
+
+</mapper>

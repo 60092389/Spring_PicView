@@ -19,7 +19,10 @@
 		<typeAlias type="picView.search.model.SearchResult" alias="SearchResult"/>
 		<typeAlias type="picView.search.model.Search" alias="Search"/>
 		
+		<typeAlias type="picView.analysis.model.Analysis" alias = "Analysis"/>
+		<typeAlias type="picView.analysis.model.Analysis_select" alias = "Analysis_select"/>
 		<typeAlias type="picView.good.model.Good" alias = "Good"/>
+		<typeAlias type="picView.message.model.Message" alias = "Message"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -47,7 +50,9 @@
 		<mapper resource="picView/album/mapper/Album.xml"/>
 		<mapper resource="picView/search/mapper/Search.xml"/>
 		
+		<mapper resource="picView/analysis/mapper/Analysis.xml"/>
 		<mapper resource="picView/good/mapper/Good.xml"/>
+		<mapper resource="picView/message/mapper/Message.xml"/>
 	</mappers>
 	
 </configuration>

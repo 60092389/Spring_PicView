@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="picView.message.mapper.MessageMapper">
+	<cache />
+	
+	<!-- 이거참 힘드네 -->
+	<!-- <select id="findReceiver" parameterType="String">
+		select m.mem_no
+		from member
+		where mem_name = #{msg_receiver}
+	</select> -->
+	
+	<update id="update_rec_date" parameterType="Message">
+		update message
+		set msg_check = 'Y', msg_rec_date = sysdate
+		where msg_no = #{msg_no}
+	</update>
+		
+	<select id="findMessage" parameterType="String" resultType="Message">
+		select *
+		from message
+		where msg_no = #{msg_no} 
+	</select>
+	
+	<insert id="sendMessage" parameterType="Message">
+	
+		insert into message
+		values(msg_no_seq.nextval, (select mem_no
+										from member
+										where mem_name = #{msg_receiver}), 
+			#{msg_sender}, #{msg_receiver}, #{msg_content}, 'N', SYSDATE, null, '1'
+		) 
+	</insert>
+		
+	<select id="listMessage" parameterType="int" resultType="Message">
+		select * from message
+		where mem_no = #{mem_no} and msg_list_check = '1'
+		order by msg_no+0 desc
+	</select>
+	
+	<select id="sendList" parameterType="int" resultType="Message">
+		select * from message
+		where msg_sender = (select mem_name
+							from member
+							where mem_no = #{mem_no})
+		order by msg_no+0 desc
+	</select>
+		
+	<update id="saveMessage" parameterType="HashMap">
+		update message
+		set msg_list_check = '2'
+		where msg_no in
+		<foreach collection="msg_no" item="msg_no" separator="," open="(" close=")">
+			#{msg_no}
+		</foreach>
+	</update>
+	
+	<select id="saveList" parameterType="int" resultType="Message">
+		select * from message
+		where mem_no = #{mem_no} and msg_list_check = '2'
+		order by msg_no+0 desc
+	</select>
+	
+	<select id="detailMessage" parameterType="int" resultType="Message">
+		select * from message
+		where msg_no = #{msg_no}
+	</select>
+	
+	<delete id="deleteMessage" parameterType="HashMap">
+		delete from message 
+		<!-- <where>
+			find_in_set(msg_no, #{msg_no})
+		</where> -->
+		<!-- where msg_no = #{msg_no} -->
+		where msg_no in
+		<foreach collection="msg_no" item="msg_no" separator="," open="(" close=")">
+			#{msg_no}
+		</foreach>
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

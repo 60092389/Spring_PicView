@@ -1,0 +1,74 @@
+@CHARSET "EUC-KR";
+
+body {
+	width: auto;
+	height: auto;
+	font-family: "¸¼Àº °íµñ", "Malgun Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic",
+		sans-serif;
+}
+
+.contents {
+	width: 1345px;
+	margin: 0 auto;
+}
+
+#side_menu {
+	width: 150px;
+	text-align: center;
+	float: left;
+	margin-left: 150px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#dvSearchDate {
+	width: 400px;
+	float: left;
+	margin-top: 80px;
+	margin-left: 200px;
+}
+
+#dvChartType {
+	float: left;
+	margin-top: 65px;
+}
+
+#dvChart {
+	margin-left: 80px;
+}
+
+#anal_table_area {
+	padding-bottom: 80px;
+}
+
+#anal_table_area table {
+	width: 728px;
+	border-bottom: 2px solid #b2b9bf;
+	color: #595959;
+	margin: 0 auto;
+}
+
+#anal_table_area table th, td {
+	text-align: center;
+}
+
+#anal_table_area table th {
+	font-size: 12px;
+}
+
+#anal_table_area table td {
+	font-size: 10px;
+}
+
+#anal_table_area table img {
+	width: 100px;
+	height: 100px;
+}
+
+.img {
+	width: 100px;
+}
