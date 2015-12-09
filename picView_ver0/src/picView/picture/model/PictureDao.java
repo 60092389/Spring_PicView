@@ -135,6 +135,11 @@ public class PictureDao {
 	public List<Integer> findAlbum_pic_count(int pic_no) {
 		return myTemplate.getMapper(PictureMapper.class).findAlbum_pic_count(pic_no);
 	}
+	
+	// 상세보기 - 조회수 업데이트
+	public int update_count(Picture picture){
+		return myTemplate.getMapper(PictureMapper.class).update_count(picture);
+	}
 
 	// 상세보기 끝
 

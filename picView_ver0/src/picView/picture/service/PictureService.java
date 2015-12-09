@@ -19,6 +19,7 @@ import picView.follow.model.Follow;
 import picView.follow.model.FollowDao;
 import picView.member.model.Member;
 import picView.member.model.MemberDao;
+import picView.picture.mapper.PictureMapper;
 import picView.picture.model.AlbumInfo;
 import picView.picture.model.Picture;
 import picView.picture.model.PictureDao;
@@ -35,9 +36,9 @@ public class PictureService {
 	private FollowDao followDao;
 	private AlbumDao albumDao;
 	private ReplyDao replyDao;
-	
+
 	private static final int PAGE_SIZE = 6;
-	
+
 	@Autowired
 	public void setReplyDao(ReplyDao replyDao) {
 		this.replyDao = replyDao;
@@ -428,27 +429,34 @@ public class PictureService {
 		return findAlbum(pic_no);
 	}
 
+	// 상세보기 - 조회수 업데이트
+	public int update_count(Picture picture) {
+		return picDao.update_count(picture);
+	}
+
 	// 상세보기 끝
-	
-	//최근사진 보기
-	public RecentPicture recent_Pic(int requestPage){
+
+	// 최근사진 보기
+	public RecentPicture recent_Pic(int requestPage) {
 		int totalCount = picDao.count_Recent();
-		
-		int totalPageCount = totalCount/PAGE_SIZE;
-		if(totalPageCount%PAGE_SIZE >0){//나머지 글 갯수가 있다면 한페이지 더 추가해주기
+
+		int totalPageCount = totalCount / PAGE_SIZE;
+		if (totalPageCount % PAGE_SIZE > 0) {// 나머지 글 갯수가 있다면 한페이지 더 추가해주기
 			totalPageCount++;
 		}
-		int startPage = requestPage - (requestPage-1) % 5;
-		int endPage = startPage +4;
-		
-		if(endPage > totalPageCount){
-			endPage = totalPageCount; //만약 totalPageCount는 7까지인데 endPage는 10이 나오면 8,9,10은
-									  //보여줄게 없으므로 totalPageCount와 같게 만들어줘야함
+		int startPage = requestPage - (requestPage - 1) % 5;
+		int endPage = startPage + 4;
+
+		if (endPage > totalPageCount) {
+			endPage = totalPageCount; // 만약 totalPageCount는 7까지인데 endPage는 10이
+										// 나오면 8,9,10은
+										// 보여줄게 없으므로 totalPageCount와 같게 만들어줘야함
 		}
-		List<Picture> list = picDao.recent_Pic((requestPage-1)*PAGE_SIZE);
+		List<Picture> list = picDao.recent_Pic((requestPage - 1) * PAGE_SIZE);
 		return new RecentPicture(list, requestPage, totalPageCount, startPage, endPage);
 	}
-	public int count_Recent(){
+
+	public int count_Recent() {
 		return picDao.count_Recent();
 	}
 

@@ -239,6 +239,10 @@
 		order by alb_no
 	</select>
 	
+	<update id="update_count" parameterType="Picture" >
+		update picture set pic_count = pic_count+1 where pic_no = #{pic_no}
+	</update>
+	
 	<!-- 상세보기 끝 -->
 	
 	<update id="mem_pic_count" parameterType="int">

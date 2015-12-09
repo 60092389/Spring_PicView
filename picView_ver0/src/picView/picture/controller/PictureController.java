@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import picView.analysis.model.Analysis;
+import picView.analysis.model.Analysis_select;
+import picView.analysis.service.AnalysisService;
 import picView.member.model.AuthInfo;
 import picView.member.model.Member;
 import picView.member.service.MemberService;
@@ -34,6 +37,7 @@ public class PictureController {
 
 	private PictureService picService;
 	private MemberService memService;
+	private AnalysisService analService;
 
 	@Autowired
 	public void setPicService(PictureService picService) {
@@ -43,6 +47,11 @@ public class PictureController {
 	@Autowired
 	public void setMemService(MemberService memService) {
 		this.memService = memService;
+	}
+
+	@Autowired
+	public void setAnalService(AnalysisService analService) {
+		this.analService = analService;
 	}
 
 	// my_Room->my_Manage.jsp에서 사용하는 사진목록볼러오기
@@ -181,13 +190,31 @@ public class PictureController {
 
 	// basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
 	@RequestMapping("/jsp/**/picDetail") /// pic_no={pic_no}
-	public String picDetail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no) { // @PathVariable
-																											// int
-																											// pic_no
-		// @RequestParam(value="select_pic", required=false) int select_pic
+	public String picDetail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no,
+			@RequestParam(value = "search", required = false) String search, HttpSession session) {
 
-		// int mem_no = 2;
-		// int pic_no = 1;
+		System.out.println("들어옴");
+
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+
+		int mem_no = authInfo.getMem_no();
+
+		// 유입분석
+		Analysis_select anal_select = new Analysis_select();
+		anal_select.setMem_no(mem_no);
+		anal_select.setPic_no(pic_no);
+		anal_select.setAnl_word(search);
+
+		System.out.println(anal_select);
+
+		Analysis analysis = new Analysis();
+		analysis.setMem_no(mem_no);
+		analysis.setPic_no(pic_no);
+		analysis.setAnl_word(search);
+
+		System.out.println(analysis);
+
+		analService.select_no(anal_select, analysis);
 
 		// 상세보기 - 사진 정보
 		Picture picDetail = picService.detailPicture(pic_no);
@@ -227,6 +254,9 @@ public class PictureController {
 		int alb_count = picService.findAlbum_count(pic_no);
 		System.out.println("컨트롤러 앨범개수" + alb_count);
 
+		// 상세보기 - 조회수 업데이트
+		picService.update_count(picDetail);
+		
 		////
 
 		AlbumInfo albumInfo = new AlbumInfo();
@@ -268,17 +298,17 @@ public class PictureController {
 
 		return list;
 	}
-	
-	@RequestMapping(value="jsp/**/count_Recent", method=RequestMethod.GET)
-	public @ResponseBody int count_Recent(){
+
+	@RequestMapping(value = "jsp/**/count_Recent", method = RequestMethod.GET)
+	public @ResponseBody int count_Recent() {
 		return picService.count_Recent();
 	}
-	
-	@RequestMapping(value="jsp/**/recent_Pic/{requestPage}",method=RequestMethod.GET)
-	public @ResponseBody RecentPicture recent_pic(@PathVariable String requestPage){
-		
+
+	@RequestMapping(value = "jsp/**/recent_Pic/{requestPage}", method = RequestMethod.GET)
+	public @ResponseBody RecentPicture recent_pic(@PathVariable String requestPage) {
+
 		System.out.println("requestPage = " + requestPage);
-		
+
 		return picService.recent_Pic(Integer.parseInt(requestPage));
 	}
 }

@@ -213,7 +213,7 @@ upload폴더 모두 바꿈
 
 2015/12/09 18:30 황재준
 
-analysis 관련 패키지, message 관련 패키지 전부 가져가시고
+analysis 패키지, message 패키지, picture 패키지 전부 가져가시고
 
 drop table analysis purge
 drop table message purge

@@ -54,6 +54,8 @@ public interface PictureMapper {
 	public List<String> findAlbum_name(int pic_no);
 
 	public List<Integer> findAlbum_pic_count(int pic_no);
+	
+	public int update_count(Picture picture);
 
 	// 상세보기 끝
 
