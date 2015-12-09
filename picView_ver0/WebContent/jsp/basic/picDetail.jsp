@@ -11,7 +11,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<%
+	System.out.println("사진가져오니" + request.getAttribute("detail"));
+	System.out.println("사진가져오니" + request.getAttribute("pic_list"));
+	System.out.println("사진번호" + request.getParameter("pic_no"));
+	
+	String pic_no_comment = request.getParameter("pic_no");
+%>
 <title>상세보기</title>
 
 <link href="../../css/picView_custom.css" rel="stylesheet">
@@ -24,7 +30,7 @@
 	<div class="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
-
+	<script type="text/javascript" src="./js/pic_detail.js"></script>
 	<div class="contents">
 	
 	  <div class="view photo-well-scrappy-view">	
@@ -111,30 +117,7 @@
 			  			<a href="#" data-rapid_p="83">43개의 이전 덧글 보기</a>
 			  		</div>
 			  		<ul class="comments">
-			  			<li class="comment">
-			  				<div class="comment-icon circle-icon ">
-			  				 	<a data-action="follow" data-track="commentBuddyIconClick" href="/photos/34225448@N06/" data-person-nsid="34225448@N06" data-rapid_p="84">
-									<img width="32" height="32" src="//c2.staticflickr.com/6/5616/buddyicons/34225448@N06.jpg?1413297268#34225448@N06">
-								</a>
-			  				</div>
-			  				<p class="comment-author">
-			  					<a data-action="follow" data-track="commentUserNameClick" href="/photos/34225448@N06/" data-rapid_p="85">Marcel</a>
-								<span class="comment-date">3시간</span>
-			  				</p>
-			  				<div class="comment-content">Superbement irréel.</div>
-			  			</li>
-			  			<li class="comment">
-			  				<div class="comment-icon circle-icon ">
-			  				 	<a data-action="follow" data-track="commentBuddyIconClick" href="/photos/34225448@N06/" data-person-nsid="34225448@N06" data-rapid_p="84">
-									<img width="32" height="32" src="//c2.staticflickr.com/6/5616/buddyicons/34225448@N06.jpg?1413297268#34225448@N06">
-								</a>
-			  				</div>
-			  				<p class="comment-author">
-			  					<a data-action="follow" data-track="commentUserNameClick" href="/photos/34225448@N06/" data-rapid_p="85">Marcel</a>
-								<span class="comment-date">3시간</span>
-			  				</p>
-			  				<div class="comment-content">Superbement irréel.</div>
-			  			</li>
+			  			
 			  			
 			  		</ul>
 			  			<div class="comments-form">
@@ -142,11 +125,15 @@
 			  					<img width="32" height="32" src="https://s.yimg.com/pw/images/buddyicon05_m.png#136434429@N02">
 			  				</div>
 			  				<div class="comment-form-field">
-			  					<textarea class="new-comment-text" data-action="comment" data-tutorial="Enter를 누르면 게시되고 Shift+Enter를 누르면 새로운 줄이 생깁니다." data-notutorial="덧글 추가" placeholder="덧글 추가" name="comment"></textarea>
+			  					<textarea class="new-comment-text" id="rep_content" name="rep_content"></textarea>
 								<div class="comment-arrow"></div>
 								<textarea class="false-comment-content"></textarea>
+								<input type="hidden" name="pic_no" id="pic_no" value="<%=pic_no_comment%>">
+								
 			  				</div>
+			  				
 			  			</div>
+			  			<button class="ui-button ui-button-cta comment">덧글</button>
 			  	</div>
 			  </div>
 			</div><!-- 왼쪽 상세정보보기 끝  -->
