@@ -19,13 +19,6 @@
 <link href="css/picDetail.css" rel="stylesheet">
 <link href="css/pic_slider.css" rel="stylesheet">
 
-<%
-	System.out.println("사진가져오니" + request.getAttribute("detail"));
-	System.out.println("사진가져오니" + request.getAttribute("pic_list"));
-	System.out.println("사진번호" + request.getAttribute("pic_no"));
-%>
-
-
 </head>
 <body>
 	<div class="header">
@@ -83,7 +76,7 @@
 				  <div class="avatar person medium" style="background-image: url(../../upload/${memInfo.mem_pic});"></div>
 				  <!-- //c2.staticflickr.com/8/7329/buddyicons/51919822@N05_l.jpg?1383412877#51919822@N05 -->
 				  <div class="attribution-info">
-				  	<a class="owner-name truncate" title="Vincent Ting 님의 포토스트림으로 이동" href="../../jsp/myRoom/myShowForm${memInfo.mem_no }" >
+				  	<a class="owner-name truncate" title="Vincent Ting 님의 포토스트림으로 이동" href="/photos/formosating/" >
 					${memInfo.mem_name }
 				  	</a>
 				  	<div class="view follow-view clear-float photo-attribution">
@@ -91,6 +84,7 @@
 						<button id="follow_btn" class="btn btn-default btn-lg btn-primary">
 							<span class="glyphicon glyphicon-plus">팔로우</span>
 						</button>
+						<input type="hidden" name="pic_no" value="${pic_no }">
 						<button id="good_btn" class="btn btn-default btn-lg btn-warning">
 							<span class="glyphicon glyphicon-thumbs-up">좋아요</span>							
 						</button>
@@ -104,15 +98,10 @@
 			   </div>
 			  </div>
 			  <div class="view sub-photo-fave-view faves-present">
-			  	<a class="ui-icon-fave-star" href="#" title="좋음" ></a>
 			  	<div class="faved-by">
 			  		<div class="initial-faved-by-display">
-			  			<a class="faved-by-person-link" href="/photos/88482742@N07/favorites/" data-rapid_p="267"> 님, Javier León (Fx) 님, </a>
-							님,
-							<a class="faved-by-person-link" href="/photos/nicofotog/favorites/" data-rapid_p="268"> 님, Nicofotog 님, </a>
-							과
-							<a class="remaining-faved-by" href="#" data-rapid_p="269"> 님, 731 님 등이</a>
-							이 항목을 좋아함 
+			  			<h3 id="category_name"><b>카테고리명</b></h3>
+			  			<button type="button" class="btn btn-info">${category_name }</button>
 			  		</div>
 			  	</div>
 			  </div>
@@ -165,7 +154,7 @@
 				<div class="sub-photo-right-row1" >
 					<div class="view sub-photo-right-stats-view">
 						<div class="view-count">
-							<span class="view-count-label">${detail.pic_count }</span>
+							<span class="view-count-label">${detail.pic_count+1 }</span>
 							<span class="stats-label">뷰</span>
 						</div>
 						<div class="fave-count">
@@ -255,10 +244,19 @@
 
 	<script type="text/javascript" src="js/jssor.slider-20.mini.js"></script>
 	<script type="text/javascript" src="js/pic_slider.js"></script>
+	<!-- <script type="text/javascript" src="js/picDetail.js"></script> -->
 	
 	<script type="text/javascript">
 	$(function() {
 		var this_pic = ${pic_no};
+		var good_count = ${findGood };
+		var alb_count = ${alb_count};
+		
+		if(good_count == 1){
+			$('#good_btn').attr('class', 'btn btn-default btn-lg btn-success');
+		} else {
+			$('#good_btn').attr('class', 'btn btn-default btn-lg btn-warning');
+		}
 			
 		$('.jssora02l').click(function(){
 				location.href = "picDetail?pic_no=" + (this_pic - 1);
@@ -274,9 +272,84 @@
 			
 			$('.p').find('a').eq(index).attr('href', 'picDetail?pic_no='+select_pic);
 		});
+		
+		$('#good_btn').click(function(){
+			//location.href = "picGood_In?pic_no=" + this_pic;
+
+			if(good_count == 0){
+				good_count = 1;
+				$('#good_btn').attr('class', 'btn btn-default btn-lg btn-success');
+			} else {
+				good_count = 0;
+				$('#good_btn').attr('class', 'btn btn-default btn-lg btn-warning');
+			}
+			
+			$.ajax({
+				type: 'get',
+				url: 'picGood_In?pic_no=' + this_pic,
+				//data: $('#test').serialize(),
+				dataType: 'json',
+				success:function(data) {
+					
+					$('.fave-count').empty();
+					
+					var good_count_txt = '';
+					
+					good_count_txt += '<span class="fave-count-label">' + data.good_count + '</span>';
+					good_count_txt += '<span class="stats-label">좋아요</span>';
+										
+					$('.fave-count').append(good_count_txt);
+				}
+			});
+		});
+				
+		if(alb_count == 0) {		
+			
+			$('.sub-photo-context').empty();
+			
+			var noAlbum = '';
+			
+			noAlbum += '<div id="noAlbum">';
+			noAlbum += '<h3>이 사진은 현재 아무 앨범에도 속해있지 않습니다.<h3>';
+			noAlbum += '<a href="#">앨범에 추가</a>';
+			noAlbum += '</div>';
+			
+			$('.sub-photo-context').append(noAlbum);
+		} else {
+		
+			 $.ajax({
+				type: 'get',
+				url: 'findAlbum?pic_no=' + this_pic,
+				dataType: 'json',
+				error: function(){
+					alert('실패');
+				},
+				success:function(data) {
+					$('.sub-photo-context').empty();
+				
+					var album = '';
+				
+					album += '<h5 class="total"> 이 사진은' + alb_count + '개의 앨범에 있습니다. </h5>';
+					album += '<ul class="context-list">';
+					
+					$.each(data, function(index, album2){
+						alert(index);
+						album += '<li data-context-id="72157624542431329">';
+						album += "<a class='thumbnail' style='background-image: url(../../upload/" + album2.pic_add + ");' href='/photos/formosating/albums/72157624542431329'></a>";
+						album += '<span class="title">';
+						album += '<a href="/photos/formosating/albums/72157624542431329" data-rapid_p="362">' + album2.alb_name + '</a>';
+						album += '</span><span class="counts">' + album2.alb_pic_count + '</span></li>';
+					
+					});
+					
+					album += '</ul>';
+					
+					$('.sub-photo-context').append(album);
+				}
+			}); 
+		}
 
 	});
-	
 	</script>
 	
 </body>
