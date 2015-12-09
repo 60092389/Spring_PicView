@@ -106,7 +106,7 @@
 					html += "<div class='view photo-list-photo-view awake'>";
 					html += "<div class='interaction-view'>";
 					html += "<div class='photo-list-photo-interaction'>";
-					html += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
+					html += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+ "&search=" + search + "'>"+
 						"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 					html += "<div class='view photo-list-view'>";
@@ -213,7 +213,7 @@
 							+ pic.pic_add+ ")'>";
 							html += "<div class='interaction-view'>";
 							html += "<div class='photo-list-photo-interaction'>";
-							html += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
+							html += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+ "&search=" + search + "'>"+
 								"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 							html += "<div class='view photo-list-view'>";
@@ -271,7 +271,7 @@
 					    html3 += "<div class='view photo-list-photo-view awake'>";
 						html3 += "<div class='interaction-view'>";
 						html3 += "<div class='photo-list-photo-interaction'>";
-						html3 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
+						html3 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+ "&search=" + search + "'>"+
 							"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 						html3 += "<div class='view photo-list-view'>";
@@ -380,7 +380,7 @@
 							html3 += "<div class='view photo-list-photo-view awake'>";
 							html3 += "<div class='interaction-view'>";
 							html3 += "<div class='photo-list-photo-interaction'>";
-							html3 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
+							html3 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+ "&search=" + search + "'>"+
 								"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 								
 							html3 += "<div class='view photo-list-view'>";
