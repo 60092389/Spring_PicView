@@ -24,24 +24,8 @@ Bootstrap
 <!-- Bootstrap -->
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
 <link href="../../css/picView_custom.css" rel="stylesheet">
-<link href="../main/css/activity.css" rel="stylesheet">
-<script src="../main/js/activity.js"></script>
-<script src="./js/alarm.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$('.alarm').click(function(){
-			  index_chk = 0;
-			 
-			  $('.notification-count').html(0);
-			  if($('#fbNotificationsFlyout').css('display') =='block'){
-				  $('#fbNotificationsFlyout').css('display','none');
-			  }else{
-				  $('#fbNotificationsFlyout').css('display','block');
-			  }
-			  
-		  });
-	});
-</script>
+
+
 <script type="text/javascript">
 	function logout(){
 		alert("로그 아웃 되었습니다.");
@@ -87,7 +71,7 @@ Bootstrap
 				html += "<div class='view photo-list-photo-view awake'>";
 				html += "<div class='interaction-view'>";
 				html += "<div class='photo-list-photo-interaction'>";
-				html += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
+				html += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+ "&search=" + search + "'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html += "<div class='view photo-list-view'>";
@@ -136,7 +120,7 @@ Bootstrap
 			    html3 += "<div class='view photo-list-photo-view awake'>";
 				html3 += "<div class='interaction-view'>";
 				html3 += "<div class='photo-list-photo-interaction'>";
-				html3 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
+				html3 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+ "&search=" + search + "'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html3 += "<div class='view photo-list-view'>";
@@ -186,7 +170,7 @@ Bootstrap
 			    html2 += "<div class='view photo-list-photo-view awake'>";
 				html2 += "<div class='interaction-view'>";
 				html2 += "<div class='photo-list-photo-interaction'>";
-				html2 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+"'>"+
+				html2 += "<a class='overlay' href='../../jsp/basic/picDetail?pic_no="+pic.pic_no+ "&search=" + search + "'>"+
 					"<img class='allPicture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html2 += "<div class='view photo-list-view'>";
@@ -304,7 +288,7 @@ Bootstrap
 	          	</ul>
 	          </li>
 	          <li><a href="#">도움말</a></li>
-	          <li style="width:330px">&nbsp;</li>
+	          <li style="width:350px">&nbsp;</li>
 	          
 	          <li class="searchList" id="searchList">
 	          	<div id="searchForm">	
@@ -313,35 +297,12 @@ Bootstrap
 							</div>
 					 		<button id="searchButton" class="btn btn-default" onclick="searchButton()">검색</button>
 	          </li>
-	          <li class="alarm"><a href="#"><span id="alarm"
-							class="glyphicon glyphicon-bell"></span>
-							<span class="glyphicon glyphicon-comment notification-icon icon-comment" aria-hidden="">
-							<span class="notification-count" data-role="notification-count">0</span>
-							</span>
-							</a>
-						<div id="fbNotificationsFlyout" class="__tw _4xi1 uiToggleFlyout" style="display:none">
-							
-						
-							<div class="uiHeader uiHeaderBottomBorder jewelHeader" >
-							<input type="hidden" name="requestPage" id="requestPage" value=""> 
-							<input type="hidden" name="totalCount" id="totalCount" value="">
-							<input type="hidden" name="wri_date_year" id="wri_date_year" value="">
-									<div class="clearfix uiHeaderTop">
-										<h4 class="uiHeaderTitle">알림</h4>
-									</div>
-							</div>
-							<div id="activity_div" >
-							     <ul class="activity_ul">
-								 </ul>	
-							</div>
-						</div>		
-			  </li>
 	          <li><a href="../upload/fileUpload" class="upload-padding"><span id="upload"
 							class="glyphicon glyphicon-cloud-upload"></span></a></li>
 	          <li><a class="dropdown active account-padding" href="#" data-toggle="dropdown">
 	          	계정<span class="caret"></span></a>
 	          	<ul class="dropdown-menu" role="menu">
-	          		<li><a href="../message/message">쪽지함</a></li>
+	          		<li><a href="../account/message.jsp">쪽지함</a></li>
 	          		<li><a href="#">상세 도움말</a></li>
 	          		<li><a href="../account/accountSet.jsp">계정 설정</a></li>
 	          		<li><a onclick="logout()">로그아웃</a></li>
