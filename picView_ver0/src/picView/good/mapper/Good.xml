@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="picView.good.mapper.GoodMapper">
+	<cache />
+	
+	<insert id="goodInsert" parameterType="Good">
+		insert into good
+		values(good_no_seq.nextval, #{pic_no}, #{mem_no})
+	</insert>
+
+	<delete id="goodDelete" parameterType="Good">
+		delete from good
+		where pic_no = #{pic_no} and mem_no = #{mem_no}
+	</delete>
+	
+	<update id="plus_good_count" parameterType="Picture">
+		update picture
+		set good_count = good_count + 1
+		where pic_no = #{pic_no}
+	</update>
+	
+	<update id="minus_good_count" parameterType="Picture">
+		update picture
+		set good_count = good_count - 1
+		where pic_no = #{pic_no}
+	</update>
+	
+	<select id="findGood" parameterType="Good" resultType="int">
+		select count(good_no)
+		from good
+		where pic_no = #{pic_no} and mem_no = #{mem_no} 
+	</select>
+	
+	<select id="detailPicture" parameterType="int" resultType="Picture">
+		select pic_no, pic_title, mem_no, tag_name, pic_content, pic_count, good_count, 
+			pic_add, pic_location, to_date(pic_date, 'yy-mm-dd') pic_date
+		from picture 
+		where pic_no = #{pic_no}
+	</select>
+	
+</mapper>
