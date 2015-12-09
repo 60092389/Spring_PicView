@@ -11,6 +11,13 @@ public class NaverSearch implements Serializable{
 	private String pubdate;
 	private String description;
 	private String target; //현재 선택한 카테고리
+	private String person_title;//인물 타이틀명
+	private String person_image;//인물 사진
+	private String person_description;//인물 설명
+	private String image_title;//이미지 제목
+	private String image_thumbnail;//이미지 썸네일
+	
+	
 	public String getTitle() {
 		return title;
 	}
@@ -60,6 +67,40 @@ public class NaverSearch implements Serializable{
 	}
 	public void setTarget(String target) {
 		this.target = target;
+	}
+	
+	public String getPerson_title() {
+		return person_title;
+	}
+	public void setPerson_title(String person_title) {
+		this.person_title = person_title;
+	}
+	
+	public String getPerson_image() {
+		return person_image;
+	}
+	public void setPerson_image(String person_image) {
+		this.person_image = person_image;
+	}
+	
+	public String getPerson_description() {
+		return person_description;
+	}
+	public void setPerson_description(String person_description) {
+		this.person_description = person_description;
+	}
+	
+	public String getImage_title() {
+		return image_title;
+	}
+	public void setImage_title(String image_title) {
+		this.image_title = image_title;
+	}
+	public String getImage_thumbnail() {
+		return image_thumbnail;
+	}
+	public void setImage_thumbnail(String image_thumbnail) {
+		this.image_thumbnail = image_thumbnail;
 	}
 	@Override
 	public String toString() {

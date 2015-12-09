@@ -31,12 +31,12 @@ public class NewsfeedDao {
 	public List<FriendList> list_friend(int mem_no){
 		return myTemplate.getMapper(NewsfeedMapper.class).list_friend(mem_no);
 	}
-	public List<ActivityList> list_activity(int startRow){
+	public List<ActivityList> list_activity(int startRow,int mem_no){
 		
-		return myTemplate.getMapper(NewsfeedMapper.class).list_activity(new RowBounds(startRow, 5));
+		return myTemplate.getMapper(NewsfeedMapper.class).list_activity(new RowBounds(startRow, 5),mem_no);
 	}
-	public int count_activity(){
-		return myTemplate.getMapper(NewsfeedMapper.class).count_activity();
+	public int count_activity(int mem_no){
+		return myTemplate.getMapper(NewsfeedMapper.class).count_activity(mem_no);
 	}
 	
 	public int photo_good(Picture picture){
@@ -51,6 +51,8 @@ public class NewsfeedDao {
 	public int photo_good_chk(Picture picture){
 		return myTemplate.getMapper(NewsfeedMapper.class).photo_good_chk(picture);
 	}
-	
+	public int count_activity_alarm(int mem_no){
+		return myTemplate.getMapper(NewsfeedMapper.class).count_activity_alarm(mem_no);
+	}
 	
 }

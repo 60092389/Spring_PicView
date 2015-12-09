@@ -188,7 +188,8 @@ $(document).ready(function(){
             }
         }
         
-        $('#action-publish').on("click",function(){
+        /*$('#action-publish').on("click",function(){
+        	
         	//alert(files.length);
         	//var inputContent = oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);    
         	//$('#ir1').val();
@@ -220,11 +221,65 @@ $(document).ready(function(){
                   	page_location2();
                 }, error: function(jqXHR, textStatus, errorThrown) {}
             });
-		})
+		});*/
+        $('#action-publish').on("click",function(){
+	        $("#upload_form").validate({
+	        	errorClass:"invalid",
+	    	    //규칙
+	    	    rules: {
+	    	    	pic_title: {required : true,},
+	    	        pic_open: {required : true,}
+	    	    },
+	    	    //규칙체크 실패시 출력될 메시지
+	    	    messages : {
+	    	        pic_title:"제목을 입력하세요",	
+	    	        pic_open: "권한 설정을 선택하세요."
+	    	    },
+	    	   
+	    	  //validation이 끝난 이후의 submit 직전 추가 작업할 부분
+	    	    submitHandler: function() {
+	    	        var f = confirm("사진을 업로드하시겠습니까?");
+	    	        if(f){
+	    	        	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
+	        	    	
+	        	    	var pic_title = $("#pic_title").val();
+	        	    	var category_no = $('#category_no').val();
+	        	    	var tag_name = $("#tag_name").val();
+	        	    	var pic_content = document.getElementById("ir1").value;
+	        	    	var pic_open = $('#pic_open').val();
+	        	    	var pic_location = $('#location_chk').val();
+	        	    	
+	        	    	
+	        	    	fd.append('pic_title',pic_title);
+	        	    	fd.append('category_no',category_no);
+	        	    	fd.append('tag_name',tag_name);
+	        	    	fd.append('pic_content',pic_content);
+	        	    	fd.append('pic_open',pic_open);
+	        	    	fd.append('pic_location',pic_location);
+	        	    	
+	        	    	
+	        	    	$.ajax({
+	        	            url: 'fileUpload_submit',
+	        	            type: "post",
+	        	            dataType: "text",
+	        	            data: fd ,
+	        	            // cache: false,
+	        	            processData: false,
+	        	            contentType: false,
+	        	            success: function(data, textStatus, jqXHR) {
+	        	              	page_location2();
+	        	            }, error: function(jqXHR, textStatus, errorThrown) {}
+	        	        });
+	    	        } else {
+	    	            return false;
+	    	        }
+	    	    	
+	    	    }
+	    	});
+        });
 		
 		function page_location2(){
         	location.href="../myRoom/manageForm";
-        	
         }
         
         

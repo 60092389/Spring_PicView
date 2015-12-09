@@ -2,6 +2,8 @@ package picView.picture.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+
 import picView.member.model.Member;
 import picView.picture.model.Picture;
 
@@ -56,5 +58,11 @@ public interface PictureMapper {
 	// 상세보기 끝
 
 	public int insertPicture(Picture picture);
+	
+	
+	public int mem_pic_count(int mem_no);//사진 업로드시 member테이블 사진 갯수 추가
+	
+	public List<Picture> recent_Pic(RowBounds row);//최근 사진 리스트
+	public int count_Recent();
 
 }

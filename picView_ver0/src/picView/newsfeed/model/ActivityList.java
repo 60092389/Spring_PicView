@@ -1,8 +1,8 @@
 package picView.newsfeed.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
-import com.sun.jmx.snmp.Timestamp;
 
 public class ActivityList implements Serializable{
 	private String subject;//제목 구분
@@ -10,6 +10,7 @@ public class ActivityList implements Serializable{
 	private String rep_content;//댓글 내용
 	private Timestamp rep_date;//날짜
 	private String mem_name;//해당 회원이름
+	private int mem_no; //해당 회원번호
 	public String getSubject() {
 		return subject;
 	}
@@ -24,6 +25,13 @@ public class ActivityList implements Serializable{
 	}
 	public String getRep_content() {
 		return rep_content;
+	}
+	
+	public int getMem_no() {
+		return mem_no;
+	}
+	public void setMem_no(int mem_no) {
+		this.mem_no = mem_no;
 	}
 	public void setRep_content(String rep_content) {
 		this.rep_content = rep_content;

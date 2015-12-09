@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +23,7 @@ import picView.member.service.MemberService;
 import picView.picture.model.AlbumInfo;
 import picView.picture.model.Picture;
 import picView.picture.model.PictureShow;
+import picView.picture.model.RecentPicture;
 import picView.picture.model.ReplyCount;
 import picView.picture.model.UpdatePictureCommand;
 import picView.picture.service.PictureService;
@@ -265,5 +267,18 @@ public class PictureController {
 		System.out.println(list);
 
 		return list;
+	}
+	
+	@RequestMapping(value="jsp/**/count_Recent", method=RequestMethod.GET)
+	public @ResponseBody int count_Recent(){
+		return picService.count_Recent();
+	}
+	
+	@RequestMapping(value="jsp/**/recent_Pic/{requestPage}",method=RequestMethod.GET)
+	public @ResponseBody RecentPicture recent_pic(@PathVariable String requestPage){
+		
+		System.out.println("requestPage = " + requestPage);
+		
+		return picService.recent_Pic(Integer.parseInt(requestPage));
 	}
 }

@@ -58,52 +58,52 @@
 	
 	</select>
 	
-	<select id="list_activity" resultType="ActivityList">
+	<select id="list_activity" resultType="ActivityList" parameterType="int" >
 		select * from(
 			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name 
 			from reply a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
 			where c.pic_no=a.pic_no
-			and c.mem_no = 4
+			and c.mem_no = #{mem_no}
 			union
 			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
 			from follow a
 			left outer join member b on b.mem_no=a.follow_fri_no
-			where a.mem_no=4 and a.follow_check=2
+			where a.mem_no=#{mem_no} and a.follow_check=2
 			union
 			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
 			from good a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=4 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
 			and c.pic_no=a.pic_no
-			and c.mem_no = 4
+			and c.mem_no = #{mem_no}
 		)
 		order by rep_date desc
 	
 	</select>
-	<select id="count_activity" resultType="int">
+	<select id="count_activity" resultType="int" parameterType="int">
 		select count(*) from(
 			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name 
 			from reply a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
 			where c.pic_no=a.pic_no
-			and c.mem_no = 4
+			and c.mem_no = #{mem_no}
 			union
 			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
 			from follow a
 			left outer join member b on b.mem_no=a.follow_fri_no
-			where a.mem_no=4 and a.follow_check=2
+			where a.mem_no=#{mem_no} and a.follow_check=2
 			union
 			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
 			from good a
 			left outer join member b on b.mem_no=a.mem_no
 			left outer join picture c on c.pic_no=a.pic_no
-			where a.mem_no in (select follow_fri_no from follow where mem_no=4 and follow_check= 3)
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
 			and c.pic_no=a.pic_no
-			and c.mem_no = 4
+			and c.mem_no = #{mem_no}
 		)
 		order by rep_date desc
 	
@@ -128,6 +128,33 @@
 		select NVL(count(*),0) from
 		good
 		where mem_no=#{mem_no} and pic_no=#{pic_no}
+	</select>
+	
+	<select id="count_activity_alarm" resultType="int" parameterType="ActivityList">
+		select count(*) from(
+			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name 
+			from reply a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+			union
+			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no= #{mem_no} and a.follow_check=2
+			union
+			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			and c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+		)
+		where rep_date >= #{rep_date}
+		order by rep_date desc
+	
 	</select>
 	
 	

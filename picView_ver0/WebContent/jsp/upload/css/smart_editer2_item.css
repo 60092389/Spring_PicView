@@ -860,7 +860,7 @@
 #smart_editor2 .se2_dbset{position:relative;width:460px;height:441px}
 #smart_editor2 .se2_dbset h3{margin:0;padding:7px 0 12px 12px;background:url("http://static.se2.naver.com/static/full/20150916/bg_find_h3.gif") repeat-x;font-size:12px;line-height:14px;letter-spacing:-1px}
 #smart_editor2 .se2_dbset h3 strong{display:inline-block;padding:3px 0 1px 24px;background:url("http://static.se2.naver.com/static/full/20150916/icon_set.gif?141007") 0 -90px no-repeat;color:#333}
-#smart_editor2 .se2_db_tab{_display:inline;float:left;position:relative;width:436px;height:347px;margin:9px 0 0 13px;padding:0;border:0}
+#smart_editor2 .se2_db_tab{_display:inline;float:left;position:relative;width:436px;height:515px;margin:0px 0 0 10px;padding:0;border:0}
 #smart_editor2 .se2_db_tab li{_display:inline;float:left;position:static;margin:0 -1px 0 0;padding:0}
 #smart_editor2 .se2_db_tab button{width:46px;height:26px;background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/btn_set.png?141023") 0 -302px no-repeat}
 #smart_editor2 .se2_db_tab .se2_db1{background-position:0 -301px}
@@ -881,7 +881,8 @@
 #smart_editor2 .se2_db_tab .active .se2_db7{background-position:-278px -327px}
 #smart_editor2 .se2_db_tab .active .se2_db8{background-position:-342px -327px}
 #smart_editor2 .se2_db_tab .active .se2_db9{background-position:-387px -327px}
-#smart_editor2 .se2_db_container{display:none;position:absolute;top:26px;left:-2px;width:410px;height:324px;padding:0 14px 0 15px;background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/bx_set_110302.gif") no-repeat}
+#smart_editor2 .se2_db_container{display:none;position:absolute;top:26px;left:-2px;width:410px;height:324px;padding:0 14px 0 15px;
+ /* background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/bx_set_110302.gif") no-repeat */}
 #smart_editor2 .se2_db_tab .active .se2_db_container{display:block}
 #smart_editor2 .se2_db_container .se2_db_header{position:relative;z-index:10;width:410px;margin-bottom:1px;padding:11px 0 9px;*padding:10px 0 9px;border-bottom:1px solid #e7e7e7;overflow:hidden}
 #smart_editor2 .se2_db_container .st_ty1{width:72px;height:18px;vertical-align:middle}
@@ -913,6 +914,7 @@
 /* ICON_TOOLBAR : DBATTACHMENT > BASIC_LIST */
 #smart_editor2 .se2_li_ty2{width:411px;margin:0 0 3px;padding:0;background:none;white-space:normal}
 #smart_editor2 .se2_li_ty2 li{display:block;float:left;position:relative;width:205px;height:81px;margin:0;padding-top:4px;cursor:pointer}
+
 #smart_editor2 .se2_li_ty2 .hover{background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/bx_set_110302.gif") 0 -334px no-repeat}
 #smart_editor2 .se2_li_ty2 .active{background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/bx_set_110302.gif") -205px -334px no-repeat}
 #smart_editor2 .se2_li_ty2 .thumb{position:absolute;top:5px;left:5px;width:55px;height:75px}
@@ -920,6 +922,17 @@
 #smart_editor2 .se2_li_ty2 .thumb3{position:absolute;top:5px;left:5px;width:67px;height:67px}
 #smart_editor2 .se2_li_ty2 .se2_t_skin{position:absolute;top:5px;left:5px;width:53px;height:73px;margin:0;padding:0;border:1px solid #000;opacity:0.1;filter:alpha(opacity=10)}
 #smart_editor2 .se2_li_ty2 .se2_t_skin2{position:absolute;top:5px;left:5px;width:73px;height:73px;margin:0;padding:0;border:1px solid #000;opacity:0.1;filter:alpha(opacity=10)}
+
+/* ICON_TOOLBAR : DBATTACHMENT > BASIC_LIST */
+#smart_editor2 .se2_li_ty2_1{width:411px;margin:0 0 3px;padding:0;background:none;white-space:normal}
+#smart_editor2 .se2_li_ty2_1 li{display:block;float:left;position:relative;width:400px;height:81px;margin:0;padding-top:4px;cursor:pointer}
+#smart_editor2 .se2_li_ty2_1 .hover{background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/bx_set_110302.gif") 0 -334px no-repeat}
+#smart_editor2 .se2_li_ty2_1 .active{background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/bx_set_110302.gif") -205px -334px no-repeat}
+#smart_editor2 .se2_li_ty2_1 .thumb{position:absolute;top:5px;left:5px;width:55px;height:75px}
+#smart_editor2 .se2_li_ty2_1 .thumb2{position:absolute;top:5px;left:5px;width:75px;height:75px}
+#smart_editor2 .se2_li_ty2_1 .thumb3{position:absolute;top:5px;left:5px;width:67px;height:67px}
+#smart_editor2 .se2_li_ty2_1 .se2_t_skin{position:absolute;top:5px;left:5px;width:53px;height:73px;margin:0;padding:0;border:1px solid #000;opacity:0.1;filter:alpha(opacity=10)}
+#smart_editor2 .se2_li_ty2_1 .se2_t_skin2{position:absolute;top:5px;left:5px;width:73px;height:73px;margin:0;padding:0;border:1px solid #000;opacity:0.1;filter:alpha(opacity=10)}
 /* ICON_TOOLBAR : DBATTACHMENT > SONG */
 #smart_editor2 .se2_li_ty3{_display:inline;float:left;width:411px;margin:-5px 0 -2px 0 !important;padding:0;background:none}
 #smart_editor2 .se2_li_ty3 li{float:left;width:406px;height:39px;margin:0;padding:6px 0 0 4px;line-height:15px;color:#333;white-space:normal;cursor:pointer}
@@ -1020,7 +1033,8 @@
 #smart_editor2 .paginate a.pre{padding:3px 8px 1px 16px;border:none;background:url("http://static.se2.naver.com/static/full/20150916/icon_set.gif?141007") 8px -813px no-repeat !important;font-weight:normal}
 #smart_editor2 .paginate a.next{padding:3px 16px 1px 8px;border:none;background:url("http://static.se2.naver.com/static/full/20150916/icon_set.gif?141007") -4px -833px no-repeat !important;font-weight:normal}
 /* ICON_TOOLBAR : DBATTACHMENT >  BUTTON */
-#smart_editor2 .se2_dbset .se2_btns{position:absolute;left:0;bottom:0;width:436px;height:35px;margin:0 0 0 12px;padding:11px 0 0 0;text-align:center}
+#smart_editor2 .se2_dbset .se2_btns{position:absolute;left:0;bottom:-7px;width:436px;height:35px;
+margin:0 0 -131px 12px;padding:11px 0 0 0;text-align:center}
 #smart_editor2 .se2_btns .se2_choose{width:41px;height:24px;margin-right:3px;background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/btn_set.png?141023") -299px -48px no-repeat;vertical-align:middle}
 #smart_editor2 .se2_btns .se2_pre2{position:absolute;left:0;width:39px;height:24px;background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/btn_set.png?141023") -314px -24px no-repeat}
 #smart_editor2 .se2_btns .se2_btn_apply3{width:41px;height:24px;margin:0 3px 0 0;background:url("http://static.se2.naver.com/static/full/20150916/ko_KR/btn_set.png?141023") no-repeat}

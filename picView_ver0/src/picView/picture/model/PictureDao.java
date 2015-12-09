@@ -2,6 +2,7 @@ package picView.picture.model;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -140,5 +141,19 @@ public class PictureDao {
 	public int insertPicture(Picture picture) {
 		return myTemplate.getMapper(PictureMapper.class).insertPicture(picture);
 	}
+	
+	//member 테이블 사진 갯수 증가
+	public int mem_pic_count(int mem_no){
+		return myTemplate.getMapper(PictureMapper.class).mem_pic_count(mem_no);
+	}
+	
+	//최근사진 보기 시작
+	public List<Picture> recent_Pic(int startRow){
+		return myTemplate.getMapper(PictureMapper.class).recent_Pic(new RowBounds(startRow, 6));
+	}
+	public int count_Recent(){
+		return myTemplate.getMapper(PictureMapper.class).count_Recent();
+	}
+	//최근사진 보기 끝
 
 }

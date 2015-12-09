@@ -241,6 +241,23 @@
 	
 	<!-- 상세보기 끝 -->
 	
+	<update id="mem_pic_count" parameterType="int">
+		update member
+		set pic_count = pic_count+1
+		where mem_no = #{mem_no}
+	</update>
+	<!-- 최근사진 보기 시작 -->
+	<select id="recent_Pic" resultType="Picture">
+		select * from picture
+		order by pic_date desc
+	</select>
+	
+	<select id="count_Recent" resultType="int">
+		select count(*) from picture
+		order by pic_date desc
+	</select>
+	<!-- 최근사진 보기 끝 -->
+	
 	
 
 </mapper>

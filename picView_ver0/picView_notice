@@ -182,3 +182,31 @@ myRoom -> myShow.jsp
 layout -> header.jsp
 search -> search.jsp, detailSearch.jsp
 
+---------------------------------------
+2015/12/09 17:40 최영혜
+dragController
+DragAPIService
+PictureDao
+PictureMapper
+Picture.xml
+NaverSearch
+NewsfeedController-count_activity_alarm / mapping(**로 바꾸기)
+NewsfeedService-count_activity_alarm
+NewsfeedDao-count_activity_alarm
+NewsfeedMapper
+Newsfeed.xml
+ActivityList클래스 추가
+PictureController -recent추가, PictureMapper,xml,service,dao
+pictureModel - RecentPic클래스 추가
+css-picview_custom
+collection폴더 
+header.jsp
+layout-js폴더 추가
+
+main-js-activity.js/ loginMain.js 추가
+      -activity.css
+tab.js, slide.jsp - 삭제
+css-picView_custom.css추가 (밑에 세줄)
+upload폴더 모두 바꿈
+
+---------------------------------------

@@ -536,3 +536,17 @@ div.photo-item:hover{
 	display:inline;
 	margin-left:10px;
 }
+.invalid{
+	background-color: #428bca;
+    border-color: #357ebd;
+    color: #fff;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+}

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,7 +17,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
 import picView.picture.model.Picture;
-import picView.upload.model.fileUploadForm;
 import picView.upload.service.DragAPIService;
 
 @Controller
@@ -26,7 +26,6 @@ public class dragController {
 	
 	private List<MultipartHttpServletRequest> pic = new ArrayList<MultipartHttpServletRequest>();
 	
-	fileUploadForm uploadform = new fileUploadForm();
 	
 	private DragAPIService service;
 	
@@ -48,9 +47,17 @@ public class dragController {
 	
 		 System.out.println("드래그컨트롤러");
 		 
-		  return "upload/success2";
+		 return "redirect:/jsp/myRoom/manageForm";
 	 }
 	 
+	@RequestMapping(value="/jsp/upload/search_api",method=RequestMethod.POST)
+	public String search_api(Model model,HttpServletRequest request){
+		//XML를 제공하는 싸이트의 URL를 변수에 저장
+		
+		service.search_api(model,request);
+
+		return "upload/popup_api";
+	}
 	
 	 
 }

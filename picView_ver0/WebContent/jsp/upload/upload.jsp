@@ -6,33 +6,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="upload.css" rel="stylesheet">
-<link href="smart_editer2_in.css" rel="stylesheet">
-<link href="smart_editer2_item.css" rel="stylesheet">
+
+
 <script src="../../js/jquery.min.js"></script>
-<script src="draganddrop.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="./js/draganddrop.js"></script>
+<link href="./css/upload.css" rel="stylesheet">
+<link href="./css/smart_editer2_in.css" rel="stylesheet">
+<link href="./css/smart_editer2_item.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/jquery-ui.css">
+<link rel="stylesheet" href="./css/selectize.css">
+
 <script type="text/javascript" src="./editer/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 
 	 $(function(){
 		$('#information').click(function(){
 			var popupUrl="popup_api.jsp";
-			var popOption ="width=460, height=470, resizable=no, scrollbars=no,status=no";
+			var popOption ="width=460, height=580, resizable=no, scrollbars=yes,status=no";
 			window.open(popupUrl,"popup",popOption);
 		});
 		
 		/* $('#action-publish').on("click",function(){
 			$('#upload_form').submit();
 		}) */
+		$('#map_find').click(function(){
+			var popupUrl="view_trip.jsp";
+			var popOption ="width=900, height=580, resizable=no, scrollbars=yes,status=no";
+			window.open(popupUrl,"popup",popOption);	
+		});
 		
 	}); 
 
 </script>
+   
 </head>
 <body>
 	<div id="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
+	 <script src="./js/jquery-1.11.3.js"></script>
+<script src="./js/jquery-ui.js"></script>
+<script src="./js/selectize.js"></script>
 	<div id="main" class="clearfix" role="main" style="position: relative;">
 		<div id="global-dialog-background"></div>
 		<div id="upload-cr">
@@ -40,7 +55,7 @@
 				<div id="upload-screen">
 					<div id="panel-grid" class="">
 					 <%-- <form method="post" enctype="multipart/form-data" action="fileUpload/post{1}"> --%>
-					 <form:form modelAttribute="uploadForm" id="upload_form" method="post" enctype="multipart/form-data">
+					 <form id="upload_form" method="post" enctype="multipart/form-data">
 						<!-- 설명 시작 -->
 						<div id="editr-panel" class="widened enabled selection-single">
 							<div id="editr-panel-resize" class=""></div>
@@ -50,17 +65,36 @@
 										<div id="editr-panel-form">
 											<ul id="yui_3_11_0_3_1447996615343_950" class="editr-options">
 												<li id="editr-panel-title-description" class="editr-option" tabindex="1">
-													<label for="Name" class="col-xs-2 col-lg-2 control-label">제목</label>
+													<label for="Name" class="col-xs-2 col-lg-2 control-label" name="title_label">제목</label>
 													<div class="col-xs-10 col-lg-10"> 
-													<input type="text" name="pic_title" id="pic_title" class="form-control" placeholder="제목">
+													<input type="text" name="pic_title" id="pic_title" class="form-control" placeholder="제목" required>
+													
 													</div>
+													
 												</li>
 												<li id="editr-panel-tags" class="editr-option closed default" tabindex="3">
-													<label for="Name" class="col-xs-2 col-lg-2 control-label">태그</label>
-													<div class="col-xs-10 col-lg-10"> 
-													<input type="text" name="tag_name" id="tag_name" class="form-control" placeholder="태그와 태그는 쉼표(,)로 구분하세요">
+													<div>
+														<label for="tag_name" class="col-xs-2 col-lg-2 control-label">태그</label>
+														<div class="col-xs-10 col-lg-10"> 
+														<input type="text" name="tag_name" id="tag_name" class="input-tags demo-default" placeholder="태그와 태그는 쉼표(,)로 구분하세요">
+														</div>
+														<script>
+															$('#tag_name').selectize({
+																plugins : [ 'remove_button' ],
+																delimiter : ',',
+																persist : false,
+																create : function(input) {
+																	return {
+																		value : input,
+																		text : input
+																	}
+																}
+															});
+														</script>
 													</div>
+													
 												</li>
+												
 												<li id="editr-panel-tags" class="editr-option closed default" tabindex="4">
 													<label for="Name" class="col-xs-2 col-lg-2 control-label">카테고리</label>
 													<div class="col-xs-10 col-lg-10"> 
@@ -103,21 +137,26 @@
 												</li>
 												<li id="editr-panel-tags" class="editr-option closed default" tabindex="3">
 													<label for="Name" class="col-xs-2 col-lg-2 control-label">위치주소</label>
-													<div class="col-xs-10 col-lg-10"> 
+													<div class="col-xs-8 col-lg-8"> 
 													<input type="text" name="pic_location" id="pic_location" class="form-control" placeholder="주소를 입력하면 사진 세부보기에서 지도를 확인할 수 있습니다.">
+													<input type="hidden" name="location_chk" id="location_chk">
+													
+													</div>
+													<div class="col-xs-2 col-lg-2">
+														<button type="button" id="map_find" class="btn btn-warning">길찾기</button>
 													</div>
 												</li>
 												<li id="editr-panel-people" class="editr-option" tabindex="4">
-													<label for="Name" class="col-xs-2 col-lg-2 control-label">권한설정</label>
+													<label for="pic_open" class="col-xs-2 col-lg-2 control-label">권한설정</label>
 													<div class="col-xs-10 col-lg-10">
 														<label class="radio-inline ">
-														 <input type="radio" name="pic_open" id="pic_open" value="1">&nbsp;모두 공개&nbsp;&nbsp;
+														 <input type="radio" name="pic_open" id="pic_open" value="1" required checked>&nbsp;모두 공개&nbsp;&nbsp;
 														</label>
 														<label class="radio-inline">
-														 <input type="radio" name="pic_open" id="pic_open" value="2">&nbsp;친구 공개&nbsp;&nbsp;
+														 <input type="radio" name="pic_open" id="pic_open" value="2" required>&nbsp;친구 공개&nbsp;&nbsp;
 														</label>
 														<label class="radio-inline">
-														 <input type="radio" name="pic_open" id="pic_open" value="3">&nbsp;비공개&nbsp;&nbsp;
+														 <input type="radio" name="pic_open" id="pic_open" value="3" required>&nbsp;비공개&nbsp;&nbsp;
 														</label>
 													
 													</div>
@@ -134,7 +173,7 @@
 							<div id="working-area-controls">
 								
 								<div class="action-div">
-									<input id="action-publish" class="Butt extra-highlight" type="button" value="사진 1장 업로드">
+									<input id="action-publish" class="Butt extra-highlight" type="submit" value="사진 1장 업로드">
 								</div>
 								
 									<div id="controls-box">
@@ -147,16 +186,7 @@
 												<input id="button-add-photos" name="uploadfile" class="fupload browse-button browse-button-add-more choose-from-client" type="file" accept="image/*,video/*" multiple>
 												
 											</div>
-											<span id="remove-wrapper">
-												<span class="nice-divider"> </span>
-												<a id="remove-selected" class="toggle-button" title="선택한 항목 삭제" href="#remove-selected">
-													<span class="icon-remove">-</span>
-													<span id="yui_3_11_0_3_1448002662666_1016" class="item-count">
-														강퇴
-														<span></span>
-													</span>
-												</a>
-											</span>
+											
 										</div>
 									</div>
 									
@@ -170,26 +200,13 @@
 							  <div class="dragAndDropDiv">
 								<div id="display-container" >
 									
-									<!-- <div class="photo-item selected" >
-										<div class="selected-wrapper">
-											<div class="photo-thumbnail">
-												<img class="thumbnail" alt="" src="https://farm1.staticflickr.com/728/22744563687_8ba5219fbf_m.jpg" style="transform: rotate(360deg) scale(1);">
-												<output id="thumbs"></output>
-											</div>
-											x
-										</div>
-									</div> -->
-									<!-- <div class="photo-editable">
-										<div class="photo-title-editable">
-											
-										</div>
-									</div> -->
+									
 								</div>
 						     </div>
 							</div>
 						</div>
 						<!-- 오른쪽 끝ㄴ -->
-					  </form:form>
+					  </form>
 					</div>
 				</div>
 			</div>
@@ -223,5 +240,7 @@ function submitContents(str) {
     } catch(e) {}
 }
 </script>
+<script src="./js/jquery.validate.min.js"></script>
+
 </body>
 </html>

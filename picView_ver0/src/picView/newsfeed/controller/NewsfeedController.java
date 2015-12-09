@@ -1,5 +1,6 @@
 package picView.newsfeed.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import picView.member.model.AuthInfo;
+import picView.newsfeed.model.ActivityList;
 import picView.newsfeed.model.ActivityModel;
 import picView.newsfeed.model.FriendList;
 import picView.newsfeed.model.Good;
@@ -22,7 +24,7 @@ import picView.newsfeed.service.NewsfeedService;
 import picView.picture.model.Picture;
 
 
-@RequestMapping("/jsp/main/")
+@RequestMapping("/jsp/**/")
 @Controller
 public class NewsfeedController {
 	
@@ -62,13 +64,17 @@ public class NewsfeedController {
 		return service.list_friend(mem_no);
 	}
 	@RequestMapping(value="count_activity",method=RequestMethod.GET)
-	public @ResponseBody int count_activity(){
-		return service.count_activity();
+	public @ResponseBody int count_activity(HttpSession session){
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
+		return service.count_activity(mem_no);
 	}
 	
 	@RequestMapping(value="activity_list/{requestPage}",method=RequestMethod.GET)
-	public @ResponseBody ActivityModel activity_list(@PathVariable String requestPage){
-		return service.list_activity(Integer.parseInt(requestPage));
+	public @ResponseBody ActivityModel activity_list(@PathVariable String requestPage,HttpSession session){
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
+		return service.list_activity(Integer.parseInt(requestPage),mem_no);
 	}
 	
 	@RequestMapping(value="photo_good",method=RequestMethod.POST)
@@ -96,6 +102,17 @@ public class NewsfeedController {
 		return chk;
 	}
 	
+	@RequestMapping(value="count_activity_alarm{chk_date}",method=RequestMethod.GET )
+	public @ResponseBody int count_activity_alarm(@PathVariable Timestamp chk_date,HttpSession session){
+		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
+		int mem_no = authInfo.getMem_no();
+		ActivityList activity = new ActivityList();
+		activity.setMem_no(mem_no);
+		activity.setRep_date(chk_date);
+		
+		System.out.println("chk_date ===" + activity.getRep_date());
+		return service.count_activity_alarm(mem_no);
+	}
 	
 	
 }
