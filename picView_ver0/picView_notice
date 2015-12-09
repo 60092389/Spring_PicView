@@ -245,12 +245,13 @@ create sequence msg_no_seq
 - 유입분석
 
 create table analysis(
-	anl_no number, --분석번호
-	mem_no number, --회원번호
-	pic_no number, --사진번호
-	pic_count number, --사진조횟수
-	good_count number, -- 좋아요갯수
-	rep_count number, --댓글갯수
+	anl_no number not null, --분석번호
+	mem_no number not null, --회원번호
+	pic_no number not null, --사진번호
+	pic_add varchar2(100) not null, --사진이미지경로
+	pic_count number not null, --사진조횟수
+	good_count number not null, -- 좋아요갯수
+	rep_count number not null, --댓글갯수
 	anl_word varchar2(70) not null, --검색단어
 	anl_date date not null, --검색날짜
 	anl_count number not null --검색횟수
