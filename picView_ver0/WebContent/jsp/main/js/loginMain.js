@@ -15,7 +15,6 @@ $(function(){
 		success:function(data){
 			//alert(data.requestPage);
 			$('#totalCount').val(data);
-			$('#requestPage').val(0);
 			receiveMessage();
 			friendList();
 			
