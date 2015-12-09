@@ -286,6 +286,6 @@ jsp -> search -> search.jsp, detailSearch.jsp
 
 2015-12-09 20:58 황재준
 보여주기쪽 picDetail 추가
-picture.controller 옮기면 됩니다
-
+picture.controller 
+my_Show.jsp 수정
 
