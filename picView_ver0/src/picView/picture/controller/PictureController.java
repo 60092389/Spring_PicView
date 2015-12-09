@@ -188,7 +188,7 @@ public class PictureController {
 		return "myRoom/myShowSlide";
 	}
 
-	// basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
+	// 검색창 basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
 	@RequestMapping("/jsp/**/picDetail") /// pic_no={pic_no}
 	public String picDetail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no,
 			@RequestParam(value = "search", required = false) String search, HttpSession session) {
@@ -256,7 +256,102 @@ public class PictureController {
 
 		// 상세보기 - 조회수 업데이트
 		picService.update_count(picDetail);
-		
+
+		////
+
+		AlbumInfo albumInfo = new AlbumInfo();
+		albumInfo.setPic_add(picService.findAlbum_pic_add(pic_no));
+		albumInfo.setAlb_name(picService.findAlbum_name(pic_no));
+		albumInfo.setAlb_pic_count(picService.findAlbum_pic_count(pic_no));
+
+		List<AlbumInfo> list = new ArrayList<AlbumInfo>();
+		list.add(albumInfo);
+		System.out.println(list);
+		///
+
+		model.addAttribute("detail", picDetail);
+		model.addAttribute("tag_list", tag_list);
+		model.addAttribute("memInfo", memInfo);
+		model.addAttribute("rep_count", rep_count);
+		model.addAttribute("pic_list", pic_list);
+		model.addAttribute("main_pic", main_pic);
+		model.addAttribute("pic_no", pic_no);
+		model.addAttribute("findGood", findGood);
+		model.addAttribute("category_name", category_name);
+		model.addAttribute("alb_count", alb_count);
+
+		return "basic/picDetail";
+	}
+
+	// 보여주기 -> basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
+	@RequestMapping("/jsp/**/myShow_Detail") /// pic_no={pic_no}
+	public String myShow_Detail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no,
+			HttpSession session) {
+
+		System.out.println("보여주기 picDetail 들어옴");
+
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+
+		int mem_no = authInfo.getMem_no();
+
+		/*// 유입분석
+		Analysis_select anal_select = new Analysis_select();
+		anal_select.setMem_no(mem_no);
+		anal_select.setPic_no(pic_no);
+		anal_select.setAnl_word(search);
+
+		System.out.println(anal_select);
+
+		Analysis analysis = new Analysis();
+		analysis.setMem_no(mem_no);
+		analysis.setPic_no(pic_no);
+		analysis.setAnl_word(search);
+
+		System.out.println(analysis);
+
+		analService.select_no(anal_select, analysis);*/
+
+		// 상세보기 - 사진 정보
+		Picture picDetail = picService.detailPicture(pic_no);
+
+		// 상세보기 - 태그들
+		String tag_list = picService.tag_list(pic_no);
+
+		// 상세보기 - 회원정보(이름, 프로필 사진)
+		Member memInfo = picService.memInfo(pic_no);
+
+		// 상세보기 - 댓글 갯수
+		int rep_count = picService.rep_count(pic_no);
+
+		// 상세보기 - 사진 리스트
+		List<Picture> pic_list = picService.pic_list(pic_no);
+
+		// 상세보기 - 선택한 사진번호
+		// String move_pic = Integer.toString(pic_no);
+		// System.out.println(move_pic);
+
+		// 상세보기 - 메인 사진
+		String main_pic = picService.main_pic(pic_no);
+
+		// 상세보기 - 좋아요
+		int findGood = picService.findGood(pic_no);
+
+		// 상세보기 - 카테고리
+		String category_name = picService.findCategory(pic_no);
+
+		/*
+		 * // 상세보기 - 앨범 찾기 List<String> album_pic_add =
+		 * picService.findAlbum_pic_add(pic_no);
+		 * System.out.println(album_pic_add.toString());
+		 */
+
+		// 상세보기 - 앨범 개수
+		int alb_count = picService.findAlbum_count(pic_no);
+		System.out.println("컨트롤러 앨범개수" + alb_count);
+
+		// 상세보기 - 조회수 업데이트
+		picService.update_count(picDetail);
+
 		////
 
 		AlbumInfo albumInfo = new AlbumInfo();
