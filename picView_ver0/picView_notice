@@ -177,6 +177,7 @@ jsp -> search 전체다
 picture 패키지
 
 basic -> picDetail.jsp
+basic -> css 폴더
 myRoom -> myShow.jsp
 layout -> header.jsp
 search -> search.jsp, detailSearch.jsp
