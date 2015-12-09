@@ -46,8 +46,8 @@ Bootstrap
 		})
 	})
 	
-	var dataM, dataF, dataT;
-	/* 검색창 ajax */
+	var dataM=1, dataF=1, dataT=1;
+	/* 검색창 ajax */ 
 	function searchButton(){
 		var html1 = "";
 		$('#search').attr('value', search);
@@ -63,7 +63,6 @@ Bootstrap
 		 //검색된 값 없으면 아예 출력x
 		 if(data==0){
 			 dataM = data;
-			 console.log('회원 사진 없어!!'+dataM);
 			 html="";	
 		 }
 		  $.each(data,function(index,pic){
@@ -72,14 +71,14 @@ Bootstrap
 				html += "<div class='view photo-list-photo-view awake'>";
 				html += "<div class='interaction-view'>";
 				html += "<div class='photo-list-photo-interaction'>";
-				html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+				html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html += "<div class='view photo-list-view'>";
 				html += "<div class='interaction-bar'>";
 				html += "<div class='text'>";
 				html += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-				html += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+				html += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>회원님에 의해!</a></div>";
 
 				html += "<div class='tool'>";
 				html += "<a class='fave-area' href='#'></a>";
@@ -88,7 +87,7 @@ Bootstrap
 
 				html += "<div class='tool'>";
 				html += "<a class='comment-area' href='#'></a>";
-				html += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+				html += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 				html += "<i class='fave-star fave can-not-fave'></i></a></div>";
 				
 				html += "</div></div></div></div></div>";
@@ -109,7 +108,7 @@ Bootstrap
 
 	 $.getJSON("searchFollow",{search:encodeURIComponent(search),tag:encodeURIComponent(tag)},function(data){
 		 $('#follow').empty();
-		 //검색된 값 없으면 아예 출력x
+		
 		 if(data==0){
 			 dataF = data;
 			 console.log('팔로우 사진 없어!!'+dataF);
@@ -121,14 +120,14 @@ Bootstrap
 			    html3 += "<div class='view photo-list-photo-view awake'>";
 				html3 += "<div class='interaction-view'>";
 				html3 += "<div class='photo-list-photo-interaction'>";
-				html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+				html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html3 += "<div class='view photo-list-view'>";
 				html3 += "<div class='interaction-bar'>";
 				html3 += "<div class='text'>";
 				html3 += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-				html3 += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+				html3 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
 				html3 += "<div class='tool'>";
 				html3 += "<a class='fave-area' href='#'></a>";
@@ -137,7 +136,7 @@ Bootstrap
 
 				html3 += "<div class='tool'>";
 				html3 += "<a class='comment-area' href='#'></a>";
-				html3 += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+				html3 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 				html3 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 				
 				html3 += "</div></div></div></div></div>";
@@ -150,11 +149,10 @@ Bootstrap
 		});
 	 	
 
-		var index2=0;
 		var html2 = "<div class='main search-photos-results'>";
 		html2 += "<div class='view search-photos-everyone-view'>";
 		html2 += "<h5 class='search-results-header' id='explan'>";
-		html2 += "<a class='view-more-link' data-track='search-viewall' href=''#' data-rapid_p='49'>"+
+		html2 += "<a class='view-more-link' data-track='search-viewall'>"+
 		"</a>모든 사진</h5>";
 	 
 		var count=[];
@@ -172,14 +170,14 @@ Bootstrap
 			    html2 += "<div class='view photo-list-photo-view awake'>";
 				html2 += "<div class='interaction-view'>";
 				html2 += "<div class='photo-list-photo-interaction'>";
-				html2 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+				html2 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 					"<img class='allPicture' src='../../upload/"+pic.pic_add+"'></a>";
 
 				html2 += "<div class='view photo-list-view'>";
 				html2 += "<div class='interaction-bar'>";
 				html2 += "<div class='text'>";
 				html2 += "<a class='title' href='#'>"+ pic.pic_title+"</a>";
-				html2 += "<a class='attribution' href='#'>출처 : "+pic.mem_name+"</a></div>";
+				html2 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
 				html2 += "<div class='tool'>";
 				html2 += "<a class='fave-area' href='#'></a>";
@@ -188,7 +186,7 @@ Bootstrap
 
 				html2 += "<div class='tool'>";
 				html2 += "<a class='comment-area' href='#'></a>";
-				html2 += "<span class='glyphicon glyphicon-comment'>0</span>";
+				html2 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 				html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 				
 				html2 += "</div></div></div></div></div>";
@@ -198,15 +196,14 @@ Bootstrap
 		  
 		  $('#all').append(html2);
 		  
-		  if(dataM==0&&dataF==0){
+		  /* if(dataM==0 && dataF==0 && dataT==0){
 		 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
 		 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
 		 		console.log('값없음');
 		 	}
-		 	$('#member').append(html1);
+		 	$('#member').append(html1); */
 		});   
 	 }
-	
 	
 </script>
 
