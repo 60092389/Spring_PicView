@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="picView.picture.mapper.PictureMapper">
+<cache />
+
+	<insert id="insertPicture" parameterType="Picture">
+		insert into picture(pic_no, pic_title, mem_no, category_no,tag_name
+		, pic_content,pic_count,good_count ,pic_add
+		,pic_open, pic_color, pic_date ,pic_location)
+		values(
+		pic_no_seq.nextval, #{pic_title}, #{mem_no}, #{category_no}, #{tag_name}
+		, #{pic_content},0, 0, #{pic_add}
+		, #{pic_open}, #{pic_color},SYSDATE, #{pic_location}
+		)
+	</insert>
+	
+	<select id="selectByPicno" parameterType="int" resultType="Picture">
+		select * from picture where pic_no = #{pic_no}
+	</select>
+	
+	
+	<select id="PictureList" parameterType="int" resultType="Picture">
+		select pic_no, pic_title, mem_no, category_no, tag_name, pic_content, pic_count,
+			good_count, pic_add, to_date(pic_date, 'yy-mm-dd') pic_date, pic_open, pic_location
+		 from picture where mem_no = #{mem_no} order by pic_date desc
+	</select>
+	
+	<select id="PictureDate" parameterType="int" resultType="Picture">
+		select to_date(pic_date, 'yy-mm-dd') pic_date from picture 
+			where mem_no = #{mem_no}
+			group by to_date(pic_date, 'yy-mm-dd')
+			order by to_date(pic_date, 'yy-mm-dd') desc	
+	</select>
+	
+	<select id="PictureYear" parameterType="int" resultType="String">
+		select to_char(pic_date, 'YYYY') pic_date from picture
+		where mem_no = #{mem_no}
+		group by to_char(pic_date, 'YYYY')
+	</select>
+	
+	<select id="PictureMonth" parameterType="int" resultType="String">
+		select to_char(pic_date, 'YYYY-MM') pic_date from picture 
+			where mem_no = #{mem_no}
+			group by to_char(pic_date, 'YYYY-MM')
+			order by pic_date desc	
+	</select>
+	
+	<update id="UpdatePictureOpen" parameterType="Picture">
+		update picture set pic_open = #{pic_open} where pic_no = #{pic_no}
+	</update>
+	
+	<update id="UpdatePictureInfo" parameterType="Picture">
+		update picture set pic_title=#{pic_title}, pic_content=#{pic_content}, pic_open=#{pic_open} 
+				<if test="tag_name != null">
+					,tag_name=#{tag_name} 
+				</if>
+				where pic_no=#{pic_no}
+	</update>
+	
+	<delete id="DeletePicture" parameterType="int">
+		delete picture where pic_no=#{pic_no}
+	</delete>
+	
+	<delete id="DeletePicture_In_Album" parameterType="int">
+		delete group_pic where pic_no=#{pic_no}
+	</delete>
+	
+	<select id="GroupPicList_By_Pic_no" resultType="int" parameterType="int">
+		select alb_no from group_pic where pic_no = #{pic_no}
+	</select>
+	
+	<select id="GroupPic_AlbNo_count_By_Alb_no" parameterType="int" resultType="int">
+		select count(*) from group_pic where alb_no = #{alb_no}
+	</select>
+	
+	<!-- 보여주기 -->
+
+	<select resultType="Picture" parameterType="Picture" id="myShowPicture">
+		select *
+		from picture 
+		<if test='pic_open==null'>
+			<if test='search!=null'>
+			where mem_no = #{mem_no} and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			<if test='search==null'>
+			  where mem_no = #{mem_no} 
+			</if>
+		</if> 
+		
+		<if test='pic_open=="open"'>
+			<if test='search!=null'>
+			where mem_no = #{mem_no} and pic_open = '1' and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no} and pic_open = '1'
+			</if>
+		</if>
+		
+		<if test='pic_open=="friend"'>
+		   <if test='search!=null'>
+			where mem_no = #{mem_no} and pic_open IN ('2','1')  and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no} and pic_open IN ('2','1')
+			</if>
+		</if>
+		
+		<if test='pic_open=="closed"'>
+		   <if test='search!=null'>
+			where mem_no = #{mem_no} and pic_open = '3'  and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no} and pic_open = '3'
+			</if>
+		</if>
+		
+		<if test='pic_open=="all"'>
+		  <if test='search!=null'>
+			where mem_no = #{mem_no}  and 
+			(pic_title LIKE '%'||#{search}||'%' or pic_content  LIKE '%'||#{search}||'%')
+			</if>
+			
+			<if test='search==null'>
+			  where mem_no = #{mem_no}
+			</if>
+		</if>
+		
+		
+		order by pic_date desc
+	</select>
+	
+	<!-- 상세보기 -->
+	
+	<select id="main_pic" parameterType="int" resultType="String">
+		select pic_add
+		from picture
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="select_pic" parameterType="String" resultType="int">
+		<!-- select pic_no
+		from picture
+		where pic_add = #{pic_add} -->
+	</select>
+	
+	<select id="pic_list" parameterType="int" resultType="Picture">
+		select pic_add, pic_no
+		from picture
+		where pic_no >= #{pic_no}
+		order by pic_no 
+	</select>
+	
+	<select id="memInfo" parameterType="int" resultType="Member">
+		select mem_name, mem_pic
+		from member
+		where mem_no = (select mem_no
+							from picture 
+							where pic_no = #{pic_no})
+		
+		</select>
+	
+	<select id="rep_count" parameterType="int" resultType="int">
+		select count(*) 
+		from reply 
+		where pic_no = #{pic_no}
+	</select>
+
+	<select id="tag_list" parameterType="int" resultType="String">
+		select tag_name
+		from picture 
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="detailPicture" parameterType="int" resultType="Picture">
+		select pic_no, pic_title, mem_no, tag_name, pic_content, pic_count, good_count, 
+			pic_add, pic_location, to_date(pic_date, 'yy-mm-dd') pic_date
+		from picture 
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="findGood" parameterType="int" resultType="int">
+		select count(good_no)
+		from good
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="findCategory" parameterType="int" resultType="String">
+		select category_name
+		from category
+		where category_no = (select category_no
+								from picture
+								where pic_no = #{pic_no})
+		
+	</select>
+	
+	<select id="findAlbum_pic_add" parameterType="int" resultType="String">
+		select pic_add
+		from picture
+		where pic_no in (select min(pic_no)
+						from group_pic
+						where alb_no in (select alb_no
+										from group_pic
+										where pic_no = #{pic_no})
+						group by alb_no)
+		order by pic_no
+	</select>
+	
+	<select id="findAlbum_name" parameterType="int" resultType="String">
+		select alb_name
+		from album
+		where alb_no in (select alb_no 
+						from group_pic 
+						where pic_no = #{pic_no})
+		order by alb_no
+	</select>
+	
+	<select id="findAlbum_count" parameterType="int" resultType="int">
+		select count(group_no) 
+		from group_pic 
+		where pic_no = #{pic_no}
+	</select>
+	
+	<select id="findAlbum_pic_count" parameterType="int" resultType="Integer">
+		select count(pic_no)
+		from group_pic
+		where alb_no in (select alb_no 
+						from group_pic 
+						where pic_no = #{pic_no})
+		group by alb_no
+		order by alb_no
+	</select>
+	
+	<!-- 상세보기 끝 -->
+	
+	
+
+</mapper>
