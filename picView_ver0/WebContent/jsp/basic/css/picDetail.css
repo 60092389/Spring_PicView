@@ -5,6 +5,14 @@ body {
 		sans-serif;
 }
 
+#category_name {
+	margin-top: 0px;
+}
+
+#noAlbum {
+	text-align: center;
+}
+
 #follow_btn {
 	padding: 8px 10px;
 	margin-left: 35px;
