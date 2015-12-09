@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import picView.picture.model.Picture;
 import picView.reply.mapper.ReplyMapper;
 
 @Component
@@ -25,5 +26,9 @@ public class ReplyDao {
 	}
 	public int reply_count(int pic_no){
 		return myTemplate.getMapper(ReplyMapper.class).reply_count(pic_no);
+	}
+	public int myShowReply_count(int pic_no){
+		
+		return myTemplate.getMapper(ReplyMapper.class).myShowReply_count(pic_no);
 	}
 }

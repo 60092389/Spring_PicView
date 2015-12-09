@@ -4,147 +4,179 @@
 
 <mapper namespace="picView.search.mapper.SearchMapper">
 	<cache />
-	<!-- 회원 댓글 카운트 -->
-	<select id="replyCount" resultType="int" parameterType="int">
-		select count(*)
-		from reply
-		where pic_no = #{pic_no}
 	
-	</select>
-
 	<!-- 회원 사진 가져오기 -->
-	<select id="searchList" resultType="Picture" parameterType="Search">
-		select *
-		from picture 
+	<select id="searchList" resultType="SearchResult" parameterType="Search">
+		select p.pic_no, p.pic_title, p.pic_add, p.good_count, nvl(count(r.pic_no),0) as count_rep_no,
+		p.mem_no
+		from picture p
+		left outer join reply r on p.pic_no = r.pic_no
 		<if test='tags=="text"'>
-			where (pic_title LIKE '%'||#{searchKey}||'%'
-			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%')
-			and mem_no = #{mem_no} 
+			where (p.pic_title LIKE '%'||#{searchKey}||'%'
+			or p.tag_name LIKE '%'||#{searchKey}||'%' or p.pic_content LIKE '%'||#{searchKey}||'%')
+			and p.mem_no= #{mem_no}
 		</if>
 		<if test='tags=="tags"'>
-			where tag_name LIKE '%'||#{searchKey}||'%' and mem_no = #{mem_no} 
+			where p.tag_name LIKE '%'||#{searchKey}||'%' and p.mem_no = #{mem_no} 
 		</if>
+		group by p.pic_no, p.pic_title, p.pic_add, p.good_count, p.mem_no
 	</select>
 	
 	<!-- 팔로우 사진 보기 -->
-	<select id="searchFollow" resultType="Picture" parameterType="Search">
-		select *
-		from picture 
+	<select id="searchFollow" resultType="SearchResult" parameterType="Search">
+		select p.pic_no, p.pic_title, p.pic_add, p.good_count, nvl(count(r.pic_no),0) as count_rep_no, m.mem_name,
+		p.mem_no
+		from picture p 
+		left outer join reply r 
+		on p.pic_no = r.pic_no
+		
+		join member m
+		on m.mem_no = p.mem_no
 		<if test='tags=="text"'>
-			where (pic_title LIKE '%'||#{searchKey}||'%'
-			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%')
-			and mem_no IN
+			where (p.pic_title LIKE '%'||#{searchKey}||'%'
+			or p.tag_name LIKE '%'||#{searchKey}||'%' or p.pic_content LIKE '%'||#{searchKey}||'%')
+			and p.mem_no IN
 			(select follow_fri_no
 			from follow
 			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3))
 		</if>
+		
 		<if test='tags=="tags"'>
-			where (tag_name LIKE '%'||#{searchKey}||'%') 
-			and mem_no IN
+			where (p.tag_name LIKE '%'||#{searchKey}||'%') 
+			and p.mem_no IN
 			(select follow_fri_no
 			from follow
 			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3))
 			
 		</if>
-	
+			group by p.pic_no, p.pic_title, p.pic_add, p.good_count,m.mem_name,p.mem_no
 	</select>
 	
 	<!-- 모든 사진 보기 -->
-	<select id="searchTotal" resultType="Picture" parameterType="Search">
-		select *
-		from picture 
+	<select id="searchTotal" resultType="SearchResult" parameterType="Search">
+		select p.pic_no, p.pic_title, p.pic_add, p.good_count, nvl(count(r.pic_no),0) as count_rep_no, m.mem_name,
+		p.mem_no
+		from picture p 
+		left outer join reply r 
+		on p.pic_no = r.pic_no
+		
+		join member m
+		on m.mem_no = p.mem_no
+ 
 		<if test='tags=="text"'>
-			where pic_title LIKE '%'||#{searchKey}||'%'
-			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%'
+			where p.pic_title LIKE '%'||#{searchKey}||'%'
+			or p.tag_name LIKE '%'||#{searchKey}||'%' or p.pic_content LIKE '%'||#{searchKey}||'%'
 
 		</if>
+		
 		<if test='tags=="tags"'>
-			where tag_name LIKE '%'||#{searchKey}||'%'
+			where p.tag_name LIKE '%'||#{searchKey}||'%'
 		</if>
+		group by p.pic_no, p.pic_title, p.pic_add, p.good_count,m.mem_name,p.mem_no
 		
 	</select>
 	
 	
 	<!-- 회원 컬러 검색 -->
-	<select id="memColor" resultType="Picture" parameterType="Search">
+	<select id="memColor" resultType="SearchResult" parameterType="Search">
 	
-		select * 
-		from picture 
+		select  p.pic_no, p.pic_title, p.pic_add, p.good_count, nvl(count(r.pic_no),0) as count_rep_no, m.mem_name,
+		p.mem_no
+		from picture p 
+		left outer join reply r 
+		on p.pic_no = r.pic_no
+		
+		join member m
+		on m.mem_no = p.mem_no
 		<if test='tags=="text"'>
-			<where> (pic_title LIKE '%'||#{searchKey}||'%'
-			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%')
-			and mem_no = #{mem_no} and
+			<where> (p.pic_title LIKE '%'||#{searchKey}||'%'
+			or p.tag_name LIKE '%'||#{searchKey}||'%' or p.pic_content LIKE '%'||#{searchKey}||'%')
+			and p.mem_no = #{mem_no} and
 				<foreach collection="color" item="col" separator="and">
-					pic_color LIKE '%'||#{col}||'%'
+					p.pic_color LIKE '%'||#{col}||'%'
 				</foreach>
 			 
 			</where>
 		</if>
 		
 		<if test='tags=="tags"'>
-			<where>tag_name LIKE '%'||#{searchKey}||'%' and mem_no = #{mem_no} and
+			<where>p.tag_name LIKE '%'||#{searchKey}||'%' and p.mem_no = #{mem_no} and
 				<foreach collection="color" item="col" open="(" close=")" separator="and">
-					pic_color LIKE '%'||#{col}||'%'
+					p.pic_color LIKE '%'||#{col}||'%'
 				</foreach>
 			 
 			</where>
 		</if>
-
+		group by p.pic_no, p.pic_title, p.pic_add, p.good_count,m.mem_name,p.mem_no
 	</select>
 	
 	<!-- 팔로우 컬러 검색 -->
-	<select id="followColor" resultType="Picture" parameterType="Search">
+	<select id="followColor" resultType="SearchResult" parameterType="Search">
 	
-		select * 
-		from picture 
+		select p.pic_no, p.pic_title, p.pic_add, p.good_count, nvl(count(r.pic_no),0) as count_rep_no, m.mem_name,
+		p.mem_no
+		from picture p 
+		left outer join reply r 
+		on p.pic_no = r.pic_no
+		
+		join member m
+		on m.mem_no = p.mem_no
+		
 		<if test='tags=="text"'>
-			<where> (pic_title LIKE '%'||#{searchKey}||'%'
-			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%') 
-			and mem_no IN
+			<where> (p.pic_title LIKE '%'||#{searchKey}||'%'
+			or p.tag_name LIKE '%'||#{searchKey}||'%' or p.pic_content LIKE '%'||#{searchKey}||'%') 
+			and p.mem_no IN
 			(select follow_fri_no
 			from follow
 			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3)) and
 				<foreach collection="color" item="col" separator="and">
-					pic_color LIKE '%'||#{col}||'%'
+					p.pic_color LIKE '%'||#{col}||'%'
 				</foreach>
 			</where>
 		</if>
 		
 		<if test='tags=="tags"'>
-			<where>tag_name LIKE '%'||#{searchKey}||'%' 
+			<where>p.tag_name LIKE '%'||#{searchKey}||'%' 
 			and mem_no IN
 			(select follow_fri_no
 			from follow
 			where mem_no = #{mem_no} and (follow_check = 1 or follow_check = 3)) and
 				<foreach collection="color" item="col" open="(" close=")" separator="and">
-					pic_color LIKE '%'||#{col}||'%'
+					p.pic_color LIKE '%'||#{col}||'%'
 				</foreach>
 			</where>
 		</if>
+		group by p.pic_no, p.pic_title, p.pic_add, p.good_count,m.mem_name,p.mem_no
 	</select>
 	
 	<!-- 모든 사진 컬러 검색 -->
-	<select id="allColor" resultType="Picture" parameterType="Search">
+	<select id="allColor" resultType="SearchResult" parameterType="Search">
 	
-		select * 
-		from picture 
+		select p.pic_no, p.pic_title, p.pic_add, p.good_count, nvl(count(r.pic_no),0) as count_rep_no, m.mem_name,
+		p.mem_no
+		from picture p 
+		left outer join reply r 
+		on p.pic_no = r.pic_no
+		
+		join member m
+		on m.mem_no = p.mem_no 
 		<if test='tags=="text"'>
-			<where> (pic_title LIKE '%'||#{searchKey}||'%'
-			or tag_name LIKE '%'||#{searchKey}||'%' or pic_content LIKE '%'||#{searchKey}||'%') and
+			<where> (p.pic_title LIKE '%'||#{searchKey}||'%'
+			or p.tag_name LIKE '%'||#{searchKey}||'%' or p.pic_content LIKE '%'||#{searchKey}||'%') and
 				<foreach collection="color" item="col" separator="and">
-					pic_color LIKE '%'||#{col}||'%'
+					p.pic_color LIKE '%'||#{col}||'%'
 				</foreach>
 			</where>
 		</if>
 		
 		<if test='tags=="tags"'>
-			<where>tag_name LIKE '%'||#{searchKey}||'%' and
+			<where>p.tag_name LIKE '%'||#{searchKey}||'%' and
 				<foreach collection="color" item="col" open="(" close=")" separator="and">
-					pic_color LIKE '%'||#{col}||'%'
+					p.pic_color LIKE '%'||#{col}||'%'
 				</foreach>
 			</where>
 		</if>
-
+		group by p.pic_no, p.pic_title, p.pic_add, p.good_count,m.mem_name,p.mem_no
 	</select>
 	
 	<!-- 회원 이름 검색 -->

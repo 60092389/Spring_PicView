@@ -13,6 +13,7 @@ import picView.picture.model.Picture;
 import picView.search.model.MemberResult;
 import picView.search.model.Search;
 import picView.search.model.SearchDao;
+import picView.search.model.SearchResult;
 
 @Service
 public class SearchService {
@@ -30,38 +31,37 @@ public class SearchService {
 	}
 
 
-
 	//회원 사진 가져오기
-	public List<Picture> searchList(Search search){
-		return searchDao.searchList(search);
-	}
-	
-	//팔로우 사진
-	public List<Picture> searchFollow(Search search){
-		return searchDao.searchFollow(search);
-	}
-	
-	//모든 사진 가져오기
-	public List<Picture> searchTotal(Search search){
-		return searchDao.searchTotal(search);
-	}
+		public List<SearchResult> searchList(Search search){
+			return searchDao.searchList(search);
+		}
+		
+		//팔로우 사진
+		public List<SearchResult> searchFollow(Search search){
+			return searchDao.searchFollow(search);
+		}
+		
+		//모든 사진 가져오기
+		public List<SearchResult> searchTotal(Search search){
+			return searchDao.searchTotal(search);
+		}
 
-	/*
-	 * 색상
-	 */
-	
-	//회원 색상 검색
-	public List<Picture> memColor(Search search){
-		return searchDao.memColor(search);
-	}
-	//팔로우 색상 검색
-	public List<Picture> followColor(Search search){
-		return searchDao.followColor(search);
-	}
-	// 모든 사진 색상 검색
-	public List<Picture> allColor(Search search){
-		return searchDao.allColor(search);
-	}
+		/*
+		 * 색상
+		 */
+		
+		//회원 색상 검색
+		public List<SearchResult> memColor(Search search){
+			return searchDao.memColor(search);
+		}
+		//팔로우 색상 검색
+		public List<SearchResult> followColor(Search search){
+			return searchDao.followColor(search);
+		}
+		// 모든 사진 색상 검색
+		public List<SearchResult> allColor(Search search){
+			return searchDao.allColor(search);
+		}
 	
 	//회원 검색
 	public List<MemberResult> searchPeople(Search search, int mem_no){
@@ -112,9 +112,4 @@ public class SearchService {
 		return search_result;
 	}
 
-	//사진 개수
-	public int replyCount(int pic_no){
-		return searchDao.replyCount(pic_no);
-	}
-	
 }

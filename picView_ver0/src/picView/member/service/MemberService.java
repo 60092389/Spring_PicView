@@ -57,7 +57,7 @@ public class MemberService {
 		String mem_birth = mc.getYear() + mc.getMonth() + mc.getDay();
 
 		m.setMem_id(mc.getId());
-		m.setMem_pwd(mc.getPass());
+		m.setMem_pwd(mc.getPassword());
 		m.setMem_name(mc.getName());
 		m.setMem_birth(mem_birth);
 		m.setMem_sex(mc.getGender());

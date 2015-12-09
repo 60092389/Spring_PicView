@@ -1,14 +1,19 @@
 package picView.member.controller;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import picView.cate.model.Category;
@@ -45,28 +50,39 @@ public class MemberController {
 	}
 	
 
-	@RequestMapping("/jsp/**/insertForm")
-	public String insertForm(Model model){
-		System.out.println("insertForm 오케이");
+	@RequestMapping(value="/jsp/**/insertForm", method=RequestMethod.GET)
+	public String registForm(Model model){
+		model.addAttribute("memberCommand", new MemberCommand());
 		
 		List<Category> list = categoryService.categoryList();		
 		
 		model.addAttribute("cateList", list);
 		
-		System.out.println(list);
+		System.out.println(list);	
 		
-		return "login/register";
+		return "/login/register";
 	}
 
-	@RequestMapping("/jsp/login/insertMember")
-	public String insertMember(MemberCommand mc) {
-
-		System.out.println("controller 오케이");
-		System.out.println(mc.getCategory_no());
-		try {
-			memberService.insertMember(mc);
+	@RequestMapping(value="/jsp/**/insertForm", method=RequestMethod.POST)
+	public String insertForm(Model model,@ModelAttribute("memberCommand")
+	@Valid MemberCommand memberCommand, BindingResult errors) throws IOException{
+		System.out.println("여기 post 컨트롤러");
+		if(errors.hasErrors()){
+			List<Category> list = categoryService.categoryList();		
 			
-			memberService.sendMailSerivce(mc);			
+			model.addAttribute("cateList", list);
+			
+			System.out.println(list);
+			
+			return  "/login/register";
+		}
+		
+		System.out.println("controller 오케이");
+		System.out.println(memberCommand.getCategory_no());
+		try {
+			memberService.insertMember(memberCommand);
+			
+			memberService.sendMailSerivce(memberCommand);			
 			
 			return "index/index";
 
@@ -76,6 +92,7 @@ public class MemberController {
 		}
 
 		return "login/register";
+		
 	}
 	
 	@RequestMapping("/jsp/login/loginForm")

@@ -16,7 +16,7 @@
 		<typeAlias type="picView.newsfeed.model.ActivityList" alias="ActivityList"/>
 		<typeAlias type="picView.album.model.Group_Pic" alias="Group_Pic"/>
 		<typeAlias type="picView.album.model.Album" alias="Album"/>
-		
+		<typeAlias type="picView.search.model.SearchResult" alias="SearchResult"/>
 		<typeAlias type="picView.search.model.Search" alias="Search"/>
 	</typeAliases>
 	

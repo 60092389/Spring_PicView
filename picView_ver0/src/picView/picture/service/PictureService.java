@@ -22,7 +22,9 @@ import picView.member.model.MemberDao;
 import picView.picture.model.Picture;
 import picView.picture.model.PictureDao;
 import picView.picture.model.PictureShow;
+import picView.picture.model.ReplyCount;
 import picView.picture.model.UpdatePictureCommand;
+import picView.reply.model.ReplyDao;
 
 @Service
 public class PictureService {
@@ -30,8 +32,13 @@ public class PictureService {
 		private MemberDao memDao;
 		private FollowDao followDao;
 		private AlbumDao albumDao;
+		private ReplyDao replyDao;
 
-		
+		@Autowired
+		public void setReplyDao(ReplyDao replyDao) {
+			this.replyDao = replyDao;
+		}
+
 		@Autowired
 		public void setPicDao(PictureDao picDao) {
 			this.picDao = picDao;
@@ -334,6 +341,25 @@ public class PictureService {
 				return pic_show;
 		}
 		
+		public List<ReplyCount> myShowReply_count(List<Picture> myShowList){
+			List<Integer> count = new ArrayList<Integer>();
+			List<ReplyCount> rep_count = new ArrayList<ReplyCount>(); 
+			
+			System.out.println("서비스 마이쇼리스트 사이즈 : "+myShowList.size());
+			
+			
+			
+			for(int i=0; i<myShowList.size(); i++){
+				
+				int pic_no = myShowList.get(i).getPic_no();
+				
+				count.add(replyDao.myShowReply_count(pic_no));
+				ReplyCount replyCount = new ReplyCount(count.get(i), pic_no);
+				rep_count.add(replyCount);
+			}
+			
+			return rep_count;
+		}
 		
 		// 상세보기 시작
 		

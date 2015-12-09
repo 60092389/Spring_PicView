@@ -10,4 +10,6 @@ public interface ReplyMapper {
 	public List<Reply> list_reply(int pic_no);//댓글 리스트
 	public int reply_count(int pic_no);//뉴스피드에서 댓글 카운트
 	
+	public int myShowReply_count(int pic_no);//myShow에서 사진마다 보여줄 reply_count
+	
 }

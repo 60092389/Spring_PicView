@@ -1,0 +1,311 @@
+@CHARSET "EUC-KR";
+
+body {
+	font-family: "¸¼Àº °íµñ", "Malgun Gothic", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic",
+		sans-serif;
+}
+
+#myMenu_navi {
+	height: 40px;
+	margin-top: -48px;
+	margin-left: 150px;
+}
+
+#other {
+	margin-left: 530px;
+}
+
+.contents {
+	background-color: #F3F5F6;
+	overflow: hidden;
+	height: auto;
+	width: auto;
+	padding-bottom: 20px;
+}
+
+#picture_area {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 120px;
+}
+
+.picture_list {
+	float: left;
+	margin: 2px;
+	width: 357px;
+	height: 268px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 357px;
+}
+
+.open_pic {
+	margin-top: 30px;
+}
+
+#show_btn {
+	margin-top: 30px;
+	margin-left: 130px;
+}
+
+.no_picture {
+	margin-top: 150px;
+	text-align: center;
+}
+
+.no_picture p {
+	color: black;
+}
+
+.button {
+	margin-left: 610px;
+	margin-top: 100px;
+}
+
+.info_bar {
+	margin-top: 225px;
+	margin-left: 10px;
+}
+
+.pic_title{
+	display: inline;
+	color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 17px;
+}
+
+.pic_date{
+	display: inline-table;
+	margin-top: 20px;
+}
+
+.info_bar a {
+	color: white;
+}
+
+.fluid-magic-slideshow-view {
+    float: right;
+    height: 50px;
+    min-width: 28px;
+    position: relative;
+}
+
+.slideshow-toggle {
+    outline: 0 none;
+}
+
+a{
+    cursor: pointer;
+    text-decoration: none;
+    text-shadow: #000;
+}
+
+.slideshow-toggle span {
+    background: rgba(0, 0, 0, 0) url("https://s.yimg.com/uy/build/images/../images/icons-1x-s2fb29ad15b.png") 
+    no-repeat scroll -111px -583px;
+    display: block;
+    height: 28px;
+    outline: 0 none;
+    position: relative;
+    top: 25px;
+    transform: translateY(-50%);
+    width: 28px;
+}
+
+.fluid-magic-search-view {
+    float: right;
+    min-width: 20px;
+    position: relative;
+}
+.search-toggle span {
+    left: 3px;
+}
+
+.search-toggle span.active {
+    background: rgba(0, 0, 0, 0) url("https://s.yimg.com/uy/build/images/../images/icons-1x-s2fb29ad15b.png") 
+    no-repeat scroll -36px -342px;
+    height: 18px;
+    width: 18px;
+}
+
+.fluid-magic-tools-view {
+    height: 50px;
+    position: relative;
+    width: 100%;
+} 
+
+.magic-search{
+	margin-top: 35px;
+	margin-right: 45px;
+}
+
+.slide{
+	margin-top: 20px;
+	margin-right: 140px;
+}
+
+.fave-area , .comment-area{
+	display: inline-block;
+    margin-right: 1px;
+    vertical-align: middle;
+}
+
+.tool{
+	display: inline;
+	padding-top:20px;
+}
+
+.picture{
+	width:357px;
+	height: 268px;
+}
+
+.interaction-bar {
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    padding: 0 8px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    margin-top:4px;
+    background-color: black;
+ 
+}
+.interaction-bar .text {
+    flex: 1 1 0;
+    min-height: 0;
+    min-width: 0;
+    boder: 1px solid yellow;
+}
+
+.interaction-bar .text .title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 17px;
+    
+}
+.interaction-bar .text .title, .interaction-bar .text .attribution {
+    display: block;
+    margin: 2px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 2px #000;
+    white-space: nowrap;
+    width: 100px;
+    z-index: 2;
+    
+}
+
+.interaction-bar .text .attribution {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    transition: color 150ms linear 0s;
+    
+}
+
+.glyphicon{
+	color : #fff;	
+	
+}
+
+.glyphicon-star-empty{
+	padding-right:5px;
+}
+
+.interaction-bar a, .interaction-bar a:hover {
+    text-decoration: none;
+}
+
+.search-photos-unified-page-view main#search-unified-content.main.fluid-centered {
+    margin-top: 50px;
+    overflow: hidden;
+}
+
+.photo-list-photo-interaction .interaction-bar .tool {
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+    -moz-box-pack: center;
+    align-items: center;
+    color: #fff;
+    display: inline;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: center;
+    margin-left: 8px;
+    padding-top: 9px;
+    text-align: center;
+    vertical-align: middle;
+    float: right;
+    border : 1px solid red;
+}
+.photo-list-photo-interaction .interaction-bar .tool .fave-area {
+    color: #fff;
+}
+.interaction-bar a,.interaction-bar a:hover {
+    text-decoration: none;
+}
+
+
+.fave-area i.fave-star.can-not-fave {
+    cursor: default;
+    opacity: 0.6;
+}
+.fave-area i.fave-star.fave {
+    cursor: pointer;
+    height: 17px;
+    width: 18px;
+}
+
+.interaction-bar .tool .fave-area i.fave-star {
+    cursor: pointer;
+    display: inline;
+    vertical-align: middle;
+}
+
+.photo-list-photo-interaction {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+	border : 1px solid red;
+}
+
+.photo-list-photo-interaction .interaction-bar .tool .comment-area {
+    color: #fff;
+}
+.interaction-bar a, .interaction-bar a:hover {
+    text-decoration: none;
+}
+
+
+.interaction-bar .tool .comment-area i.comments {
+    display: inline;
+    height: 16px;
+    vertical-align: middle;
+    width: 16px;
+}
+
+
+.search{
+    background: rgba(0, 0, 0, 0) url("https://s.yimg.com/uy/build/images/../images/icons-1x-s2fb29ad15b.png") 
+    no-repeat scroll -54px -342px;
+    display: block;
+    height: 18px;
+    left: 9px;
+    position: absolute;
+    top: 16px;
+    width: 18px;
+    margin-left: 1140px;
+    margin-top: 20px;"
+    left: 3px;
+}

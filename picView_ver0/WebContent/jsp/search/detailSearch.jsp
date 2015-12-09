@@ -11,6 +11,8 @@
 
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
+<script src="js/arrayList.js"></script>
+
 <link href="../../css/picView_custom.css" rel="stylesheet">
 <link href="css/search.css" rel="stylesheet">
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +28,9 @@
 
 	var tag = 'text';
 
+	window.onload = function() {
+		$('.interaction-bar').css('display', 'none');
+	}
 	$(function() {
 		$(document).on('mouseover', '.photo-list-photo-view', function() {
 			$(this).find('.interaction-bar').css('display', 'inline-blcok');
@@ -56,7 +61,6 @@
 		/* 색상 선택 */
 		var cntCol=0;
 		$('.color-swatch').click(function() {
-			if(cntCol<=2){
 				var color = $(this).attr('value');
 				var index3 = $('.color-swatch').index(this);
 					
@@ -64,18 +68,20 @@
 				//중간에 span들어가서 2씩 배가 됨
 				console.log('인덱스 값'+index3);
 				
-				$(this).parent().find('span').eq(index3/2).css('display','block');
+				if($(this).parent().find('span').eq(index3/2).css('display') == 'block'){
+					$(this).parent().find('span').eq(index3/2).css('display','none');
+				}else{
+					$(this).parent().find('span').eq(index3/2).css('display','block');
+				}
+				
 				cntCol++;
 				console.log('카운트 값'+cntCol);
 				console.log(tag);
-				
-			}else{
-				alert('색상 선택은 3가지만 가능합니다');
-			}
 		});
 		
-		
 	});
+
+
 	var html1="";
 	function tagSearch() {
 		if(check == 'member'){
@@ -100,14 +106,14 @@
 					html += "<div class='view photo-list-photo-view awake'>";
 					html += "<div class='interaction-view'>";
 					html += "<div class='photo-list-photo-interaction'>";
-					html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+					html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 						"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 					html += "<div class='view photo-list-view'>";
 					html += "<div class='interaction-bar'>";
 					html += "<div class='text'>";
 					html += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-					html += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+					html += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>회원님에 의해!</a></div>";
 
 					html += "<div class='tool'>";
 					html += "<a class='fave-area' href='#'></a>";
@@ -116,7 +122,7 @@
 
 					html += "<div class='tool'>";
 					html += "<a class='comment-area' href='#'></a>";
-					html += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+					html += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 					html += "<i class='fave-star fave can-not-fave'></i></a></div>";
 					
 					html += "</div></div></div></div></div>";
@@ -134,30 +140,59 @@
 			 	
 			});
 		
-			//색상 검색
-			var arr = new Array(3);
-			
+		/*색상 검색*/
+		var arr = new Array(3);
+		var colorList = new ArrayList();
+		console.log('생성 후 list 사이즈'+colorList.size());
+		
 			var cnt=0;
-			if(cnt<=2){ //else일때 아예 클릭 막아버려야함
-				$('.color-swatch').click(function() {
-					var color = $(this).attr('value');
-					console.log('컬러 값 '+color);
-					arr[cnt] = color;
+			console.log(cnt);
+			$('.color-swatch').click(function() {
+				var color = $(this).attr('value');
+				console.log('모두의 첫번째'+color);
+				
+				console.log(colorList.size());
+				colorList.add(color);
+				console.log('넣고 나서');
+				console.log(colorList.size());		
+				
+				for(var i=0;i<colorList.size()-1;i++){
+					if(colorList.get(i) == color){
+						console.log('여기 같을때');
+						colorList.remove(colorList.size()-1);
+						colorList.remove(i);
 						
-					cnt++;
-						
-					var search=$('#search').val();
-					var search2="";
-						
-					//실제 전달할 값
-					if(cnt==1){
-						search2 = search +","+ arr[0];
-					}else if(cnt==2){
-						search2 = search +","+ arr[0]+","+arr[1];
 					}
-					else if(cnt==3){
-						search2 = search +","+ arr[0]+","+arr[1]+","+arr[2];
-					}
+				}
+				for(var i=0;i<colorList.size();i++){
+					console.log('여기 for문'+colorList.get(i));
+				}
+				for(var i=0;i<colorList.size();i++){
+					arr[i] = colorList.get(i); 
+				}
+				
+				for(var i=0;i<arr.length;i++){
+					console.log(arr);
+				}
+				
+				console.log('최종 size'+colorList.size());
+				var search=$('#search').val();
+				var search2="";
+				
+				
+				if(colorList.size()==0){
+					tagSearch();
+				} 
+					
+				//실제 전달할 값
+				if(colorList.size()==1){
+					search2 = search +","+ arr[0];
+				}else if(colorList.size()==2){
+					search2 = search +","+ arr[0]+","+arr[1];
+				}
+				else if(colorList.size()==3){
+					search2 = search +","+ arr[0]+","+arr[1]+","+arr[2];
+				}
 					
 					var html = "<div class='main search-contacts-results'>";
 			 		html += "<div class='view search-photos-yours-view'>";
@@ -178,14 +213,14 @@
 							+ pic.pic_add+ ")'>";
 							html += "<div class='interaction-view'>";
 							html += "<div class='photo-list-photo-interaction'>";
-							html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+							html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 								"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 							html += "<div class='view photo-list-view'>";
 							html += "<div class='interaction-bar'>";
 							html += "<div class='text'>";
 							html += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-							html += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+							html += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>회원님에 의해!</a></div>";
 
 							html += "<div class='tool'>";
 							html += "<a class='fave-area' href='#'></a>";
@@ -194,7 +229,7 @@
 
 							html += "<div class='tool'>";
 							html += "<a class='comment-area' href='#'></a>";
-							html += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+							html += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 							html += "<i class='fave-star fave can-not-fave'></i></a></div>";
 							
 							html += "</div></div></div></div></div>";
@@ -204,17 +239,16 @@
 					 
 					  
 					  $('#member').append(html);
-					  if(data==0){
+					  /* if(data==0){
 					 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
 					 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
 					 		console.log('값없음');
 					 	}
-					 	$('#member').append(html1);
+					 	$('#member').append(html1); */
 					});
 				});
-			
-		  	}
-		  }
+		 	}
+		
 			else{
 				$('#search').attr('value', search);
 				
@@ -229,7 +263,7 @@
 				 $('#follow').empty();
 				 if(data==0){
 					 console.log('팔로우 사진 없어!!')
-					html3="";	
+					 html3="";	
 				 }
 				  $.each(data,function(index,pic){
 
@@ -237,14 +271,14 @@
 					    html3 += "<div class='view photo-list-photo-view awake'>";
 						html3 += "<div class='interaction-view'>";
 						html3 += "<div class='photo-list-photo-interaction'>";
-						html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+						html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 							"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 
 						html3 += "<div class='view photo-list-view'>";
 						html3 += "<div class='interaction-bar'>";
 						html3 += "<div class='text'>";
 						html3 += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-						html3 += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+						html3 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+ pic.mem_name+"</a></div>";
 
 						html3 += "<div class='tool'>";
 						html3 += "<a class='fave-area' href='#'></a>";
@@ -253,7 +287,7 @@
 
 						html3 += "<div class='tool'>";
 						html3 += "<a class='comment-area' href='#'></a>";
-						html3 += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+						html3 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 						html3 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 						
 						html3 += "</div></div></div></div></div>";
@@ -267,33 +301,65 @@
 				 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
 				 		console.log('값없음');
 				 	}
+				  
 				 	$('#member').append(html1);
+				 	
 				});
 			 
-			 var arr = new Array(3);
-			 var cnt=0;
-				console.log(cnt);
-
-				if(cnt<=2){ //else일때 아예 클릭 막아버려야함
-				$('.color-swatch').click(function() {
-					var color = $(this).attr('value');
-					
-					arr[cnt] = color;
+			 	/*색상 검색*/
+				var arr = new Array(3);
+				var colorList = new ArrayList();
+				console.log('생성 후 list 사이즈'+colorList.size());
+				
+					var cnt=0;
+					console.log(cnt);
+					$('.color-swatch').click(function() {
+						var color = $(this).attr('value');
+						console.log('모두의 첫번째'+color);
 						
-					cnt++;
+						console.log(colorList.size());
+						colorList.add(color);
+						console.log('넣고 나서');
+						console.log(colorList.size());		
 						
-					var search=$('#search').val();
-					var search2="";
+						for(var i=0;i<colorList.size()-1;i++){
+							if(colorList.get(i) == color){
+								console.log('여기 같을때');
+								colorList.remove(colorList.size()-1);
+								colorList.remove(i);
+								
+							}
+						}
+						for(var i=0;i<colorList.size();i++){
+							console.log('여기 for문'+colorList.get(i));
+						}
+						for(var i=0;i<colorList.size();i++){
+							arr[i] = colorList.get(i); 
+						}
 						
-					//실제 전달할 값
-					if(cnt==1){
-						search2 = search +","+ arr[0];
-					}else if(cnt==2){
-						search2 = search +","+ arr[0]+","+arr[1];
-					}
-					else if(cnt==3){
-						search2 = search +","+ arr[0]+","+arr[1]+","+arr[2];
-					}
+						for(var i=0;i<arr.length;i++){
+							console.log(arr);
+						}
+						
+						console.log('최종 size'+colorList.size());
+						var search=$('#search').val();
+						var search2="";
+						
+						
+						if(colorList.size()==0){
+							tagSearch();
+						} 
+							
+						//실제 전달할 값
+						if(colorList.size()==1){
+							search2 = search +","+ arr[0];
+						}else if(colorList.size()==2){
+							search2 = search +","+ arr[0]+","+arr[1];
+						}
+						else if(colorList.size()==3){
+							search2 = search +","+ arr[0]+","+arr[1]+","+arr[2];
+						}
+						
 					//팔로우한 사람 사진
 					var html3 = "<div class='main search-contacts-results'>";
 					html3 += "<div class='view search-photos-yours-view' style='height:268px'>";
@@ -314,14 +380,14 @@
 							html3 += "<div class='view photo-list-photo-view awake'>";
 							html3 += "<div class='interaction-view'>";
 							html3 += "<div class='photo-list-photo-interaction'>";
-							html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+							html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 								"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 								
 							html3 += "<div class='view photo-list-view'>";
 							html3 += "<div class='interaction-bar'>";
 							html3 += "<div class='text'>";
 							html3 += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-							html3 += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+							html3 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>"+pic.mem_name+"</a></div>";
 
 							html3 += "<div class='tool'>";
 							html3 += "<a class='fave-area' href='#'></a>";
@@ -330,7 +396,7 @@
 
 							html3 += "<div class='tool'>";
 							html3 += "<a class='comment-area' href='#'></a>";
-							html3 += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+							html3 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 							html3 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 							
 							html3 += "</div></div></div></div></div>";
@@ -341,20 +407,20 @@
 					  
 					  $('#follow').append(html3);
 					  
-					  if(data==0){
+					/*   if(data==0){
 					 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
 					 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
 					 		console.log('값없음');
 					 	}
-					 	$('#member').append(html1);
+					 	$('#member').append(html1); */
 					});
 				})
 				
 			} 
 		}
-	}
 
-	
+
+
 	$(function() {
 		tagSearch();
 	});
@@ -452,8 +518,8 @@
 								 value="text" onclick="tagSearch()">모두</li>
 								<li  class="search-in-button" data-tooltip-prefer-bottom="true"
 								value="tags" onclick="tagSearch()">태그</li>
-								<li class="search-in-button" data-tooltip-prefer-bottom="true"
-								 value="category" onclick="tagSearch()">카테고리</li>
+<!-- 								<li class="search-in-button" data-tooltip-prefer-bottom="true"
+								 value="category" onclick="tagSearch()">카테고리</li> -->
 							</ul>
 						</div>
 			    </div>

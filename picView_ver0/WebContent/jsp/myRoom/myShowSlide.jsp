@@ -10,14 +10,22 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link href="./css/main.css" rel="stylesheet" media="screen"/>
 <title>Insert title here</title>
+
+<style type="text/css">
+	.slider_size{
+	background-size: 100% 100%;
+	}
+
+</style>
 </head>
 
 <body> 
+	<input type="hidden" name="pic_count" id="pic_count" value="${pic_count }">
 	<div class="wrap wrap-index">
             <div class="slider">
                 <div class="jquery-reslider">
 					<c:forEach var="s" items="${myShowList}">
- 						<div class="slider-block" data-url="../../upload/${s.pic_add}"></div>
+ 						<div class="slider-block slider_size" data-url="../../upload/${s.pic_add}"></div>
 				    </c:forEach>
                     <div class="slider-direction slider-direction-next"></div>
                     <div class="slider-direction slider-direction-prev"></div>
@@ -35,11 +43,12 @@
 <script>
 
 $(function(){
+	var pic_count = $("#pic_count").val();
     $('.jquery-reslider').reSlider({
-        speed:1000,  //페이드속도
+        speed:500,  //페이드속도
         delay:5000,  //자동전환 속도
-        imgCount:8,  //이미지갯수 
-        dots: true,   //하단 페이지 버튼
+        imgCount: pic_count,  //이미지갯수 
+        //dots: true,   //하단 페이지 버튼
         autoPlay:true//자동재생
     })
 })

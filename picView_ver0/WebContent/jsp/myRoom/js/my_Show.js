@@ -1,11 +1,13 @@
 	$(function() {
-		$('.info_bar').css('display', 'none');
+		$('.interaction-bar').css('display', 'none');
 
-		$('.picture_list').mouseover(function() {
-			$(this).find('div').css('display', 'block');
+		$('.photo-grid-item').mouseover(function() {
+			$(this).find('.interaction-bar').css('display', 'flex');
+			$(this).find('.tool').css('display', 'inline');
+			$(this).find('.glyphicon').css('display','block');
 		});
-		$('.picture_list').mouseout(function() {
-			$('.info_bar').css('display', 'none');
+		$('.photo-grid-item').mouseout(function() {
+			$('.interaction-bar').css('display', 'none');
 		});
 
 	});

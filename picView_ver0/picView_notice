@@ -160,4 +160,14 @@ jsp->myRoom-> my_album_add.jsp, my_album_add_update.jsp
 여기서 뒤로가기 <a href="my_album${mem_no}">앨범 목록으로 돌아가기</a>
 일케 수정했어용
 
+----------------
+2015/12/09 12:32 홍채영
+picture, search, member , reply 패키지 
+
+jsp -> search 전체다
+    -> login register.jsp 랑 css 
+    
+마이바티스 
+(그냥 모두 가져가세요)
+
 

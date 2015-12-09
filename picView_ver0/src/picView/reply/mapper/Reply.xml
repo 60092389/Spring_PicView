@@ -28,6 +28,10 @@
 		where pic_no =#{pic_no}
 	</select>
 	
+	<select id="myShowReply_count" parameterType="int" resultType="int">
+	 	select count(*) from reply where pic_no = #{pic_no}
+	</select>
+	
 </mapper>
 
 

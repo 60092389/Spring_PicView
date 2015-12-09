@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="./css/my_Show5.css" rel="stylesheet">
+<link href="./css/my_Show.css" rel="stylesheet">
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
 <link href="../../css/picView_custom.css" rel="stylesheet"> 
 <link href="./css/my_Menu.css" rel="stylesheet">
@@ -38,6 +38,8 @@
 			<jsp:param value="${level }" name="level"/>
 		</jsp:include>
 	</div>
+	
+	<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 
 
 
@@ -50,13 +52,14 @@
 				</div>
 				<div class="view fluid-magic-search-view">
 					<a class="search-toggle" href="#"></a>
-					
+					<input type="hidden" name="mem_no_search" id="mem_no_search" value="${member.mem_no }">
 					<input class="magic-search" type="text" value="" placeholder="사진 스트림 검색">
-					<a class="overlay"><span class="search"></span></a>
 				</div>
-				
+				<a class="overlay"><span class="search"></span></a>
 			</div>
+			
 			<div id="show_btn" class="btn-group">
+				<c:if test="${level == '1' }">
 				<button type="button" class="btn btn-default dropdown-toggle"
 					data-toggle="dropdown">
 					모두 보기 <span class="caret"> </span>
@@ -68,56 +71,49 @@
 					<li><a class="show" name="closed" title="비공개 보기">비공개 보기</a></li>
 					<li><a class="show" name="all" title="모두 보기">모두 보기</a></li>
 				</ul>
+				</c:if>
 			</div>
 			
 		</div>
 		 
 
-			 <div class="photo-grid-container">
+			<div class="photo-grid-container">
 					<c:forEach var="s" items="${myShowList}">
 						
 				 		 <div class="photo-grid-item">
-				 		 	<a class="overlay" href="../../jsp/basic/picDetail.jsp?pic_id">
+				 		 	<a class="overlay" href="../../jsp/basic/picDetail.jsp${s.pic_no}">
 								<img src="../../upload/${s.pic_add}">
 							</a>
 							
 							<div class="view photo-list-view">
 								<div class="interaction-bar" style="display: none;">
 									<div class="text">
-										<a class="title" href="#">${pic.pic_title}</a>
+										<a class="title" href="#">${s.pic_title}</a>
+										
+										<c:if test="${level == '1' }">
 										<a class="attribution" href="#">회원님에 의해!</a>
+										</c:if>
+										<c:if test="${level != '1' }">
+										<a class="attribution" href="#">출처 : ${member.mem_name }</a>
+										</c:if>
+										
 									</div>
 									<div class="tool">
 										<a class="fave-area" href="#"></a>
-										<span class="glyphicon glyphicon-star-empty">${pic.good_count}</span>
+										<span class="glyphicon glyphicon-star-empty">${s.good_count}</span>
 									<i class="fave-star fave can-not-fave"></i>
 									</div>
-									<div class="tool">
-										<a class="comment-area" href="#"></a>
-										<span class="glyphicon glyphicon-comment">${pic.pic_count}<</span>
-										<i class="fave-star fave can-not-fave"></i>
-									</div>
+									<c:forEach var="r" items="${rep_count}">
+										<c:if test="${r.pic_no == s.pic_no }">
+											<div class="tool">
+												<a class="comment-area" href="#"></a>
+												<span class="glyphicon glyphicon-comment">${r.rep_count}</span>
+												<i class="fave-star fave can-not-fave"></i>
+											</div>
+										</c:if>
+									</c:forEach>
 								</div>
 							</div>
-				  			
-				  		<%-- 	<div class="interaction-bar">
-					  	  <div class="text">
-					  	    <a class="title" href='#'>${pic.pic_title}</a>
-					  	    <a class="attribution" href='#'>회원님에 의해!</a>
-					  	  </div>
-					  	  
-					  	   <div class='tool'>
- 							<a class='fave-area' href='#'></a>
- 							<span class='glyphicon glyphicon-star-empty'>${pic.good_count}</span>
- 							<i class='fave-star fave can-not-fave'></i>
- 						  </div>
-					  	  
-					  	  <div class='tool'>
-							<a class='comment-area' href='#'></a>
- 							<span class='glyphicon glyphicon-comment'>${pic.pic_count}</span>
-							<i class='fave-star fave can-not-fave'></i>
-						 </div>	
-					  	</div> --%>
 				  		</div>
 				  	</c:forEach>
 				</div> 
@@ -154,7 +150,6 @@ $('.photo-grid-container').sortablePhotos({
 $(function() {
 	$(function() {
 		$('#show_btn').click(function() {
-			//$(this).attr('class', 'btn-group open');
 			$(this).find('.btn-group').addClass('open');
 
 		});
@@ -163,25 +158,30 @@ $(function() {
 			var search = encodeURI($('.magic-search').val());
 			console.log(search);
 			
-			location.href="../../jsp/myRoom/myShowForm?search="+search;
+			var mem_no = $('#mem_no_search').val();
+			
+			
+			location.href="../../jsp/myRoom/myShowForm"+mem_no+"?search="+search;
 		})
 	
-		var pic_open = '';
+		var pic_open = 'all';
 		
 		$('.show').click(function() {
+			var mem_no = $('#mem_no_search').val();
 			pic_open = $(this).attr('name');
 			title = $(this).attr('title');
 			$('.dropdown-toggle').empty();
 			$('.dropdown-toggle').append(title);
 			
 			$('.sendShow').attr('value',pic_open);
-			location.href="../../jsp/myRoom/myShowForm?pic_open="+pic_open;
+			location.href="../../jsp/myRoom/myShowForm"+mem_no+"?pic_open="+pic_open;
 
 		});
 
 		
 		$('.slideshow-toggle').click(function() {
-			location.href="../../jsp/myRoom/myShowSlide?pic_open="+pic_open;
+			var mem_no = $('#mem_no_search').val();
+			location.href="../../jsp/myRoom/myShowSlide"+mem_no+"?pic_open="+pic_open;
 		});
 	}) 
 })

@@ -11,8 +11,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"> 
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<script src="js/arrayList.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <link href="../../css/picView_custom.css" rel="stylesheet">
@@ -23,6 +24,11 @@
 
 	var search = "<%=search%>";
 	var tag = 'text';
+	
+	window.onload = function() {
+		$('.interaction-bar').css('display', 'none');
+	}
+	
 	
 	$(function() {
 		$('.pictureLink').click(function() {
@@ -57,7 +63,6 @@
 		var cntCol=0;
 		
 		$('.color-swatch').click(function() {
-			if(cntCol<=2){
 				var color = $(this).attr('value');
 				var index3 = $('.color-swatch').index(this);
 					
@@ -65,14 +70,17 @@
 				//중간에 span들어가서 2씩 배가 됨
 				console.log('인덱스 값'+index3);
 				
-				$(this).parent().find('span').eq(index3/2).css('display','block');
+				
+				if($(this).parent().find('span').eq(index3/2).css('display') == 'block'){
+					$(this).parent().find('span').eq(index3/2).css('display','none');
+				}else{
+					$(this).parent().find('span').eq(index3/2).css('display','block');
+				}
+				
 				cntCol++;
 				console.log('카운트 값'+cntCol);
 				console.log(tag);
 				
-			}else{
-				alert('색상 선택은 3가지만 가능합니다');
-			}
 		})
 
 
@@ -90,9 +98,9 @@
 	});
 	
 	var html1 = "";
-	var dataM, dataF, dataT;
+	var dataM=1; var dataF=1, dataT=1;
 	/* 검색창 ajax */
-	function searchButton(){
+	/* function searchButton(){
 		
 		$('#search').attr('value', search);
 
@@ -114,17 +122,16 @@
 		  $.each(data,function(index,pic){
 				
 			  //사진 붙는곳
-				html += "<div class='view photo-list-photo-view awake'>";
-				html += "<div class='interaction-view'>";
+			  html += "<div class='interaction-view'>";
 				html += "<div class='photo-list-photo-interaction'>";
-				html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+				html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
-
+				
 				html += "<div class='view photo-list-view'>";
 				html += "<div class='interaction-bar'>";
 				html += "<div class='text'>";
 				html += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-				html += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+				html += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>회원님에 의해!</a></div>";
 
 				html += "<div class='tool'>";
 				html += "<a class='fave-area' href='#'></a>";
@@ -133,10 +140,8 @@
 
 				html += "<div class='tool'>";
 				html += "<a class='comment-area' href='#'></a>";
-				html += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+				html += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 				html += "<i class='fave-star fave can-not-fave'></i></a></div>";
-				
-				html += "</div></div></div></div></div>";
 			}); 
 		 	
 		  html+="</div></div>";
@@ -163,17 +168,17 @@
 		  $.each(data,function(index,pic){
 
 			  //사진 붙는곳
-			    html3 += "<div class='view photo-list-photo-view awake'>";
+			  html3 += "<div class='view photo-list-photo-view awake'>";
 				html3 += "<div class='interaction-view'>";
 				html3 += "<div class='photo-list-photo-interaction'>";
-				html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+				html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 					"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
-
+					
 				html3 += "<div class='view photo-list-view'>";
 				html3 += "<div class='interaction-bar'>";
 				html3 += "<div class='text'>";
 				html3 += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-				html3 += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+				html3 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
 				html3 += "<div class='tool'>";
 				html3 += "<a class='fave-area' href='#'></a>";
@@ -182,7 +187,7 @@
 
 				html3 += "<div class='tool'>";
 				html3 += "<a class='comment-area' href='#'></a>";
-				html3 += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+				html3 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 				html3 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 				
 				html3 += "</div></div></div></div></div>";
@@ -215,36 +220,36 @@
 		 }
 		$.each(data,function(index,pic){
 			 //사진 붙는곳
-			    html2 += "<div class='view photo-list-photo-view awake'>";
-				html2 += "<div class='interaction-view'>";
-				html2 += "<div class='photo-list-photo-interaction'>";
-				html2 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
-					"<img class='allPicture' src='../../upload/"+pic.pic_add+"'></a>";
+			html2 += "<div class='view photo-list-photo-view awake'>";
+			html2 += "<div class='interaction-view'>";
+			html2 += "<div class='photo-list-photo-interaction'>";
+			html2 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
+			"<img class='allPicture' src='../../upload/"+pic.pic_add+"'></a>";
+	
+			html2 += "<div class='view photo-list-view'>";
+			html2 += "<div class='interaction-bar'>";
+			html2 += "<div class='text'>";
+			html2 += "<a class='title' href='#'>"+ pic.pic_title+"</a>";
+			html2 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
-				html2 += "<div class='view photo-list-view'>";
-				html2 += "<div class='interaction-bar'>";
-				html2 += "<div class='text'>";
-				html2 += "<a class='title' href='#'>"+ pic.pic_title+"</a>";
-				html2 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
+			html2 += "<div class='tool'>";
+			html2 += "<a class='fave-area' href='#'></a>";
+			html2 += "<span class='glyphicon glyphicon-star-empty'>"+ pic.good_count+ "</span>";
+		 	html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 
-				html2 += "<div class='tool'>";
-				html2 += "<a class='fave-area' href='#'></a>";
-				html2 += "<span class='glyphicon glyphicon-star-empty'>"+ pic.good_count+ "</span>";
-			 	html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
-
-				html2 += "<div class='tool'>";
-				html2 += "<a class='comment-area' href='#'></a>";
-				html2 += "<span class='glyphicon glyphicon-comment'>0</span>";
-				html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
-				
-				html2 += "</div></div></div></div></div>";
+			html2 += "<div class='tool'>";
+			html2 += "<a class='comment-area' href='#'></a>";
+			html2 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
+			html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
+			
+			html2 += "</div></div></div></div></div>";
 			}); 
 		 	
 		  html2+="</div></div>";
 		  
 		  $('#all').append(html2);
  
-		  if(dataM==0&&dataF==0){
+		  if(dataM==0&&dataF==0&&dataT==0){
 			  
 		 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
 		 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
@@ -253,34 +258,60 @@
 		 	}
 		 	$('#member').append(html1);
 		});   
-	 }
-	
-	var dataM, dataF, dataT;
+	 } */
 	
 	/*색상 검색*/
 	var arr = new Array(3);
+	var colorList = new ArrayList();
+	console.log('생성 후 list 사이즈'+colorList.size());
+	
 	$(function() {
 		var cnt=0;
 		console.log(cnt);
-
-		if(cnt<=2){ //else일때 아예 클릭 막아버려야함
 		$('.color-swatch').click(function() {
 			var color = $(this).attr('value');
+			console.log('모두의 첫번째'+color);
 			
-			arr[cnt] = color;
-				
-			cnt++;
-				
+			console.log(colorList.size());
+			colorList.add(color);
+			console.log('넣고 나서');
+			console.log(colorList.size());		
+			
+			for(var i=0;i<colorList.size()-1;i++){
+				if(colorList.get(i) == color){
+					console.log('여기 같을때');
+					colorList.remove(colorList.size()-1);
+					colorList.remove(i);
+					
+				}
+			}
+			for(var i=0;i<colorList.size();i++){
+				console.log('여기 for문'+colorList.get(i));
+			}
+			for(var i=0;i<colorList.size();i++){
+				arr[i] = colorList.get(i); 
+			}
+			
+			for(var i=0;i<arr.length;i++){
+				console.log(arr);
+			}
+			
+			console.log('최종 size'+colorList.size());
 			var search=$('#search').val();
 			var search2="";
+			
+			
+			if(colorList.size()==0){
+				searchButton();
+			} 
 				
 			//실제 전달할 값
-			if(cnt==1){
+			if(colorList.size()==1){
 				search2 = search +","+ arr[0];
-			}else if(cnt==2){
+			}else if(colorList.size()==2){
 				search2 = search +","+ arr[0]+","+arr[1];
 			}
-			else if(cnt==3){
+			else if(colorList.size()==3){
 				search2 = search +","+ arr[0]+","+arr[1]+","+arr[2];
 			}
 					var html = "<div class='main search-contacts-results'>";
@@ -299,17 +330,17 @@
 					 }
 					  $.each(data,function(index,pic){
 						
-							html += "<div class='view photo-list-photo-view awake'>";
+						  html += "<div class='view photo-list-photo-view awake'>";
 							html += "<div class='interaction-view'>";
 							html += "<div class='photo-list-photo-interaction'>";
-							html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+							html += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 								"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 							
 							html += "<div class='view photo-list-view'>";
 							html += "<div class='interaction-bar'>";
 							html += "<div class='text'>";
 							html += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-							html += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+							html += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>회원님에 의해!</a></div>";
 
 							html += "<div class='tool'>";
 							html += "<a class='fave-area' href='#'></a>";
@@ -318,7 +349,7 @@
 
 							html += "<div class='tool'>";
 							html += "<a class='comment-area' href='#'></a>";
-							html += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+							html += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 							html += "<i class='fave-star fave can-not-fave'></i></a></div>";
 							
 							html += "</div></div></div></div></div>";
@@ -343,22 +374,22 @@
 					 $('#follow').empty();
 					 if(data==0){
 						 dataF = data;
-						 console.log('회원 사진 없어!!')
-						html3="";	
+						 console.log('팔로우 사진 없어!!')
+						 html3="";	
 					 }
 					  $.each(data,function(index,pic){
 							
-							html3 += "<div class='view photo-list-photo-view awake'>";
+						  html3 += "<div class='view photo-list-photo-view awake'>";
 							html3 += "<div class='interaction-view'>";
 							html3 += "<div class='photo-list-photo-interaction'>";
-							html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
+							html3 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
 								"<img class='picture' src='../../upload/"+pic.pic_add+"'></a>";
 								
 							html3 += "<div class='view photo-list-view'>";
 							html3 += "<div class='interaction-bar'>";
 							html3 += "<div class='text'>";
 							html3 += "<a class='title' href='#'>"+ pic.pic_title+ "</a>";
-							html3 += "<a class='attribution' href='#'>회원님에 의해!</a></div>";
+							html3 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
 							html3 += "<div class='tool'>";
 							html3 += "<a class='fave-area' href='#'></a>";
@@ -367,7 +398,7 @@
 
 							html3 += "<div class='tool'>";
 							html3 += "<a class='comment-area' href='#'></a>";
-							html3 += "<span class='glyphicon glyphicon-comment'>"+pic.pic_count+"</span>";
+							html3 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
 							html3 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 							
 							html3 += "</div></div></div></div></div>";
@@ -394,44 +425,60 @@
 					 }
 					$.each(data,function(index,pic){
 		
-						    html2 += "<div class='view photo-list-photo-view awake'>";
-							html2 += "<div class='interaction-view'>";
-							html2 += "<div class='photo-list-photo-interaction'>";
-							html2 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id' data-rapid_p='70'>"+
-							"<img class='allPicture' src='../../upload/"+pic.pic_add+"'></a>";
-					
-							html2 += "<div class='view photo-list-view'>";
-							html2 += "<div class='interaction-bar'>";
-							html2 += "<div class='text'>";
-							html2 += "<a class='title' href='#'>"+ pic.pic_title+"</a>";
-							html2 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
+						html2 += "<div class='view photo-list-photo-view awake'>";
+						html2 += "<div class='interaction-view'>";
+						html2 += "<div class='photo-list-photo-interaction'>";
+						html2 += "<a class='overlay' href='../../jsp/basic/picDetail.jsp?pic_id="+pic.pic_no+"'>"+
+						"<img class='allPicture' src='../../upload/"+pic.pic_add+"'></a>";
+				
+						html2 += "<div class='view photo-list-view'>";
+						html2 += "<div class='interaction-bar'>";
+						html2 += "<div class='text'>";
+						html2 += "<a class='title' href='#'>"+ pic.pic_title+"</a>";
+						html2 += "<a class='attribution' href='../../jsp/myRoom/myShowForm"+pic.mem_no+"'>출처 : "+pic.mem_name+"</a></div>";
 
-							html2 += "<div class='tool'>";
-							html2 += "<a class='fave-area' href='#'></a>";
-							html2 += "<span class='glyphicon glyphicon-star-empty'>"+ pic.good_count+ "</span>";
-						 	html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
+						html2 += "<div class='tool'>";
+						html2 += "<a class='fave-area' href='#'></a>";
+						html2 += "<span class='glyphicon glyphicon-star-empty'>"+ pic.good_count+ "</span>";
+					 	html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
 
-							html2 += "<div class='tool'>";
-							html2 += "<a class='comment-area' href='#'></a>";
-							html2 += "<span class='glyphicon glyphicon-comment'>0</span>";
-							html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
-							
-							html2 += "</div></div></div></div></div>";
+						html2 += "<div class='tool'>";
+						html2 += "<a class='comment-area' href='#'></a>";
+						html2 += "<span class='glyphicon glyphicon-comment'>"+pic.count_rep_no+"</span>";
+						html2 += "<i class='fave-star fave can-not-fave'></i></a></div>";
+						
+						html2 += "</div></div></div></div></div>";
+						
 						}); 
 					 	
 					  html2+="</div></div>";
 					  
 					  $('#all').append(html2);
-					  if(dataM==0&&dataF==0){
+					  
+					  /* if(dataM==0 && dataF==0 && dataT==0){
+						  alert(dataM);
+						  alert(dataF);
+						  alert(dataM);
+						  
+						  
+						  	console.log('M'+dataM);
+						  	console.log('F'+dataF);
+						  	console.log('T'+dataT);
+						  	
+					 		console.log('값없음');
+					 		html="";
+					 		html2="";
+					 		html3="";
 					 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
 					 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
-					 		
-					 		console.log('값없음');
+					 		$('#member').append(html1);
 					 	}
-					 	$('#member').append(html1);
+					  
+					  
+					  html1=""; */
 				});   
 		});
-	}
+	
 		
 });  
 </script>

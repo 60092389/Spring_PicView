@@ -19,6 +19,7 @@ import picView.member.model.Member;
 import picView.member.service.MemberService;
 import picView.picture.model.Picture;
 import picView.picture.model.PictureShow;
+import picView.picture.model.ReplyCount;
 import picView.picture.model.UpdatePictureCommand;
 import picView.picture.service.PictureService;
 
@@ -114,7 +115,6 @@ public class PictureController {
 		System.out.println("접속한사람 : "+mem_no);
 		System.out.println("누구의 페이지? : "+fri_no);
 
-		// search 값 안되면 나중에 Hashmap 으로 보내기
 		Picture picture = new Picture();
 		picture.setPic_open(pic_open);
 		//picture.setMem_no(mem_no);
@@ -126,7 +126,6 @@ public class PictureController {
 		
 		PictureShow pic_show = picService.myShowPicture(picture, mem_no);
 		
-		List<Picture> myShowList = pic_show.getPic_list();
 		
 		/* relation = 1 -> 자기자신
 		 * relation = 2 -> 내가팔로우하는사람 페이지 들어갔을때
@@ -138,18 +137,26 @@ public class PictureController {
 		
 		
 		Member member = memService.selectByNo(fri_no);
-
+		
+		List<Picture> myShowList = pic_show.getPic_list();
+		
+		System.out.println("컨트롤러 myShowList의 사이즈 : "+myShowList.size());
+		
+		List<ReplyCount> rep_count	 = picService.myShowReply_count(myShowList);	
+		for(int i=0; i<rep_count.size(); i++){
+		System.out.println("컨트롤러의 rep_count의 댓글개수 : "+rep_count.get(i).getRep_count());
+		}
 		
 		model.addAttribute("member", member);
 		model.addAttribute("myShowList", myShowList);
 		model.addAttribute("level", relation);
-
+		model.addAttribute("rep_count", rep_count);
 
 		return "myRoom/my_Show";
 	}
 
-	//@RequestMapping(value = "/jsp/**/myShowSlide{fri_mem_no}")
-	/*public String my_ShowSlide(Model model, @RequestParam(value = "pic_open", required = false) String pic_open,
+	@RequestMapping(value = "/jsp/**/myShowSlide{fri_mem_no}")
+	public String my_ShowSlide(Model model, @RequestParam(value = "pic_open", required = false) String pic_open,
 				HttpSession session, @PathVariable String fri_mem_no) {
 		
 		int fri_no = Integer.parseInt(fri_mem_no);
@@ -164,12 +171,17 @@ public class PictureController {
 		picture.setPic_open(pic_open);
 		picture.setMem_no(fri_no);
 
-		List<Picture> myShowList = picService.myShowPicture(picture);
+		PictureShow pic_show = picService.myShowPicture(picture, mem_no);
+		
+		List<Picture> myShowList = pic_show.getPic_list();
+		
+		int pic_count = myShowList.size();
 
 		model.addAttribute("myShowList", myShowList);
+		model.addAttribute("pic_count", pic_count);
 
 		return "myRoom/myShowSlide";
-	}*/
+	}
 
 	// basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
 	@RequestMapping("/jsp/**/picDetail") /// pic_no={pic_no}
