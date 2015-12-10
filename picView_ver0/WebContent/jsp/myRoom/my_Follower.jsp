@@ -10,13 +10,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
+
 <link href="../../css/picView_custom.css" rel="stylesheet">
 <script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
 <script src="./js/my_Follow.js"></script>
 <link href="../../jsp/myRoom/css/my_Menu.css" rel="stylesheet">
 <link href="css/my_Follow.css" rel="stylesheet">
+
+<script src="../../js/bootstrap.min.js"></script>
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<script src="../../js/bootstrap.min.js"></script>
 <title>팔로어</title>
 
 </head>
@@ -24,21 +27,29 @@
 	<div class="header">
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
+	
 	<div class="my_Menu">
-		<jsp:include page="../myRoom/my_Menu.jsp"></jsp:include>
+		<jsp:include page="../myRoom/my_Menu.jsp">
+			<jsp:param value="${member}" name="member"/>
+		</jsp:include>
 	</div>
 
 	<div id="myMenu_navi">
-		<jsp:include page="menu_nav.jsp"></jsp:include>
+		<jsp:include page="../myRoom/menu_nav.jsp">
+			<jsp:param value="${member}" name="member"/>
+			<jsp:param value="${level }" name="level"/>
+		</jsp:include>
 	</div>
 
 
 	<div class="center contents">
 		<div class=" follow_contents">
 			<div class="center_head">
-				<h2>팔로어 페이지</h2>
+				<h2>${authInfo.mem_name }님을 팔로우하는 사람들</h2>
+				<c:if test="${level == '1' }">
 				<div>
-					<input class="btn btn-default follow-btn fol-btn" type="button" value="팔로우">
+					<input type="hidden" name="mem_no" id="mem_no" value="${authInfo.mem_no }">
+					<input class="btn btn-default follow-btn fol-btn" type="button" value="팔로우" >
 				</div>
 				<div>
 					<input class="btn btn-default follower-btn fol-btn" type="button" value="팔로워">
@@ -46,6 +57,7 @@
 				<div>
 					<input class="btn btn-default followRec-btn fol-btn" type="button" value="추천친구">
 				</div>
+				</c:if>
 			</div>
 
 			<div class="browse_content">
@@ -56,7 +68,7 @@
 								<c:when test="${(f.follow_fri_no == m.mem_no && f.follow_check == '2' && m.mem_no != mem_no ) && f.follow_fri_no != 0}">
 									<!--상대방만 나를 팔로우 상태일 때-->										
 									<li class="only_follower only_follower2">
-										<a title="mem_no" href="mem_no">
+										<a title="mem_no" href="myShowForm${m.mem_no}">
 											<img alt="" src="../../upload/${m.mem_pic }" class="profile_pic">
 											<div class="data">
 												<p class="fri_name">${m.mem_name }</p>
@@ -74,7 +86,7 @@
 								<c:when test="${(f.follow_fri_no == m.mem_no && f.follow_check == '3' && m.mem_no != mem_no) && f.follow_fri_no != 0}">
 									<!--서로 팔로잉 상태일 때-->
 									<li class="each_follow each_follow2">
-										<a title="mem_no" href="mem_no">
+										<a title="mem_no" href="myShowForm${m.mem_no}">
 											<img alt="" src="../../upload/${m.mem_pic }" class="profile_pic">
 											<div class="data">
 												<p class="fri_name">${m.mem_name }</p>

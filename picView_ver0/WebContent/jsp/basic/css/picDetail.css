@@ -791,6 +791,7 @@ img {
 	right: 4px;
 	top: -4px;
 	transition: all 150ms ease-in-out 0s;
+	background-size: 100% 100%;
 }
 
 .context-list li .thumbnail::after {
@@ -802,10 +803,12 @@ img {
 	right: 2px;
 	top: -2px;
 	transition: all 150ms ease-in-out 0s;
+	background-size: 100% 100%;
 }
 
 .context-list li .thumbnail {
 	transition: box-shadow 150ms ease-in-out 0s;
+	background-size: 100% 100%;
 }
 
 .sub-photo-contexts-view {

@@ -29,15 +29,21 @@
 	
 	<insert id="insertAnalysis" parameterType="Analysis">
 		insert into analysis 
-		values(anl_no_seq.nextval, #{mem_no}, #{pic_no}, (select pic_add from picture where mem_no = #{mem_no} and pic_no = #{pic_no}), 
+		values(anl_no_seq.nextval, #{mem_no}, #{pic_no}, (select pic_title from picture where pic_no = #{pic_no}), 
+		(select pic_date from picture where pic_no = #{pic_no}),
+		(select pic_add from picture where mem_no = #{mem_no} pic_no = #{pic_no}), 
 		(select pic_count from picture where pic_no = #{pic_no}), (select good_count from picture where pic_no = #{pic_no}), 
-		(select count(*) from reply where pic_no = #{pic_no}), #{anl_word}, sysdate, '1')
+		(select nvl(count(*),0) from reply where pic_no = #{pic_no}), #{anl_word}, sysdate, '1')
 		
 		<!-- insert into analysis 
 		values(anl_no_seq.nextval, 1, 1, (select pic_add from picture where mem_no = 1 and pic_no = 1), 
 		(select pic_count from picture where pic_no = 1), (select good_count from picture where pic_no = 1), 
 		(select count(*) from reply where pic_no = 1), '테스트', sysdate, '1') -->
 	</insert>
+	
+	<delete id="deleteAnalysis" parameterType="int">
+		delete from analysis where pic_no = #{pic_no}
+	</delete>
 	
 
 </mapper>

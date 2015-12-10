@@ -3,6 +3,8 @@ package picView.member.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member implements Serializable{
 	private int mem_no;
 	private String mem_name;
@@ -15,6 +17,9 @@ public class Member implements Serializable{
 	private Timestamp mem_last_date;
 	private Timestamp mem_date;
 	
+	
+	
+
 	public Member(){}
 	
 	public Member(int mem_no, String mem_name, String mem_id, String mem_pwd, String mem_birth, String mem_sex,
@@ -92,7 +97,7 @@ public class Member implements Serializable{
 	public void setMem_date(Timestamp mem_date) {
 		this.mem_date = mem_date;
 	}
-	
+
 		
 
 }

@@ -49,7 +49,7 @@ public class MessageService {
 		return messageDao.saveList(mem_no);
 	}
 	// 자세히 보기
-	public Message detailMessage(int msg_no){
+	public List<Message> detailMessage(int msg_no){
 		return messageDao.detailMessage(msg_no);
 	}
 	// 쪽지 삭제
@@ -57,7 +57,7 @@ public class MessageService {
 		return messageDao.deleteMessage(msg_no_list);
 	}
 	// 자세히 보기(수신 확인, 수신 날짜 수정)
-	public int update_rec_date(Message message){
-		return messageDao.update_rec_date(message);
+	public int update_rec_date(List<Message> detailMessage){
+		return messageDao.update_rec_date(detailMessage);
 	}
 }

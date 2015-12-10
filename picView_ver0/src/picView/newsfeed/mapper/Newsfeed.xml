@@ -7,7 +7,7 @@
 <mapper namespace="picView.newsfeed.mapper.NewsfeedMapper">
 	<cache />
 	
-	<select id="list_newsfeed" resultType="Newsfeed" parameterType="int">
+	<!-- <select id="list_newsfeed" resultType="Newsfeed" parameterType="int">
 		select * from(
 			select 'friend' as subject,a.pic_no,a.mem_no,a.pic_add,b.mem_name,b.mem_pic,a.pic_date
 			from picture a
@@ -157,7 +157,7 @@
 	
 	</select>
 	
-	
+	 -->
 </mapper>
 
 

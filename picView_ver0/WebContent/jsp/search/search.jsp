@@ -573,7 +573,6 @@
 								<!--  selected  -->
 								<li class="search-in-button selected" value="text" onclick="searchButton()">모두</li>
 								<li  class="search-in-button" value="tags" onclick="searchButton()">태그</li>
-								<li class="search-in-button" value="category" onclick="searchButton()">카테고리</li>
 							</ul>
 						</div>
 			   	 	</div>

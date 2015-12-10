@@ -13,7 +13,7 @@ import picView.picture.model.Picture;
 
 public interface NewsfeedMapper {
 
-	public List<Newsfeed> list_newsfeed(RowBounds row, int mem_no); //뉴스피드 리스트
+	/*public List<Newsfeed> list_newsfeed(RowBounds row, int mem_no); //뉴스피드 리스트
 	public int count_newsfeed(int mem_no);//뉴스피드 갯수
 	public List<FriendList> list_friend(int mem_no);//친구목록
 	
@@ -27,4 +27,4 @@ public interface NewsfeedMapper {
 	public int photo_good_chk(Picture picture);//처음에 들어왔을 때 좋아요 체크 확인  
 	
 	public int count_activity_alarm(int mem_no);//헤더에 뜨는 알람 갯수 카운트
-}
+*/}

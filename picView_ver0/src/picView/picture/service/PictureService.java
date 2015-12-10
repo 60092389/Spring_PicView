@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import picView.album.model.AlbumDao;
 import picView.album.model.Group_Pic;
+import picView.analysis.model.AnalysisDao;
 import picView.follow.model.Follow;
 import picView.follow.model.FollowDao;
 import picView.member.model.Member;
@@ -36,8 +37,14 @@ public class PictureService {
 	private FollowDao followDao;
 	private AlbumDao albumDao;
 	private ReplyDao replyDao;
+	private AnalysisDao analDao;
 
 	private static final int PAGE_SIZE = 6;
+
+	@Autowired
+	public void setAnalDao(AnalysisDao analDao) {
+		this.analDao = analDao;
+	}
 
 	@Autowired
 	public void setReplyDao(ReplyDao replyDao) {
@@ -244,8 +251,9 @@ public class PictureService {
 				}
 
 			}
+			analDao.deleteAnalysis(pic_num);
 			picDao.DeletePicture(pic_num);
-			memDao.minusPic_count(mem_no);
+			memDao.minusPic_count(mem_no);			
 
 		}
 	}
@@ -458,6 +466,34 @@ public class PictureService {
 
 	public int count_Recent() {
 		return picDao.count_Recent();
+	}
+	
+	public String fol_check(int mem_no, int fri_no){
+		String fol_check = "0";
+		Follow follow = new Follow();
+		follow.setMem_no(mem_no);
+		follow.setFollow_fri_no(fri_no);
+		List<Follow> fol_check_list = followDao.followCheck(follow);
+	
+		System.out.println("*********fol_check**********"+fol_check_list.size());
+		
+		for(int i=0; i<fol_check_list.size(); i++){
+			if(fol_check_list.get(i).getMem_no() == mem_no &&
+					fol_check_list.get(i).getFollow_check().equals("1")){
+				fol_check = "1";
+			}
+			if(fol_check_list.get(i).getMem_no() == mem_no &&
+					fol_check_list.get(i).getFollow_check().equals("2")){
+				fol_check = "2";
+			}
+			if(fol_check_list.get(i).getMem_no() == mem_no &&
+					fol_check_list.get(i).getFollow_check().equals("3")){
+				fol_check = "3";
+			}
+			
+		}
+		
+		return fol_check;
 	}
 
 }

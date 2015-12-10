@@ -14,15 +14,6 @@
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-
-	<!-- <mvc:interceptors>
-		<mvc:interceptor>
-			/edit/ 경로안에 있는 모든 경로에 인터셉터를 적용하겠다
-			<mvc:mapping path="/jsp/**"/>
-			<bean class="spring.interceptor.AuthCheckInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors> -->
-
 	
 	
 	<!-- JsonView를 이용하기 위한 객체 -->

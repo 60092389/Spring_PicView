@@ -133,7 +133,7 @@
 				<div class="view search-subnav-slender-view">
 					<div class="search-subnav using-slender-advanced-panel"
 						id="search-people">
-						<div id="people" class="search-subnav-sizing fluid-centered" style="padding-left: 90px;">
+						<div id="people" class="search-subnav-sizing fluid-centered">
 							<div class="search-subnav-content">
 								<ul class="links">
 									<li class="link" data-id="photos">

@@ -20,12 +20,19 @@ import picView.member.model.AuthInfo;
 import picView.member.model.Member;
 import picView.member.service.MemberService;
 import picView.picture.model.Picture;
+import picView.picture.service.PictureService;
 
 @Controller
 public class Alb_Controller {
 
 	AlbumService service;
 	MemberService memberService;
+	PictureService pictureService;
+
+	@Autowired
+	public void setPictureService(PictureService pictureService) {
+		this.pictureService = pictureService;
+	}
 
 	@Autowired
 	public void setService(AlbumService service) {
@@ -59,6 +66,13 @@ public class Alb_Controller {
 		List<Album> albumlist = albumResult.getAlbumlist();
 		level = albumResult.getRelation()+"";
 		List<String> albumpiclist = service.albumpiclist(mem_no, fri_no);
+		
+		
+		String fol_check_list = pictureService.fol_check(mem_no, fri_no);
+		
+		
+		model.addAttribute("fol_check", fol_check_list);
+		
 		model.addAttribute("albumpiclist", albumpiclist);
 		model.addAttribute("albumlist", albumlist);
 		model.addAttribute("level", level);

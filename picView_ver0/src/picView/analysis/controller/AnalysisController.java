@@ -19,10 +19,18 @@ import picView.analysis.model.Analysis;
 import picView.analysis.model.Analysis_select;
 import picView.analysis.service.AnalysisService;
 import picView.member.model.AuthInfo;
+import picView.member.model.Member;
+import picView.member.service.MemberService;
 
 @Controller
 public class AnalysisController {
 	private AnalysisService anal_Service;
+	private MemberService memberService;
+	
+	@Autowired
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
 
 	@Autowired
 	public void setAnal_Service(AnalysisService anal_Service) {
@@ -45,9 +53,24 @@ public class AnalysisController {
 	}
 
 	@RequestMapping("/jsp/**/my_Analysis")
-	public String my_Analysis(Analysis_select anal_select) {
+	public String my_Analysis(Analysis_select anal_select,HttpSession session,
+			Model model) {
 
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+
+		int mem_no = authInfo.getMem_no();
+		
+		Member member = memberService.selectByNo(mem_no);
+		String level = "1";
 		// anal_Service.select_no(anal_select);
+		
+		String fol_check_list = "1";
+		
+		
+		model.addAttribute("fol_check", fol_check_list);
+		
+		model.addAttribute("level", level);
+		model.addAttribute("member", member);
 
 		return "myRoom/my_Analysis";
 	}

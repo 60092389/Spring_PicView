@@ -73,7 +73,7 @@
 		</div>
 		<form:form action="insertForm" commandName="memberCommand"
 			method="post">
-			<div class="contents">
+			<div class="contents_index">
 				<!-- 가입폼 -->
 				<div id="register_area" class="center_left col-xs-7 col-lg-7">
 					<div id="name_area" class="form-group col-xs-3 col-lg-5 col-sm-5">

@@ -26,6 +26,7 @@
 	<div class="my_Menu">
 		<jsp:include page="../myRoom/my_Menu.jsp">
 			<jsp:param value="${member}" name="member"/>
+			<jsp:param value="${fol_check }" name="fol_check"/>
 		</jsp:include>
 	</div>
 

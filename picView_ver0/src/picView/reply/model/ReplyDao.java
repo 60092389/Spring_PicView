@@ -31,4 +31,11 @@ public class ReplyDao {
 		
 		return myTemplate.getMapper(ReplyMapper.class).myShowReply_count(pic_no);
 	}
+	
+	public int photo_reply_detail(Reply reply){
+    return myTemplate.getMapper(ReplyMapper.class).photo_reply_detail(reply);
+ }
+	public List<Reply> list_reply_detail(int pic_no){
+    return myTemplate.getMapper(ReplyMapper.class).list_reply_detail(pic_no);
+ }
 }

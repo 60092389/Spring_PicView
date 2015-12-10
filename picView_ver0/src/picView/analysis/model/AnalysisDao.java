@@ -41,5 +41,10 @@ public class AnalysisDao {
 	public void insertAnalysis(Analysis analysis) {
 		myTemplate.getMapper(AnalysisMapper.class).insertAnalysis(analysis);
 	}
+	
+	//사진 삭제시 유입분석 데이터 삭제
+	public void deleteAnalysis(int pic_no){
+		myTemplate.getMapper(AnalysisMapper.class).deleteAnalysis(pic_no);
+	}
 
 }

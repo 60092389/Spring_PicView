@@ -12,8 +12,10 @@
 	href="../category/css/main_menu2.css" />
 <link href="../../css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../myRoom/album/css/chromagallery.css">
+<link href="./css/category.css" rel="stylesheet">
 
 <title>Insert title here</title>
+
 
 <script type="text/javascript">
 	/* $(function() {

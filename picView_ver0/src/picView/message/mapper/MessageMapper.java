@@ -13,7 +13,7 @@ public interface MessageMapper {
 	public Message findMessage(String msg_no);	// 쪽지 보관(쪽지번호로 쪽지내용)
 	public int saveMessage(HashMap<String, Object> msg_no_list);	// 쪽지 보관(msg_list_check 수정)
 	public List<Message> saveList(int mem_no);	// 쪽지 보관함
-	public Message detailMessage(int msg_no);	// 자세히 보기
+	public List<Message> detailMessage(int msg_no);	// 자세히 보기
 	public int deleteMessage(HashMap<String, Object> msg_no_list);	// 쪽지 삭제
-	public int update_rec_date(Message message);	// 자세히보기(수신확인, 수신날짜 수정)
+	public int update_rec_date(List<Message> detailMessage);	// 자세히보기(수신확인, 수신날짜 수정)
 }

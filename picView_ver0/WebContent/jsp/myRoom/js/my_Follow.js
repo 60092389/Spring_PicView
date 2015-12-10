@@ -16,8 +16,9 @@ window.onload = $(function(){
 });
 
 $(function(){
+	var mem_no = $('#mem_no').val();
 	$('.follow-btn').click(function(){
-		location.href = "my_Follow";
+		location.href = "my_Follow"+mem_no;
 	});
 });
 

@@ -8,7 +8,7 @@
 	
 	<insert id="goodInsert" parameterType="Good">
 		insert into good
-		values(good_no_seq.nextval, #{pic_no}, #{mem_no})
+		values(good_no_seq.nextval, #{pic_no}, #{mem_no}, sysdate)
 	</insert>
 
 	<delete id="goodDelete" parameterType="Good">

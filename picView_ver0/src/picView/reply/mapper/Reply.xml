@@ -32,6 +32,21 @@
 	 	select count(*) from reply where pic_no = #{pic_no}
 	</select>
 	
+	<insert id="photo_reply_detail" parameterType="Reply">
+      insert into reply
+      values(
+      reply_no_seq.NEXTVAL,#{pic_no},#{mem_no},#{rep_content},1,SYSDATE
+      )
+   </insert>
+   <select id="list_reply_detail" parameterType="int" resultType="Reply">
+      select a.*,b.mem_name,b.mem_pic
+      from reply a
+      left outer join member b on a.mem_no=b.mem_no
+      where a.pic_no=#{mem_no}
+      order by rep_date desc
+
+   </select>
+	
 </mapper>
 
 

@@ -26,8 +26,8 @@
  		
  	<!-- contents 시작 -->
 	<div id="contents">
-	    <input type="hidden" name="requestPage" id="requestPage">
-	    <input type="hidden" name="totalCount" id="totalCount" value="">
+	    <input type="hidden" name="requestPage_main" id="requestPage_main">
+	    <input type="hidden" name="totalCount_main" id="totalCount_main" value="">
 	    <!-- main 시작 -->
 		<div id="main" class="clearfix" role="main">
 			<div id="sidebar" style="position: absolute; top: 0px; bottom: auto; left: auto;">

@@ -364,7 +364,7 @@
                     {
                         this.grid.append("<div class='chrg-item chrg-no-select' style='width:"+columnWidth+"%; margin-bottom:"+this.settings.gridMargin+"px;'>"+
                             "<img src='"+this.settings.items[i].src+"' alt='"+this.settings.items[i].alt+"' data-largesrc='"+this.settings.items[i].largesrc+"'/>"+
-                            "<div class='chrg-description'><a href='../../jsp/basic/picDetail.jsp?pic_no="+pic_no+"'><p></p></a></div></div>");
+                            "<div class='chrg-description'><a href='../../jsp/basic/basic_pic_Detail?pic_no="+pic_no+"'><p></p></a></div></div>");
                     }
                 }
             }
@@ -378,7 +378,7 @@
                 this.grid = this.$el.find(".chrg-grid");
                 this.$el.find("img")
                     .wrap("<div class='chrg-item chrg-no-select' style='width:"+columnWidth+"%; margin-bottom:"+this.settings.gridMargin+"px;'></div>")
-                    .parent().append("<div class='chrg-description'><a href='../../jsp/basic/picDetail.jsp?pic_no="+pic_no+"'><p></p></a></div>");
+                    .parent().append("<div class='chrg-description'><a href='../../jsp/basic/basic_pic_Detail?pic_no="+pic_no+"'><p></p></a></div>");
                 this.grid.append(this.$el.find(".chrg-item"));
 
             }

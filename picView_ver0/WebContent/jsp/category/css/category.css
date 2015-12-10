@@ -1,0 +1,67 @@
+@CHARSET "EUC-KR";
+
+.Interest .interestWrapper {
+   border-radius: 6px;
+   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
+   display: block;
+   height: 100%;
+   overflow: hidden;
+   position: relative;
+   transition: transform 0.1s ease-in-out 0s;
+   width: 100%;
+}
+
+.Interest.FollowButton {
+   background: #fff none repeat scroll 0 0;
+   border-radius: 6px;
+   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+   height: 120px;
+}
+
+.Interest .wholeInterestMask {
+   cursor: pointer;
+   position: absolute;
+   z-index: 101;
+}
+
+.Interest .interestWrapper .interestImage {
+   background: #fff none repeat scroll center center/cover;
+   border-radius: 6px;
+   display: block;
+   height: 100%;
+   opacity: 0.8;
+   position: relative;
+   transition: opacity 0.1s ease-in-out 0s;
+   width: 100%;
+}
+
+.Interest .interestWrapper .interestLabel {
+   bottom: 0;
+   position: absolute;
+   width: 100%;
+   z-index: 102;
+}
+
+.Interest .wholeInterestMask .check {
+   background: rgba(0, 0, 0, 0) url("../../../images/main/checkbox.png")
+      no-repeat scroll -393px -37px;
+   height: 35px;
+   margin: 47px;
+   position: absolute;
+   width: 35px;
+   z-index: 102;
+}
+
+.Interest .wholeInterestMask .mask {
+   background-color: black;
+   border-radius: 6px;
+   height: 120px;
+   opacity: 0.5;
+   position: absolute;
+   top: 0;
+   width: 123px;
+}
+
+#category_no {
+   display: none;
+}

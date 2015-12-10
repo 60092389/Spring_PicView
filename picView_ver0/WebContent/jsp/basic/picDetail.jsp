@@ -113,9 +113,6 @@
 			  </div>
 			  <div class="view sub-photo-comments-view">
 			  	<div class="comments-holder order-chronological photosInComments">
-			  		<div class="comments-more">
-			  			<a href="#" data-rapid_p="83">43개의 이전 덧글 보기</a>
-			  		</div>
 			  		<ul class="comments">
 			  			
 			  			
@@ -273,6 +270,24 @@
 		var good_count = ${findGood };
 		var alb_count = ${alb_count};
 		
+		$.ajax({
+			type: 'get',
+			url: 'picGood_print?pic_no=' + this_pic,
+			//data: $('#test').serialize(),
+			dataType: 'json',
+			success:function(data) {
+				
+				$('.fave-count').empty();
+				
+				var good_count_txt = '';
+				
+				good_count_txt += '<span class="fave-count-label">' + data.good_count + '</span>';
+				good_count_txt += '<span class="stats-label">좋아요</span>';
+									
+				$('.fave-count').append(good_count_txt);
+			}
+		});
+		
 		if(good_count == 1){
 			$('#good_btn').attr('class', 'btn btn-default btn-lg btn-success');
 		} else {
@@ -332,7 +347,6 @@
 			
 			noAlbum += '<div id="noAlbum">';
 			noAlbum += '<h3>이 사진은 현재 아무 앨범에도 속해있지 않습니다.<h3>';
-			noAlbum += '<a href="#">앨범에 추가</a>';
 			noAlbum += '</div>';
 			
 			$('.sub-photo-context').append(noAlbum);
@@ -354,7 +368,6 @@
 					album += '<ul class="context-list">';
 					
 					$.each(data, function(index, album2){
-						alert(index);
 						album += '<li data-context-id="72157624542431329">';
 						album += "<a class='thumbnail' style='background-image: url(../../upload/" + album2.pic_add + ");' href='/photos/formosating/albums/72157624542431329'></a>";
 						album += '<span class="title">';

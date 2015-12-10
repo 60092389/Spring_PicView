@@ -11,6 +11,14 @@ public class ActivityList implements Serializable{
 	private Timestamp rep_date;//날짜
 	private String mem_name;//해당 회원이름
 	private int mem_no; //해당 회원번호
+	private String mem_pic;//해당 회원프로필사진
+	
+	public String getMem_pic() {
+		return mem_pic;
+	}
+	public void setMem_pic(String mem_pic) {
+		this.mem_pic = mem_pic;
+	}
 	public String getSubject() {
 		return subject;
 	}

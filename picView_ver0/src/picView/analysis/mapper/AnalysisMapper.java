@@ -14,5 +14,6 @@ public interface AnalysisMapper {
 	public void updateAnl_count(Analysis analysis);
 	
 	public void insertAnalysis(Analysis analysis);
+	public void deleteAnalysis(int pic_no);
 
 }

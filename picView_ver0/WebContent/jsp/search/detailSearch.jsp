@@ -131,12 +131,7 @@
 			  html+="</div></div>";
 		
 			  $('#member').append(html);
-			  if(data==0){
-			 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
-			 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
-			 		console.log('값없음');
-			 	}
-			 	$('#member').append(html1);
+			 
 			 	
 			});
 		
@@ -239,12 +234,7 @@
 					 
 					  
 					  $('#member').append(html);
-					  /* if(data==0){
-					 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
-					 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
-					 		console.log('값없음');
-					 	}
-					 	$('#member').append(html1); */
+					  
 					});
 				});
 		 	}
@@ -296,14 +286,7 @@
 				  html3+="</div></div>";
 				 
 				  $('#follow').append(html3);
-				  if(data==0){
-				 		html1 = "<div class='no-results-message'><h5 class='empty'>죄송합니다! "+search+" 와(과) 일치하는 항목이 없습니다.</h5>"+
-				 		"<h5 class='empty' id='message'>검색 범위를 확대해 보세요.</h5></div>";
-				 		console.log('값없음');
-				 	}
 				  
-				 	$('#member').append(html1);
-				 	
 				});
 			 
 			 	/*색상 검색*/

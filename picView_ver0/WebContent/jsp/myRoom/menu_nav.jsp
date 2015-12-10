@@ -22,6 +22,7 @@
 			<li class="menu"><a href="myShowForm${member.mem_no }">보여 주기</a></li>
 			<li class="menu"><a href="my_album${member.mem_no }">사진첩</a></li>
 			<li class="menu"><a href="my_Follow${member.mem_no }">친구 목록</a></li>
+			<li class="menu"><a href="my_Analysis">유입분석</a></li>
 			<li class="menu"><a href="#">프로필</a>
 		</ul>
 	<%} %>

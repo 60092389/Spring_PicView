@@ -23,6 +23,7 @@
 	
 	.fol-btn{
 		margin-right : 10px;
+		float: left;
 	}
 
 
@@ -35,6 +36,8 @@
 	
 	.center_table{
 		margin-top: -40px;
+		margin-left: 100px;
+		margin-right: 100px;
 	}
 	
 	.follow_contents .recommand_fri{
@@ -79,7 +82,7 @@ li{
 	list-style: outside none none;
 }
 
-li a:HOVER{
+.browse_content li a:HOVER{
 	text-decoration: none;
 	color: #36589C;
 	font-weight: bold;
@@ -178,7 +181,7 @@ li a:HOVER{
 
 .avatar{
 	background-color: #ddd;
-  background-size: cover;
+  background-size: 100% 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.08) inset;
   cursor: pointer;
   display: inline-block;

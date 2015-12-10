@@ -29,6 +29,7 @@
 	<div class="my_Menu">
 		<jsp:include page="../myRoom/my_Menu.jsp">
 			<jsp:param value="${member}" name="member"/>
+			<jsp:param value="${fol_check }" name="fol_check"/>
 		</jsp:include>
 	</div>
 
@@ -81,7 +82,8 @@
 					<c:forEach var="s" items="${myShowList}">
 						
 				 		 <div class="photo-grid-item">
-				 		 	<a class="overlay" href="../../jsp/basic/myShow_Detail?pic_no=${s.pic_no}">
+				 		 	<a class="overlay" href="../../jsp/basic/basic_pic_Detail?pic_no=${s.pic_no}">
+				 		 	
 								<img src="../../upload/${s.pic_add}">
 							</a>
 							

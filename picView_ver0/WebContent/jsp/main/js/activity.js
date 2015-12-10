@@ -4,6 +4,7 @@ $(function(){
 		   receiveMessage();
 		}
 	});*/
+	$('#requestPage_activity').val(1);
 	var index_chk =0;
 	$("#activity_div").scroll( function() {
 		  var elem = $("#activity_div");
@@ -20,18 +21,16 @@ $(function(){
 		dateType:"json",
 		success:function(data){
 			//alert(data.requestPage);
-			$('#totalCount').val(data);
+			$('#totalCount_activity').val(data);
 			receiveMessage();
 		}
 	});
 	
 	function receiveMessage() {
-		var requestPage = $('#requestPage').val();
+		var requestPage = $('#requestPage_activity').val();
 		
 		 if(!requestPage){
 			 requestPage = 1;
-		 }else{
-			 requestPage++;
 		 }
 		 
 		$.ajax({
@@ -43,32 +42,39 @@ $(function(){
 				$("#messages").append("<span style='color:red;'>불러오기 오류!</span>");
 			},
 			success:function(data){
-				var totalCount = $('#totalCount').val();
-				var total = data.totalCount;
+				var totalCount = $('#totalCount_activity').val();
+				var total = data.total_count;
 					if(total == 1){
 						requestPage = 0;
+					}else{
+						requestPage++;
 					}
 					if(requestPage < totalCount){
-						$('#requestPage').val(requestPage);
+						$('#requestPage_activity').val(requestPage);
+
+						$('#requestPage_activity').val(requestPage);
 						
 						var list = data.list;
 						$.each(list, function(index,activity){
 							var subject="";
 							if(activity.subject == "follow"){
 								subject = "님이 팔로우 요청했습니다."
+									location_chk="../myRoom/my_Follower";
 							}
 							if(activity.subject == "reply"){
 								subject = "님이 회원님의 사진에 댓글을 작성했습니다."
+									location_chk="../basic/basic_pic_Detail?pic_no="+activity.pic_no;
 							}
 							if(activity.subject == "good"){
 								subject = "님이 회원님의 사진을 좋아했습니다."
+									location_chk="../basic/basic_pic_Detail?pic_no="+activity.pic_no;
 							}
 							
 							var html = "<li class='_33c' id='_33c"+index_chk+"'>";
 								html += "<div class='anchorContainer'>";
-								html += "<a class='_33e' href='#'>";
+								html += "<a class='_33e' href='"+location_chk+"'>";
 								html += "<div class='clearfix'><div class='_ohe lfloat'>";
-								html += "<span class='_33h img _8o _8r' style='background-image: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=179f53b733169e2b5deb1ee5d5b61eb6&oe=56E79E2F&__gda__=1458041095_a782129bd70ae9e4b0ea440e255557cd);'></span>";
+								html += "<span class='_33h img _8o _8r' style='background-image: url(../../upload/"+activity.mem_pic+");'></span>";
 								html += "</div><div class='_42ef _8u'>";
 								html += "<div class='clearfix'><span>";
 								html += "<span class='fwb'>"+activity.mem_name+"</span>";
@@ -89,7 +95,8 @@ $(function(){
 				        	}, function() {
 				        		$('#_33c'+index).css('background-color','rgba(0, 0, 0, 0)');
 				        });
-				    });	
+				  });	
+					
 					
 					
 			}

@@ -103,12 +103,15 @@ public class NewsfeedController {
 	}
 	
 	@RequestMapping(value="count_activity_alarm{chk_date}",method=RequestMethod.GET )
-	public @ResponseBody int count_activity_alarm(@PathVariable Timestamp chk_date,HttpSession session){
+	public @ResponseBody int count_activity_alarm(@PathVariable String chk_date,HttpSession session){
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		int mem_no = authInfo.getMem_no();
 		ActivityList activity = new ActivityList();
 		activity.setMem_no(mem_no);
-		activity.setRep_date(chk_date);
+		System.out.println("chk_date???????????????" + chk_date);
+		Timestamp time = Timestamp.valueOf(chk_date);
+		System.out.println("time====="+ time);
+		activity.setRep_date(time);
 		
 		System.out.println("chk_date ===" + activity.getRep_date());
 		return service.count_activity_alarm(mem_no);

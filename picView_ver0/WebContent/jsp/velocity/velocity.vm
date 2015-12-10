@@ -3,14 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="http://localhost:8081/picView_151209_final_1/jsp/velocity/mail.css" rel="stylesheet">
 </head>
 <body>
-	<div style='background-color:#E5E5E5; height:800px; 
-		width:600px; text-align:center;'>
-		<div style='margin-top:100px;'>
-			<h3>${name}님 픽뷰에 가입하신것을 축하드립니다.</h3>
-		</div>		
-	</div>
+<div class="main_container">  
+
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" background="http://localhost:8081/picView_151209_final_1/jsp/velocity/billboard.jpg" bgcolor="#2a3647" style="background-image:url('http://localhost:8081/picView_151209_final_1/jsp/velocity/billboard.jpg'); background-size: cover; -webkit-background-size: cover; -moz-background-size: cover -o-background-size: cover; background-position: bottom center; background-repeat: no-repeat; background-color:#2a3647;">
+
+    <tr>
+      <td>
+          <table width="600" cellpadding="0" cellspacing="0" align="center" border="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; border:0; text-align:center;" class="content_width">    
+            <tr>
+              <td width="100%" height="40">&nbsp;</td>
+            </tr>
+            <tr> 
+              <td>
+                <img src="http://localhost:8081/picView_151209_final_1/images/logo.jpg" width="105" height="27" alt="" title="" border="0" style="border:0; display:inline_block;margin-left:400px"/>
+              </td>
+            </tr>
+            <tr>
+              <td width="100%" height="40">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>
+                <table width="600" height="1" align="center" bgcolor="#343f53" border="0"  cellpadding="0" cellspacing="0"style="height:1px!important; width:600px; background-color:#343f53; padding:0; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+                  <tr>
+                    <td></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+      </td>
+    </tr>
+      <tr>
+        <td height="80">&nbsp;</td>
+      </tr>
+    <tr>
+      <td>
+        <table width="600" cellpadding="0" cellspacing="0" align="center" class="content_width" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"> 
+          <tr>
+            <td>
+              <table width="740" cellpadding="0" cellspacing="0" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;margin-left:200px" class="content_width" align="left">
+                <tr>
+                  <td style="color: #fff; font-family: 'Raleway', Helvetica, Arial, sans-serif; font-size: 34px; font-weight: 700; text-transform: uppercase; line-height:50px; letter-spacing:1px;">${name}님 픽뷰에 가입하신것을 축하드립니다.</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>          
+      </td>
+    </tr>
+      <tr>
+        <td height="40">&nbsp;</td>
+      </tr>
+    <tr>
+      <td>
+        <table width="600" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="content_width">
+          <tr>
+            <td>
+              <table width="200" cellpadding="0" cellspacing="0" align="left" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; background: #f5a65b;margin-left:420px" class="center">
+                <tr>
+                  <td width="100%" height="20"></td>
+                </tr>
+                <tr>
+                  <td>               
+
+                    <table width="100%" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; text-align:center;">
+                      <tr>
+                        <td align="center" style="text-align:center;">
+                          <a href="http://pixelhint.com/passion-html-responsive-email-template" style="display: block; width: 100%; color: #fff; font-family: 'Raleway', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 700; text-decoration:none; letter-spacing:1px; text-transform:uppercase;">픽뷰 바로가기</a>
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%" height="20"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="200" width="100%">&nbsp;</td>
+    </tr>
+	</table>
+</div>
 
 
 </body>

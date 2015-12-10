@@ -50,8 +50,8 @@ $(function() {
 						var recent_html = "<div class='photo-list-photo-view' id='photo_list"+index_chk+"' style='width: 514px; height: 315px; background-image: url(../../upload/"+recent.pic_add+");transform: translate(0px, 4px);'>";
 						recent_html +="<div class='photo-list-photo-interaction'>";
 						recent_html +="<div class='interaction-bar' id='interaction"+index_chk+"'  title='"+recent.pic_title+"' >";
-						recent_html +="<div class='text'><a class='title' href='#' >"+recent.pic_title+"</a></div>";
-						recent_html +="<div class='tool'><a class='fave-area' href='#'>";
+						recent_html +="<div class='text'><a class='title' href='basic_pic_Detail?pic_no="+recent.pic_no+"' >"+recent.pic_title+"</a></div>";
+						recent_html +="<div class='tool'><a class='fave-area' href='basic_pic_Detail?pic_no="+recent.pic_no+"'>";
 						recent_html +="<i></i><span class='icon-count'>"+recent.pic_date+"</span></a></div>";
 						recent_html +="</div></div></div>";
 		      			

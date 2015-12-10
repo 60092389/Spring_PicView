@@ -1,6 +1,8 @@
 package picView.member.service;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -13,12 +15,13 @@ import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import picView.cate.model.Category;
 import picView.cate.model.CategoryDao;
 import picView.cate.model.GroupCategory;
 import picView.member.model.AuthInfo;
-import picView.member.model.MailTest;
+import picView.member.model.MailSend;
 import picView.member.model.Member;
 import picView.member.model.MemberCommand;
 import picView.member.model.MemberDao;
@@ -27,7 +30,7 @@ import picView.member.model.MemberDao;
 public class MemberService {
 	private MemberDao memberDao;
 	private CategoryDao cateDao;
-	private MailTest mailTest;
+	private MailSend mailTest;
 
 	@Autowired
 	public void setMemberDao(MemberDao memberDao) {
@@ -40,7 +43,7 @@ public class MemberService {
 	}
 	
 	@Autowired
-	public void setMailTest(MailTest mailTest) {
+	public void setMailTest(MailSend mailTest) {
 		this.mailTest = mailTest;
 	}
 

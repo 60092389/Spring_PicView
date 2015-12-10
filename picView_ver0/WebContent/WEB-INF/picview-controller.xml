@@ -13,6 +13,15 @@
 
 	<context:annotation-config/>
 	<context:component-scan base-package="picView"/>
+	
+	<mvc:interceptors>
+      <mvc:interceptor>
+         <mvc:mapping path="/jsp/**"/>
+         <mvc:exclude-mapping path="/jsp/login/**"/>
+         <mvc:exclude-mapping path="/jsp/index/**"/>
+         <bean class="picView.member.model.AuthInfoInterceptor"/>
+      </mvc:interceptor>
+   </mvc:interceptors> 
 
 
 	<!-- DB 매핑 작업 -->

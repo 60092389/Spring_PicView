@@ -160,7 +160,7 @@
 	</select>
 	
 	<select id="memInfo" parameterType="int" resultType="Member">
-		select mem_name, mem_pic
+		select mem_no,mem_name, mem_pic
 		from member
 		where mem_no = (select mem_no
 							from picture 
@@ -261,6 +261,160 @@
 		order by pic_date desc
 	</select>
 	<!-- 최근사진 보기 끝 -->
+	
+	<!-- 뉴스피드 관련 -->
+	<select id="list_newsfeed" resultType="Newsfeed" parameterType="int">
+		select * from(
+			select 'friend' as subject,a.pic_no,a.mem_no,a.pic_add,b.mem_name,b.mem_pic,a.pic_date
+			from picture a
+			left outer join member b on b.mem_no=a.mem_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			union
+			select 'follow' as subject,a.follow_no,a.follow_fri_no,'',b.mem_name,b.mem_pic,a.follow_date as pic_date
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=#{mem_no} and a.follow_check=2
+			union
+			select 'good' as subject,c.pic_no,b.mem_no,c.pic_add,b.mem_name,b.mem_pic,a.good_date as pic_date
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			and c.pic_no=a.pic_no 
+			)
+		order by pic_date desc
+	</select>
+	<select id="count_newsfeed" resultType="int" parameterType="int">
+		select count(*) from(
+			select 'friend' as subject,a.pic_no,a.mem_no,a.pic_add,b.mem_name,b.mem_pic,a.pic_date
+			from picture a
+			left outer join member b on b.mem_no=a.mem_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			union
+			select 'follow' as subject,a.follow_no,a.follow_fri_no,'',b.mem_name,b.mem_pic,a.follow_date as pic_date
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=#{mem_no} and a.follow_check=2
+			union
+			select 'good' as subject,c.pic_no,b.mem_no,c.pic_add,b.mem_name,b.mem_pic,a.good_date as pic_date
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			and c.pic_no=a.pic_no 
+			)
+		order by pic_date desc,pic_no desc
+	
+	</select>
+	<select id="list_friend" resultType="FriendList" parameterType="Integer">
+		select a.follow_fri_no,b.mem_name,b.mem_pic
+		from follow a
+		left outer join member b on b.mem_no=a.follow_fri_no
+		where a.mem_no=#{mem_no} and a.follow_check=3
+	
+	</select>
+	
+	<select id="list_activity" resultType="ActivityList" parameterType="int" >
+		select * from(
+			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name, b.mem_pic 
+			from reply a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+			union
+			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name, b.mem_pic 
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=#{mem_no} and a.follow_check=2
+			union
+			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name, b.mem_pic 
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			and c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+		)
+		order by rep_date desc
+	
+	</select>
+	<select id="count_activity" resultType="int" parameterType="int">
+		select count(*) from(
+			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name 
+			from reply a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+			union
+			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no=#{mem_no} and a.follow_check=2
+			union
+			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			and c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+		)
+		order by rep_date desc
+	
+	</select>
+	<select id="photo_good" parameterType="Picture" resultType="int">
+		select count(*) 
+		from good
+		where pic_no=#{pic_no} and mem_no=#{mem_no}
+	</select>
+	<delete id="photo_delete" parameterType="Picture" >
+		delete from good
+		where pic_no=#{pic_no} and mem_no=#{mem_no}
+	</delete>
+	<insert id="photo_insert" parameterType="Picture">
+		insert into good
+		values(
+			pic_no_seq.NEXTVAL,#{pic_no},#{mem_no},SYSDATE
+		)
+		
+	</insert>
+	<select id="photo_good_chk" parameterType="Picture" resultType="int">
+		select NVL(count(*),0) from
+		good
+		where mem_no=#{mem_no} and pic_no=#{pic_no}
+	</select>
+	
+	<select id="count_activity_alarm" resultType="int" parameterType="ActivityList">
+		select count(*) from(
+			select 'reply' as subject,a.pic_no,a.rep_content,a.rep_date,b.mem_name 
+			from reply a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+			union
+			select 'follow' as subject,a.follow_no,'',a.follow_date,b.mem_name
+			from follow a
+			left outer join member b on b.mem_no=a.follow_fri_no
+			where a.mem_no= #{mem_no} and a.follow_check=2
+			union
+			select 'good' as subject, a.pic_no,'',a.good_date,b.mem_name
+			from good a
+			left outer join member b on b.mem_no=a.mem_no
+			left outer join picture c on c.pic_no=a.pic_no
+			where a.mem_no in (select follow_fri_no from follow where mem_no=#{mem_no} and follow_check= 3)
+			and c.pic_no=a.pic_no
+			and c.mem_no = #{mem_no}
+		)
+		where rep_date >= #{rep_date}
+		order by rep_date desc
+	
+	</select>
+	
+	<!-- 뉴스피드 끝 -->
+	
 	
 	
 

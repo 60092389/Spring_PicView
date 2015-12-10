@@ -12,4 +12,5 @@ public interface FollowMapper {
 	public void updateFollowCheck(Follow follow);
 	public void cancelFollow(Follow follow);
 	public List<Follow> followCheck(Follow follow);
+	
 }

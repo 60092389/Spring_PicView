@@ -4,6 +4,8 @@ package picView.member.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,11 +17,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import picView.cate.model.Category;
 import picView.cate.service.CategoryService;
 import picView.member.model.AuthInfo;
-import picView.member.model.MailTest;
+import picView.member.model.MailSend;
 import picView.member.model.Member;
 import picView.member.model.MemberCommand;
 import picView.member.service.MemberService;
@@ -32,7 +35,7 @@ public class MemberController {
 	@Autowired
 	private CategoryService categoryService;
 	@Autowired
-	private MailTest mail;
+	private MailSend mail;
 
 	@Autowired
 	public void setMemberService(MemberService memberService) {
@@ -45,7 +48,7 @@ public class MemberController {
 	}
 	
 	@Autowired
-	public void setMail(MailTest mail) {
+	public void setMail(MailSend mail) {
 		this.mail = mail;
 	}
 	
@@ -84,7 +87,7 @@ public class MemberController {
 			
 			memberService.sendMailSerivce(memberCommand);			
 			
-			return "index/index";
+			return "redirect:/jsp/index/index.jsp";
 
 		} catch (Exception e) {
 
@@ -125,8 +128,10 @@ public class MemberController {
 	public String logoutMember(HttpSession session){
 		session.invalidate();
 		
-		return "index/index";
+		return "redirect:/jsp/index/index.jsp";
 	}
+	
+
 	
 	
 }

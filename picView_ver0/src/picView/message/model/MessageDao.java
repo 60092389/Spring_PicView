@@ -53,7 +53,7 @@ public class MessageDao {
 	}
 
 	// 자세히 보기
-	public Message detailMessage(int msg_no) {
+	public List<Message> detailMessage(int msg_no) {
 		return myTemplate.getMapper(MessageMapper.class).detailMessage(msg_no);
 	}
 
@@ -63,7 +63,7 @@ public class MessageDao {
 	}
 	
 	// 자세히보기(수신확인, 수신날짜 수정)
-	public int update_rec_date(Message message){
-		return myTemplate.getMapper(MessageMapper.class).update_rec_date(message);
+	public int update_rec_date(List<Message> detailMessage){
+		return myTemplate.getMapper(MessageMapper.class).update_rec_date(detailMessage);
 	}
 }

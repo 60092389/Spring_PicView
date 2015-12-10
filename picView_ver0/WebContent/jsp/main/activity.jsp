@@ -12,8 +12,8 @@
 </head>
 <body>
 <div id="fbNotificationsFlyout" class="__tw _4xi1 uiToggleFlyout">
-	<input type="hidden" name="requestPage" id="requestPage" value=""> 
-	<input type="hidden" name="totalCount" id="totalCount" value="">
+	<input type="hidden" name="requestPage_activity" id="requestPage_activity" value=""> 
+	<input type="hidden" name="totalCount_activity" id="totalCount_activity" value="">
 	<div class="uiHeader uiHeaderBottomBorder jewelHeader">
 			<div class="clearfix uiHeaderTop">
 				<h4 class="uiHeaderTitle">알림</h4>

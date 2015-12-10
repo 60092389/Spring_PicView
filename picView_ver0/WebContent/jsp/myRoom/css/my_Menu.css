@@ -88,7 +88,7 @@
 
 .avatar{
 	background-color: #ddd;
-	background-size: cover;
+	background-size: 100% 100%;
 	box-shadow: 0 0 20px rgba(0, 0, 0.08) inset;
 	cursor: pointer;
 	display: inline-block;
@@ -195,6 +195,8 @@ em{
  right: 130px;
 }
 
-
+.menu-follow-btn{
+	margin-top: 15px;
+}
 
 

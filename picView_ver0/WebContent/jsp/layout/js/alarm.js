@@ -1,12 +1,39 @@
 $(document).ready(function(){
 	var index_chk = 0;
 	var now = new Date();
-	var wri_date_year = new Date(now);
-	var chk_date =  $('#wri_date_year').val(wri_date_year);
+	function getTimeStamp() {
+	  var d = new Date();
+
+	  var s =
+	    leadingZeros(d.getFullYear(), 4) + '-' +
+	    leadingZeros(d.getMonth() + 1, 2) + '-' +
+	    leadingZeros(d.getDate(), 2) + ' ' +
+
+	    leadingZeros(d.getHours(), 2) + ':' +
+	    leadingZeros(d.getMinutes(), 2) + ':' +
+	    leadingZeros(d.getSeconds(), 2);
+
+	  return s;
+	}
+
+
+
+	function leadingZeros(n, digits) {
+	  var zero = '';
+	  n = n.toString();
+
+	  if (n.length < digits) {
+	    for (i = 0; i < digits - n.length; i++)
+	      zero += '0';
+	  }
+	  return zero + n;
+	}
+
+	var chk_date =  $('#wri_date_year').val(getTimeStamp());
 	  (function poll() {
 	    setTimeout(function() {
 	        $.ajax({
-	            url: "count_activity_alarm{chk_date}",
+	            url: "count_activity_alarm"+chk_date,
 	            type: "GET",
 	            success: function(data) {
 	                index_chk = data;

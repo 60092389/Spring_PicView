@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="css/jquery-ui.css">
 <link rel="stylesheet" href="css/selectize.css">
 <script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 
 
 

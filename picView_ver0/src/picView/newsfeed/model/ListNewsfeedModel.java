@@ -9,18 +9,24 @@ public class ListNewsfeedModel implements Serializable{
 	private int totalPageCount;//화면에서 글갯수 몇개를 보여줄것인지 페이지 갯수
 	private int startPage;
 	private int endPage;
-	private int reply_count;//뉴스피드에서 보여지는 댓글 카운트 갯수
+	private int total_count;//뉴스피드에서 보여지는 댓글 카운트 갯수
 	
 	public ListNewsfeedModel(){}
 
-	public ListNewsfeedModel(List<Newsfeed> list, int requestPage, int totalPageCount, int startPage, int endPage) {
+	
+
+	public ListNewsfeedModel(List<Newsfeed> list, int requestPage, int totalPageCount, int startPage, int endPage,
+			int total_count) {
 		super();
 		this.list = list;
 		this.requestPage = requestPage;
 		this.totalPageCount = totalPageCount;
 		this.startPage = startPage;
 		this.endPage = endPage;
+		this.total_count = total_count;
 	}
+
+
 
 	public List<Newsfeed> getList() {
 		return list;
@@ -60,6 +66,18 @@ public class ListNewsfeedModel implements Serializable{
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+
+
+
+	public int getTotal_count() {
+		return total_count;
+	}
+
+
+
+	public void setTotal_count(int total_count) {
+		this.total_count = total_count;
 	}
 	
 	

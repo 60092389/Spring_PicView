@@ -46,10 +46,9 @@ h1, h2, h3, h4, h5 {
 }
 
 #anal_table_area table {
-	width: 728px;
-	border-bottom: 2px solid #b2b9bf;
-	color: #595959;
+	width: 950px;
 	margin: 0 auto;
+	background-color: white;
 }
 
 #anal_table_area table th, td {
@@ -57,11 +56,11 @@ h1, h2, h3, h4, h5 {
 }
 
 #anal_table_area table th {
-	font-size: 12px;
+	font-size: 13px;
 }
 
 #anal_table_area table td {
-	font-size: 10px;
+	font-size: 14px;
 }
 
 #anal_table_area table img {
@@ -69,6 +68,10 @@ h1, h2, h3, h4, h5 {
 	height: 100px;
 }
 
-.img {
+#anal_table_area table thead tr {
+	height: 40px;
+}
+
+#anal_table_area table img {
 	width: 100px;
 }

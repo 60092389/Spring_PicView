@@ -237,7 +237,6 @@ public class FollowService {
 				// 자신과 아무팔로우가 없는 회원들 중
 				if(diffDays <= DAY_LIMIT && mem_cate.size() != 0 
 							&& follow_check.size() == 0 && my_cate.size() != 0){
-					System.out.println("kakakaka : "+member_list.get(i).getMem_name());
 					
 					//친구추천 페이지에 가져갈 리스트를 위한 객체 
 					FollowRecommand fr = new FollowRecommand();
@@ -270,5 +269,6 @@ public class FollowService {
 
 		return recommand_list;
 	}
+	
 
 }

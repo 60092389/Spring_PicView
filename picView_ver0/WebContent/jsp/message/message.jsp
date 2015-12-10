@@ -22,7 +22,7 @@
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
 
-	<div class="contents">
+	<div class="contents_message">
 
 		<div id="title_area">
 			<a href="message"><h1>PicView 쪽지함</h1></a>

@@ -151,7 +151,13 @@ public class PictureController {
 		for (int i = 0; i < rep_count.size(); i++) {
 			System.out.println("컨트롤러의 rep_count의 댓글개수 : " + rep_count.get(i).getRep_count());
 		}
-
+		
+		//해당 회원과의 팔로우 여부
+		String fol_check_list = picService.fol_check(mem_no, fri_no);
+			
+		System.out.println("************************************* "+fol_check_list);
+		
+		model.addAttribute("fol_check", fol_check_list);
 		model.addAttribute("member", member);
 		model.addAttribute("myShowList", myShowList);
 		model.addAttribute("level", relation);
@@ -188,7 +194,7 @@ public class PictureController {
 		return "myRoom/myShowSlide";
 	}
 
-	// 검색창 basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
+	// basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
 	@RequestMapping("/jsp/**/picDetail") /// pic_no={pic_no}
 	public String picDetail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no,
 			@RequestParam(value = "search", required = false) String search, HttpSession session) {
@@ -256,7 +262,7 @@ public class PictureController {
 
 		// 상세보기 - 조회수 업데이트
 		picService.update_count(picDetail);
-
+		
 		////
 
 		AlbumInfo albumInfo = new AlbumInfo();
@@ -283,9 +289,38 @@ public class PictureController {
 		return "basic/picDetail";
 	}
 
-	// 보여주기 -> basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
-	@RequestMapping("/jsp/**/myShow_Detail") /// pic_no={pic_no}
-	public String myShow_Detail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no,
+	// 상세보기 - 앨범 ajax
+	@RequestMapping("/jsp/**/findAlbum") /// pic_no={pic_no}
+	public @ResponseBody List<AlbumInfo> picDetail_Album(@RequestParam(value = "pic_no", required = false) int pic_no) {
+
+		AlbumInfo albumInfo = new AlbumInfo();
+		albumInfo.setPic_add(picService.findAlbum_pic_add(pic_no));
+		albumInfo.setAlb_name(picService.findAlbum_name(pic_no));
+		albumInfo.setAlb_pic_count(picService.findAlbum_pic_count(pic_no));
+
+		List<AlbumInfo> list = new ArrayList<AlbumInfo>();
+		list.add(albumInfo);
+		System.out.println(list);
+
+		return list;
+	}
+
+	@RequestMapping(value = "jsp/**/count_Recent", method = RequestMethod.GET)
+	public @ResponseBody int count_Recent() {
+		return picService.count_Recent();
+	}
+
+	@RequestMapping(value = "jsp/**/recent_Pic/{requestPage}", method = RequestMethod.GET)
+	public @ResponseBody RecentPicture recent_pic(@PathVariable String requestPage) {
+
+		System.out.println("requestPage = " + requestPage);
+
+		return picService.recent_Pic(Integer.parseInt(requestPage));
+	}
+	
+//보여주기 -> basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
+	@RequestMapping("/jsp/**/basic_pic_Detail") /// pic_no={pic_no}
+	public String basic_pic_Detail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no,
 			HttpSession session) {
 
 		System.out.println("보여주기 picDetail 들어옴");
@@ -376,34 +411,5 @@ public class PictureController {
 		model.addAttribute("alb_count", alb_count);
 
 		return "basic/picDetail";
-	}
-
-	// 상세보기 - 앨범 ajax
-	@RequestMapping("/jsp/**/findAlbum") /// pic_no={pic_no}
-	public @ResponseBody List<AlbumInfo> picDetail_Album(@RequestParam(value = "pic_no", required = false) int pic_no) {
-
-		AlbumInfo albumInfo = new AlbumInfo();
-		albumInfo.setPic_add(picService.findAlbum_pic_add(pic_no));
-		albumInfo.setAlb_name(picService.findAlbum_name(pic_no));
-		albumInfo.setAlb_pic_count(picService.findAlbum_pic_count(pic_no));
-
-		List<AlbumInfo> list = new ArrayList<AlbumInfo>();
-		list.add(albumInfo);
-		System.out.println(list);
-
-		return list;
-	}
-
-	@RequestMapping(value = "jsp/**/count_Recent", method = RequestMethod.GET)
-	public @ResponseBody int count_Recent() {
-		return picService.count_Recent();
-	}
-
-	@RequestMapping(value = "jsp/**/recent_Pic/{requestPage}", method = RequestMethod.GET)
-	public @ResponseBody RecentPicture recent_pic(@PathVariable String requestPage) {
-
-		System.out.println("requestPage = " + requestPage);
-
-		return picService.recent_Pic(Integer.parseInt(requestPage));
 	}
 }

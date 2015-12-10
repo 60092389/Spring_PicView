@@ -34,6 +34,8 @@ var selectedChartType;
 var anl_no_group = [];
 var mem_no_group = [];
 var pic_no_group = [];
+var pic_title_group = [];
+var pic_date_group = [];
 var pic_add_group = [];
 var pic_count_group = [];
 var good_count_group = [];
@@ -87,7 +89,7 @@ function search_Analysis(){
         sDate = $("#txtStartDate").val();
         eDate = $("#txtEndDate").val();
         selectedChartType = $("#selChartType").val();
-       	bindData;
+       	bindData();
     });
 	
 	
@@ -160,6 +162,8 @@ function search_Analysis(){
 		anl_no_group = [];
 		mem_no_group = [];
 		pic_no_group = [];
+		pic_title_group = [];
+		pic_date_group = [];
 		pic_add_group = [];
 		pic_count_group = [];
 		good_count_group = [];
@@ -172,31 +176,45 @@ function search_Analysis(){
 
 		$.each(data, function(index, anal) {
 			// 날짜 형식 변환
-			var year = new Date(anal.anl_date).getFullYear();
-			var month = new Date(anal.anl_date).getMonth() + 1;
-			var day = new Date(anal.anl_date).getDate();
+			var pic_year = new Date(anal.pic_date).getFullYear();
+			var pic_month = new Date(anal.pic_date).getMonth() + 1;
+			var pic_day = new Date(anal.pic_date).getDate();
 			
-			if(month < 10){
-				month = '0' + month; 
-			} if (day < 10){
-				day = '0' + day;
+			if(pic_month < 10){
+				pic_month = '0' + pic_month; 
+			} if (pic_day < 10){
+				pic_day = '0' + pic_day;
 			}
 			
-			var date = year + "-" + month + "-" + day;
+			var pic_date = pic_year + "-" + pic_month + "-" + pic_day;
+			
+			var anl_year = new Date(anal.anl_date).getFullYear();
+			var anl_month = new Date(anal.anl_date).getMonth() + 1;
+			var anl_day = new Date(anal.anl_date).getDate();
+			
+			if(anl_month < 10){
+				anl_month = '0' + anl_month; 
+			} if (anl_day < 10){
+				anl_day = '0' + anl_day;
+			}
+			
+			var anl_date = anl_year + "-" + anl_month + "-" + anl_day;
 
 			// alert("사진조회수 필터되니" + anal.pic_count);
 
-			if (date >= sDate && date <= eDate) {
+			if (anl_date >= sDate && anl_date <= eDate) {
 				filteredList.push({
 					anl_no : anal.anl_no,
 					mem_no : anal.mem_no,
 					pic_no : anal.pic_no,
+					pic_title : anal.pic_title,
+					pic_date : pic_date,
 					pic_add : anal.pic_add,
 					pic_count : anal.pic_count,
 					good_count : anal.good_count,
 					rep_count : anal.rep_count,
 					anl_word : anal.anl_word,
-					anl_date : date,
+					anl_date : anl_date,
 					anl_count : anal.anl_count
 				});
 			}
@@ -211,6 +229,8 @@ function search_Analysis(){
 			var currentAnl_no = filteredList[i].anl_no;
 			var currentMem_no = filteredList[i].mem_no;
 			var currentPic_no = filteredList[i].pic_no;
+			var currentPic_title = filteredList[i].pic_title;
+			var currentPic_date = filteredList[i].pic_date;
 			var currentPic_add = filteredList[i].pic_add;
 			var currentPic_count = filteredList[i].pic_count;
 			var currentGood_count = filteredList[i].good_count;
@@ -407,9 +427,11 @@ function search_Analysis(){
 			//html.push("<th>회원번호</th>");
 			//html.push("<th>사진번호</th>");
 			html.push("<th>사진</th>");
+			html.push("<th>사진제목</th>");
 			html.push("<th>사진조회수</th>");
 			html.push("<th>좋아요수</th>");
 			html.push("<th>댓글수</th>");
+			html.push("<th>사진날짜</th>");
 			html.push("<th>검색단어</th>");
 			html.push("<th>검색날짜</th>");
 			html.push("<th>검색횟수</th>");
@@ -419,35 +441,86 @@ function search_Analysis(){
 			// html.push( "<tr><td>" + data.anl_date + "</td></tr>";
 
 			$.each(data, function(index, anal) {
-				var year = new Date(anal.anl_date).getFullYear();
-				var month = new Date(anal.anl_date).getMonth() + 1;
-				var day = new Date(anal.anl_date).getDate();
+				var pic_year = new Date(anal.pic_date).getFullYear();
+				var pic_month = new Date(anal.pic_date).getMonth() + 1;
+				var pic_day = new Date(anal.pic_date).getDate();
 				
-				if(month < 10){
-					month = '0' + month; 
-				} else if (day < 10){
-					day = '0' + day;
+				if(pic_month < 10){
+					pic_month = '0' + pic_month; 
+				} if (pic_day < 10){
+					pic_day = '0' + pic_day;
 				}
 				
-				var date = year + "-" + month + "-" + day;
+				var pic_date = pic_year + "-" + pic_month + "-" + pic_day;
+				
+				var anl_year = new Date(anal.anl_date).getFullYear();
+				var anl_month = new Date(anal.anl_date).getMonth() + 1;
+				var anl_day = new Date(anal.anl_date).getDate();
+				
+				if(anl_month < 10){
+					anl_month = '0' + anl_month; 
+				} if (anl_day < 10){
+					anl_day = '0' + anl_day;
+				}
+				
+				var anl_date = anl_year + "-" + anl_month + "-" + anl_day;
 
 				html.push("<tr>");
 				html.push("<td>" + anal.anl_no + "</td>");
 				//html.push("<td>" + anal.mem_no + "</td>");
 				//html.push("<td>" + anal.pic_no + "</td>");
 				html.push("<td>" + "<a href = '../basic/picDetail?pic_no=" + anal.pic_no + "'>" + "<img src='../../upload/" + anal.pic_add + "'/>" + "</a>"  + "</td>");
+				html.push("<td>" + anal.pic_title + "</td>");
 				html.push("<td>" + anal.pic_count + "</td>");
 				html.push("<td>" + anal.good_count + "</td>");
 				html.push("<td>" + anal.rep_count + "</td>");
+				html.push("<td>" + pic_date + "</td>");
 				html.push("<td>" + anal.anl_word + "</td>");
-				html.push("<td>" + date + "</td>");
+				html.push("<td>" + anl_date + "</td>");
 				html.push("<td>" + anal.anl_count + "</td>");
 				html.push("</tr>");
 			});
 			
 			html.push("</tbody>");
+			html.push("<tfoot><tr><td colspan=\"10\">");
+			html.push("<div class=\"pagination pagination-centered hide-if-no-paging\"></div></td></tr>");
+			html.push("</tfoot>");
+			
 			$("#anal_table").html(html.join(""));
+			
+			// 테이블 정렬
 			$("#anal_table").tablesorter();
+			
+			/*$('.sort-column').click(function (e) {
+			    e.preventDefault();
+
+			    //get the footable sort object
+			    var footableSort = $('table').data('footable-sort');
+
+			    //get the index we are wanting to sort by
+			    var index = $(this).data('index');
+
+			    //get the sort order
+			    var ascending = $(this).data('ascending');
+
+			    footableSort.doSort(index, ascending);
+			});*/
+
+			// 테이블 페이징
+			$('#anal_table').footable();
+
+            $('.clear-filter').click(function (e) {
+                e.preventDefault();
+                $('table.demo').trigger('footable_clear_filter');
+				$('.filter-status').val('');
+            });
+
+            $('.filter-status').change(function (e) {
+                e.preventDefault();
+				var filter = $(this).val();
+                $('#filter').val($(this).text());
+                $('table.demo').trigger('footable_filter', {filter: filter});
+            });
 		});
 	}
 }
@@ -471,7 +544,7 @@ function pic_Analysis(){
         sDate = $("#txtStartDate").val();
         eDate = $("#txtEndDate").val();
         selectedChartType = $("#selChartType").val();
-       	bindData;
+       	bindData();
     });
 	
 	/* 컨트롤 및 전역변수 초기값 설정 */
@@ -543,6 +616,8 @@ function pic_Analysis(){
 		anl_no_group = [];
 		mem_no_group = [];
 		pic_no_group = [];
+		pic_title_group = [];
+		pic_date_group = [];
 		pic_add_group = [];
 		pic_count_group = [];
 		good_count_group = [];
@@ -555,31 +630,45 @@ function pic_Analysis(){
 
 		$.each(data, function(index, anal) {
 			// 날짜 형식 변환
-			var year = new Date(anal.anl_date).getFullYear();
-			var month = new Date(anal.anl_date).getMonth() + 1;
-			var day = new Date(anal.anl_date).getDate();
+			var pic_year = new Date(anal.pic_date).getFullYear();
+			var pic_month = new Date(anal.pic_date).getMonth() + 1;
+			var pic_day = new Date(anal.pic_date).getDate();
 			
-			if(month < 10){
-				month = '0' + month; 
-			} else if (day < 10){
-				day = '0' + day;
+			if(pic_month < 10){
+				pic_month = '0' + pic_month; 
+			} if (pic_day < 10){
+				pic_day = '0' + pic_day;
 			}
 			
-			var date = year + "-" + month + "-" + day;
+			var pic_date = pic_year + "-" + pic_month + "-" + pic_day;
+			
+			var anl_year = new Date(anal.anl_date).getFullYear();
+			var anl_month = new Date(anal.anl_date).getMonth() + 1;
+			var anl_day = new Date(anal.anl_date).getDate();
+			
+			if(anl_month < 10){
+				anl_month = '0' + anl_month; 
+			} if (anl_day < 10){
+				anl_day = '0' + anl_day;
+			}
+			
+			var anl_date = anl_year + "-" + anl_month + "-" + anl_day;
 
 			// alert("사진조회수 필터되니" + anal.pic_count);
 
-			if (date >= sDate && date <= eDate) {
+			if (anl_date >= sDate && anl_date <= eDate) {
 				filteredList.push({
 					anl_no : anal.anl_no,
 					mem_no : anal.mem_no,
 					pic_no : anal.pic_no,
+					pic_title : anal.pic_title,
+					pic_date : pic_date,
 					pic_add : anal.pic_add,
 					pic_count : anal.pic_count,
 					good_count : anal.good_count,
 					rep_count : anal.rep_count,
 					anl_word : anal.anl_word,
-					anl_date : date,
+					anl_date : anl_date,
 					anl_count : anal.anl_count
 				});
 			}
@@ -594,6 +683,8 @@ function pic_Analysis(){
 			var currentAnl_no = filteredList[i].anl_no;
 			var currentMem_no = filteredList[i].mem_no;
 			var currentPic_no = filteredList[i].pic_no;
+			var currentPic_title = filteredList[i].pic_title;
+			var currentPic_date = filteredList[i].pic_date;
 			var currentPic_add = filteredList[i].pic_add;
 			var currentPic_count = filteredList[i].pic_count;
 			var currentGood_count = filteredList[i].good_count;
@@ -607,8 +698,8 @@ function pic_Analysis(){
 
 			var flag = false;
 			var j;
-			for (j = 0; j < pic_no_group.length; j++) {
-				if (pic_no_group[j] == currentPic_no) {
+			for (j = 0; j < pic_title_group.length; j++) {
+				if (pic_title_group[j] == currentPic_title) {
 					flag = true;
 					break;
 				}
@@ -619,7 +710,7 @@ function pic_Analysis(){
 				good_count_group[j] += currentGood_count;
 				rep_count_group[j] += currentRep_count;
 			} else {
-				pic_no_group[j] = currentPic_no;
+				pic_title_group[j] = currentPic_title;
 				pic_count_group[j] = currentPic_count;
 				good_count_group[j] = currentGood_count;
 				rep_count_group[j] = currentRep_count;
@@ -683,7 +774,7 @@ function pic_Analysis(){
 			} ]
 		}
 
-		options.xAxis.categories = pic_no_group;
+		options.xAxis.categories = pic_title_group;
 		//pic_no_group
 		//<img src='../../upload/" + pic_add_group + "'/>
 		
@@ -781,65 +872,19 @@ function pic_Analysis(){
 		
 		//$("#anal_table").tablesorter();
 		
-		
 		$.getJSON("Anal_json", function(data) {
 			var html = [];
 
-			/*html += '<thead><tr class=\"header\">';
-			html += '<th>분석번호</th>';
-			//html += '<th>회원번호</th>';
-			//html += '<th>사진번호</th>';
-			html += '<th>사진</th>';
-			html += '<th>사진조회수</th>';
-			html += '<th>좋아요수</th>';
-			html += '<th>댓글수</th>';
-			html += '<th>검색단어</th>';
-			html += '<th>검색날짜</th>';
-			html += '<th>검색횟수</th>';
-			html += '</tr></thead><tbody>';
-
-			// var data = responseData.list;
-			// html.push( '<tr><td>' + data.anl_date + '</td></tr>';
-
-			$.each(data, function(index, anal) {
-				var year = new Date(anal.anl_date).getFullYear();
-				var month = new Date(anal.anl_date).getMonth() + 1;
-				var day = new Date(anal.anl_date).getDate();
-				
-				if(month < 10){
-					month = '0' + month; 
-				} else if (day < 10){
-					day = '0' + day;
-				}
-				
-				var date = year + "-" + month + "-" + day;
-
-				html += '<tr>';
-				html += '<td>' + anal.anl_no + '</td>';
-				//html += '<td>' + anal.mem_no + '</td>';
-				//html += '<td>' + anal.pic_no + '</td>';
-				html += '<td>' + '<a href = "../basic/picDetail?pic_no=' + anal.pic_no + '"/>' + '<img src="../../upload/' + anal.pic_add + '">' + '</a>' + '</td>';
-				html += '<td>' + anal.pic_count + '</td>';
-				html += '<td>' + anal.good_count + '</td>';
-				html += '<td>' + anal.rep_count + '</td>';
-				html += '<td>' + anal.anl_word + '</td>';
-				html += '<td>' + date + '</td>';
-				html += '<td>' + anal.anl_count + '</td>';
-				html += '</tr>';
-			});
-			
-			html += '</tbody>';
-			$("#anal_table").append(html);*/
-			
-			
 			html.push("<thead><tr class=\"header\">");
 			html.push("<th>분석번호</th>");
 			//html.push("<th>회원번호</th>");
 			//html.push("<th>사진번호</th>");
 			html.push("<th>사진</th>");
+			html.push("<th>사진제목</th>");
 			html.push("<th>사진조회수</th>");
 			html.push("<th>좋아요수</th>");
 			html.push("<th>댓글수</th>");
+			html.push("<th>사진날짜</th>");
 			html.push("<th>검색단어</th>");
 			html.push("<th>검색날짜</th>");
 			html.push("<th>검색횟수</th>");
@@ -849,38 +894,86 @@ function pic_Analysis(){
 			// html.push( "<tr><td>" + data.anl_date + "</td></tr>";
 
 			$.each(data, function(index, anal) {
-				var year = new Date(anal.anl_date).getFullYear();
-				var month = new Date(anal.anl_date).getMonth() + 1;
-				var day = new Date(anal.anl_date).getDate();
+				var pic_year = new Date(anal.pic_date).getFullYear();
+				var pic_month = new Date(anal.pic_date).getMonth() + 1;
+				var pic_day = new Date(anal.pic_date).getDate();
 				
-				if(month < 10){
-					month = '0' + month; 
-				} else if (day < 10){
-					day = '0' + day;
+				if(pic_month < 10){
+					pic_month = '0' + pic_month; 
+				} if (pic_day < 10){
+					pic_day = '0' + pic_day;
 				}
 				
-				var date = year + "-" + month + "-" + day;
+				var pic_date = pic_year + "-" + pic_month + "-" + pic_day;
+				
+				var anl_year = new Date(anal.anl_date).getFullYear();
+				var anl_month = new Date(anal.anl_date).getMonth() + 1;
+				var anl_day = new Date(anal.anl_date).getDate();
+				
+				if(anl_month < 10){
+					anl_month = '0' + anl_month; 
+				} if (anl_day < 10){
+					anl_day = '0' + anl_day;
+				}
+				
+				var anl_date = anl_year + "-" + anl_month + "-" + anl_day;
 
 				html.push("<tr>");
 				html.push("<td>" + anal.anl_no + "</td>");
 				//html.push("<td>" + anal.mem_no + "</td>");
 				//html.push("<td>" + anal.pic_no + "</td>");
-				html.push("<td>" + "<a href = '../basic/picDetail?pic_no=" + anal.pic_no + "'>" + "<img src='../../upload/" + anal.pic_add + "'/>" + "</a>" + "</td>");
+				html.push("<td>" + "<a href = '../basic/picDetail?pic_no=" + anal.pic_no + "'>" + "<img src='../../upload/" + anal.pic_add + "'/>" + "</a>"  + "</td>");
+				html.push("<td>" + anal.pic_title + "</td>");
 				html.push("<td>" + anal.pic_count + "</td>");
 				html.push("<td>" + anal.good_count + "</td>");
 				html.push("<td>" + anal.rep_count + "</td>");
+				html.push("<td>" + pic_date + "</td>");
 				html.push("<td>" + anal.anl_word + "</td>");
-				html.push("<td>" + date + "</td>");
+				html.push("<td>" + anl_date + "</td>");
 				html.push("<td>" + anal.anl_count + "</td>");
 				html.push("</tr>");
 			});
 			
 			html.push("</tbody>");
+			html.push("<tfoot><tr><td colspan=\"10\">");
+			html.push("<div class=\"pagination pagination-centered hide-if-no-paging\"></div></td></tr>");
+			html.push("</tfoot>");
+			
 			$("#anal_table").html(html.join(""));
+			
+			// 테이블 정렬
 			$("#anal_table").tablesorter();
-			/*$("#anal_table_test").trigger("update");
-			var sorting = [[2,1],[0,0]];  
-	        $("#anal_table_test").trigger("sorton",[sorting]);*/
+			
+			/*$('.sort-column').click(function (e) {
+			    e.preventDefault();
+
+			    //get the footable sort object
+			    var footableSort = $('table').data('footable-sort');
+
+			    //get the index we are wanting to sort by
+			    var index = $(this).data('index');
+
+			    //get the sort order
+			    var ascending = $(this).data('ascending');
+
+			    footableSort.doSort(index, ascending);
+			});*/
+
+			// 테이블 페이징
+			$('#anal_table').footable();
+
+            $('.clear-filter').click(function (e) {
+                e.preventDefault();
+                $('table.demo').trigger('footable_clear_filter');
+				$('.filter-status').val('');
+            });
+
+            $('.filter-status').change(function (e) {
+                e.preventDefault();
+				var filter = $(this).val();
+                $('#filter').val($(this).text());
+                $('table.demo').trigger('footable_filter', {filter: filter});
+            });
 		});
 
 	}
@@ -905,7 +998,7 @@ function date_Analysis(){
         sDate = $("#txtStartDate").val();
         eDate = $("#txtEndDate").val();
         selectedChartType = $("#selChartType").val();
-       	bindData;
+       	bindData();
     });
 		
 	/* 컨트롤 및 전역변수 초기값 설정 */
@@ -977,6 +1070,8 @@ function date_Analysis(){
 		anl_no_group = [];
 		mem_no_group = [];
 		pic_no_group = [];
+		pic_title_group = [];
+		pic_date_group = [];
 		pic_add_group = [];
 		pic_count_group = [];
 		good_count_group = [];
@@ -989,32 +1084,45 @@ function date_Analysis(){
 
 		$.each(data, function(index, anal) {
 			// 날짜 형식 변환
-			var year = new Date(anal.anl_date).getFullYear();
-			var month = new Date(anal.anl_date).getMonth() + 1;
-			var day = new Date(anal.anl_date).getDate();
+			var pic_year = new Date(anal.pic_date).getFullYear();
+			var pic_month = new Date(anal.pic_date).getMonth() + 1;
+			var pic_day = new Date(anal.pic_date).getDate();
 			
-			if(month < 10){
-				month = '0' + month; 
-			} else if (day < 10){
-				day = '0' + day;
+			if(pic_month < 10){
+				pic_month = '0' + pic_month; 
+			} if (pic_day < 10){
+				pic_day = '0' + pic_day;
 			}
 			
-			var date = year + "-" + month + "-" + day;
+			var pic_date = pic_year + "-" + pic_month + "-" + pic_day;
+			
+			var anl_year = new Date(anal.anl_date).getFullYear();
+			var anl_month = new Date(anal.anl_date).getMonth() + 1;
+			var anl_day = new Date(anal.anl_date).getDate();
+			
+			if(anl_month < 10){
+				anl_month = '0' + anl_month; 
+			} if (anl_day < 10){
+				anl_day = '0' + anl_day;
+			}
+			
+			var anl_date = anl_year + "-" + anl_month + "-" + anl_day;
 
-			//alert(date);
 			// alert("사진조회수 필터되니" + anal.pic_count);
 
-			if (date >= sDate && date <= eDate) {
+			if (anl_date >= sDate && anl_date <= eDate) {
 				filteredList.push({
 					anl_no : anal.anl_no,
 					mem_no : anal.mem_no,
 					pic_no : anal.pic_no,
+					pic_title : anal.pic_title,
+					pic_date : pic_date,
 					pic_add : anal.pic_add,
 					pic_count : anal.pic_count,
 					good_count : anal.good_count,
 					rep_count : anal.rep_count,
 					anl_word : anal.anl_word,
-					anl_date : date,
+					anl_date : anl_date,
 					anl_count : anal.anl_count
 				});
 			}
@@ -1029,6 +1137,8 @@ function date_Analysis(){
 			var currentAnl_no = filteredList[i].anl_no;
 			var currentMem_no = filteredList[i].mem_no;
 			var currentPic_no = filteredList[i].pic_no;
+			var currentPic_title = filteredList[i].pic_title;
+			var currentPic_date = filteredList[i].pic_date;
 			var currentPic_add = filteredList[i].pic_add;
 			var currentPic_count = filteredList[i].pic_count;
 			var currentGood_count = filteredList[i].good_count;
@@ -1042,8 +1152,8 @@ function date_Analysis(){
 
 			var flag = false;
 			var j;
-			for (j = 0; j < anl_date_group.length; j++) {
-				if (anl_date_group[j] == currentAnl_date) {
+			for (j = 0; j < pic_date_group.length; j++) {
+				if (pic_date_group[j] == currentPic_date) {
 					flag = true;
 					break;
 				}
@@ -1054,7 +1164,7 @@ function date_Analysis(){
 				good_count_group[j] += currentGood_count;
 				rep_count_group[j] += currentRep_count;
 			} else {
-				anl_date_group[j] = currentAnl_date;
+				pic_date_group[j] = currentAnl_date;
 				pic_count_group[j] = currentPic_count;
 				good_count_group[j] = currentGood_count;
 				rep_count_group[j] = currentRep_count;
@@ -1117,8 +1227,8 @@ function date_Analysis(){
 			} ]
 		}
 
-		options.xAxis.categories = anl_date_group;
-		options.xAxis.tickInterval = parseInt(anl_date_group.length / 3);
+		options.xAxis.categories = pic_date_group;
+		options.xAxis.tickInterval = parseInt(pic_date_group.length / 3);
 		//alert(pic_count_group);
 		//alert(rep_count_group);
 
@@ -1161,7 +1271,7 @@ function date_Analysis(){
 	function bindTable() {
 
 		var html = [];
-
+		
 		// 그냥
 		/*html.push("<table id=\"tbContents\" class=\"table tablesorter table-bordered table-hover table-condensed\">");
 
@@ -1209,15 +1319,18 @@ function date_Analysis(){
 		
 		$.getJSON("Anal_json", function(data) {
 			var html = [];
+			var count = 0;
 
 			html.push("<thead><tr class=\"header\">");
 			html.push("<th>분석번호</th>");
 			//html.push("<th>회원번호</th>");
 			//html.push("<th>사진번호</th>");
 			html.push("<th>사진</th>");
+			html.push("<th>사진제목</th>");
 			html.push("<th>사진조회수</th>");
 			html.push("<th>좋아요수</th>");
 			html.push("<th>댓글수</th>");
+			html.push("<th>사진날짜</th>");
 			html.push("<th>검색단어</th>");
 			html.push("<th>검색날짜</th>");
 			html.push("<th>검색횟수</th>");
@@ -1225,37 +1338,94 @@ function date_Analysis(){
 
 			// var data = responseData.list;
 			// html.push( "<tr><td>" + data.anl_date + "</td></tr>";
-
+			
 			$.each(data, function(index, anal) {
-				var year = new Date(anal.anl_date).getFullYear();
-				var month = new Date(anal.anl_date).getMonth() + 1;
-				var day = new Date(anal.anl_date).getDate();
+				//count++;
 				
-				if(month < 10){
-					month = '0' + month; 
-				} else if (day < 10){
-					day = '0' + day;
+				var pic_year = new Date(anal.pic_date).getFullYear();
+				var pic_month = new Date(anal.pic_date).getMonth() + 1;
+				var pic_day = new Date(anal.pic_date).getDate();
+				
+				if(pic_month < 10){
+					pic_month = '0' + pic_month; 
+				} if (pic_day < 10){
+					pic_day = '0' + pic_day;
 				}
 				
-				var date = year + "-" + month + "-" + day;
+				var pic_date = pic_year + "-" + pic_month + "-" + pic_day;
+				
+				var anl_year = new Date(anal.anl_date).getFullYear();
+				var anl_month = new Date(anal.anl_date).getMonth() + 1;
+				var anl_day = new Date(anal.anl_date).getDate();
+				
+				if(anl_month < 10){
+					anl_month = '0' + anl_month; 
+				} if (anl_day < 10){
+					anl_day = '0' + anl_day;
+				}
+				
+				var anl_date = anl_year + "-" + anl_month + "-" + anl_day;
 
 				html.push("<tr>");
 				html.push("<td>" + anal.anl_no + "</td>");
 				//html.push("<td>" + anal.mem_no + "</td>");
 				//html.push("<td>" + anal.pic_no + "</td>");
-				html.push("<td>" + "<a href = '../basic/picDetail?pic_no=" + anal.pic_no + "'>" + "<img src='../../upload/" + anal.pic_add + "'/>" + "</a>" + "</td>");
+				html.push("<td>" + "<a href = '../basic/picDetail?pic_no=" + anal.pic_no + "'>" + "<img src='../../upload/" + anal.pic_add + "'/>" + "</a>"  + "</td>");
+				html.push("<td>" + anal.pic_title + "</td>");
 				html.push("<td>" + anal.pic_count + "</td>");
 				html.push("<td>" + anal.good_count + "</td>");
 				html.push("<td>" + anal.rep_count + "</td>");
+				html.push("<td>" + pic_date + "</td>");
 				html.push("<td>" + anal.anl_word + "</td>");
-				html.push("<td>" + date + "</td>");
+				html.push("<td>" + anl_date + "</td>");
 				html.push("<td>" + anal.anl_count + "</td>");
 				html.push("</tr>");
+				
+				/*if(count == 10){
+					return false;
+				}*/
 			});
-			
+
 			html.push("</tbody>");
+			html.push("<tfoot><tr><td colspan=\"10\">");
+			html.push("<div class=\"pagination pagination-centered hide-if-no-paging\"></div></td></tr>");
+			html.push("</tfoot>");
+			
 			$("#anal_table").html(html.join(""));
+			
+			// 테이블 정렬
 			$("#anal_table").tablesorter();
+			
+			/*$('.sort-column').click(function (e) {
+			    e.preventDefault();
+
+			    //get the footable sort object
+			    var footableSort = $('table').data('footable-sort');
+
+			    //get the index we are wanting to sort by
+			    var index = $(this).data('index');
+
+			    //get the sort order
+			    var ascending = $(this).data('ascending');
+
+			    footableSort.doSort(index, ascending);
+			});*/
+
+			// 테이블 페이징
+			$('#anal_table').footable();
+
+            $('.clear-filter').click(function (e) {
+                e.preventDefault();
+                $('table.demo').trigger('footable_clear_filter');
+				$('.filter-status').val('');
+            });
+
+            $('.filter-status').change(function (e) {
+                e.preventDefault();
+				var filter = $(this).val();
+                $('#filter').val($(this).text());
+                $('table.demo').trigger('footable_filter', {filter: filter});
+            });
 		});
 	}	
 }

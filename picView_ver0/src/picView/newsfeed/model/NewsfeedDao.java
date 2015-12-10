@@ -20,7 +20,7 @@ public class NewsfeedDao {
 		this.myTemplate = myTemplate;
 	}
 	
-	public List<Newsfeed> list_newsfeed(int startRow, int mem_no){
+	/*public List<Newsfeed> list_newsfeed(int startRow, int mem_no){
 		
 		return myTemplate.getMapper(NewsfeedMapper.class).list_newsfeed(new RowBounds(startRow, 5),mem_no);
 	}
@@ -53,6 +53,6 @@ public class NewsfeedDao {
 	}
 	public int count_activity_alarm(int mem_no){
 		return myTemplate.getMapper(NewsfeedMapper.class).count_activity_alarm(mem_no);
-	}
+	}*/
 	
 }

@@ -29,4 +29,11 @@ public class ReplyService {
 		return dao.reply_count(pic_no);
 	}
 	
+	public int photo_reply_detail(Reply reply){
+    return dao.photo_reply_detail(reply);
+ }
+ public List<Reply> list_reply_detail(int pic_no){
+    return dao.list_reply_detail(pic_no);
+ }
+	
 }

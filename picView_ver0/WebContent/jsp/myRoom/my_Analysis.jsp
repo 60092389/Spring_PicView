@@ -6,22 +6,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>유입 분석페이지</title>
 
-<script src="./js/my_Analysis.js"></script>
 <!-- js -->
-<!-- <script src="../../js/jquery.min.js"></script> -->
-<script src="./js/jquery-latest.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="./js/my_Analysis.js"></script>
 
 <!-- css -->
 <link href="./css/jquery-ui.css" rel="stylesheet">
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/bootstrap-theme.min.css" rel="stylesheet"> -->
 <link href="../../css/picView_custom.css" rel="stylesheet">
 <link href="./css/my_Analysis.css" rel="stylesheet">
-<link href="./sorter/style.css" rel="stylesheet">
 
+<link href="./css/theme.default.css" rel="stylesheet">
 
-<!-- <link href="./css/theme.bootstrap.css" rel="stylesheet"> -->
+<link href="./css/footable.core.min.css" rel="stylesheet">
+<link href="./css/bootstrap.css" rel="stylesheet">
 
-<!-- <link href="./css/table_sorter_style.css" rel="stylesheet"> -->
 
 </head>
 <body>
@@ -29,7 +30,7 @@
 		<jsp:include page="../layout/header.jsp"></jsp:include>
 	</div>
 
-	<%-- <div class="my_Menu">
+	<div class="my_Menu">
 		<jsp:include page="../myRoom/my_Menu.jsp">
 			<jsp:param value="${member}" name="member"/>
 		</jsp:include>
@@ -40,18 +41,8 @@
 			<jsp:param value="${member}" name="member"/>
 			<jsp:param value="${level }" name="level"/>
 		</jsp:include>
-	</div> --%>
-
-	<div id="myMenu_navi">
-		<ul class="nav nav-pills">
-			<li class="menu"><a href="my_Manage.html">사진 관리</a></li>
-			<li class="menu"><a href="my_Show.html">보여 주기</a></li>
-			<li class="menu"><a href="#">사진첩</a></li>
-			<li class="menu"><a href="#">관심 사진</a></li>
-			<li class="menu"><a href="follow.jsp">친구 목록</a></li>
-			<li class="menu active"><a href="my_Analysis.jsp">유입 분석</a></li>
-		</ul>
 	</div>
+
 
 	<div class="contents">
 		<!-- 통계 -->
@@ -66,7 +57,7 @@
 			</div>
 
 			<div id="dvSearchDate">
-				<input type="text" id="txtStartDate" maxlength="12" /> ~ <input
+				<input type="text" id="txtStartDate" maxlength="12" /> - <input
 					type="text" id="txtEndDate" maxlength="12" /> <input type="submit"
 					id="btnSubmit" value="조회" />
 			</div>
@@ -96,13 +87,13 @@
 		</div>
 
 		<div id="anal_table_area">
-			<table id="anal_table" border="1" cellpadding="0"
-				cellspacing="0" class="tablesorter">
+			<table id="anal_table" class="tablesorter footable"
+				border="1" cellpadding="0" cellspacing="0">
 			</table>
+					
 		</div>
-
+		
 	</div>
-
 
 	<!-- datepicker 이용 js -->
 	<script src="./js/jquery-ui.js"></script>
@@ -110,19 +101,22 @@
 	<!-- 차트 이용 js -->
 	<script src="./js/highcharts.js"></script>
 	<script src="../../js/bootstrap.min.js"></script>
-
+	
 	<!-- table sorter 이용 js -->
-	<script src="./js/jquery.tablesorter.js"></script>
+	<script src="./js/jquery.tablesorter.min.js"></script>
 	<script src="./js/jquery.tablesorter.widgets.js"></script>
-	<script src="./js/jquery.tablesorter.pager.js"></script>
-
+	
+	<!-- table paging 이용 js -->
+	<script src="./js/footable.min.js" type="text/javascript"></script>
+	<script src="./js/footable.sort.min.js" type="text/javascript"></script>
+	<script src="./js/footable.paginate.min.js" type="text/javascript"></script>
+	
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 
 			date_Analysis();
-			
-			//$("table").tablesorter({widthFixed: true, widgets: ['zebra']}).tablesorterPager({container: $("#pager")}); 
-			
+
 			$('#date_Anal').click(function() {
 				$(this).parent().parent().find('li').attr('class', '');
 				$(this).parent('li').attr('class', 'active');
@@ -143,6 +137,6 @@
 
 		});
 	</script>
-
+	
 </body>
 </html>

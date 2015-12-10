@@ -90,18 +90,6 @@ div.global-nav-view, .view > section.global-nav-view, .view > iframe.global-nav-
     width: auto;
 }
 
-
-.search-subnav-content {
-    box-sizing: border-box;
-    height: 100%;
-    margin: 0 auto;
-    overflow: visible;
-    position: relative;
-    white-space: nowrap;
-    width: 100%;
-}
-
-
 .search-subnav-content .tools {
     display: inline;
     list-style: outside none none;
@@ -120,7 +108,6 @@ menu, ol, ul {
 .search-subnav-content {
     box-sizing: border-box;
     height: 100%;
-    margin: 0 auto;
     overflow: visible;
     position: relative;
     white-space: nowrap;

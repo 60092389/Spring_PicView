@@ -14,17 +14,21 @@ import picView.newsfeed.model.ListNewsfeedModel;
 import picView.newsfeed.model.Newsfeed;
 import picView.newsfeed.model.NewsfeedDao;
 import picView.picture.model.Picture;
+import picView.picture.model.PictureDao;
 
 @Service
 public class NewsfeedService {
 	private static final int PAGE_SIZE = 5;
 	
-	private NewsfeedDao dao;
+	private PictureDao dao;
+	
 	
 	@Autowired
-	public void setDao(NewsfeedDao dao) {
+	public void setPictureDao(PictureDao dao) {
 		this.dao = dao;
 	}
+
+
 
 
 	public ListNewsfeedModel list_newsfeed(int requestPage,int mem_no){
@@ -49,7 +53,7 @@ public class NewsfeedService {
 		System.out.println("requestPage= " + requestPage);
 		List<Newsfeed> list = dao.list_newsfeed((requestPage-1)*PAGE_SIZE, mem_no);
 		
-		return new ListNewsfeedModel(list, requestPage, totalPageCount, startPage, endPage);
+		return new ListNewsfeedModel(list, requestPage, totalPageCount, startPage, endPage,totalCount);
 	}
 	
 	public int count_newsfeed(int mem_no){
@@ -85,7 +89,7 @@ public class NewsfeedService {
 		for(int i=0;i<list.size();i++){
 			System.out.println("list =======" + list.get(i).getRep_content());
 		}
-		return new ActivityModel(list, requestPage, totalPageCount, startPage, endPage);
+		return new ActivityModel(list, requestPage, totalPageCount, startPage, endPage,totalCount);
 	}
 	
 	public int photo_good(Picture picture){

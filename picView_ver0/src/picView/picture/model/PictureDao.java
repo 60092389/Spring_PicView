@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import picView.member.model.Member;
+import picView.newsfeed.model.ActivityList;
+import picView.newsfeed.model.FriendList;
+import picView.newsfeed.model.Newsfeed;
 import picView.picture.mapper.PictureMapper;
 
 @Component
@@ -160,5 +163,43 @@ public class PictureDao {
 		return myTemplate.getMapper(PictureMapper.class).count_Recent();
 	}
 	//최근사진 보기 끝
+	
+	//뉴스피드 관련
+public List<Newsfeed> list_newsfeed(int startRow, int mem_no){
+		
+		return myTemplate.getMapper(PictureMapper.class).list_newsfeed(new RowBounds(startRow, 5),mem_no);
+	}
+	
+	public int count_newsfeed(int mem_no){
+		return myTemplate.getMapper(PictureMapper.class).count_newsfeed(mem_no);
+	}
+	public List<FriendList> list_friend(int mem_no){
+		return myTemplate.getMapper(PictureMapper.class).list_friend(mem_no);
+	}
+	public List<ActivityList> list_activity(int startRow,int mem_no){
+		
+		return myTemplate.getMapper(PictureMapper.class).list_activity(new RowBounds(startRow, 5),mem_no);
+	}
+	public int count_activity(int mem_no){
+		return myTemplate.getMapper(PictureMapper.class).count_activity(mem_no);
+	}
+	
+	public int photo_good(Picture picture){
+		return myTemplate.getMapper(PictureMapper.class).photo_good(picture);
+	}
+	public int photo_insert(Picture picture){
+		return myTemplate.getMapper(PictureMapper.class).photo_insert(picture);
+	}
+	public int photo_delete(Picture picture){
+		return myTemplate.getMapper(PictureMapper.class).photo_delete(picture);
+	}
+	public int photo_good_chk(Picture picture){
+		return myTemplate.getMapper(PictureMapper.class).photo_good_chk(picture);
+	}
+	public int count_activity_alarm(int mem_no){
+		return myTemplate.getMapper(PictureMapper.class).count_activity_alarm(mem_no);
+	}
+	
+	//뉴스피드 끝
 
 }
