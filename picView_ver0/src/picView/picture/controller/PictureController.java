@@ -135,9 +135,9 @@ public class PictureController {
 		PictureShow pic_show = picService.myShowPicture(picture, mem_no);
 
 		/*
-		 * relation = 1 -> 자기자신 relation = 2 -> 내가팔로우하는사람 페이지 들어갔을때 relation = 3
-		 * -> 날 팔로우하는 사람 페이지 들어갔을때 relation = 4 -> 서로 친구인 사람 페이지 들어갔을때 relation
-		 * = 5 -> 아무관계 없는 사람 페이지 들어갔을때
+		 * relation = 1 -> 자기자신 relation = 2 -> 내가팔로우하는사람 페이지 들어갔을때 relation = 3 ->
+		 * 날 팔로우하는 사람 페이지 들어갔을때 relation = 4 -> 서로 친구인 사람 페이지 들어갔을때 relation = 5 ->
+		 * 아무관계 없는 사람 페이지 들어갔을때
 		 */
 		String relation = pic_show.getRelation() + "";
 
@@ -151,12 +151,12 @@ public class PictureController {
 		for (int i = 0; i < rep_count.size(); i++) {
 			System.out.println("컨트롤러의 rep_count의 댓글개수 : " + rep_count.get(i).getRep_count());
 		}
-		
-		//해당 회원과의 팔로우 여부
+
+		// 해당 회원과의 팔로우 여부
 		String fol_check_list = picService.fol_check(mem_no, fri_no);
-			
-		System.out.println("************************************* "+fol_check_list);
-		
+
+		System.out.println("************************************* " + fol_check_list);
+
 		model.addAttribute("fol_check", fol_check_list);
 		model.addAttribute("member", member);
 		model.addAttribute("myShowList", myShowList);
@@ -205,23 +205,6 @@ public class PictureController {
 
 		int mem_no = authInfo.getMem_no();
 
-		// 유입분석
-		Analysis_select anal_select = new Analysis_select();
-		anal_select.setMem_no(mem_no);
-		anal_select.setPic_no(pic_no);
-		anal_select.setAnl_word(search);
-
-		System.out.println(anal_select);
-
-		Analysis analysis = new Analysis();
-		analysis.setMem_no(mem_no);
-		analysis.setPic_no(pic_no);
-		analysis.setAnl_word(search);
-
-		System.out.println(analysis);
-
-		analService.select_no(anal_select, analysis);
-
 		// 상세보기 - 사진 정보
 		Picture picDetail = picService.detailPicture(pic_no);
 
@@ -230,6 +213,7 @@ public class PictureController {
 
 		// 상세보기 - 회원정보(이름, 프로필 사진)
 		Member memInfo = picService.memInfo(pic_no);
+		int pic_mem_no = memInfo.getMem_no();
 
 		// 상세보기 - 댓글 갯수
 		int rep_count = picService.rep_count(pic_no);
@@ -262,8 +246,25 @@ public class PictureController {
 
 		// 상세보기 - 조회수 업데이트
 		picService.update_count(picDetail);
-		
+
 		////
+
+		// 유입분석
+		Analysis_select anal_select = new Analysis_select();
+		anal_select.setMem_no(pic_mem_no);
+		anal_select.setPic_no(pic_no);
+		anal_select.setAnl_word(search);
+
+		System.out.println(anal_select);
+
+		Analysis analysis = new Analysis();
+		analysis.setMem_no(pic_mem_no);
+		analysis.setPic_no(pic_no);
+		analysis.setAnl_word(search);
+
+		System.out.println(analysis);
+
+		analService.select_no(anal_select, analysis);
 
 		AlbumInfo albumInfo = new AlbumInfo();
 		albumInfo.setPic_add(picService.findAlbum_pic_add(pic_no));
@@ -317,8 +318,8 @@ public class PictureController {
 
 		return picService.recent_Pic(Integer.parseInt(requestPage));
 	}
-	
-//보여주기 -> basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
+
+	// 보여주기 -> basic->picDetail.jsp에서 사용하는 사진 상세보기 불러오기
 	@RequestMapping("/jsp/**/basic_pic_Detail") /// pic_no={pic_no}
 	public String basic_pic_Detail(Model model, @RequestParam(value = "pic_no", required = false) int pic_no,
 			HttpSession session) {
@@ -329,22 +330,20 @@ public class PictureController {
 
 		int mem_no = authInfo.getMem_no();
 
-		/*// 유입분석
-		Analysis_select anal_select = new Analysis_select();
-		anal_select.setMem_no(mem_no);
-		anal_select.setPic_no(pic_no);
-		anal_select.setAnl_word(search);
-
-		System.out.println(anal_select);
-
-		Analysis analysis = new Analysis();
-		analysis.setMem_no(mem_no);
-		analysis.setPic_no(pic_no);
-		analysis.setAnl_word(search);
-
-		System.out.println(analysis);
-
-		analService.select_no(anal_select, analysis);*/
+		/*
+		 * // 유입분석 Analysis_select anal_select = new Analysis_select();
+		 * anal_select.setMem_no(mem_no); anal_select.setPic_no(pic_no);
+		 * anal_select.setAnl_word(search);
+		 * 
+		 * System.out.println(anal_select);
+		 * 
+		 * Analysis analysis = new Analysis(); analysis.setMem_no(mem_no);
+		 * analysis.setPic_no(pic_no); analysis.setAnl_word(search);
+		 * 
+		 * System.out.println(analysis);
+		 * 
+		 * analService.select_no(anal_select, analysis);
+		 */
 
 		// 상세보기 - 사진 정보
 		Picture picDetail = picService.detailPicture(pic_no);
