@@ -55,8 +55,9 @@
 					<a class="search-toggle" href="#"></a>
 					<input type="hidden" name="mem_no_search" id="mem_no_search" value="${member.mem_no }">
 					<input class="magic-search" type="text" value="" placeholder="사진 스트림 검색">
+					<a class="overlay"><span class="search"></span></a>
 				</div>
-				<a class="overlay"><span class="search"></span></a>
+				
 			</div>
 			
 			<div id="show_btn" class="btn-group">
@@ -122,6 +123,7 @@
 		
 			
 	<c:if test="${empty myShowList}">
+		<c:if test="${level == 1 }">
 		<div class="no_picture">
 			<h3>공개 사진이 없습니다.</h3>
 		<p>
@@ -129,9 +131,7 @@
 			설정하세요.
 		</p>
 		</div>
-			<div class="button">
-			<input id="login" class="btn btn-primary" type="button" value="사진 관리로 이동">
-		</div>
+		</c:if>
 	</c:if>
 </div>	
 

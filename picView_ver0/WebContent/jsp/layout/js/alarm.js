@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 	var index_chk = 0;
 	var now = new Date();
 	function getTimeStamp() {
@@ -42,14 +42,14 @@ $(document).ready(function(){
 	            },
 	            dataType: "json",
 	            complete: poll,
-	            timeout: 10000
+	            timeout: 99999999
 	        })
 	    }, 10000); 
 	  })();
-	  
+	  */
 	  
 	  //현재시간을 체크한 다음에 체크 한 시간 보다 큰 거 나오게 하기 
 	  
 	 
 	//갖고올때마다 인덱스가 1씩 쌓이고 알람 아이콘을 누르면 인덱스가 다시 1이됨 
-});
+//});

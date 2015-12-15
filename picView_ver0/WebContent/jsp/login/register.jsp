@@ -181,7 +181,7 @@
 								</div>
 								<div class="interestWrapper" style="background-color: #403F14">
 									<div class="interestImage"
-										style="background-image: url('/picView_test/images/category/${category.category_img_add}')"></div>
+										style="background-image: url('../../images/category/${category.category_img_add}')"></div>
 
 									<div class="interestLabel">
 										<h4>${category.category_name }

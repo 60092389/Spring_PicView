@@ -31,7 +31,7 @@
 		insert into analysis 
 		values(anl_no_seq.nextval, #{mem_no}, #{pic_no}, (select pic_title from picture where pic_no = #{pic_no}), 
 		(select pic_date from picture where pic_no = #{pic_no}),
-		(select pic_add from picture where mem_no = #{mem_no} pic_no = #{pic_no}), 
+		(select pic_add from picture where pic_no = #{pic_no}), 
 		(select pic_count from picture where pic_no = #{pic_no}), (select good_count from picture where pic_no = #{pic_no}), 
 		(select nvl(count(*),0) from reply where pic_no = #{pic_no}), #{anl_word}, sysdate, '1')
 		

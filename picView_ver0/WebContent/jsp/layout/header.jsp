@@ -26,7 +26,7 @@ Bootstrap
 <link href="../../css/picView_custom.css" rel="stylesheet">
 <link href="../main/css/activity.css" rel="stylesheet">
 <script src="../main/js/activity.js"></script>
-<script src="../../jsp/layout/js/alarm.js"></script>
+<!-- <script src="../../jsp/layout/js/alarm.js"></script> -->
 
 <script type="text/javascript">
 	
@@ -318,8 +318,8 @@ $(function(){
 	          
 	          <li class="alarm"><a href="#"><span id="alarm"
                      class="glyphicon glyphicon-bell"></span>
-                     <span class="glyphicon glyphicon-comment notification-icon icon-comment" aria-hidden="">
-                     <span class="notification-count" data-role="notification-count">0</span>
+                     <!-- <span class="glyphicon glyphicon-comment notification-icon icon-comment" aria-hidden="">
+                     <span class="notification-count" data-role="notification-count">0</span> -->
                      </span>
                      </a>
                   <div id="fbNotificationsFlyout" class="__tw _4xi1 uiToggleFlyout" style="display:none">
@@ -327,7 +327,7 @@ $(function(){
                   
                      <div class="uiHeader uiHeaderBottomBorder jewelHeader" >
                      <input type="hidden" name="totalCount_activity" id="totalCount_activity" value=""> 
-                     <input type="text" name="wri_date_year" id="wri_date_year" value="">
+                     <input type="hidden" name="wri_date_year" id="wri_date_year" value="">
                            <div class="clearfix uiHeaderTop">
                               <h4 class="uiHeaderTitle">알림</h4>
                            </div>

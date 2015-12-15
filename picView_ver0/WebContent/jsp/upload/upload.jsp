@@ -61,7 +61,7 @@
 							<div id="editr-panel-resize" class=""></div>
 								<div id="editr-panel-bg" style="height:500px;">
 									<div id="editr-panel-scroll-wrapper">
-										<h3 id="editr-panel-title">사진 1장 편집:</h3>
+										<h3 id="editr-panel-title">사진 편집:</h3>
 										<div id="editr-panel-form">
 											<ul id="yui_3_11_0_3_1447996615343_950" class="editr-options">
 												<li id="editr-panel-title-description" class="editr-option" tabindex="1">
@@ -173,7 +173,7 @@
 							<div id="working-area-controls">
 								
 								<div class="action-div">
-									<input id="action-publish" class="Butt extra-highlight" type="submit" value="사진 1장 업로드">
+									<input id="action-publish" class="Butt extra-highlight" type="submit" value="사진 업로드">
 								</div>
 								
 									<div id="controls-box">

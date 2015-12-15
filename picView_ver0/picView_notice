@@ -289,8 +289,24 @@ jsp -> search -> search.jsp, detailSearch.jsp
 picture.controller 
 my_Show.jsp 수정
 
+//////////////////////////////////////////////
+2015-12-09 21:11 박준병
+
+follow패키지, follow관련 jsp 다
+myRoom-> css -> my_Follow.css
+
+memberController에서 logoutMember 메소드 수정
+
+pictureService에 fol_check메소드
+pictureController에 fol_check_list 추가
+albumController에 fol_check_list추가
+followController에 fol_check_list 추가
+
+my_menu 수정
+my_Show에서 마이메뉴 인클루드 값
+my_album에서 마이메뉴 인클루드 값
+my_Follow에서 마이메뉴 인클루드 값
 
 
-2015-12-10 20:45 박준병
-얘들아 고생했다 우리 재준이의 쪽지함빼고 완성된완성본이다
-눈에거슬리는 부분이 있어도 넘어가도록해라
+
+

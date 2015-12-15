@@ -18,7 +18,7 @@
             </tr>
             <tr> 
               <td>
-                <img src="http://localhost:8081/picView_151209_final_1/images/logo.jpg" width="105" height="27" alt="" title="" border="0" style="border:0; display:inline_block;margin-left:400px"/>
+                <img src="http://localhost:8081/picView_151209_final_1/images/logo.jpg" width="105" height="27" alt="" title="" border="0" style="border:0; display:inline_block;text-align:center;"/>
               </td>
             </tr>
             <tr>

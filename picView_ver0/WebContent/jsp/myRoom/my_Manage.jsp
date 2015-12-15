@@ -30,7 +30,7 @@
 
 <script type="text/javascript">
 	function upload() {
-		location.href = "../basic/upload_index.jsp"
+		location.href = "../upload/upload.jsp"
 	}
 </script>
 

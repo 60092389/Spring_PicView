@@ -116,10 +116,7 @@ $(function(){
 					    	follow_html +="<a class='buddyicon' href='/photos/118500465@N06'>";
 					    	follow_html +="<img class='defer' width='32' height='32' src='../../upload/"+newsfeed.mem_pic+"'>";
 					    	follow_html +="</a><a class='usernameLink' href='../myRoom/my_Follower'>"+newsfeed.mem_name+"</a>님이 회원님을 팔로우하고 있습니다.";
-					    	follow_html +="<span class='action-date'>2달 전</span>";
-					    	follow_html +="</span><button class='follow-button' href='/people/118500465@N06/relationship/'>";
-					    	follow_html +="<span class='follow'>팔로우</span><!-- <span class='check'>✓</span> -->";
-					    	follow_html +="</button><div id='comments"+index_chk+"' style='display:none;'><input class='submit-comment' type='button' tabindex='2' value='Comment' name='submit'>";
+					    	follow_html +="<div id='comments"+index_chk+"' style='display:none;'><input class='submit-comment' type='button' tabindex='2' value='Comment' name='submit'>";
 					    	follow_html +="<a class='rapidnofollow1' href='#' onclick='return false;'></a><button type='button' id='close"+index+"' class='close'>";
 					    	follow_html +="<a class='rapidnofollow2'  href='#' onclick='return false;'></a>";
 					    	follow_html +="<input type='hidden' name='pic_no' id='pic_no' value='"+newsfeed.pic_no+"' class='pic_no"+index_chk+"'></div></div></div></div>";
